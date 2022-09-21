@@ -8,15 +8,19 @@ import loadingScreen from './assets/preload.json';
 import { AuthPage } from './pages/AuthPage';
 import { MainPage } from './pages/MainPage';
 import { Header } from './components/Header';
+import { SideBar } from './components/SideBar';
 
 function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
+  console.log(window.location.href);
+  
   return (
     <>
     {!loading ? 
       <>
         {auth ?  <Header></Header> : <></> }
         <div className={'wrapper'}>
+        {window.location.pathname !== '/auth' && <SideBar />}
         <Routes>
            { auth ? 
            <>

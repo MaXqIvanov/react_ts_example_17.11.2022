@@ -1,4 +1,86 @@
 // header
 .header{
     height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #9CB9C5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
+.header_wrapper{
+    height: fit-content;
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+}
+.header_logo{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 29.3053px;
+    line-height: 35px;
+    color: #03A9F4;
+    cursor: pointer;
+}
+.group_header{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+.header_name_company{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    color: #03A9F4;
+    margin-left: 5vw;
+    cursor: pointer;
+}
+.header_name{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #666666;
+    margin-right: 15px;
+}
+.header_user_img{
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    height: 45px;
+    background-position: center;
+    width: 45px;
+    cursor: pointer;
+}
+
+
+// end Header components
+
+// SideBar components
+.sidebar{
+    height: 100%;
+    width: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar_wrapper{
+    height: 96%;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    border-right: 1px solid #9CB9C5;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+// end SideBar Components
