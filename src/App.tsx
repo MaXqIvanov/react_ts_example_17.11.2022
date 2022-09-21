@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Lottie from 'lottie-react';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import './App.scss';
+import { RootState } from './store/store';
+import loadingScreen from './assets/preload.json';
+import { AuthPage } from './pages/AuthPage';
+import { MainPage } from './pages/MainPage';
+import { Header } from './components/Header';
 
 function App() {
+  const { auth, loading } = useSelector((state:RootState)=> state.auth)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {!loading ? 
+      <>
+        {auth ?  <Header></Header> : <></> }
+        <div className={'wrapper'}>
+        <Routes>
+           { auth ? 
+           <>
+            <Route path={'/'} element={<MainPage />} />
+            <Route path={'/auth'} element={<AuthPage />} />
+           </>
+           :
+           <Route path={'/auth'} element={<AuthPage />} />
+          } 
+        </Routes>
+        </div>
+      </>  
+      : <div className='loading'><Lottie className='spinner_app' animationData={loadingScreen} /></div>}
+    </>    
   );
 }
 
