@@ -1,12 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styles from '../scss/Component.module.scss';
 
 export const Header = () => {
+  const router = useNavigate()
+
   return (
     <div className={styles.header}>
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
-          <div className={styles.header_logo}>WorkTracker</div>
+          <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>
           <div className={styles.header_name_company}>ООО “Купипродай”</div>
         </div>
         <div className={styles.group_header}>
