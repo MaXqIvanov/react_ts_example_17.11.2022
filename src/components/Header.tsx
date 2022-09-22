@@ -6,7 +6,7 @@ export const Header = () => {
   const router = useNavigate()
 
   return (
-    <div className={styles.header}>
+    <div id="header" className={styles.header}>
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
           <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>

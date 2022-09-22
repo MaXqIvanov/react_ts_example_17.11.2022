@@ -1,7 +1,12 @@
 import React from 'react'
+import styles from '../scss/Controls.module.scss'
 
 export const ControlsPage = () => {
   return (
-    <div>ControlsPage</div>
+    <div className={styles.controls}>
+        <div className={styles.controls_wrapper}>
+
+        </div>
+    </div>
   )
 }

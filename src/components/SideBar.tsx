@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../scss/Component.module.scss'
 import img_task from '../assets/sidebar/tasks.svg'
 import img_control from '../assets/sidebar/control.svg'
@@ -11,7 +11,31 @@ import { useNavigate } from 'react-router-dom'
 
 export const SideBar = () => {
     const router = useNavigate()
+    const [top, setTop] = useState(60)
+    const [top_margin, setTopMargin] = useState(0)
+    useEffect(() => {
+        window.addEventListener('scroll', function(e) {
+            console.log(document.getElementById('header')!.getBoundingClientRect().top);
+            setTopMargin(document.getElementById('header')!.getBoundingClientRect().top)
+          });
+        return () => {
+            window.removeEventListener('scroll' , function(e) {
+                console.log(document.getElementById('header')!.getBoundingClientRect().top);
+                setTopMargin(document.getElementById('header')!.getBoundingClientRect().top)
+              })
+        } 
+    }, [])
 
+    useEffect(() => {
+      if(top_margin < -60){
+        setTop(0)
+      }
+      else{
+        setTop(60)
+      }
+    }, [top_margin])
+    
+    
     const sidebar_navigation_main = [
         {
             id: 1,
@@ -62,8 +86,8 @@ export const SideBar = () => {
     ]
     const [current_navigation_elem, setCurrentNavigationElem] = useState(1)
   return (
-    <div className={styles.sidebar}>
-        <div className={styles.sidebar_wrapper}>
+    <div id='sidebar' className={styles.sidebar}>
+        <div className={top !== 60 ? styles.sidebar_wrapper : styles.sidebar_wrapper_position}>
             {sidebar_navigation_main.length > 0 && sidebar_navigation_main.map((elem:any)=>
             <div onClick={()=> {setCurrentNavigationElem(elem.id); router(`${elem.links}`)}} key={elem.id} className={`${styles.navigation_main} ${current_navigation_elem === elem.id && styles.navigation_main_active}`}>
                 <div style={{backgroundImage: `url(${elem.image})`}} className={styles.navigation_img}></div>
