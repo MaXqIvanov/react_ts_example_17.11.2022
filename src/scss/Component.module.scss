@@ -81,6 +81,53 @@
     flex-direction: column;
 }
 
+.navigation_main{
+    width: calc(100% - 20px);
+    height: 60px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.navigation_main_active{
+    background: #E3EAEE;
+}
+.navigation_img{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 31.5px;
+    width: 31.5px;
+}
+.navigation_title{
+    margin-left: 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
 
+    color: #333333;
+}
 
+.category_company{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    /* dark gray */
+
+    color: #3C3C3C;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
 // end SideBar Components
