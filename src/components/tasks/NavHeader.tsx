@@ -9,7 +9,7 @@ import enUS from 'rc-calendar/lib/locale/en_US';
 
 import moment from 'moment';
 import 'moment/locale/ru';
-
+// import calendar_img from '../../'
 
 export const NavHeader = () => {
     const days = [
@@ -32,6 +32,7 @@ export const NavHeader = () => {
     
     const [current_days, setCurrentDays] = useState<number>(1)
     const [value, setValue] = React.useState(null);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
   return (
     <div className={styles.nav_header}>
         <div className={styles.nav_header_btn}>
@@ -42,7 +43,11 @@ export const NavHeader = () => {
             <div className={styles.nav_header_time}>Загрузка по норме 15 ч.</div>
         </div>
         <div className={styles.nav_header_calendar}>
-            <RangeCalendar />
+            <div className={styles.calendar_body}>
+                <div style={{backgroundImage: `url(${})`}} className={styles.calendar_img}></div>
+                <div>05.09.2022</div>
+            </div>
+           {isVisible && <RangeCalendar /> }
         </div>
     </div>
   )
