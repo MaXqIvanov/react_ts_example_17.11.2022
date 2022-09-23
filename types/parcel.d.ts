@@ -10,3 +10,8 @@ declare module '*.svg' {
 
 declare module "js-cookie";
 declare module "react-input-mask";
+declare module "react-date-range";
+declare module "rc-calendar/lib/RangeCalendar"
+declare module "rc-calendar/lib/Picker"
+declare module "rc-calendar/lib/locale/ru_RU"
+declare module "rc-calendar/lib/locale/en_US"
