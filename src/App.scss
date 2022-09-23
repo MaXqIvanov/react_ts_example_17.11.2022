@@ -20,3 +20,29 @@
     border-radius: 20px; /* закругления плашки */
     border: 3px solid #b3e3fb;  /* padding вокруг плашки */
   }
+  .rc-calendar{
+    z-index: 999;
+    position: absolute !important;
+    right: 20px;
+  }
+  .rc-calendar-footer-btn{
+    display: none;
+  }
+
+  // table head
+.css-1q1u3t4-MuiTableRow-root{
+  background: #E3EAEE !important;
+}
+.custom_table{
+  td{
+    border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+  }
+  th{
+    border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+/* black */
+  }
+  table{
+    border: 3px solid #E3EAEE  !important;
+  }
+}
+  // end  table-head

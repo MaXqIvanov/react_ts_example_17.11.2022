@@ -9,7 +9,9 @@ import enUS from 'rc-calendar/lib/locale/en_US';
 
 import moment from 'moment';
 import 'moment/locale/ru';
-// import calendar_img from '../../'
+import calendar_img from '../../assets/clarity_calendar-line.svg'
+import btn_left from '../../assets/btn_left.svg'
+import btn_right from '../../assets/btn_right.svg'
 
 export const NavHeader = () => {
     const days = [
@@ -28,11 +30,29 @@ export const NavHeader = () => {
     ]
     // карутины в котлине
     // как работают потоки в рякт нативе
-    // как работают потоки в котлине
+    // как работают потоки в котлине 
     
     const [current_days, setCurrentDays] = useState<number>(1)
     const [value, setValue] = React.useState(null);
+    const [current_date, setCurrentDate] = useState<string>('')
     const [isVisible, setIsVisible] = useState<boolean>(false);
+    const selectDate = (date:any) => {
+        console.log(date);
+        console.log(date[0]._d.getDate());
+        console.log(date[0]._d.getFullYear());
+        console.log(date[0]._d.getMonth());
+        let dayOne = date[0]._d.getDate();
+        let yearOne = date[0]._d.getFullYear();
+        let monthOne = date[0]._d.getMonth();
+
+        let dayTwo = date[1]._d.getDate();
+        let yearTwo = date[1]._d.getFullYear();
+        let monthTwo = date[1]._d.getMonth();
+        setCurrentDate(`${dayOne}.${monthOne}.${yearOne} - ${dayTwo}.${monthTwo}.${yearTwo}`)
+        
+        
+    }
+
   return (
     <div className={styles.nav_header}>
         <div className={styles.nav_header_btn}>
@@ -44,10 +64,14 @@ export const NavHeader = () => {
         </div>
         <div className={styles.nav_header_calendar}>
             <div className={styles.calendar_body}>
-                <div style={{backgroundImage: `url(${})`}} className={styles.calendar_img}></div>
-                <div>05.09.2022</div>
+                <div onClick={()=> setIsVisible(!isVisible)} style={{backgroundImage: `url(${calendar_img})`}} className={styles.calendar_img}></div>
+                <div className={styles.calendar_current_date }>{current_date}</div>
+                <div className={styles.group_btn}>
+                    <div style={{backgroundImage: `url(${btn_left})`}} className={styles.group_btn_left}></div>
+                    <div style={{backgroundImage: `url(${btn_right})`}} className={styles.group_btn_right}></div>
+                </div>
             </div>
-           {isVisible && <RangeCalendar /> }
+           {isVisible && <RangeCalendar onSelect={(date:any)=> selectDate(date)}/> }
         </div>
     </div>
   )

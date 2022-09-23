@@ -10,10 +10,11 @@
     padding-top: 10px;
     height: 100%;
     width: calc(100% -20px);
+    position: relative;
 }
 .nav_header{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 }
 .nav_header_btn{
@@ -57,4 +58,54 @@
     border: 1.10983px solid #9CB9C5;
     display: flex;
     align-items: center;
+    color: #3C3C3C;
+}
+.calendar_img{
+    height: 35px;
+    width: 35px;
+    background-size: contain;
+    background-position: center;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.calendar_current_date{
+    width: calc(100% - 122.5px);
+    text-align: center;
+}
+.group_btn{
+    width: 10%;
+    display: flex;
+}
+.group_btn_left{
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    border: 1.10983px solid #9CB9C5;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    cursor: pointer;
+}
+.group_btn_right{
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    border: 1.10983px solid #9CB9C5;
+    border-right: 0px;
+    border-left: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    cursor: pointer;
+}
+
+// work width Table
+.table{
+    margin-top: 16px;
+    height: 100%;
+    width: 100%;
+}
+.table_wrapper{
+    height: 100%;
+    width: 100%;
 }
