@@ -56,6 +56,9 @@ export const TableHeader = () => {
                     ))}
                     </TableBody>
                 </Table>
+                <div className={styles.thead_footer_custom}>
+                    
+                </div>
             </TableContainer>
         </div>
     </div>

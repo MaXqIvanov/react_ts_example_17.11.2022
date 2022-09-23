@@ -43,6 +43,14 @@
   }
   table{
     border: 3px solid #E3EAEE  !important;
+    border-bottom: 0px !important;
+  }
+  thead{
+    tr{
+      th{
+        color: #3C3C3C !important;
+      }
+    }
   }
 }
   // end  table-head

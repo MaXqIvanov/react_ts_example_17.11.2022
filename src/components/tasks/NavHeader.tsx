@@ -56,8 +56,11 @@ export const NavHeader = () => {
   return (
     <div className={styles.nav_header}>
         <div className={styles.nav_header_btn}>
-            {days && days.map((elem:any)=>
-            <div onClick={()=> setCurrentDays(elem.id)} key={elem.id} className={ elem.id !== current_days ? styles.current_btn : styles.current_btn_active}>
+            {days && days.map((elem:any, index: number)=>
+            <div onClick={()=> setCurrentDays(elem.id)} key={elem.id}
+            style={{borderLeft: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5',
+            borderRight: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5'}}
+            className={ elem.id !== current_days ? styles.current_btn : styles.current_btn_active }>
                 <span>{elem.title}</span>
             </div>)}
             <div className={styles.nav_header_time}>Загрузка по норме 15 ч.</div>
