@@ -126,3 +126,17 @@
     font-size: 17.7573px;
     line-height: 21px;
 }
+.footer_group_btn{
+    margin: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 4px;
+}
+.footer_group_btn_left{
+    height: 15px;
+    width: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
