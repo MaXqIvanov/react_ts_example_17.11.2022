@@ -8,16 +8,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(number: number, name_task:string, begining:number, fat:number, carbs:number, protein:number) {
-    return {number, name_task, begining, fat, carbs, protein };
+function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, protein:number) {
+    return {number, name_task, begining, OA, carbs, protein };
   }
   
   const rows = [
-    createData(1, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData(2, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-    createData(4, 'Cupcake', 305, 3.7, 67, 4.3),
-    createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
+    createData(1, 'Frozen yoghurt', 159, "file", 24, 4.0),
+    createData(2, 'Ice cream sandwich', 237, "file", 37, 4.3),
+    createData(3, 'Eclair', 262, "file", 24, 6.0),
+    createData(4, 'Cupcake', 305, "file", 67, 4.3),
+    createData(5, 'Gingerbread', 356, "file", 49, 3.9),
   ];
 
 export const TableHeader = () => {
@@ -49,7 +49,7 @@ export const TableHeader = () => {
                             {row.name_task}
                         </TableCell>
                         <TableCell align="right">{row.begining}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
+                        <TableCell align="right">{row.OA}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.protein}</TableCell>
                         </TableRow>
