@@ -50,7 +50,6 @@ export const NavHeader = () => {
         let monthTwo = date[1]._d.getMonth();
         setCurrentDate(`${dayOne}.${monthOne}.${yearOne} - ${dayTwo}.${monthTwo}.${yearTwo}`)
         
-        
     }
 
   return (
