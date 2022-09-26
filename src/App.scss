@@ -71,19 +71,22 @@
     min-height: 24px !important;
     padding: 22px 20px !important;  
     border-radius: 0px !important;
+    border-color: #9CB9C5 !important;
   }
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+  fieldset{
     border-color: #9CB9C5 !important;
     border-radius: 0px !important;
     margin-top: -2px !important;
-  }
-
+}
   // end for select input
 .custom_search{
   input{
     padding: 11px 12px !important;  
     background: white !important;
     width: 350px !important;
+    border-color: #9CB9C5 !important;
+    border-radius: 0px !important;
+    margin-top: -2px !important;
   }
   label{
     line-height: 1rem !important;
