@@ -11,16 +11,16 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 
-function createData(number: number, name_task:string, position:number, OA:any,) {
+function createData(number: number, name_task:string, position:string, OA:number,) {
     return { number, name_task, position, OA };
   }
   
   const rows = [
-    createData(1, 'Frozen yoghurt', 159, "file"),
-    createData(2, 'Ice cream sandwich', 237, "file"),
-    createData(3, 'Eclair', 262, "file"),
-    createData(4, 'Cupcake', 305, "file"),
-    createData(5, 'Gingerbread', 356, "file"),
+    createData(1, 'Frozen yoghurt', "Менеджер отдела продаж", 15),
+    createData(2, 'Ice cream sandwich', "Менеджер отдела продаж", 15), 
+    createData(3, 'Eclair', "Менеджер отдела продаж", 14),
+    createData(4, 'Cupcake', "Менеджер отдела продаж", 12),
+    createData(5, 'Gingerbread', "Менеджер отдела продаж", 10),
   ];
 
 export const TableHeaderControls = () => {

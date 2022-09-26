@@ -42,7 +42,6 @@
 /* black */
   }
   table{
-    border: 3px solid #E3EAEE  !important;
     border-bottom: 0px !important;
   }
   thead{
@@ -52,6 +51,13 @@
       }
     }
   }
+}
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root{
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #E3EAEE  !important;
 }
   // end  table-head
   // for select input
