@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
+import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 
 function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, monday:number,
     thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number) {
@@ -58,7 +59,7 @@ export const TableHeader = () => {
                             {row.name_task}
                         </TableCell>
                         <TableCell align="right">{row.begining}</TableCell>
-                        <TableCell align="right">{row.OA}</TableCell>
+                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.monday}</TableCell>
                         <TableCell align="right">{row.thuesday}</TableCell>
@@ -75,7 +76,7 @@ export const TableHeader = () => {
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
                         <div style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}></div>
+                        <div className={styles.footer_group_btn_center}>1</div>
                         <div style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
                     <div>из 2</div>

@@ -115,7 +115,7 @@
     display: flex;
     justify-content: right;
     align-items: flex-end;
-    border: 3px solid #E3EAEE  !important;
+    border: 3 px solid #E3EAEE  !important;
     border-top: 0px !important;
     box-sizing: border-box;
     padding: 10px;
@@ -138,5 +138,32 @@
     width: 15px;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+.footer_group_btn_right{
+    height: 15px;
+    width: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+.footer_group_btn_center{
+    width: 55px;
+    text-align: center;
+    color: #3C3C3C;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-bottom: 1.10983px solid #3C3C3C;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.7573px;
+    line-height: 21px;
+    text-align: center;
+}
+.paperclip_img{
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
     background-position: center;
 }
