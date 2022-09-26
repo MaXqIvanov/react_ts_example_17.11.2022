@@ -30,9 +30,6 @@
   }
 
   // table head
-.css-1q1u3t4-MuiTableRow-root{
-  background: #E3EAEE !important;
-}
 .custom_table{
   td{
     border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
@@ -49,6 +46,7 @@
     box-sizing: border-box !important;
   }
   thead{
+    background: #E3EAEE !important;
     tr{
       th{
         color: #3C3C3C !important;
@@ -61,7 +59,8 @@
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  border: 3px solid #E3EAEE  !important;
+  border: 2px solid #E3EAEE  !important;
+  border-radius: 10px;
   box-sizing: border-box !important;
 }
   // end  table-head
