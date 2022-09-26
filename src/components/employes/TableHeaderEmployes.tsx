@@ -10,16 +10,16 @@ import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 
-function createData(number: number, name_task:string, position:string, OA:number,) {
-    return { number, name_task, position, OA };
+function createData(number: number, position:string, employes:string,) {
+    return { number, position, employes };
   }
   
   const rows = [
-    createData(1, 'Frozen yoghurt', "Менеджер отдела продаж", 15),
-    createData(2, 'Ice cream sandwich', "Менеджер отдела продаж", 15), 
-    createData(3, 'Eclair', "Менеджер отдела продаж", 14),
-    createData(4, 'Cupcake', "Менеджер отдела продаж", 12),
-    createData(5, 'Gingerbread', "Менеджер отдела продаж", 10),
+    createData(1, 'Frozen yoghurt', "Менеджер отдела продаж"),
+    createData(2, 'Ice cream sandwich', "Менеджер отдела продаж"), 
+    createData(3, 'Eclair', "Менеджер отдела продаж"),
+    createData(4, 'Cupcake', "Менеджер отдела продаж"),
+    createData(5, 'Gingerbread', "Менеджер отдела продаж"),
   ];
 
 export const TableHeaderEmployes = () => {
@@ -31,25 +31,23 @@ export const TableHeaderEmployes = () => {
                     <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
-                        <TableCell>Название задачи</TableCell>
-                        <TableCell align="left">Должность</TableCell>
-                        <TableCell style={{width:'10%'}} align="left">Норма</TableCell>
+                        <TableCell>Должность</TableCell>
+                        <TableCell align="left">Сотрудник</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {rows.map((row) => (
                         <TableRow
-                        key={row.name_task}
+                        key={row.position}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell style={{width:'10%'}}  component="th" scope="row">
+                            <TableCell style={{width: '1%'}}  component="th" scope="row">
                                 {row.number}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {row.name_task}
+                                {row.position}
                             </TableCell>
-                            <TableCell align="left">{row.position}</TableCell>
-                            <TableCell style={{width:'10%'}} className={styles.paperclip_img} align="left">{row.OA }</TableCell>        
+                            <TableCell align="left">{row.employes}</TableCell>  
                         </TableRow>
                     ))}
                     </TableBody>
