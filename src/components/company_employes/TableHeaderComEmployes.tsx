@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from '../../scss/CompanyEmployes.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
+import styles from '../../scss/CompanyEmployes.module.scss';
 
 function createData(number: number, name_employ:string, employes:string,) {
     return { number, name_employ, employes };
