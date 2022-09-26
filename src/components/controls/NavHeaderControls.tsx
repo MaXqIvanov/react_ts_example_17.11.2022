@@ -20,6 +20,7 @@ export const NavHeaderControls = () => {
                 id="demo-simple-select"
                 value={position}
                 label="Должность"
+                className='custom_select'
                 onChange={handleChange}
               >
                 <MenuItem value={10}>Менеджер отдела продаж</MenuItem>
@@ -29,10 +30,11 @@ export const NavHeaderControls = () => {
             </FormControl>
           </div>
 
-          <div className={styles.select_position_wrapper}>
-            <FormControl fullWidth className={styles.select_position}>
-              <InputLabel id="select_simple" className={styles.input_label}>Статус</InputLabel>
+          <div className={`${styles.select_position_wrapper}`}>
+            <FormControl fullWidth className={`${styles.select_position}`}>
+              <InputLabel id="select_simple" className={`${styles.input_label}`}>Статус</InputLabel>
               <Select
+                className='custom_select'
                 labelId="select_simple"
                 id="select_simple"
                 value={status}
