@@ -84,6 +84,11 @@ export const SideBar = () => {
             links: `/admin_employes`
         }
     ]
+    useEffect(() => {
+      let current_path = window.location.pathname
+      // дописать как появитяс бэк
+    }, [])
+    
     const [current_navigation_elem, setCurrentNavigationElem] = useState(1)
   return (
     <div id='sidebar' className={styles.sidebar}>

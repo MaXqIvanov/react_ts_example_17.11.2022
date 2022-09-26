@@ -45,8 +45,8 @@
   }
   table{
     border-bottom: 0px !important;
-    border: 0.6px solid rgba($color: #E3EAEE, $alpha: 1);
-    box-sizing: border-box;
+    border: 0.6px solid rgba($color: #E3EAEE, $alpha: 1) !important;
+    box-sizing: border-box !important;
   }
   thead{
     tr{
@@ -58,11 +58,11 @@
 }
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root{
   min-height: 76vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
   border: 3px solid #E3EAEE  !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
   // end  table-head
   // for select input
@@ -79,8 +79,8 @@
   }
   // end for select input
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
-    background: white;
-    width: 350px;
+    background: white !important;
+    width: 350px !important;
   }
 .css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input{
   padding: 11px 12px !important;  
