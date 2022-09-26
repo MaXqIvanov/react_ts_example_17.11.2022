@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import styles from '../../scss/Controls.module.scss'
 
 export const NavHeaderControls = () => {
-  const [position, setPosition] = React.useState('');
-
+  const [position, setPosition] = useState('');
+  const [status, setStatus] = useState('');
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
@@ -31,13 +31,13 @@ export const NavHeaderControls = () => {
 
           <div className={styles.select_position_wrapper}>
             <FormControl fullWidth className={styles.select_position}>
-              <InputLabel id="demo-simple-select-label" className={styles.input_label}>Статус</InputLabel>
+              <InputLabel id="select_simple" className={styles.input_label}>Статус</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={position}
+                labelId="select_simple"
+                id="select_simple"
+                value={status}
                 label="Статус"
-                onChange={handleChange}
+                onChange={(e:any)=> setStatus(e.target.value)}
               >
                 <MenuItem value={10}>Выполнено</MenuItem>
                 <MenuItem value={20}>Выполняется</MenuItem>
