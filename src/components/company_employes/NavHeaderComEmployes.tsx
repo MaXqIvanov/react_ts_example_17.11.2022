@@ -1,11 +1,11 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React, { useState } from 'react'
-import styles from '../../scss/CompanyEmployes.module.scss'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import com_employes_btn_added from '../../assets/company/la_user-plus.svg'
 import com_employes_btn_changed from '../../assets/company/la_user-cog.svg'
+import styles from '../../scss/CompanyEmployes.module.scss'
 
 export const NavHeaderComEmployes = () => {
   const [position, setPosition] = React.useState('');

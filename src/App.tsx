@@ -2,7 +2,6 @@ import React from 'react';
 import Lottie from 'lottie-react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import './App.scss';
 import { RootState } from './store/store';
 import loadingScreen from './assets/preload.json';
 import { AuthPage } from './pages/AuthPage';
@@ -15,6 +14,7 @@ import { CompanyEmployesPage } from './pages/CompanyEmployesPage';
 import { CompanyPositionsPage } from './pages/CompanyPositionsPage';
 import { AdminCompanyPage } from './pages/AdminCompanyPage';
 import { AdminEmployesPage } from './pages/AdminEmployesPage';
+import './App.scss';
 
 function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
