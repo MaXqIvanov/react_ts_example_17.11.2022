@@ -42,7 +42,6 @@
 /* black */
   }
   table{
-    border: 3px solid #E3EAEE  !important;
     border-bottom: 0px !important;
   }
   thead{
@@ -53,4 +52,24 @@
     }
   }
 }
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root{
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #E3EAEE  !important;
+}
   // end  table-head
+  // for select input
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select{
+    height: 17px !important;
+    min-height: 17px !important;
+    padding: 14px 12px !important;  
+    border-radius: 0px !important;
+  }
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: #9CB9C5 !important;
+    border-radius: 0px !important;
+    margin-top: -2px !important;
+  }
+  // end for select input
