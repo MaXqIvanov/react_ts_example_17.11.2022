@@ -34,7 +34,7 @@ export const TableHeaderControls = () => {
                         <TableCell>№</TableCell>
                         <TableCell>Название задачи</TableCell>
                         <TableCell align="left">Должность</TableCell>
-                        <TableCell style={{width:'10%'}} align="left">Норма</TableCell>
+                        <TableCell style={{width:'1%'}} align="left">Норма</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -43,7 +43,7 @@ export const TableHeaderControls = () => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell style={{width:'10%'}}  component="th" scope="row">
+                            <TableCell style={{width:'1%'}}  component="th" scope="row">
                                 {row.number}
                             </TableCell>
                             <TableCell component="th" scope="row">

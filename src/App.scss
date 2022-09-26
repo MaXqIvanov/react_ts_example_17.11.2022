@@ -43,6 +43,8 @@
   }
   table{
     border-bottom: 0px !important;
+    border: 1px solid rgba($color: #E3EAEE, $alpha: 1);
+    box-sizing: border-box;
   }
   thead{
     tr{
@@ -58,6 +60,7 @@
   flex-direction: column;
   justify-content: space-between;
   border: 3px solid #E3EAEE  !important;
+  box-sizing: border-box;
 }
   // end  table-head
   // for select input
@@ -77,3 +80,6 @@
     background: white;
     width: 300px;
   }
+.css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 13px 12px !important;  
+}
