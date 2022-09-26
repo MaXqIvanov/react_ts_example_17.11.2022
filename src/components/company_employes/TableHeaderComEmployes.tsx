@@ -26,7 +26,7 @@ export const TableHeaderComEmployes = () => {
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className={'custom_table'}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
