@@ -1,6 +1,6 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React, { useState } from 'react'
 import styles from '../../scss/Controls.module.scss'
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 export const NavHeaderControls = () => {
   const [position, setPosition] = useState('');
