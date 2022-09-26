@@ -39,11 +39,13 @@
   }
   th{
     border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+    border-left: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    border-right: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
 /* black */
   }
   table{
     border-bottom: 0px !important;
-    border: 1px solid rgba($color: #E3EAEE, $alpha: 1);
+    border: 0.6px solid rgba($color: #E3EAEE, $alpha: 1);
     box-sizing: border-box;
   }
   thead{
@@ -55,7 +57,7 @@
   }
 }
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root{
-  min-height: 70vh;
+  min-height: 76vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,8 +80,12 @@
   // end for select input
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
     background: white;
-    width: 300px;
+    width: 350px;
   }
 .css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 13px 12px !important;  
+  padding: 11px 12px !important;  
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+  line-height: 1rem !important;
+  color: rgba($color: #9CB9C5, $alpha: 1) !important;
 }
