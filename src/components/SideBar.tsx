@@ -13,6 +13,7 @@ export const SideBar = () => {
     const router = useNavigate()
     const [top, setTop] = useState(60)
     const [top_margin, setTopMargin] = useState(0)
+    const [current_navigation_elem, setCurrentNavigationElem] = useState<number | null>(1)
     useEffect(() => {
         window.addEventListener('scroll', function(e) {
             console.log(document.getElementById('header')!.getBoundingClientRect().top);
@@ -97,12 +98,15 @@ export const SideBar = () => {
       let navigation3:any = sidebar_navigation_admin.filter((elem:any)=> elem.links === current_path)
       if(navigation3.length > 0){
         setCurrentNavigationElem(navigation3[0].id)
-      }
-      
+      }      
       // дописать как появитяс бэк
     }, [window.location.pathname])
     
-    const [current_navigation_elem, setCurrentNavigationElem] = useState(1)
+    
+    useEffect(() => {
+        console.log(current_navigation_elem);
+        
+      }, [current_navigation_elem])
   return (
     <div id='sidebar' className={styles.sidebar}>
         <div className={top !== 60 ? styles.sidebar_wrapper : styles.sidebar_wrapper_position}>

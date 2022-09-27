@@ -15,6 +15,7 @@ import { CompanyPositionsPage } from './pages/CompanyPositionsPage';
 import { AdminCompanyPage } from './pages/AdminCompanyPage';
 import { AdminEmployesPage } from './pages/AdminEmployesPage';
 import './App.scss';
+import { ChooseWorkCompany } from './pages/ChooseWorkCompany';
 
 function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
@@ -40,6 +41,7 @@ function App() {
             <Route path={'/company_positions'} element={<CompanyPositionsPage />} />
             <Route path={'/admin_companies'} element={<AdminCompanyPage />} />
             <Route path={'/admin_employes'} element={<AdminEmployesPage />} />
+            <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
            </>
            :
            <Route path={'/auth'} element={<AuthPage />} />
