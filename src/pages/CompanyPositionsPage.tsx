@@ -10,6 +10,6 @@ export const CompanyPositionsPage = () => {
         <NavHeaderComPosition />
         <TableHeaderComPosition />
       </div>
-  </div>
+    </div>
   )
 }

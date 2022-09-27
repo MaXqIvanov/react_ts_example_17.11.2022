@@ -7,8 +7,9 @@
 .controls_wrapper{
     padding: 20px;
     padding-top: 12px;
-    height: 100%;
-    width: calc(100% -40px);
+    padding-bottom: 12px;
+    height: calc(100% - 24px);
+    width: calc(100% - 40px);
     position: relative;
 }
 .nav_header{

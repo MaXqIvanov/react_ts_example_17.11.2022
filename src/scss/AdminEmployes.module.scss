@@ -1,10 +1,10 @@
-.company_employes{
+.admin_employes{
     background: #F1F6F8;
     height: 100%;
     width: 100%;
     min-height: calc(100vh - 60px);
 }
-.company_employes_wrapper{
+.admin_employes_wrapper{
     padding: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -18,10 +18,10 @@
     justify-content: right;
 }
 .nav_header_btn{
-    width: 100%;
+    width: fit-content;
     display: flex;
+    width: 100%;
     justify-content: space-between;
-    align-items: center;
 }
 // work width Table
 .table{
@@ -93,22 +93,13 @@
 }
 
 // new code
-.com_position_btn_added{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-
-    /* main color */
-    border: 1px solid #03A9F4;
-    padding: 8px 10px;
-    color: #03A9F4;
-    background: white;
+.com_employes_btn_added{
+    height: 47px;
+    width: 47px;
+    margin-top: -2px;
+    margin-right: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
 }
