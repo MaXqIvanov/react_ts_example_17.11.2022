@@ -86,8 +86,21 @@ export const SideBar = () => {
     ]
     useEffect(() => {
       let current_path = window.location.pathname
+      let navigation:any = sidebar_navigation_main.filter((elem:any) => elem.links === current_path)
+      if(navigation.length > 0){
+        setCurrentNavigationElem(navigation[0].id)
+      }
+      let navigation2:any = sidebar_navigation_company.filter((elem:any)=> elem.links === current_path)
+      if(navigation2.length > 0){
+        setCurrentNavigationElem(navigation2[0].id)
+      }
+      let navigation3:any = sidebar_navigation_admin.filter((elem:any)=> elem.links === current_path)
+      if(navigation3.length > 0){
+        setCurrentNavigationElem(navigation3[0].id)
+      }
+      
       // дописать как появитяс бэк
-    }, [])
+    }, [window.location.pathname])
     
     const [current_navigation_elem, setCurrentNavigationElem] = useState(1)
   return (

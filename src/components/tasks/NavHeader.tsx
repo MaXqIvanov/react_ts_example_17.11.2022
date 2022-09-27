@@ -152,7 +152,9 @@ export const NavHeader = () => {
                     <div onClick={()=> 
                         setIsVisibleCalendarDays(!isVisibleCalendarDays)
                         } style={{backgroundImage: `url(${calendar_img})`}} className={styles.calendar_img}></div>
-                    <div className={styles.calendar_current_date }>{current_date_day}</div>
+                    <div className={styles.calendar_current_date }>
+                        {`${calendar_day_day >= 10 ? calendar_day_day : '0' + calendar_day_day}.${calendar_day_month >= 10 ? calendar_day_month : '0'+ calendar_day_month}.${calendar_day_year}`}
+                    </div>
                     <div className={styles.group_btn}>
                         <div onClick={()=> {
                             setCurrentDateDay(`${(calendar_day_day > 1 ? calendar_day_day - 1 : calendar_day_day)}.${calendar_day_month}.${calendar_day_year}`)
