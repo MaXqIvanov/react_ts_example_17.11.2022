@@ -52,8 +52,20 @@
     color: #9CB9C5;
     margin-left: 30px;
 }
+.nav_header_calendar{
+    display: flex;
+}
 .calendar_body{
     width: 500px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1.10983px solid #9CB9C5;
+    display: flex;
+    align-items: center;
+    color: #3C3C3C;
+}
+.calendar_body_calendar_day{
+    width: 350px;
     height: 40px;
     background: #FFFFFF;
     border: 1.10983px solid #9CB9C5;
@@ -167,4 +179,22 @@
     background-size: 30px 30px;
     background-position: center;
     cursor: pointer;
+}
+
+// new code
+.group_for_checked{
+    display: flex;
+    height: 40px;
+    margin-right: 10px;
+    align-items: center;
+}
+.title_checked{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    /* black */
+
+    color: #3C3C3C;
 }
