@@ -10,26 +10,63 @@ import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, monday:number,
-    thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number) {
-    return {number, name_task, begining, OA, carbs, monday, thuesday, thirtday, firstday, friday, saturday, sunday};
+    thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number, stat: number) {
+    return {number, name_task, begining, OA, carbs, monday, thuesday, thirtday, firstday, friday, saturday, sunday, stat};
   }
   
   const rows = [
-    createData(1, 'Frozen yoghurt', 159, "file", 24, 4.0, 10, 20, 30, 40, 50, 60),
-    createData(2, 'Ice cream sandwich', 237, "file", 37, 4.3, 10, 20, 30, 40, 50, 60),
-    createData(3, 'Eclair', 262, "file", 24, 6.0 , 10, 20, 30, 40, 50, 60),
-    createData(4, 'Cupcake', 305, "file", 67, 4.3, 10, 20, 30, 40, 50, 60),
-    createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60),
+    createData(1, 'Frozen yoghurt', 159, "file", 24, 4.0, 10, 20, 30, 40, 50, 60, 15),
+    createData(2, 'Ice cream sandwich', 237, "file", 37, 4.3, 10, 20, 30, 40, 50, 60, 25),
+    createData(3, 'Eclair', 262, "file", 24, 6.0 , 10, 20, 30, 40, 50, 60, 35),
+    createData(4, 'Cupcake', 305, "file", 67, 4.3, 10, 20, 30, 40, 50, 60, 15),
+    createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
   ];
 
 export const TableHeader = () => {
+    const { current_variant_table }  = useSelector((state:RootState) => state.task)
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className={'custom_table'}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            {
+                    current_variant_table === 1 &&
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell>№</TableCell>
+                        <TableCell>Название задачи</TableCell>
+                        <TableCell align="right">Начало до</TableCell>
+                        <TableCell align="right">Норма</TableCell>
+                        <TableCell align="right">О/А</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <TableRow
+                        key={row.name_task}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
+                        >
+                        <TableCell style={{width: '1%'}} component="th" scope="row">
+                            {row.number}
+                        </TableCell>
+                        <TableCell style={{width: '60%'}} component="th" scope="row">
+                            {row.name_task}
+                        </TableCell>
+                        <TableCell align="right">{row.begining}</TableCell>
+                        <TableCell align="right">{row.carbs}</TableCell>
+                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                }
+                {
+                    current_variant_table === 2 &&
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
@@ -59,8 +96,8 @@ export const TableHeader = () => {
                             {row.name_task}
                         </TableCell>
                         <TableCell align="right">{row.begining}</TableCell>
-                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
+                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
                         <TableCell align="right">{row.monday}</TableCell>
                         <TableCell align="right">{row.thuesday}</TableCell>
                         <TableCell align="right">{row.thirtday}</TableCell>
@@ -72,6 +109,41 @@ export const TableHeader = () => {
                     ))}
                     </TableBody>
                 </Table>
+                }
+                     {
+                    current_variant_table === 3 &&
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell>№</TableCell>
+                        <TableCell>Название задачи</TableCell>
+                        <TableCell align="right">Начало до</TableCell>
+                        <TableCell align="right">Норма</TableCell>
+                        <TableCell align="right">О/А</TableCell>
+                        <TableCell align="right">СТАТ</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <TableRow
+                        key={row.name_task}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
+                        >
+                        <TableCell style={{width: '1%'}} component="th" scope="row">
+                            {row.number}
+                        </TableCell>
+                        <TableCell style={{width: '60%'}} component="th" scope="row">
+                            {row.name_task}
+                        </TableCell>
+                        <TableCell align="right">{row.begining}</TableCell>
+                        <TableCell align="right">{row.carbs}</TableCell>
+                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell align="right">{row.stat}</TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                }
                 <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
