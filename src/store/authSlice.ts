@@ -28,7 +28,7 @@ export const userAuth = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {token: '', id: null, username: '', email: '', password: ''},
+    user: {token: '', id: null, username: '', email: '', password: '', profile_img: 'https://s3-alpha-sig.figma.com/img/4234/be2b/c2c8992b81f8685935c0441a326a6b93?Expires=1665360000&Signature=f4Co~v3Bk1-WrftyugVR0EwRnTL7MiPpdQ9CnyG1lyea2mpYvh8lhdk7wvnNvXCU3yKreyVKZbD8ZVCMCI0djCig~IS6XnileUzU4Y3ICX6y3MWlNad0sv1EwpDc0C7UstWTr7y9k8CR-WgTm6Qg8mV3DLPun~uk31gveoZxBnpvc7IU0ZXxt4IbUhAGsb0~-AMGEU0HHSHswcSJf11qdROelaE-vqilNrg4~dg41LTmu-1X~YPLYh33by4mrpqvvMLRiUHCWewp9vybcCIQQN~408LH8sR6TetpENKFDY8fo4SGIYTyCwEzIBOs-CUsqZXorWLMHQh4Xiz~ZtnOcA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'},
     auth: true,
     loading: false,
   },
