@@ -202,6 +202,8 @@
     padding-right: 4px;
     padding-bottom: 0px !important;
     height: fit-content;
+    line-height: 11px !important;
+    animation: label_animation linear alternate 0.23s;
 }
 @keyframes input_animation {
     0%{

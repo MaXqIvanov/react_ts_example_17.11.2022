@@ -54,7 +54,7 @@ export const Header = () => {
                 }}
               />
               <div className={styles.group_input_mask}>
-              <label className={phoneHolder.match(/[0-9]/g)!.length > 1 ? `${styles.visible_label}` : ''}>Номер телефона</label>
+              <label className={phoneHolder && phoneHolder!.match(/[0-9]/g)!.length > 0 ? `${styles.visible_label}` : ''}>Номер телефона</label>
               <InputMask onClick={()=> setIsVisibleLabel(true)} onBlur={()=> setIsVisibleLabel(false)} mask="+7(999)999-99-99" value={phoneHolder} onChange={((e:any) => {
                 setPhoneHolder(e.target.value)
               })} required placeholder={'Номер телефона'} className={`form-input ${styles.input_phone} ${styles.text_field}`} />
