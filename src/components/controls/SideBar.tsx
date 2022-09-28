@@ -26,19 +26,21 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                 </div>
                 <div className={styles.task_begining_title}>Норма (минуты)</div>
                 <div className={styles.task_norma}>10</div>
+                <div className={styles.task_begining_title}>Затрачено (минуты)</div>
+                <div className={styles.task_spent}>15</div>
                 <div className={styles.task_begining_title}>Комментарий</div>
                 <div className={styles.task_comment}>Открытие и закрытие магазина должно проводиться в соответствии с установленным регламентом по пункту 6.6.6 ст. 13</div>
-              <TextField
+              {/* <TextField
                 value={'10'}
                 className={`${styles.text_field}`}
                 label="Затрачено времени (минуты)"
                 InputProps={{
                   type: 'string',
                 }}
-              />
+              /> */}
               <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}>ВСЕ ХОРОШО</div>
+                  <div className={styles.btn_cancel_side_bar}><span>ВСЕ ХОРОШО</span></div>
                   <div className={styles.btn_save_side_bar}><span>ЕСТЬ ОШИБКИ</span></div>
                 </div>
               </div>

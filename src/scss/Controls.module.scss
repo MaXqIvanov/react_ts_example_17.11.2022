@@ -192,6 +192,8 @@
     width: 100%;
     word-wrap: break-word;
     min-width: 400px;
+    min-height: 102.3vh;
+    height: 100%;
     animation: input_animation linear alternate 0.4s;
     @media(max-width: 1600px){
         min-width: 300px;
@@ -283,14 +285,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 500px;
+    @media(max-width: 1500px){
+        min-width: 450px;
+    }
 }
 .group_btn_side_bar_save_close{
     width: 80%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0px;
     @media(max-width: 1500px){
-        width: 84%;
+        width: 90%;
     }
 }
 .btn_quit_account{
@@ -308,19 +313,7 @@
     cursor: pointer;
 }
 .btn_cancel_side_bar{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-    color: #03A9F4;
-    cursor: pointer;
-}
-.btn_save_side_bar{
-    background: #03A9F4;
+    background: #00A089;
     padding: 15px;
     span{
         font-style: normal;
@@ -334,6 +327,34 @@
         color: #F0F0F0;
     }
     cursor: pointer;
+}
+.btn_save_side_bar{
+    background: #C92703;
+    padding: 15px;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        color: #F0F0F0;
+    }
+    cursor: pointer;
+}
+@keyframes btn_animation {
+    0%{
+        overflow: hidden !important;
+        opacity: 0;
+        transform: translateX(300px);
+    }
+    100%{
+        opacity: 100%;
+        overflow: unset !important;
+        transform: translateX(0px);
+    }
 }
 .info_user_side_menu_btn{
     position: absolute;
