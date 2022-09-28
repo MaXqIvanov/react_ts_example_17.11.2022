@@ -89,10 +89,10 @@ export const TableHeader = ({setIsVisibleSideBar}:any) => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                        <TableCell style={{width: '1%'}} component="th" scope="row">
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {row.number}
                         </TableCell>
-                        <TableCell component="th" scope="row">
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{cursor: 'pointer'}} component="th" scope="row">
                             {row.name_task}
                         </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.begining}</TableCell>
