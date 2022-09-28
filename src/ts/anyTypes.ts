@@ -8,3 +8,6 @@ export type TaskState = {
     variant_table: Array<any>,
     current_variant_table: number
 }
+export type CompanyState = {
+    loading: boolean,
+}
