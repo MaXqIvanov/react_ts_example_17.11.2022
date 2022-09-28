@@ -23,7 +23,7 @@ function createData(number: number, name_task:string, position:string, OA:number
     createData(5, 'Gingerbread', "Менеджер отдела продаж", 10),
   ];
 
-export const TableHeaderControls = () => {
+export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -43,14 +43,14 @@ export const TableHeaderControls = () => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell style={{width:'1%'}}  component="th" scope="row">
+                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {row.number}
                             </TableCell>
-                            <TableCell component="th" scope="row">
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.name_task}
                             </TableCell>
-                            <TableCell align="left">{row.position}</TableCell>
-                            <TableCell style={{width:'10%'}} className={styles.paperclip_img} align="left">{row.OA }</TableCell>        
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.position}</TableCell>
+                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'10%', cursor: 'pointer'}} className={styles.paperclip_img} align="left">{row.OA }</TableCell>        
                         </TableRow>
                     ))}
                     </TableBody>
