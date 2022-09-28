@@ -129,16 +129,16 @@ export const TableHeader = ({setIsVisibleSideBar}:any) => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                        <TableCell style={{width: '1%'}} component="th" scope="row">
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {row.number}
                         </TableCell>
-                        <TableCell style={{width: '60%'}} component="th" scope="row">
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
                             {row.name_task}
                         </TableCell>
-                        <TableCell align="right">{row.begining}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
-                        <TableCell align="right">{row.stat}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.begining}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.carbs}</TableCell>
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.stat}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
