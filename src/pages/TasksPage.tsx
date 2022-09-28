@@ -1,19 +1,23 @@
 import { TextField } from '@mui/material'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavHeader } from '../components/tasks/NavHeader'
 import { SideBar } from '../components/tasks/SideBar'
 import { TableHeader } from '../components/tasks/TableHeader'
 import styles from '../scss/Task.module.scss'
+import { RootState } from '../store/store'
 
-export const TasksPage = () => {
+export const TasksPage = ({visible}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
+  const {isVisibleSideBar} = useSelector((state:RootState)=> state.task)
+
   return (
     <div className={styles.task}>
       <div className={styles.task_wrapper}>
-        <NavHeader />
-        <TableHeader setIsVisibleSideBar={setIsVisibleSideBar}/>
-        {isvisible_sidebaer &&
-        <SideBar setIsVisibleSideBar={setIsVisibleSideBar} isvisible_sidebaer={isvisible_sidebaer}/>
+        <NavHeader visible={visible}/>
+        <TableHeader/>
+        {isVisibleSideBar &&
+        <SideBar />
         }
       </div>
     </div>

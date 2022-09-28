@@ -12,6 +12,8 @@ import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { useAppDispatch } from '../../hooks/redux';
+import { changeVisibleSideBar } from '../../store/taskSlice';
 
 function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, monday:number,
     thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number, stat: number) {
@@ -26,8 +28,9 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
     createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
   ];
 
-export const TableHeader = ({setIsVisibleSideBar}:any) => {
+export const TableHeader = () => {
     const { current_variant_table }  = useSelector((state:RootState) => state.task)
+    const dispatch = useAppDispatch()
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -89,22 +92,22 @@ export const TableHeader = ({setIsVisibleSideBar}:any) => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {row.number}
                         </TableCell>
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{cursor: 'pointer'}} component="th" scope="row">
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{cursor: 'pointer'}} component="th" scope="row">
                             {row.name_task}
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.begining}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.monday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.thuesday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.thirtday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.firstday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.friday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.saturday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.sunday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.monday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thuesday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thirtday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.firstday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.friday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.saturday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.sunday}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
@@ -129,16 +132,16 @@ export const TableHeader = ({setIsVisibleSideBar}:any) => {
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {row.number}
                         </TableCell>
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
                             {row.name_task}
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.begining}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.stat}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.stat}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

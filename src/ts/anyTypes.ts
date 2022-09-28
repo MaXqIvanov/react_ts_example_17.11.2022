@@ -6,7 +6,8 @@ export type AuthState = {
 export type TaskState = {
     loading: boolean,
     variant_table: Array<any>,
-    current_variant_table: number
+    current_variant_table: number,
+    isVisibleSideBar: boolean
 }
 export type CompanyState = {
     loading: boolean,

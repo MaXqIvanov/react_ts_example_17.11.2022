@@ -3,13 +3,16 @@ import React from 'react'
 import styles from '../../scss/Task.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
+import { useAppDispatch } from '../../hooks/redux';
+import { changeVisibleSideBar } from '../../store/taskSlice';
 
-export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
+export const SideBar = () => {
+  const dispatch = useAppDispatch()
   return (
     <>
         <div className={styles.user_side_menu}>
           <div className={styles.user_side_menu_wrapper}>
-            <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
+            <div onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
             <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
             <div className={styles.text_field_block}>
                 <div className={styles.task_title}>Задача</div>
@@ -45,7 +48,7 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
             </div>
           </div>
         </div>
-        <div onClick={()=> setIsVisibleSideBar(false)} className={styles.user_side_menu_plug}></div>
+        <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.user_side_menu_plug}></div>
       </>
   )
 }

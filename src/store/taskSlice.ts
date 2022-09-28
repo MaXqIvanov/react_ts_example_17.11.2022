@@ -23,11 +23,17 @@ const taskSlice = createSlice({
     variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' }],
     current_variant_table: 1,
     loading: false,
+
+    // for sidebar
+    isVisibleSideBar: false,
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
         state.current_variant_table = action.payload
-    }
+    },
+    changeVisibleSideBar(state:TaskState){
+      state.isVisibleSideBar = !state.isVisibleSideBar
+  }
   },
   extraReducers: (builder) => {
     builder.addCase(getTask.pending, (state:TaskState, action:PayloadAction) => {
@@ -43,4 +49,4 @@ const taskSlice = createSlice({
 });
 
 export default taskSlice.reducer;
-export const { setCurrentVariantTable } = taskSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar } = taskSlice.actions;

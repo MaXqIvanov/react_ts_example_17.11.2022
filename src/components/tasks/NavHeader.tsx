@@ -20,17 +20,21 @@ import { Switch } from '@mui/material';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss'
 
-export const NavHeader = () => {
+export const NavHeader = ({visible}:any) => {
     const nav = useNavigate()
     const dispatch = useAppDispatch()
     const { variant_table, current_variant_table }  = useSelector((state:RootState) => state.task)
     useEffect(() => {
-        if(window.location.search){
-            let current_setting = window.location.search.split('=')
-            dispatch(setCurrentVariantTable(Number(current_setting[1])))
-        }else{
-            nav('/?setting=2')
-        }     
+        if(visible){
+
+        }else {
+            if(window.location.search){
+                let current_setting = window.location.search.split('=')
+                dispatch(setCurrentVariantTable(Number(current_setting[1])))
+            }else{
+                nav('/?setting=2')
+            }     
+        }
     }, [])
     
     // const [current_days, setCurrentDays] = useState<number>(1)
@@ -105,7 +109,7 @@ export const NavHeader = () => {
             {variant_table && variant_table.map((elem:any, index: number)=>
             <div onClick={()=> {
                 dispatch(setCurrentVariantTable(Number(elem.id)))
-                nav(`/?setting=${elem.id}`)
+                !visible && nav(`/?setting=${elem.id}`)
             }} key={elem.id}
             style={{borderLeft: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5',
             borderRight: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5'}}
