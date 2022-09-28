@@ -26,7 +26,7 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
     createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
   ];
 
-export const TableHeader = () => {
+export const TableHeader = ({setIsVisibleSideBar}:any) => {
     const { current_variant_table }  = useSelector((state:RootState) => state.task)
   return (
     <div className={`${styles.table} custom_table`}>
@@ -95,16 +95,16 @@ export const TableHeader = () => {
                         <TableCell component="th" scope="row">
                             {row.name_task}
                         </TableCell>
-                        <TableCell align="right">{row.begining}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
-                        <TableCell align="right">{row.monday}</TableCell>
-                        <TableCell align="right">{row.thuesday}</TableCell>
-                        <TableCell align="right">{row.thirtday}</TableCell>
-                        <TableCell align="right">{row.firstday}</TableCell>
-                        <TableCell align="right">{row.friday}</TableCell>
-                        <TableCell align="right">{row.saturday}</TableCell>
-                        <TableCell align="right">{row.sunday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.begining}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.carbs}</TableCell>
+                        <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.monday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.thuesday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.thirtday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.firstday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.friday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.saturday}</TableCell>
+                        <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="right">{row.sunday}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
