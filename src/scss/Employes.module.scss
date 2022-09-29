@@ -135,6 +135,7 @@
     animation: linear alternate animation_sidebar 0.4s;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 .user_side_menu_wrapper{
     position: absolute;

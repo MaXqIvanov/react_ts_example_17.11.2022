@@ -38,12 +38,12 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                   type: 'string',
                 }}
               /> */}
-              <div className={styles.group_btn_side_bar}>
+            </div>
+            <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
                   <div className={styles.btn_cancel_side_bar}><span>ВСЕ ХОРОШО</span></div>
                   <div className={styles.btn_save_side_bar}><span>ЕСТЬ ОШИБКИ</span></div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

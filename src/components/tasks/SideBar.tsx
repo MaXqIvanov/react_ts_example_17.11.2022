@@ -39,12 +39,12 @@ export const SideBar = () => {
                   type: 'string',
                 }}
               />
-              <div className={styles.group_btn_side_bar}>
+            </div>
+            <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
                   <div className={styles.btn_cancel_side_bar}>ЗАКРЫТЬ</div>
                   <div className={styles.btn_save_side_bar}><span>ЗАВЕРШИТЬ</span></div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
