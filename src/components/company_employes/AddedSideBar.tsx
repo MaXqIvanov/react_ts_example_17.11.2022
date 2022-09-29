@@ -101,7 +101,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
         </div>
       </div>
     </div>
-    <div onClick={()=> setIsAddedSideBar(false)} className={styles.user_side_menu_plug}></div>
+    <div onClick={()=> setIsAddedSideBar(false)} className={styles.user_side_menu_plug_added}></div>
   </>
   )
 }
