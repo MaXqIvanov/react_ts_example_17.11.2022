@@ -58,7 +58,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}><span>ОТМЕНА</span></div>
+                  <div onClick={()=> setIsAddedSideBar(false)} className={styles.btn_cancel_side_bar}><span>ОТМЕНА</span></div>
                   <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
                 </div>
             </div>

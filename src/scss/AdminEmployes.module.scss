@@ -334,4 +334,19 @@
     }
     cursor: pointer;
 }
+.btn_delete_side_bar{
+    padding: 15px;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        color: red;
+    }
+    cursor: pointer;
+}
 // end_sidebar_header
