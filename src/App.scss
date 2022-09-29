@@ -298,3 +298,11 @@
     }
   }
 }
+
+.text_area{
+  border-color: #9CB9C5 !important;
+  padding: 5px;
+  &:focus{
+    outline: 0px !important;
+  }
+}

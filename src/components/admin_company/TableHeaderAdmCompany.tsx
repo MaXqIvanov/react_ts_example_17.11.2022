@@ -22,7 +22,7 @@ function createData(number: number, name_company:string, employes:string,) {
     createData(5, 'ООО Медвед5', "Иванов Иван Иванович"),
   ];
 
-export const TableHeaderAdmCompany = () => {
+export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -41,13 +41,13 @@ export const TableHeaderAdmCompany = () => {
                         key={row.number}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell style={{width: '1%'}}  component="th" scope="row">
+                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
                             </TableCell>
-                            <TableCell component="th" scope="row">
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.name_company}
                             </TableCell>
-                            <TableCell align="left">{row.employes}</TableCell>  
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.employes}</TableCell>  
                         </TableRow>
                     ))}
                     </TableBody>
