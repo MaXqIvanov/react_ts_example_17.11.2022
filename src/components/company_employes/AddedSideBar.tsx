@@ -24,7 +24,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false)
   return (
     <>
-    <div className={styles.user_side_menu}>
+    <div className={styles.user_side_menu_added}>
       <div className={styles.user_side_menu_wrapper}>
         <div onClick={()=> setIsAddedSideBar(!isadded_sidebar)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
         <div className={styles.group_body}>
