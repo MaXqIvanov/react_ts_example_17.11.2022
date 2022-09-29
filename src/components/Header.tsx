@@ -73,13 +73,13 @@ export const Header = () => {
                   type: 'password',
                 }}
               />
-              <div className={styles.group_btn_side_bar}>
+            </div>
+            <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
                   <div className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
                   <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
                 </div>
                 <div className={styles.btn_quit_account}>ВЫЙТИ</div>
-              </div>
             </div>
           </div>
         </div>
