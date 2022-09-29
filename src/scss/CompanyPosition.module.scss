@@ -222,7 +222,7 @@
 }
 .text_field{
     margin-top: 30px !important;
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
     animation: input_animation linear alternate 0.4s;
     max-height: 40px;
     input{
