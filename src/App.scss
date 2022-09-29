@@ -305,4 +305,7 @@
   &:focus{
     outline: 0px !important;
   }
+  &::placeholder{
+    color: #9CB9C5;
+  }
 }
