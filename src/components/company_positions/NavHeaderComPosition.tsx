@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import styles from '../../scss/CompanyPosition.module.scss'
 
-export const NavHeaderComPosition = () => {
+export const NavHeaderComPosition = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
 
   const handleChange = (event:any) => {
@@ -28,7 +28,7 @@ export const NavHeaderComPosition = () => {
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}
-              <div className={styles.com_position_btn_added}>ДОБАВИТЬ ДОЛЖНОСТЬ +</div>              
+              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ ДОЛЖНОСТЬ +</div>              
                 <TextField
                   className='custom_search'
                   label="Поиск..."
