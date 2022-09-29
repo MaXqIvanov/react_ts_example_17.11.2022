@@ -7,7 +7,7 @@ import com_employes_btn_added from '../../assets/company/la_user-plus.svg'
 import com_employes_btn_changed from '../../assets/company/la_user-cog.svg'
 import styles from '../../scss/CompanyEmployes.module.scss'
 
-export const NavHeaderComEmployes = () => {
+export const NavHeaderComEmployes = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
 
   const handleChange = (event:any) => {
@@ -31,7 +31,7 @@ export const NavHeaderComEmployes = () => {
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}
               <div style={{backgroundImage: `url(${com_employes_btn_changed})`}} className={styles.com_employes_btn_changed}></div>              
-              <div style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div>
+              <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div>
                 <TextField
                   className='custom_search'
                   label="Поиск..."
