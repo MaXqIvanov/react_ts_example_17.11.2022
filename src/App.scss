@@ -22,7 +22,7 @@
     border: 3px solid #b3e3fb;  /* padding вокруг плашки */
   }
   .rc-calendar{
-    z-index: 999;
+    z-index: 4;
     position: absolute !important;
     right: 20px;
   }
@@ -129,11 +129,21 @@
   
     /* black */
   
-    color: #3C3C3C;
+    // color: #3C3C3C;
   }
   .rc-calendar-header{
     border-bottom: 0px !important;
+
+    .rc-calendar-month-select{
+      font-size: large;
+    }
+    .rc-calendar-year-select{
+      font-size: large;
+    }
   }
+}
+.rc-calendar-body{
+  margin-bottom: 5px;
 }
 .rc-calendar{
   margin-top: 42px !important;
@@ -153,6 +163,18 @@
     background: white !important;
   }
 }
+// calendar week
+.rc-calendar-range-middle{
+  display: none;
+}
+.rc-calendar-body{
+  border-bottom: 0px !important;
+}
+.rc-calendar-panel{
+  border-left: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+// end calendar week
 
 @supports(-webkit-appearance: none) or (-moz-appearance: none) {
   .custom_switch{
