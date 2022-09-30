@@ -315,11 +315,11 @@
     }
 }
 .group_btn_side_bar_save_close{
-    width: 80%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     @media(max-width: 1500px){
-        width: 90%;
+        width: 80%;
     }
     @media(max-height: 700px){
         margin-bottom: 10px;
@@ -337,22 +337,6 @@
     text-transform: uppercase;
 
     color: #C92703;
-    cursor: pointer;
-}
-.btn_cancel_side_bar{
-    background: #00A089;
-    padding: 15px;
-    span{
-        font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        text-transform: uppercase;
-        color: #F0F0F0;
-    }
     cursor: pointer;
 }
 @keyframes btn_animation {
@@ -427,50 +411,77 @@
 
 .btn_delete_side_bar{
     padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: left;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
         text-transform: uppercase;
         color: red;
     }
     cursor: pointer;
+
+    @media(max-width: 1500px){
+        padding: 12px 0px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .btn_save_side_bar{
     background: #03A9F4;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 1px;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
         text-transform: uppercase;
         color: #F0F0F0;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 20px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .btn_cancel_side_bar{
     background: #03A9F4;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
         text-align: center;
         text-transform: uppercase;
         color: #F0F0F0;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 20px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .input_label{
     background: white;

@@ -56,13 +56,18 @@
     display: flex;
 }
 .calendar_body{
-    width: 500px;
+    margin-left: 5px;
+    width: 25vw;
     height: 40px;
     background: #FFFFFF;
     border: 1.10983px solid #9CB9C5;
     display: flex;
     align-items: center;
     color: #3C3C3C;
+    min-width: 250px;
+    @media(max-width: 1500px){
+        width: 30vw;
+    }
 }
 .calendar_body_calendar_day{
     width: 350px;
@@ -225,10 +230,11 @@
     min-height: 100vh;
     min-width: 450px;
     background: white;
-    animation: linear alternate animation_sidebar 0.4s;
+    animation: linear alternate animation_sidebar 0.35s;
     display: flex;
     justify-content: center;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .user_side_menu_wrapper{
     position: absolute;
@@ -257,10 +263,15 @@
     0%{
         width: 0vw;
         min-width: 0px;
+        overflow-x: hidden;
+    }
+    90%{
+        overflow-x: hidden;
     }
     100%{
         width: 30vw;
-        min-width: 300px;
+        min-width: 450px;
+        overflow-x: auto;
     }
 }
 .group_img_user{
@@ -354,18 +365,18 @@
 }
 @keyframes input_animation {
     0%{
-        width: 0px !important;
-        max-width: 50px !important;
+        // width: 0px !important;
+        // max-width: 50px !important;
         overflow: hidden !important;
         opacity: 0;
-        transform: translateX(300px);
+        // transform: translateX(300px);
     }
     100%{
-        width: 350px !important;
-        max-width: none !important;
+        // width: 350px !important;
+        // max-width: none !important;
         opacity: 100%;
-        overflow: unset !important;
-        transform: translateX(0px);
+        overflow: auto !important;
+        // transform: translateX(0px);
     }
 }
 @keyframes label_animation {
@@ -395,12 +406,13 @@
     }
 }
 .group_btn_side_bar_save_close{
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    min-width: 350px;
     @media(max-width: 1500px){
-        width: 90%;
+        width: 100%;
     }
     @media(max-height: 700px){
         margin-bottom: 10px;
@@ -426,11 +438,18 @@
     font-size: 24px;
     line-height: 28px;
     display: flex;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: left;
     text-transform: uppercase;
     color: #03A9F4;
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 0px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .btn_save_side_bar{
     background: #03A9F4;
@@ -447,6 +466,13 @@
         color: #F0F0F0;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 20px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .info_user_side_menu_btn{
     position: absolute;
@@ -473,6 +499,7 @@
     font-size: 24px;
     line-height: 28px;
     color: #373737;
+    min-width: 400px;
 }
 .task_begining_title{
     margin-top: 30px;
@@ -493,8 +520,10 @@
     font-size: 16px;
     line-height: 19px;
     color: #3C3C3C;
+    min-width: 360px;
 }
 .task_reports{
+    min-width: 370px;
     a{
         font-style: normal;
         font-weight: 400;

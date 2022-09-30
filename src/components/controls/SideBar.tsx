@@ -13,13 +13,13 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
             <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
             <div className={styles.text_field_block}>
                 <div className={styles.task_title}>Задача</div>
-                <div className={styles.current_task}>Выполнение контроля открытия магазина</div>
+                <div className={`${styles.current_task} min-width`}>Выполнение контроля открытия магазина</div>
                 <div className={styles.task_begining_title}>Начало до</div>
                 <div className={styles.task_begining}>10:00</div>
                 <div className={styles.task_begining_title}>Переодичность</div>
-                <div className={styles.task_periodicity}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</div>
+                <div className={`${styles.task_periodicity} min-width`}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</div>
                 <div className={styles.task_begining_title}>Отчёт/артефакт</div>
-                <div className={styles.task_reports}>
+                <div className={`${styles.task_reports} min-width`}>
                     <a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
                         https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0
                     </a>
@@ -29,7 +29,7 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                 <div className={styles.task_begining_title}>Затрачено (минуты)</div>
                 <div className={styles.task_spent}>15</div>
                 <div className={styles.task_begining_title}>Комментарий</div>
-                <div className={styles.task_comment}>Открытие и закрытие магазина должно проводиться в соответствии с установленным регламентом по пункту 6.6.6 ст. 13</div>
+                <div className={`${styles.task_comment} min-width`}>Открытие и закрытие магазина должно проводиться в соответствии с установленным регламентом по пункту 6.6.6 ст. 13</div>
               {/* <TextField
                 value={'10'}
                 className={`${styles.text_field}`}

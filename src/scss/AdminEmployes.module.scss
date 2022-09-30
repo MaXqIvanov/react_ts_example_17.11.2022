@@ -130,10 +130,11 @@
     min-height: 100vh;
     min-width: 450px;
     background: white;
-    animation: linear alternate animation_sidebar 0.4s;
+    animation: linear alternate animation_sidebar 0.35s;
     display: flex;
     justify-content: center;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .user_side_menu_wrapper{
     position: absolute;
@@ -201,7 +202,7 @@
 }
 .text_field{
     margin-top: 30px !important;
-    animation: input_animation linear alternate 0.4s;
+    animation: input_animation linear alternate 0.35s;
     max-height: 40px;
     input{
       padding: 11px 12px !important;  
@@ -289,7 +290,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
     @media(max-width: 1500px){
-        width: 90%;
+        width: 100%;
     }
 }
 .btn_quit_account{
@@ -314,39 +315,60 @@
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: left;
     text-transform: uppercase;
     color: #03A9F4;
     cursor: pointer;
+    @media(max-width: 1500px){
+        line-height: 24px;
+        font-size: 20px;
+    }
 }
 .btn_save_side_bar{
     background: #03A9F4;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
         text-transform: uppercase;
         color: #F0F0F0;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 20px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 .btn_delete_side_bar{
     padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: left;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
         text-transform: uppercase;
         color: red;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 0px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 // end_sidebar_header

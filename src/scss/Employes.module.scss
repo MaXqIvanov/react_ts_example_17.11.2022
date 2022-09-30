@@ -132,10 +132,13 @@
     min-height: 100vh;
     min-width: 450px;
     background: white;
-    animation: linear alternate animation_sidebar 0.4s;
+    animation: linear alternate animation_sidebar 0.5s;
     display: flex;
     justify-content: center;
     overflow-y: scroll;
+    @media(max-width: 1500px){
+        width: 90vw;
+    }
 }
 .user_side_menu_wrapper{
     position: absolute;
@@ -163,10 +166,15 @@
     0%{
         width: 0vw;
         min-width: 0px;
+        overflow-x: hidden;
+    }
+    90%{
+        overflow-x: hidden;
     }
     100%{
         width: 80vw;
         min-width: 300px;
+        overflow-x: auto;
     }
 }
 .group_img_user{
@@ -227,7 +235,7 @@
     }
 }
 .input_phone{
-    width: calc(100% - 18px);
+    width: calc(100% - 18px) !important;
     &:focus{
         outline: 0px !important;
         &::placeholder{

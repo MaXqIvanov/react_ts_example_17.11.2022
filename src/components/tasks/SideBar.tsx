@@ -20,9 +20,9 @@ export const SideBar = () => {
                 <div className={styles.task_begining_title}>Начало до</div>
                 <div className={styles.task_begining}>10:00</div>
                 <div className={styles.task_begining_title}>Переодичность</div>
-                <div className={styles.task_periodicity}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</div>
+                <div className={`${styles.task_periodicity} min-width`}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</div>
                 <div className={styles.task_begining_title}>Отчёт/артефакт</div>
-                <div className={styles.task_reports}>
+                <div className={`${styles.task_reports} min-width`}>
                     <a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
                         https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0
                     </a>
@@ -42,7 +42,7 @@ export const SideBar = () => {
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}>ЗАКРЫТЬ</div>
+                  <div className={styles.btn_cancel_side_bar}><span>ЗАКРЫТЬ</span></div>
                   <div className={styles.btn_save_side_bar}><span>ЗАВЕРШИТЬ</span></div>
                 </div>
             </div>

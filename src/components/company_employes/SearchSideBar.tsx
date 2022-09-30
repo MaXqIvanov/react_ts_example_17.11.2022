@@ -28,7 +28,7 @@ export const SearchSideBar = ({setIsSearchSideBar, issearch_sidebar, setIsAddedS
         </div>
         <div className={styles.group_btn_side_bar}>
             <div className={styles.group_btn_side_bar_save_close}>
-              <div onClick={()=> setIsSearchSideBar(false)} className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
+              <div onClick={()=> setIsSearchSideBar(false)} className={styles.btn_cancel_side_bar}><span>ОТМЕНА</span></div>
               <div onClick={()=> setIsAddedSideBar(true)} className={styles.btn_save_side_bar}><span>ПРОДОЛЖИТЬ</span></div>
             </div>
         </div>

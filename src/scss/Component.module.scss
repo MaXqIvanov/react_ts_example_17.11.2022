@@ -246,7 +246,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
     @media(max-width: 1500px){
-        width: 90%;
+        width: 100%;
     }
 }
 .btn_quit_account{
@@ -262,6 +262,10 @@
     margin-bottom: 10px;
     color: #C92703;
     cursor: pointer;
+    @media(max-width: 1500px){
+        line-height: 24px;
+        font-size: 20px;
+    }
 }
 .btn_cancel_side_bar{
     font-style: normal;
@@ -271,25 +275,39 @@
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: left;
     text-transform: uppercase;
     color: #03A9F4;
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 0px;
+        line-height: 24px;
+        font-size: 20px;
+    }
 }
 .btn_save_side_bar{
     background: #03A9F4;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     span{
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
         line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
         text-transform: uppercase;
         color: #F0F0F0;
     }
     cursor: pointer;
+    @media(max-width: 1500px){
+        padding: 12px 20px;
+        span{
+            line-height: 24px;
+            font-size: 20px;
+        }
+    }
 }
 // end_sidebar_header
 
@@ -300,6 +318,7 @@
 .sidebar{
     height: 100%;
     width: 210px;
+    min-width: 185px !important;
     display: flex;
     justify-content: center;
     align-items: center;
