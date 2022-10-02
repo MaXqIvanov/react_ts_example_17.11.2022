@@ -99,7 +99,7 @@ export const NavHeader = ({visible}:any) => {
                     setNowDay(current_week)
                     let next_week = current_week + 7
                     if(next_week <= moment(`${current_month}.${(current_day)}.${current_year}`).daysInMonth()){
-                        setLastDay(next_week)
+                        setLastDay(next_week - 1)
                         setLastMonth(current_month)
                         setLastYear(current_year)
                     }else{
@@ -144,6 +144,8 @@ export const NavHeader = ({visible}:any) => {
     
             setNowMonth(current_month)
             setNowYear(current_year)
+            setLastMonth(current_month)
+            setLastYear(current_year)
             if(current_day_week > 1){
                 let current_week = current_day - (current_day_week - 1)
                 if(current_week > 0){
@@ -166,10 +168,147 @@ export const NavHeader = ({visible}:any) => {
                         }
                     }
                 }
+            }else{
+                if(current_day < 0){
+                    setNowMonth(current_month - 1)
+                    setNowYear(current_year)
+                    if(current_month - 1 < 1){
+                        setNowYear(current_year - 1)
+                        setNowMonth(12)
+                    }
+                    let day_in_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
+                    setNowDay(day_in_month - (Math.abs(current_day) - 1))
+                    setLastDay(7 - Math.abs(current_day))
+                }
             }
         }
         if (number === 3){
                 // НАЧАЛО НЕДЕЛИ
+                //? const [now_day, setNowDay] = useState<any>('')
+                //? const [now_month, setNowMonth] = useState<any>('')
+                //? const [now_year, setNowYear] = useState<any>('')
+                // КОНЕЦ НЕДЕЛИ
+                //? const [last_day, setLastDay] = useState<any>('')
+                //? const [last_month, setLastMonth] = useState<any>('')
+                //? const [last_year, setLastYear] = useState<any>('')
+                let week_day = moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay()
+                if(week_day !== 1){
+                    let different_day = now_day - (moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay() - 1)
+                    if(different_day < 0){
+                        let day_current_now = Number(moment(`${now_month - 1}.${(now_day)}.${now_year}`).daysInMonth()) 
+                        console.log(day_current_now);
+                        let day_now = day_current_now - Math.abs(different_day)
+                        setNowDay(day_now)
+                        let day_month = now_month - 1
+                        if(day_month == 0){
+                            setNowMonth(1)
+                            setNowYear(now_year - 1)
+                        } else if(day_month > 12){
+                            setNowMonth(1)
+                            setNowYear(now_year + 1)
+                        }else {
+                            setNowMonth(day_month)
+                        }
+                    }else{
+                        let day_now = now_day - (week_day - 1)
+                        if(day_now == 0){
+                            setNowDay(Number(moment(`${now_month - 1}.${(now_day)}.${now_year}`).daysInMonth()))
+                            setNowMonth(now_month - 1)
+                        }else{
+                            setNowDay(day_now)
+                        }
+                        let last_day = day_now + 6
+                        if (last_day > Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth())){
+                            let new_last_month = last_month + 1
+                            let different_day =  day_now + 6 - Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth()) 
+                            if(new_last_month > 12){
+                                setLastYear(last_year + 1)
+                                setLastMonth(1)
+                                setLastDay(Math.abs(different_day))
+                            }else{
+                                setLastMonth(last_month + 1)
+                                setLastDay(Math.abs(different_day))
+                            }
+                        }else{
+                            setLastDay(day_now + 6)
+                        }
+                    }
+                    console.log(different_day);
+                }
+                else{
+                    
+                    let new_now_day = now_day - 7
+                    if(new_now_day > 0){
+                        setNowDay(now_day - 7)
+                        setLastDay(new_now_day + 6)
+                        if(now_month !== last_month){
+                            setLastMonth(last_month - 1)
+                        }
+                    }else{
+                        if(now_month - 1 < 1){
+                            let new_current_day_now = Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth())
+                            let day_on_current_week = Number(moment(`${now_month}.${(new_current_day_now)}.${now_year}`).daysInMonth())
+                            let new_now_day = Number(moment(`12.${(last_day)}.${now_year - 1}`).daysInMonth())
+                            let day_on_week_2 = moment(`12.${new_now_day}.${now_year - 1}`).toDate().getDay()
+                            if(day_on_current_week){
+                                setNowDay(new_now_day - 6)
+                                setLastDay(new_now_day)
+                                setLastMonth(12)
+                                setLastYear(last_year - 1)
+                            }else{
+                                setNowDay(new_now_day - (day_on_week_2 - 1))
+                                setLastDay(7 - day_on_week_2)
+                                if(7-day_on_week_2 === 0){
+                                    setLastDay(new_now_day)
+                                }else{
+                                    setLastDay(7-day_on_week_2)
+                                }
+                            }
+                            setNowMonth(12)
+                            setNowYear(now_year - 1)
+                        }else{
+                            setNowMonth(now_month - 1)
+                            let day_on_month = Number(moment(`${now_month - 1}.${(now_day)}.${now_year}`).daysInMonth())
+                            let week_day = moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay()
+                            if(week_day === 1){
+                                if(now_day === 1){
+                                    let day_on_month_2 = Number(moment(`${last_month - 1}.${(last_day)}.${last_year}`).daysInMonth())
+                                    let day_on_week_2 = moment(`${last_month - 1}.${day_on_month_2}.${now_year}`).toDate().getDay()
+                                    setLastDay(day_on_month_2)
+                                    setLastMonth(last_month - 1)
+                                    setNowDay(day_on_month_2 - 6)
+                                    setNowMonth(now_month - 1)
+                                }else{
+                                    let day_on_month_2 = Number(moment(`${last_month - 1}.${(last_day)}.${last_year}`).daysInMonth())
+                                    let day_on_week_2 = moment(`${last_month - 1}.${day_on_month_2}.${now_year}`).toDate().getDay()
+                                    setLastDay(7 - day_on_week_2)
+            
+                                    setNowDay(day_on_month_2 - (day_on_week_2 - 1))
+                                    setNowMonth(now_month - 1)
+                                }
+                            }else{
+                                setLastDay(now_day - (week_day))
+                                setNowDay(day_on_month - (week_day + 1))
+                            }
+                        }
+                    }
+                    if(last_day - now_day < 0){
+                        if(Number(last_month - 1) === 0){
+                            setLastMonth(12)
+                        }else{
+                            setLastMonth(now_month)   
+                        }
+                        setLastYear(now_year)
+                    }
+                }
+                
+        }
+        if (number === 4){
+  // НАЧАЛО НЕДЕЛИ
+                // let element:any = document.getElementsByClassName("rc-calendar-prev-month-btn");
+                // console.log(element);
+                
+                // element[0].click()
                 //? const [now_day, setNowDay] = useState<any>('')
                 //? const [now_month, setNowMonth] = useState<any>('')
                 //? const [now_year, setNowYear] = useState<any>('')
@@ -217,65 +356,65 @@ export const NavHeader = ({visible}:any) => {
                     console.log(different_day);
                 }
                 else{
-                    let new_now_day = now_day - 7
-                    if(new_now_day > 0){
-                        setNowDay(now_day - 7)
-                        setLastDay(new_now_day + 6)
-                        if(now_month !== last_month){
-                            setLastMonth(last_month - 1)
-                        }
-                    }else{
-                        if(now_month - 1 < 1){
-                            let new_now_day = Number(moment(`12.${(last_day)}.${now_year - 1}`).daysInMonth())
-                            let day_on_week_2 = moment(`12.${new_now_day}.${now_year - 1}`).toDate().getDay()
-                            setNowDay(new_now_day - (day_on_week_2 - 1))
-                            setLastDay(7 - day_on_week_2)
-                            if(7-day_on_week_2 === 0){
-                                setLastDay(new_now_day)
-                            }else{
-                                setLastDay(7-day_on_week_2)
+                    let new_now_day = now_day + 7
+                    if(new_now_day < Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth())){
+                        setNowDay(now_day + 7)
+                        let day_in_month_2 = Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth())
+                        if(new_now_day + 6 > day_in_month_2){
+                            let week_day_2 = moment(`${now_month}.${day_in_month_2}.${now_year}`).toDate().getDay()
+                            setLastDay(7 - week_day_2)
+                            setLastMonth(last_month + 1)
+                            if (last_month + 1 > 12){
+                                setLastMonth(1)
+                                setLastYear(last_year + 1)
                             }
-                            setNowMonth(12)
-                            setNowYear(now_year - 1)
                         }else{
-                            setNowMonth(now_month - 1)
-                            let day_on_month = Number(moment(`${now_month - 1}.${(now_day)}.${now_year}`).daysInMonth())
-                            let week_day = moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay()
-                            if(week_day === 1){
-                                if(now_day === 1){
-                                    let day_on_month_2 = Number(moment(`${last_month - 1}.${(last_day)}.${last_year}`).daysInMonth())
-                                    let day_on_week_2 = moment(`${last_month - 1}.${day_on_month_2}.${now_year}`).toDate().getDay()
-                                    setLastDay(day_on_month_2)
-                                    setLastMonth(last_month - 1)
-                                    setNowDay(day_on_month_2 - 6)
-                                    setNowMonth(now_month - 1)
-                                }else{
-                                    let day_on_month_2 = Number(moment(`${last_month - 1}.${(last_day)}.${last_year}`).daysInMonth())
-                                    let day_on_week_2 = moment(`${last_month - 1}.${day_on_month_2}.${now_year}`).toDate().getDay()
-                                    setLastDay(7 - day_on_week_2)
-            
-                                    setNowDay(day_on_month_2 - (day_on_week_2 - 1))
-                                    setNowMonth(now_month - 1)
-                                }
-                            }else{
-                                setLastDay(now_day - (week_day))
-                                setNowDay(day_on_month - (week_day + 1))
-                            }
+                            setLastDay(new_now_day + 6)
+                        }
+                        if(now_month !== last_month){
+                            setNowMonth(now_month + 1)
                         }
                     }
-                    if(last_day - now_day < 0){
-                        if(Number(last_month - 1) === 0){
-                            setLastMonth(12)
+                    else{                            
+                        let current_day2 = Number(moment(`${now_month}.${(now_day)}.${now_year}`).daysInMonth())
+                        let week_day = moment(`${now_month}.${current_day2}.${now_year}`).toDate().getDay()
+                        let week_day_2 = moment(`${now_month}.${current_day2}.${now_year}`).toDate().getDay()
+                        if(now_month + 1 > 12){
+                            if(week_day_2 === 0){
+                                setNowDay(1)
+                                setLastDay(7)
+                            }else{
+                                setNowDay(7 - (week_day - 1))
+                                setLastDay(7 - (week_day - 1) + 6)
+                            }
+                            setNowMonth(1)
+                            setNowYear(now_year + 1)
+                            setLastMonth(1)
+                            setLastYear(now_year + 1)
                         }else{
-                            setLastMonth(now_month)   
+                            if(week_day_2 === 0){
+                                setLastMonth(last_month + 1)
+                                setNowMonth(now_month + 1)
+                                setNowDay(1)
+                                setLastDay(7)
+                            }else{
+                                setNowDay(last_day + 1)
+                                setLastDay(last_day + 7)
+                                if(now_day + 7 > current_day2){
+                                    setNowMonth(now_month + 1)
+                                }
+                                if(last_day + 7 > current_day2){
+                                    setLastMonth(last_month + 1)
+                                    if(last_month + 1 > 12){
+                                        setLastMonth(1)
+                                        setLastYear(last_year + 1)
+                                    }
+                                    setLastDay(7 - week_day)
+                                }
+                            }
                         }
-                        setLastYear(now_year)
                     }
                 }
-                
-        }
-        if (number === 4){
-
         }
     }
     
@@ -404,7 +543,7 @@ export const NavHeader = ({visible}:any) => {
                     <div className={styles.side_panel_btn_after_week}><span>Прошлая неделя</span></div> 
                       //    */}
                 </div>
-                <RangeCalendar 
+                <RangeCalendar
                 defaultValue={[moment(`${(now_month)}.${(now_day)}.${now_year}`), moment(`${(last_month)}.${(last_day)}.${last_year}`)]}
                 hoverValue={[moment(`${(now_month)}.${(now_day)}.${now_year}`), moment(`${(last_month)}.${(last_day)}.${last_year}`)]}
                 onHoverChange={(date:any)=> selectDate(date)}
