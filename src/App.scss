@@ -142,6 +142,57 @@
     }
   }
 }
+.calendar_week{
+  .rc-calendar-column-header-inner{
+    padding: 4px 5px;
+    margin-left: 4.5px;
+    width: fit-content;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: large;
+    /* black */
+    
+    background: #E3EAEE;
+    border-radius: 5px;
+  }
+  .rc-calendar-date{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    /* black */
+  
+    // color: #3C3C3C;
+  }
+  .rc-calendar-header{
+    border-bottom: 0px !important;
+    .rc-calendar-month-select{
+      font-size: large;
+    }
+    .rc-calendar-year-select{
+      font-size: large;
+    }
+  }
+}
+.rc-calendar-selected-start-date{
+  .rc-calendar-date{
+    background: #03A9F4;
+    color: white;
+  }
+}
+.rc-calendar-selected-end-date{
+  .rc-calendar-date{
+    background: #03A9F4;
+    color: white;
+  }
+}
 .rc-calendar-body{
   margin-bottom: 5px;
 }

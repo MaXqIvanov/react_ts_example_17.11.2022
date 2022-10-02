@@ -545,14 +545,14 @@
 .calendar_side_panel{
     z-index: 5;
     position: absolute;
-    right: 521px;
+    right: 520px;
     top: 52.2px;
     height: 256px;
     width: 200px;
     background: white;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    box-shadow: 0 1px 5px #ccc;
+    box-shadow: -2px 0px 5px #ccc;
     background-clip: padding-box;
     border: 1px solid #ccc;
     border-right: 0px !important;

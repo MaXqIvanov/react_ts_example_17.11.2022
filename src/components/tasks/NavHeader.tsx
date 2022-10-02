@@ -531,7 +531,7 @@ export const NavHeader = ({visible}:any) => {
                     </div>
                 </div>
             {isVisibleCalendarWeeks && 
-            <div className={styles.calendar_side_wrapper}>
+            <div className={`${styles.calendar_side_wrapper} calendar_week`}>
                 <div className={styles.calendar_side_panel}>
                     {select_btn_week && select_btn_week.map((elem:any)=>
                     <div onClick={()=> {setChooseBtnWeek(elem.id)
