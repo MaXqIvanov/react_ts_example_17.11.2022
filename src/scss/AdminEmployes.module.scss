@@ -199,6 +199,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    word-wrap: break-word;
+    min-width: 400px;
+    @media(max-width: 1600px){
+        min-width: 300px;
+    }
 }
 .text_field{
     margin-top: 30px !important;
@@ -207,7 +212,7 @@
     input{
       padding: 11px 12px !important;  
       background: white !important;
-      width: 350px;
+      width: 350px !important;
       border-color: #9CB9C5 !important;
       border-radius: 0px !important;
       margin-top: -2px !important;
@@ -253,18 +258,18 @@
 }
 @keyframes input_animation {
     0%{
-        width: 0px !important;
-        max-width: 50px !important;
+        // width: 0px !important;
+        // max-width: 50px !important;
         overflow: hidden !important;
         opacity: 0;
-        transform: translateX(300px);
+        // transform: translateX(300px);
     }
     100%{
-        width: 350px !important;
-        max-width: none !important;
+        // width: 350px !important;
+        // max-width: none !important;
         opacity: 100%;
-        overflow: unset !important;
-        transform: translateX(0px);
+        overflow: auto !important;
+        // transform: translateX(0px);
     }
 }
 @keyframes label_animation {

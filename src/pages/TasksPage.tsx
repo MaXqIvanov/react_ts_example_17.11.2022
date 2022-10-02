@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { CreateSideBar } from '../components/tasks/CreateSideBar'
 import { NavHeader } from '../components/tasks/NavHeader'
 import { SideBar } from '../components/tasks/SideBar'
 import { TableHeader } from '../components/tasks/TableHeader'
@@ -16,9 +17,11 @@ export const TasksPage = ({visible}:any) => {
       <div className={styles.task_wrapper}>
         <NavHeader visible={visible}/>
         <TableHeader/>
-        {isVisibleSideBar &&
+        {isVisibleSideBar ? visible ?
+        <CreateSideBar />
+        :
         <SideBar />
-        }
+        :<></>}
       </div>
     </div>
   )
