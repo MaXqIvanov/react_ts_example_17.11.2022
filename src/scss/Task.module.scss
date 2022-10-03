@@ -366,6 +366,25 @@
     line-height: 11px !important;
     animation: label_animation linear alternate 0.23s;
 }
+.visible_label{
+    display: flex !important;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    font-size: small;
+    color: #9cbec7;
+    background: white;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 0px !important;
+    height: fit-content;
+    line-height: 11px !important;
+    animation: label_animation linear alternate 0.23s;
+}
+.not_visible_label{
+    display: none;
+    color: #9cbec7;
+}
 @keyframes input_animation {
     0%{
         // width: 0px !important;
@@ -577,4 +596,17 @@
         color: white;
     }
     transition: all linear 0.22s;
+}
+
+.date_picker_desctop{
+    margin-top: 30px !important;
+    label{
+        color: #9CB9C5 !important;
+    }
+}
+.select_position_wrapper{
+    margin-top: 30px !important;
+    label{
+        color: #9CB9C5 !important;
+    }
 }
