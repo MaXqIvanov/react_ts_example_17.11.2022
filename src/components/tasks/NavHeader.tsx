@@ -105,7 +105,6 @@ export const NavHeader = ({visible}:any) => {
                     }else{
                         let different_day =  next_week - Number(moment(`${current_month}.${(current_day)}.${current_year}`).daysInMonth()) 
         
-                        
                         setLastDay(different_day - 1)
                         setLastMonth(current_month + 1)
                         setLastYear(current_year)
@@ -177,8 +176,14 @@ export const NavHeader = ({visible}:any) => {
                         setNowMonth(12)
                     }
                     let day_in_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
-                    setNowDay(day_in_month - (Math.abs(current_day) - 1))
-                    setLastDay(7 - Math.abs(current_day))
+                    setNowDay(day_in_month - (Math.abs(current_day)))
+                    let week_in_month = moment(`${now_month}.${day_in_month}.${now_year}`).toDate().getDay()
+                    alert(week_in_month)
+                    if(week_in_month == 0){
+                        setLastDay(now_day - 1)
+                    }else{
+                        setLastDay(7 - (Math.abs(week_in_month)))
+                    }
                 }
             }
         }
