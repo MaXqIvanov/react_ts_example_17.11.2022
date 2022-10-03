@@ -85,12 +85,12 @@ export const CreateSideBar = () => {
                     className={`text_area ${styles.text_field}`}
                     onChange={(e:any)=> setReport(e.target.value)}
                     value={report}
-                    style={{ width: '98%', marginTop: '30px' }}
+                    style={{ width: '97%', marginTop: '30px' }}
                   />
                 </FormControl>
                 
                 <ThemeProvider theme={myTheme}>
-                  <MUIRichTextEditor className={'mui_rich_text_editor'} label="Описание задачи" />
+                  <MUIRichTextEditor label="Описание задачи" />
                 </ThemeProvider>
                 
             </div>
