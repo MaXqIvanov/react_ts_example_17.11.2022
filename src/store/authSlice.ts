@@ -33,10 +33,13 @@ const authSlice = createSlice({
     loading: false,
   },
   reducers: {
-    logout(state: AuthState, action: PayloadAction) { 
+    logout(state: AuthState, action: PayloadAction<any>) { 
       state.auth = false
       state.user = {token : '', id: null, username: '', password: '', email: ''}
       Cookies.remove('token');
+      console.log(action);
+      action.payload('/auth')
+      
     },
   },
   extraReducers: (builder) => {

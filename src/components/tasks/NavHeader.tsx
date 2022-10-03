@@ -37,6 +37,7 @@ export const NavHeader = ({visible}:any) => {
             class: `${styles.side_panel_btn_after_week}`
         }
     ]
+    const [completed_task, setCompletedTask] = useState<any>(false)
     useEffect(() => {
         if(visible){
 
@@ -178,7 +179,6 @@ export const NavHeader = ({visible}:any) => {
                     let day_in_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
                     setNowDay(day_in_month - (Math.abs(current_day)))
                     let week_in_month = moment(`${now_month}.${day_in_month}.${now_year}`).toDate().getDay()
-                    alert(week_in_month)
                     if(week_in_month == 0){
                         setLastDay(now_day - 1)
                     }else{
@@ -498,7 +498,6 @@ export const NavHeader = ({visible}:any) => {
             }
     }, [calendar_day_month, isVisibleCalendarDays, calendar_day_day, calendar_day_year])
     // для работы с днями конец
-    const [completed_task, setCompletedTask] = useState<any>(false)
   return (
     <div className={styles.nav_header}>
         <div className={styles.nav_header_btn}>

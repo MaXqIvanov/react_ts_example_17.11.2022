@@ -8,25 +8,23 @@ interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
-export const getTask = createAsyncThunk(
-  'task/getTask',
-  async (params:any) => {
-    const response = await api.get(`/users`)
-    return {response}
+export const getEmployes = createAsyncThunk(
+  'employes/getEmployes',
+  async (params: CallableFunction) => {
+
+    // return {response, params}
   },
 )
 
-const taskSlice = createSlice({
-  name: 'task',
+const controlSlice = createSlice({
+  name: 'employes',
   initialState: {
-    // loading
-    loading: false,
-    // for work
     variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' }],
     current_variant_table: 1,
+    loading: false,
+
     // for sidebar
     isVisibleSideBar: false,
-    
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
@@ -37,17 +35,17 @@ const taskSlice = createSlice({
   }
   },
   extraReducers: (builder) => {
-    builder.addCase(getTask.pending, (state:TaskState, action:PayloadAction) => {
+    builder.addCase(getEmployes.pending, (state:TaskState, action:PayloadAction) => {
         state.loading = true
     });
-    builder.addCase(getTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+    builder.addCase(getEmployes.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
         
     });
-    builder.addCase(getTask.rejected, (state:TaskState) => {
+    builder.addCase(getEmployes.rejected, (state:TaskState) => {
         state.loading = false
     });
   },
 });
 
-export default taskSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar } = taskSlice.actions;
+export default controlSlice.reducer;
+export const { setCurrentVariantTable, changeVisibleSideBar } = controlSlice.actions;

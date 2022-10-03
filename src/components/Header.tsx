@@ -7,9 +7,13 @@ import { RootState } from '../store/store';
 import camera_img from '../assets/camera_img.svg';
 import { TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
+import { useAppDispatch } from '../hooks/redux';
+import { logout } from '../store/authSlice';
+import img_user from '../assets/img_user.svg';
 
 export const Header = () => {
   const router = useNavigate()
+  const dispatch = useAppDispatch()
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false)
   const {user} = useSelector((state:RootState)=> state.auth)
   const [phoneHolder, setPhoneHolder] = useState<string>('')
@@ -25,7 +29,7 @@ export const Header = () => {
         </div>
         <div className={styles.group_header}>
           <div className={styles.header_name}>Иванов Иван Иванович</div>
-          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: `url(https://s3-alpha-sig.figma.com/img/4234/be2b/c2c8992b81f8685935c0441a326a6b93?Expires=1664755200&Signature=HvPEbz7huea8aySsSfYh54vfAkF5ZAJ6h40K0xKprdonRjYbgrwJaAX6KFSLzMrjcS91nP7SAMEaA4Nu9uLqiNInMu3fcqVZU8eqY5yuGwFrgpIKEWq0JRzEVHrsosiYXHD-jI-4eVIUABCtIBa5k6JoZWaO11rI8QqEHaqxifFGe6zlsTPg~7U5fQfiMZu0P8UDWqEsTK89M0d5ZwifmMmjBnEOHBKppBwJc2kXo7k0AeIKHImhLlEfTqp3BBMgXoZmdltSa81n0DgzOC24MhOfwWU~NA2YSEWZ-TYZ2kdOsxF~7cUaWxHuccq7okKQwJtwidG6ggPZYYKZxl6-hw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)`}}
+          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}}
           className={styles.header_user_img}></div>
         </div>
       </div>
@@ -35,7 +39,7 @@ export const Header = () => {
           <div className={styles.user_side_menu_wrapper}>
             <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
             <div className={styles.group_img_user}>
-              <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
+              <div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user}></div>
               <div style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}></div>
             </div>
             <div className={styles.text_field_block}>
@@ -76,10 +80,10 @@ export const Header = () => {
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
+                  <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
                   <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
                 </div>
-                <div className={styles.btn_quit_account}>ВЫЙТИ</div>
+                <div onClick={()=> dispatch(logout(router))} className={styles.btn_quit_account}>ВЫЙТИ</div>
             </div>
           </div>
         </div>
