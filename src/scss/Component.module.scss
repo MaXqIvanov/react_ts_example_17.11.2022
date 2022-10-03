@@ -395,3 +395,69 @@
     margin-bottom: 15px;
 }
 // end SideBar Components
+.alert{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    flex-direction: column;
+    max-width: 350px;
+}
+.btn_cancel_img{
+    background-image: url('../assets/close_btn.svg');
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-size: contain;
+    height: 10px;
+    width: 10px;
+    z-index: 1000;
+    cursor: pointer;
+}
+.alert_title{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    color: rgba($color: #3C3C3C, $alpha: 0.5);
+}
+.alert_btn_group{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.btn_cancel{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #03A9F4;
+    cursor: pointer;
+}
+.btn_accept{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #F0F0F0;
+    background: #03A9F4;
+    padding: 5px 40px 5px 40px;
+    text-align: center;
+    cursor: pointer;
+}

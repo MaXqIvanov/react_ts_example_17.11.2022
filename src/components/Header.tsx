@@ -17,6 +17,7 @@ export const Header = () => {
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false)
   const {user} = useSelector((state:RootState)=> state.auth)
   const [phoneHolder, setPhoneHolder] = useState<string>('')
+  const [isVisibleAlert, setIsVisibleAlert] = useState<boolean>(false)
 
   // for ui
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false)
@@ -83,13 +84,25 @@ export const Header = () => {
                   <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
                   <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
                 </div>
-                <div onClick={()=> dispatch(logout(router))} className={styles.btn_quit_account}>ВЫЙТИ</div>
+                <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_quit_account}>ВЫЙТИ</div>
             </div>
           </div>
         </div>
-        <div onClick={()=> setIsVisibleUserMenu(false)} className={styles.user_side_menu_plug}></div>
+        <div onClick={()=> {
+          setIsVisibleUserMenu(false)
+          setIsVisibleAlert(false)
+        }} className={styles.user_side_menu_plug}></div>
       </>
       }
+      {isVisibleAlert &&
+      <div className={styles.alert}>
+        <div className={styles.alert_title}>Вы действительо хотите выйти ?</div>
+        <div className={styles.alert_btn_group}>
+          <div onClick={()=> setIsVisibleAlert(false)} className={styles.btn_cancel}>ОТМЕНА</div>
+          <div onClick={()=> dispatch(logout(router))} className={styles.btn_accept}>ДА</div>
+        </div>
+        <div onClick={()=> setIsVisibleAlert(false)} className={styles.btn_cancel_img}></div>
+      </div>}
     </div>
   )
 }
