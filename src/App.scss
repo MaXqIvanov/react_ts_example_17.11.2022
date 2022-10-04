@@ -461,24 +461,34 @@
     padding: 12px !important;
   }
 }
-.MUIRichTextEditor-placeHolder-23{
+#mui-rte-editor{
   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
   width: 100% !important;
-  margin-top: 5px !important;
+  margin-top: 15px !important;
   margin-left: -6px !important;
   padding: 5px 5px 5px 5px !important;
-  border-top: 0.6px solid white !important;
+  border-top: 0px solid white !important;
+  border-bottom: 0px !important;
   z-index: 999;
 }
-.MUIRichTextEditor-placeHolder-9{
-  border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
-  width: 100% !important;
-  margin-top: 5px !important;
-  margin-left: -6px !important;
-  padding: 5px 5px 5px 5px !important;
-  border-top: 0.6px solid white !important;
-  z-index: 999;
-}
+// .MUIRichTextEditor-placeHolder-23{
+//   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
+//   width: 100% !important;
+//   margin-top: 5px !important;
+//   margin-left: -6px !important;
+//   padding: 5px 5px 5px 5px !important;
+//   border-top: 0.6px solid white !important;
+//   z-index: 999;
+// }
+// .MUIRichTextEditor-placeHolder-9{
+//   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
+//   width: 100% !important;
+//   margin-top: 5px !important;
+//   margin-left: -6px !important;
+//   padding: 5px 5px 5px 5px !important;
+//   border-top: 0.6px solid white !important;
+//   z-index: 999;
+// }
 .rc-calendar-prev-year-btn{
   font-size: x-large;
   color: #3C3C3C;
