@@ -100,7 +100,7 @@ export const TableHeader = () => {
                         </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right"></TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.monday}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thuesday}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thirtday}</TableCell>
@@ -122,7 +122,7 @@ export const TableHeader = () => {
                         <TableCell>Название задачи</TableCell>
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
-                        <TableCell className={`header_oa`} align="right">О/А</TableCell>
+                        <TableCell style={{minWidth: '20px'}} className={`header_oa`} align="right">О/А</TableCell>
                         <TableCell align="right">СТАТ</TableCell>
                     </TableRow>
                     </TableHead>
