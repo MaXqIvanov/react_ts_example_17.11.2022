@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -20,6 +20,14 @@ import { ChooseWorkCompany } from './pages/ChooseWorkCompany';
 function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
+  const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
+  useEffect(() => {
+    if(window.location.pathname !== '/auth'){
+      setIsVisibleSideBar(true)
+    }else{
+      setIsVisibleSideBar(false)
+    }
+  }, [window.location.pathname])
   
   return (
     <>
@@ -27,7 +35,7 @@ function App() {
       <>
         {auth ?  <Header></Header> : <></> }
         <div className={'wrapper'}>
-        {window.location.pathname !== '/auth' && <SideBar />}
+        {isVusubleSideBar && <SideBar />}
         <Routes>
            { auth ? 
            <>
