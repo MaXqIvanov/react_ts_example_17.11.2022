@@ -168,8 +168,6 @@ export const NavHeader = ({visible}:any) => {
                         }
                     }
                 }else{
-                    console.log(current_week);
-                    console.log(current_day);
                     let day_in_last_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
                     let week_in_month = moment(`${current_month - 1}.${day_in_last_month}.${now_year}`).toDate().getDay()
                     console.log(week_in_month);

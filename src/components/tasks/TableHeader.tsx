@@ -122,7 +122,7 @@ export const TableHeader = () => {
                         <TableCell>Название задачи</TableCell>
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
-                        <TableCell align="right">О/А</TableCell>
+                        <TableCell className={`header_oa`} align="right">О/А</TableCell>
                         <TableCell align="right">СТАТ</TableCell>
                     </TableRow>
                     </TableHead>

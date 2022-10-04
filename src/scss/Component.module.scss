@@ -338,7 +338,7 @@
 .sidebar_wrapper_position{
     top: 60px;
     height: 90%;
-    width: 185px;
+    width: 185px !important;
     min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;

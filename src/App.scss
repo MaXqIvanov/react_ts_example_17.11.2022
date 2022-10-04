@@ -424,3 +424,12 @@
   color: #3C3C3C !important;
   text-decoration-line: none !important;
 }
+.MuiTableCell-root{
+  @media(max-width: 1500px){
+    padding: 12px !important;
+  }
+}
+.header_oa{
+  color: red !important;
+  cursor: cell !important;
+}

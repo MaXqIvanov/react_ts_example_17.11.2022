@@ -66,7 +66,7 @@
     color: #3C3C3C;
     min-width: 250px;
     @media(min-width: 1500px){
-        min-width: 500px;
+        min-width: 498.5px;
     }
     @media(max-width: 1500px){
         width: 32vw;
@@ -187,8 +187,13 @@
     background-size: 30px 30px;
     background-position: center;
     cursor: pointer;
-}
 
+}
+.header_oa{
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    color: red !important;
+}
 // new code
 .group_for_checked{
     display: flex;
