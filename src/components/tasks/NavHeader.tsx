@@ -167,6 +167,22 @@ export const NavHeader = ({visible}:any) => {
                             setLastYear(current_year + 1)
                         }
                     }
+                }else{
+                    console.log(current_week);
+                    console.log(current_day);
+                    let day_in_last_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
+                    let week_in_month = moment(`${current_month - 1}.${day_in_last_month}.${now_year}`).toDate().getDay()
+                    console.log(week_in_month);
+                    setNowDay(day_in_last_month - (week_in_month - 1))
+                    if(Math.abs(now_month - last_month) < 1){
+                        setNowMonth(now_month - 1)
+                    }else{
+                        setNowMonth(now_month) 
+                    }
+                    setNowYear(now_year)
+                    setLastDay(day_in_last_month - (week_in_month - 1) + 6 - day_in_last_month)
+                    setLastMonth(last_month)
+                    setLastYear(last_year)
                 }
             }else{
                 if(current_day < 0){
