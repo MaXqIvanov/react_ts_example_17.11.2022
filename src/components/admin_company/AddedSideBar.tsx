@@ -5,11 +5,15 @@ import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar } from '../../store/taskSlice';
+import img_user from '../../assets/img_user.svg';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
-    const [position, setPosition] = useState<string>("")
+    const [position, setPosition] = useState<string | number>("")
     const [name_position, setNamePosition] = useState<string>("")
     const [comment, setComment] = useState<string>("")
+    const {user} = useSelector((state:RootState)=> state.auth)
   return (
     <>
         <div className={styles.user_side_menu}>
@@ -28,7 +32,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
                 />
                 <div className={`${styles.select_position_wrapper}`}>
                 <FormControl fullWidth className={`${styles.select_position}`}>
-                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Должность</InputLabel>
+                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Администратор</InputLabel>
                     <Select
                     className='custom_select'
                     labelId="select_simple"
@@ -37,9 +41,9 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
                     label="Статус"
                     onChange={(e:any)=> setPosition(e.target.value)}
                     >
-                    <MenuItem value={10}>Менеджер отдел продаж</MenuItem>
-                    <MenuItem value={20}>Менеджер отдела продаж2</MenuItem>
-                    <MenuItem value={30}>Менеджер отдела продаж3</MenuItem>
+                    <MenuItem value={10}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович</MenuItem>
+                    <MenuItem value={20}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович2</MenuItem>
+                    <MenuItem value={30}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович3</MenuItem>
                     </Select>
                 </FormControl>
                 </div>

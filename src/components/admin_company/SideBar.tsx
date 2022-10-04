@@ -5,10 +5,14 @@ import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar } from '../../store/taskSlice';
+import img_user from '../../assets/img_user.svg';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
-  const [position, setPosition] = useState<string>("")
+  const [position, setPosition] = useState<string | number>(10)
   const [comment, setComment] = useState<string>("")
+  const {user} = useSelector((state:RootState)=> state.auth)
   return (
     <>
         <div className={styles.user_side_menu}>
@@ -35,9 +39,9 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                       label="Статус"
                       onChange={(e:any)=> setPosition(e.target.value)}
                     >
-                    <MenuItem value={10}>Иванов Иван Иванович</MenuItem>
-                    <MenuItem value={20}>Иванов Иван Иванович2</MenuItem>
-                    <MenuItem value={30}>Иванов Иван Иванович3</MenuItem>
+                    <MenuItem value={10}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович</MenuItem>
+                    <MenuItem value={20}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович2</MenuItem>
+                    <MenuItem value={30}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович3</MenuItem>
                     </Select>
                 </FormControl>
                 </div>

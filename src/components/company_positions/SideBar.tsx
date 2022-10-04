@@ -5,12 +5,16 @@ import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar } from '../../store/taskSlice';
+import img_user from '../../assets/img_user.svg';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
-  const [position, setPosition] = useState<string>("")
+  const [position, setPosition] = useState<any>(10)
+  const {user} = useSelector((state:RootState)=> state.auth)
   return (
     <>
-        <div className={styles.user_side_menu}>
+        <div id={'company_position_sidebar'} className={`${styles.user_side_menu}`}>
           <div className={styles.user_side_menu_wrapper}>
             <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
             <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
@@ -24,19 +28,20 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                     }}
                 />
                 <div className={`${styles.select_position_wrapper}`}>
-                <FormControl fullWidth className={`${styles.select_position}`}>
-                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Должность</InputLabel>
+                <FormControl fullWidth className={`${styles.select_emp} select_emp`}>
+                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Сотрудник</InputLabel>
                     <Select
                       className='custom_select'
                       labelId="select_simple"
                       id="select_simple"
-                      value={position}
+                      defaultValue={position}
+                      value={10}
                       label="Статус"
                       onChange={(e:any)=> setPosition(e.target.value)}
                     >
-                    <MenuItem value={10}>Менеджер отдел продаж</MenuItem>
-                    <MenuItem value={20}>Менеджер отдела продаж2</MenuItem>
-                    <MenuItem value={30}>Менеджер отдела продаж3</MenuItem>
+                    <MenuItem value={10}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович</MenuItem>
+                    <MenuItem value={20}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович2</MenuItem>
+                    <MenuItem value={30}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович3</MenuItem>
                     </Select>
                 </FormControl>
                 </div>

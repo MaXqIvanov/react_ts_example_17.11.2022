@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import styles from '../../scss/CompanyEmployes.module.scss'
 import close_btn from '../../assets/close_btn.svg';
@@ -30,7 +30,12 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
         <div className={styles.group_body}>
           <div className={styles.group_img_user}>
             <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
-            <div style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}></div>
+            <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
+                <input
+                  type="file"
+                  hidden
+                />
+              </Button>
           </div>
           <div className={styles.text_field_block}>
             <div className={`${styles.select_position_wrapper}`}>

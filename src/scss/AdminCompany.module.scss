@@ -508,3 +508,12 @@
     color: rgba($color: #9CB9C5, $alpha: 1) !important;
 }
 // end_sidebar_header
+.img_user_company_position{
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}

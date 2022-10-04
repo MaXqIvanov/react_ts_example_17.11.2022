@@ -97,6 +97,20 @@
   display: none;
 }
 .calendar_day{
+  .rc-calendar-selected-day{
+    .rc-calendar-date{
+      background: white !important;
+      color: #03A9F4 !important;
+      border: 0px !important;
+    }
+  }
+  .rc-calendar-selected-date{
+    .rc-calendar-date{
+      background: white !important;
+      color: #03A9F4 !important;
+      border: 0px !important;
+    }
+  }
   .rc-calendar{
     width: 352px !important;
   }
@@ -114,7 +128,7 @@
     text-align: center;
     font-size: large;
     /* black */
-    
+    color: #3C3C3C;
     background: #E3EAEE;
     border-radius: 5px;
   }
@@ -142,11 +156,18 @@
     }
   }
 }
-.rc-calendar-active-week{
-  background: #ebf4f8;
-  padding-left: 0px !important;
-}
 .calendar_week{
+  .rc-calendar-today{
+    .rc-calendar-date{
+      background: #ebf4f8 ;
+      border: 0px ;
+      color: #03A9F4;
+    }
+  }
+  .rc-calendar-active-week{
+    background: #ebf4f8;
+    padding-left: 0px !important;
+  }
   .rc-calendar-table{
     .rc-calendar-column-header{
       background: #E3EAEE !important;
@@ -192,15 +213,15 @@
 }
 .rc-calendar-selected-start-date{
   .rc-calendar-date{
-    background: #03A9F4;
-    color: white;
+    background: #03A9F4 !important;
+    color: white !important;
     width: 29px !important;
   }
 }
 .rc-calendar-selected-end-date{
   .rc-calendar-date{
-    background: #03A9F4;
-    color: white;
+    background: #03A9F4 !important;
+    color: white !important;
     width: 29px !important;
   }
 }
@@ -473,4 +494,7 @@
 .rc-calendar-next-year-btn{
   font-size: x-large;
   color: #3C3C3C;
+}
+.MuiSelect-select{
+  display: flex !important;
 }

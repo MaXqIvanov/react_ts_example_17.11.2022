@@ -5,7 +5,7 @@ import close_btn from '../assets/close_btn.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import camera_img from '../assets/camera_img.svg';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
 import { useAppDispatch } from '../hooks/redux';
 import { logout } from '../store/authSlice';
@@ -47,9 +47,24 @@ export const Header = ({setIsVisibleSideBar}:any) => {
         <div className={styles.user_side_menu}>
           <div className={styles.user_side_menu_wrapper}>
             <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
+            {/* <Button
+              variant="contained"
+              component="label"
+            >
+              Upload File
+              <input
+                type="file"
+                hidden
+              />
+            </Button> */}
             <div className={styles.group_img_user}>
               <div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user}></div>
-              <div style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}></div>
+              <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
+                <input
+                  type="file"
+                  hidden
+                />
+              </Button>
             </div>
             <div className={styles.text_field_block}>
               <TextField
