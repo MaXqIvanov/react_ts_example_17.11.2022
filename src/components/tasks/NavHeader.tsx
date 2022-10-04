@@ -169,18 +169,18 @@ export const NavHeader = ({visible}:any) => {
                     }
                 }else{
                     let day_in_last_month = Number(moment(`${current_month - 1}.${(current_day)}.${current_year}`).daysInMonth())
-                    let week_in_month = moment(`${current_month - 1}.${day_in_last_month}.${now_year}`).toDate().getDay()
+                    let week_in_month = moment(`${current_month - 1}.${day_in_last_month}.${current_year}`).toDate().getDay()
                     console.log(week_in_month);
                     setNowDay(day_in_last_month - (week_in_month - 1))
                     if(Math.abs(now_month - last_month) < 1){
-                        setNowMonth(now_month - 1)
+                        setNowMonth(current_month - 1)
                     }else{
-                        setNowMonth(now_month) 
+                        setNowMonth(current_month - 1) 
                     }
-                    setNowYear(now_year)
+                    setNowYear(current_year)
                     setLastDay(day_in_last_month - (week_in_month - 1) + 6 - day_in_last_month)
-                    setLastMonth(last_month)
-                    setLastYear(last_year)
+                    setLastMonth(current_month)
+                    setLastYear(current_year)
                 }
             }else{
                 if(current_day < 0){

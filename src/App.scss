@@ -142,10 +142,18 @@
     }
   }
 }
+.rc-calendar-active-week{
+  background: #ebf4f8;
+  padding-left: 0px !important;
+}
 .calendar_week{
+  .rc-calendar-table{
+    .rc-calendar-column-header{
+      background: #E3EAEE !important;
+    }
+  }
   .rc-calendar-column-header-inner{
-    padding: 4px 5px;
-    margin-left: 4.5px;
+    padding: 2px 5px;
     width: fit-content;
     font-style: normal;
     font-weight: 400;
@@ -157,6 +165,7 @@
     
     background: #E3EAEE;
     border-radius: 5px;
+    color: #3C3C3C;
   }
   .rc-calendar-date{
     font-style: normal;
@@ -185,12 +194,14 @@
   .rc-calendar-date{
     background: #03A9F4;
     color: white;
+    width: 29px !important;
   }
 }
 .rc-calendar-selected-end-date{
   .rc-calendar-date{
     background: #03A9F4;
     color: white;
+    width: 29px !important;
   }
 }
 .rc-calendar-body{
@@ -435,6 +446,31 @@
   margin-top: 5px !important;
   margin-left: -6px !important;
   padding: 5px 5px 5px 5px !important;
-  border-top: 1px solid white !important;
+  border-top: 0.6px solid white !important;
   z-index: 999;
+}
+.MUIRichTextEditor-placeHolder-9{
+  border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
+  width: 100% !important;
+  margin-top: 5px !important;
+  margin-left: -6px !important;
+  padding: 5px 5px 5px 5px !important;
+  border-top: 0.6px solid white !important;
+  z-index: 999;
+}
+.rc-calendar-prev-year-btn{
+  font-size: x-large;
+  color: #3C3C3C;
+}
+.rc-calendar-prev-month-btn{
+  font-size: x-large;
+  color: #3C3C3C;
+}
+.rc-calendar-next-month-btn{
+  font-size: x-large;
+  color: #3C3C3C;
+}
+.rc-calendar-next-year-btn{
+  font-size: x-large;
+  color: #3C3C3C;
 }
