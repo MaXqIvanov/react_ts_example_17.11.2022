@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from '../scss/Component.module.scss';
 import close_btn from '../assets/close_btn.svg';
@@ -11,7 +11,7 @@ import { useAppDispatch } from '../hooks/redux';
 import { logout } from '../store/authSlice';
 import img_user from '../assets/img_user.svg';
 
-export const Header = () => {
+export const Header = ({setIsVisibleSideBar}:any) => {
   const router = useNavigate()
   const dispatch = useAppDispatch()
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false)
@@ -21,6 +21,14 @@ export const Header = () => {
 
   // for ui
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false)
+
+  useEffect(() => {
+    if(window.location.pathname !== '/auth'){
+      setIsVisibleSideBar(true)
+    }else{
+      setIsVisibleSideBar(false)
+    }
+  }, [window.location.href])
   return (
     <div id="header" className={styles.header}>
       <div className={styles.header_wrapper}>

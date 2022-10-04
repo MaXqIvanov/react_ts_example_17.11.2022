@@ -21,19 +21,19 @@ function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
   const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
-  useEffect(() => {
+  useEffect(() => {    
     if(window.location.pathname !== '/auth'){
       setIsVisibleSideBar(true)
     }else{
       setIsVisibleSideBar(false)
     }
-  }, [window.location.pathname])
+  }, [])
   
   return (
     <>
     {!loading ? 
       <>
-        {auth ?  <Header></Header> : <></> }
+        {auth ?  <Header setIsVisibleSideBar={setIsVisibleSideBar}></Header> : <></> }
         <div className={'wrapper'}>
         {isVusubleSideBar && <SideBar />}
         <Routes>
