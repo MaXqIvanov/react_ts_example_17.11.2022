@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import styles from '../../scss/CompanyEmployes.module.scss'
 import close_btn from '../../assets/close_btn.svg';
@@ -9,6 +9,7 @@ import active_img from '../../assets/company/active_img.svg'
 import executor_img from '../../assets/company/executor_img.svg'
 import analitic_img from '../../assets/company/analitic_img.svg'
 import controller_img from '../../assets/company/controller_img.svg'
+import camera_img from '../../assets/camera_img.svg';
 
 export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
   const {user} = useSelector((state:RootState)=> state.auth)
@@ -24,8 +25,14 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
       <div className={styles.user_side_menu_wrapper}>
         <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
         <div className={styles.group_body}>
-          <div className={styles.group_img_user}>
-            <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
+        <div className={styles.group_img_user}>
+          <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
+          <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
+            <input
+              type="file"
+              hidden
+            />
+          </Button>
           </div>
           <div className={styles.text_field_block}>
             <div className={styles.text_field_title}>ФИО</div>
