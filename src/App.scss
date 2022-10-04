@@ -464,12 +464,16 @@
 #mui-rte-editor{
   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
   width: 100% !important;
-  margin-top: 15px !important;
+  margin-top: 0px !important;
   margin-left: -6px !important;
-  padding: 5px 5px 5px 5px !important;
+  padding: 10px 5px 5px 5px !important;
   border-top: 0px solid white !important;
   border-bottom: 0px !important;
   z-index: 999;
+  transition: all linear 0.42s;
+}
+#mui-rte-container{
+ padding-bottom: 5px;
 }
 // .MUIRichTextEditor-placeHolder-23{
 //   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
