@@ -13,10 +13,10 @@ export const TasksPage = ({visible}:any) => {
   const {isVisibleSideBar} = useSelector((state:RootState)=> state.task)
 
   return (
-    <div className={styles.task}>
+    <div className={visible ? styles.task_employes : styles.task}>
       <div className={styles.task_wrapper}>
         <NavHeader visible={visible}/>
-        <TableHeader/>
+        <TableHeader visible={visible}/>
         {isVisibleSideBar ? visible ?
         <CreateSideBar />
         :

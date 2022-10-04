@@ -187,7 +187,7 @@
     background-size: 30px 30px;
     background-position: center;
     cursor: pointer;
-
+    position: relative;
 }
 // new code
 .group_for_checked{
@@ -609,3 +609,29 @@
         color: #9CB9C5 !important;
     }
 }
+.href_link{
+    position: absolute;
+    top: 20px;
+    right: -0px;
+    background: white;
+    padding: 5px;
+    word-wrap: break-word;
+    text-align: left;
+    z-index: 999;
+    width: fit-content;
+    border: 1px solid rgb(186, 186, 186);
+    max-width: 400px;
+    a{
+        color: #03A9F4;
+        text-decoration: none;
+    }
+}
+.task_employes{
+    background: #F1F6F8;
+    height: 90%;
+    width: 100%;
+}
+//     background: #F1F6F8;
+// height: 100%;
+// width: 100%;
+// min-height: calc(100vh - 60px);

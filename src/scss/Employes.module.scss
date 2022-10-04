@@ -144,8 +144,10 @@
     position: absolute;
     left: 2.5%;
     width: calc(94.5% - 20px);
-    height: 100%;
+    height: calc(100% - 40px);
     padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -168,7 +170,7 @@
         min-width: 0px;
         overflow-x: hidden;
     }
-    90%{
+    95%{
         overflow-x: hidden;
     }
     100%{

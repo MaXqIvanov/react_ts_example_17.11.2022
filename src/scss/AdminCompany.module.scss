@@ -21,7 +21,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 // work width Table
 .table{
@@ -110,6 +110,7 @@
     color: #03A9F4;
     background: white;
     cursor: pointer;
+    margin-top: -2px;
 }
 
 // sidebar_header
@@ -433,6 +434,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
+    padding-left: 0px;
     span{
         font-style: normal;
         font-weight: 400;

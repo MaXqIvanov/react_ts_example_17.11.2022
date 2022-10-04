@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../scss/Task.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -28,11 +28,13 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
     createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
   ];
 
-export const TableHeader = () => {
+
+export const TableHeader = ({visible}:any) => {
     const { current_variant_table }  = useSelector((state:RootState) => state.task)
     const dispatch = useAppDispatch()
+    const [isVisibleHref, setIsVisibleHref] = useState<any>(null)
   return (
-    <div className={`${styles.table} custom_table`}>
+    <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className={'custom_table'}>
             {
@@ -61,7 +63,9 @@ export const TableHeader = () => {
                         </TableCell>
                         <TableCell align="right">{row.begining}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell style={{backgroundImage: `url(${paperclip_img})`}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})` , width: '30px'}} className={styles.paperclip_img} align="right">
+                        {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> }
+                        </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
@@ -100,7 +104,14 @@ export const TableHeader = () => {
                         </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right">
+                            {isVisibleHref === row.number &&
+                            <div className={styles.href_link}>
+                                <a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
+                                    https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0
+                                </a>
+                            </div> }
+                        </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.monday}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thuesday}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thirtday}</TableCell>
@@ -140,7 +151,10 @@ export const TableHeader = () => {
                         </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer'}} className={styles.paperclip_img} align="right"></TableCell>
+                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '30px'}} className={styles.paperclip_img} align="right">
+                            {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
+                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> }
+                        </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.stat}</TableCell>
                         </TableRow>
                     ))}

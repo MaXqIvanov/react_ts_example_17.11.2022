@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-import styles from '../../scss/CompanyPosition.module.scss'
+import styles from '../../scss/AdminCompany.module.scss'
 
 export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
