@@ -38,6 +38,9 @@ export const NavHeader = ({visible}:any) => {
     const [last_day, setLastDay] = useState<any>('')
     const [last_month, setLastMonth] = useState<any>('')
     const [last_year, setLastYear] = useState<any>('')
+    // Variable for load data - change now_day or last_day
+    const [is_change_day, setIsChangesDay] = useState<boolean>(false)
+
     const [choose_btn_week, setChooseBtnWeek] = useState<number>(1)
     const select_btn_week:any = [
         {
@@ -73,7 +76,7 @@ export const NavHeader = ({visible}:any) => {
         }else{
           dispatch(getTaskDay({calendar_day_day: calendar_day_day, calendar_day_month: calendar_day_month, calendar_day_year: calendar_day_year}))
         }
-      }, [current_variant_table, current_page_day, current_page_week, current_page_all, calendar_day_day, calendar_day_month, calendar_day_year, now_day, last_day ])
+      }, [ current_variant_table, current_page_day, current_page_week, current_page_all, calendar_day_day, calendar_day_month, calendar_day_year, is_change_day ])
     
     // const [current_days, setCurrentDays] = useState<number>(1)
     // для работы с неделями
@@ -95,6 +98,9 @@ export const NavHeader = ({visible}:any) => {
         setLastDay(dayTwo)
         setLastMonth(monthTwo)
         setLastYear(yearTwo)
+    }
+    const selectDateHover = (date:any) => {
+        setIsChangesDay(!is_change_day)
     }
     useEffect(() => {
         getCurrentWeeks(choose_btn_week)
@@ -336,7 +342,6 @@ export const NavHeader = ({visible}:any) => {
                         setLastYear(now_year)
                     }
                 }
-                
         }
         if (number === 4){
   // НАЧАЛО НЕДЕЛИ
@@ -451,6 +456,7 @@ export const NavHeader = ({visible}:any) => {
                     }
                 }
         }
+        setIsChangesDay(!is_change_day)
     }
     
     // для работы с неделями  конец
@@ -578,7 +584,8 @@ export const NavHeader = ({visible}:any) => {
                 defaultValue={[moment(`${(now_month)}.${(now_day)}.${now_year}`), moment(`${(last_month)}.${(last_day)}.${last_year}`)]}
                 hoverValue={[moment(`${(now_month)}.${(now_day)}.${now_year}`), moment(`${(last_month)}.${(last_day)}.${last_year}`)]}
                 onHoverChange={(date:any)=> selectDate(date)}
-                onSelect={(date:any)=> selectDate(date)}/>
+                onSelect={(date:any)=> selectDate(date)}
+                onChange={()=> selectDateHover('')}/>
             </div>
             }
             </div>
