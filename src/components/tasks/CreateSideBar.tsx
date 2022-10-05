@@ -15,6 +15,23 @@ import MUIRichTextEditor from 'mui-text-editor'
 const myTheme = createTheme({
   // Set up your custom MUI theme here
 })
+Object.assign(myTheme, {
+  overrides: {
+      MUIRichTextEditor: {
+          root: {
+            border: '0.6px solid #9CB9C5',
+            marginTop: 30,
+            paddingLeft: '10px',
+            paddingRight: '10px',
+          },
+          editor: {
+            paddingTop: '30px',
+            paddingLeft: '10px',
+            paddingRight: '10px'
+          }
+      }
+  }
+})
 
 export const CreateSideBar = () => {
   const dispatch = useAppDispatch()
@@ -90,7 +107,7 @@ export const CreateSideBar = () => {
                 </FormControl>
                 
                 <ThemeProvider theme={myTheme}>
-                  <MUIRichTextEditor label="Описание задачи" />
+                  <MUIRichTextEditor label="Описание задачи"/>
                 </ThemeProvider>
                 
             </div>

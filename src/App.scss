@@ -439,15 +439,15 @@
   }
 }
 
-#mui-rte-root{
-  padding: 5px !important;
-  margin-top: 30px !important;
-  border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
-}
-#mui-rte-editor{
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-}
+// #mui-rte-root{
+//   padding: 5px !important;
+//   margin-top: 30px !important;
+//   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
+// }
+// #mui-rte-editor{
+//   padding-left: 8px !important;
+//   padding-right: 8px !important;
+// }
 .MuiMenuItem-root{
   color: #03A9F4 !important;
   text-decoration-line: underline !important;
@@ -461,20 +461,21 @@
     padding: 12px !important;
   }
 }
-#mui-rte-editor{
-  border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
-  width: 100% !important;
-  margin-top: 0px !important;
-  margin-left: -6px !important;
-  padding: 10px 5px 5px 5px !important;
-  border-top: 0px solid white !important;
-  border-bottom: 0px !important;
-  z-index: 999;
-  transition: all linear 0.42s;
-}
-#mui-rte-container{
- padding-bottom: 5px;
-}
+// #mui-rte-editor{
+//   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
+//   width: 100% !important;
+//   margin-top: 0px !important;
+//   margin-left: -6px !important;
+//   padding: 10px 5px 5px 5px !important;
+//   border-top: 0px solid white !important;
+//   border-bottom: 0px !important;
+//   z-index: 999;
+//   transition: all linear 0.42s;
+// }
+// #mui-rte-container{
+//  padding-left: 6px;
+//  padding-right: 6px;
+// }
 // .MUIRichTextEditor-placeHolder-23{
 //   border: 0.6px solid rgba($color: #9CB9C5, $alpha: 1) !important;
 //   width: 100% !important;
