@@ -23,6 +23,10 @@ export type TaskState = {
 }
 export type CompanyState = {
     loading: boolean,
+    listCompany: Array<any>,
+    current_page: number,
+    all_pages: number,
+    
 }
 export type ControlState = {
     variant_table: Array<any>,
@@ -38,6 +42,9 @@ export type PositionState = {
     current_variant_table: number,
     loading: boolean,
     isVisibleSideBar: boolean,
+    // pagination
+    current_page: number,
+    all_pages: number,
 }
 
 export type EmployesState = {
@@ -53,4 +60,6 @@ export type EmployesState = {
     // for pagination
     current_page: number,
     all_pages: number
+    current_page_company_employes: number,
+    all_pages_company_employes: number,
 }

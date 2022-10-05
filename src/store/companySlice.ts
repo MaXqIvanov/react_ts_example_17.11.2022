@@ -9,8 +9,8 @@ interface CommonHeaderProperties extends HeadersDefaults {
 
 export const getListCompany = createAsyncThunk(
   'company/getListCompany',
-  async (params: CallableFunction) => {
-
+  async (params: any, {getState}:any) => {
+    alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
   },
 )
 
@@ -45,11 +45,21 @@ const companySlice = createSlice({
           "Контроллёр",
         ]
       },
-    ]
+    ],
+    // for pagination
+    current_page: 1,
+    all_pages: 10,
+
   },
   reducers: {
     setCurrentVariantTable(state:CompanyState, action:any){
-    }
+    },
+    changePagesCompany(state:CompanyState, action:any){
+      let current_page = state.current_page + action.payload
+      if(current_page > 0 && current_page <= state.all_pages){
+        state.current_page = current_page
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getListCompany.pending, (state:CompanyState, action:PayloadAction) => {
@@ -65,4 +75,4 @@ const companySlice = createSlice({
 });
 
 export default companySlice.reducer;
-export const { setCurrentVariantTable } = companySlice.actions;
+export const { setCurrentVariantTable, changePagesCompany } = companySlice.actions;

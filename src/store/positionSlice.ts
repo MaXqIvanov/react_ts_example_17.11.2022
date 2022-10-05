@@ -10,8 +10,8 @@ interface CommonHeaderProperties extends HeadersDefaults {
 
 export const getPosition = createAsyncThunk(
   'position/getPosition',
-  async (params: CallableFunction) => {
-    
+  async (params: any, {getState}:any) => {
+    alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
     // return {response, params}
   },
 )
@@ -25,6 +25,9 @@ const controlSlice = createSlice({
 
     // for sidebar
     isVisibleSideBar: false,
+    // for pagination
+    current_page: 1,
+    all_pages: 10,
   },
   reducers: {
     setCurrentVariantTable(state:PositionState, action:any){
@@ -32,7 +35,13 @@ const controlSlice = createSlice({
     },
     changeVisibleSideBar(state:PositionState){
       state.isVisibleSideBar = !state.isVisibleSideBar
-  }
+    },
+    changePages(state:PositionState, action:any){
+      let current_page = state.current_page + action.payload
+      if(current_page > 0 && current_page <= state.all_pages){
+        state.current_page = current_page
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPosition.pending, (state:PositionState, action:PayloadAction) => {
@@ -48,4 +57,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages } = controlSlice.actions;

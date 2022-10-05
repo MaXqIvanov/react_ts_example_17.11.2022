@@ -17,6 +17,15 @@ export const getEmployesAll = createAsyncThunk(
   },
 )
 
+    // section_company_employes
+  export const getEmployesCompany = createAsyncThunk(
+    'employes/getEmployes',
+    async (params: any, {getState}:any) => {
+      alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
+      // return {response, params}
+    },
+  )
+
 const controlSlice = createSlice({
   name: 'employes',
   initialState: {
@@ -31,7 +40,11 @@ const controlSlice = createSlice({
 
     // for pagination
     current_page: 1,
-    all_pages: 10
+    all_pages: 10,
+
+    // section_company_employes
+    current_page_company_employes: 1,
+    all_pages_company_employes: 10,
 
   },
   reducers: {
@@ -45,6 +58,14 @@ const controlSlice = createSlice({
       let current_page = state.current_page + action.payload
       if(current_page > 0 && current_page <= state.all_pages){
         state.current_page = current_page
+      }
+    },
+
+    // section_company_employes
+    changePagesCompanyEmployes(state:EmployesState, action:any){
+      let current_page_company_employes = state.current_page_company_employes + action.payload
+      if(current_page_company_employes > 0 && current_page_company_employes <= state.all_pages_company_employes){
+        state.current_page_company_employes = current_page_company_employes
       }
     },
   },
@@ -62,4 +83,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes } = controlSlice.actions;

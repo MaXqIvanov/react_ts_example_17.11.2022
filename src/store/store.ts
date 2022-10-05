@@ -3,6 +3,7 @@ import authSlice from './authSlice';
 import companySlice from './companySlice';
 import controlSlice from './controlSlice';
 import employesSlice from './employesSlice';
+import positionSlice from './positionSlice';
 import taskSlice from './taskSlice';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   company: companySlice,
   employes: employesSlice,
   control: controlSlice,
+  position: positionSlice,
 });
 
 export const setupStore = () => { return configureStore({

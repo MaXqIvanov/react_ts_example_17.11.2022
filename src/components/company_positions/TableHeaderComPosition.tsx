@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,6 +9,10 @@ import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyPosition.module.scss';
+import { useAppDispatch } from '../../hooks/redux';
+import { changePages, getPosition } from '../../store/positionSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 function createData(number: number, name_position:string, employes:string,) {
     return { number, name_position, employes };
@@ -23,6 +27,12 @@ function createData(number: number, name_position:string, employes:string,) {
   ];
 
 export const TableHeaderComPosition = ({setIsVisibleSideBar}:any) => {
+    const {current_page, all_pages} = useSelector((state:RootState)=> state.position)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+      dispatch(getPosition(''))
+    }, [current_page])
+    
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -55,11 +65,11 @@ export const TableHeaderComPosition = ({setIsVisibleSideBar}:any) => {
                 <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
-                        <div style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>1</div>
-                        <div style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                        <div onClick={()=> dispatch(changePages(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
+                        <div className={styles.footer_group_btn_center}>{current_page}</div>
+                        <div onClick={()=> dispatch(changePages(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
-                    <div>из 2</div>
+                    <div>из {all_pages}</div>
                 </div>
             </TableContainer>
         </div>
