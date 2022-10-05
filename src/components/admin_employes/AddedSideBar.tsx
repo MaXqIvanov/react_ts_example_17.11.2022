@@ -19,7 +19,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
         <div className={styles.user_side_menu}>
           <div className={styles.user_side_menu_wrapper}>
             <div onClick={()=> setIsAddedSideBar(!isadded_sidebar)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
-            <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
+            {/* <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div> */}
             <div className={styles.text_field_block}>
             <div className={styles.group_img_user}>
               <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>

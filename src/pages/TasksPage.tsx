@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { LinearProgress, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { CreateSideBar } from '../components/tasks/CreateSideBar'
@@ -10,10 +10,11 @@ import { RootState } from '../store/store'
 
 export const TasksPage = ({visible}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
-  const {isVisibleSideBar} = useSelector((state:RootState)=> state.task)
+  const {isVisibleSideBar, loading} = useSelector((state:RootState)=> state.task)
 
   return (
     <div className={visible ? styles.task_employes : styles.task}>
+      {loading && <LinearProgress className={`linear_progress`}/>}
       <div className={styles.task_wrapper}>
         <NavHeader visible={visible}/>
         <TableHeader visible={visible}/>

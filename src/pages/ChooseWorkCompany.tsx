@@ -1,20 +1,30 @@
-import React from 'react'
+import { LinearProgress } from '@mui/material'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { OneCompanyComponent } from '../components/choose_company/OneCompanyComponent'
+import { useAppDispatch } from '../hooks/redux'
 import styles from '../scss/ChooseWorkCompany.module.scss'
+import { getListCompany } from '../store/companySlice'
 import { RootState } from '../store/store'
 
 export const ChooseWorkCompany = () => {
   // mock data
-  const {listCompany} = useSelector((state:RootState)=> state.company)
-
+  const dispatch = useAppDispatch()
+  const {listCompany, loading} = useSelector((state:RootState)=> state.company)
+  useEffect(() => {
+    dispatch(getListCompany(''))
+  }, [])
+  
   return (
-    <div className={styles.choose_company}>
-      <div className={styles.choose_company_wrapper}>
-        <div className={styles.choose_company_title}>Компании</div>
-        {listCompany ? listCompany.map((elem:any) => <OneCompanyComponent key={elem.id} elem={elem}/>)
-        : <div className={styles.list_company_empty}>Список компаний пуст</div>}
+    <>
+      <div className={styles.choose_company}>
+      {loading && <LinearProgress className={`linear_progress`}/>}
+        <div className={styles.choose_company_wrapper}>
+          <div className={styles.choose_company_title}>Компании</div>
+          {listCompany ? listCompany.map((elem:any) => <OneCompanyComponent key={elem.id} elem={elem}/>)
+          : <div className={styles.list_company_empty}>Список компаний пуст</div>}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

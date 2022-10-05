@@ -146,6 +146,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+
 }
 .close_user_side_menu_btn{
     position: absolute;
@@ -174,10 +175,15 @@
     height: fit-content;
     width: fit-content;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .img_user{
     height: 200px;
     width: 200px;
+    margin-top: 20px;
     border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -187,7 +193,7 @@
 .img_user_added_photo{
     position: absolute;
     bottom: 30px;
-    right: -157px;
+    right: -97px;
     height: 50px;
     width: 50px;
     background-size: contain;

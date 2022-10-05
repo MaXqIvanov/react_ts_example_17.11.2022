@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
  const api = axios.create({
     //baseURL : "https://everyservicesapi.itpw.ru/",
-    baseURL : "http://localhost:3000/",
+    baseURL : "https://api.thecatapi.com/",
     headers : {
         'Authorization': Cookies.get('token') ? "Bearer " + Cookies.get('token') : '' as string,
     }

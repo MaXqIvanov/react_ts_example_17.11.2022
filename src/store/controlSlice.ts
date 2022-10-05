@@ -13,7 +13,8 @@ export const getControlTaskAll = createAsyncThunk(
   'control/getControlTaskAll',
   async (params: any, {getState}: any) => {
     alert(`Загрузка задач в разделе контроль страница ${getState().control.current_page}`)
-    // return {response, params}
+    const response = await api.get(`v1/images/search`)
+    return {response}
   },
 )
 
@@ -51,7 +52,8 @@ const controlSlice = createSlice({
         state.loading = true
     });
     builder.addCase(getControlTaskAll.fulfilled, (state:ControlState,  { payload }:PayloadAction<any>) => {
-        
+      
+      state.loading = false
     });
     builder.addCase(getControlTaskAll.rejected, (state:ControlState) => {
         state.loading = false

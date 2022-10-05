@@ -18,45 +18,45 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
         <div className={styles.user_side_menu}>
           <div className={styles.user_side_menu_wrapper}>
             <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
-            <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
-            <div className={styles.text_field_block}>
+            {/* <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div> */}
             <div className={styles.group_img_user}>
-              <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
-              <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
-                <input
-                  type="file"
-                  hidden
+                <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div>
+                <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
+                  <input
+                    type="file"
+                    hidden
+                  />
+                </Button>
+              <div className={styles.text_field_block}>        
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="ФИО"
+                  InputProps={{
+                    type: 'string',
+                  }}
                 />
-              </Button>
-            </div>
-              <TextField
-                className={`${styles.text_field}`}
-                label="ФИО"
-                InputProps={{
-                  type: 'string',
-                }}
-              />
-              <TextField
-                className={`${styles.text_field}`}
-                label="Должность"
-                InputProps={{
-                  type: 'string',
-                }}
-              />
-              <TextField
-                className={`${styles.text_field}`}
-                label="Новый пароль"
-                InputProps={{
-                  type: 'password',
-                }}
-              />
-              <TextField
-                className={`${styles.text_field}`}
-                label="Повторить пароль"
-                InputProps={{
-                  type: 'password',
-                }}
-              />
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Должность"
+                  InputProps={{
+                    type: 'string',
+                  }}
+                />
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Новый пароль"
+                  InputProps={{
+                    type: 'password',
+                  }}
+                />
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Повторить пароль"
+                  InputProps={{
+                    type: 'password',
+                  }}
+                />
+              </div>
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>

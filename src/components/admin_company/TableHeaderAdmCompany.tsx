@@ -10,7 +10,7 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyPosition.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesCompany, getListCompany } from '../../store/companySlice';
+import { changePagesCompany, getCompanyAll } from '../../store/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 
@@ -30,7 +30,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
     const dispatch = useAppDispatch()
     const {current_page, all_pages} = useSelector((state:RootState)=> state.company)
     useEffect(() => {
-      dispatch(getListCompany(''))
+      dispatch(getCompanyAll(''))
     }, [current_page])
     
   return (
