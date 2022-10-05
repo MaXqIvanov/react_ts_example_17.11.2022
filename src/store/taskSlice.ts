@@ -8,13 +8,33 @@ interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
-export const getTask = createAsyncThunk(
-  'task/getTask',
-  async (params:any) => {
-    const response = await api.get(`/users`)
-    return {response}
+export const getTaskDay = createAsyncThunk(
+  'task/getTaskDay',
+  async (params:any, {getState}:any) => {
+    // const response = await api.get(`/users`)
+    // return {response}
+    alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
   },
 )
+
+export const getTaskWeek = createAsyncThunk(
+  'task/getTaskWeek',
+  async (params:any, {getState}:any) => {
+    // const response = await api.get(`/users`)
+    // return {response}
+    alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
+  },
+)
+
+export const getTaskAll = createAsyncThunk(
+  'task/getTaskAll',
+  async (params:any, {getState}:any) => {
+    // const response = await api.get(`/users`)
+    // return {response}
+    alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+  },
+)
+
 
 const taskSlice = createSlice({
   name: 'task',
@@ -22,11 +42,29 @@ const taskSlice = createSlice({
     // loading
     loading: false,
     // for work
-    variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' }],
+    variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' } ],
     current_variant_table: 1,
     // for sidebar
     isVisibleSideBar: false,
-    
+    // task for day
+    get_all_task_day: [],
+    current_task_day: {},
+    // task for week
+    get_all_task_week: [],
+    current_task_week: {},
+    // task for all 
+    get_all_task_all: [],
+    current_task_all: {},
+
+    // for pagination for day
+    current_page_day: 1,
+    all_pages_day: 10,
+    // for pagination for week
+    current_page_week: 1,
+    all_pages_week: 10,
+    // for pagination for all
+    current_page_all: 1,
+    all_pages_all: 10,
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
@@ -34,20 +72,63 @@ const taskSlice = createSlice({
     },
     changeVisibleSideBar(state:TaskState){
       state.isVisibleSideBar = !state.isVisibleSideBar
-  }
+    },
+    changePagesDay(state:TaskState, action:any){
+      let current_page_day = state.current_page_day + action.payload
+      if(current_page_day > 0 && current_page_day <= state.all_pages_day){
+        state.current_page_day = current_page_day
+      }
+    },
+    changePagesWeek(state:TaskState, action:any){
+      let current_page_week = state.current_page_week + action.payload
+      if(current_page_week > 0 && current_page_week <= state.all_pages_week){
+        state.current_page_week = current_page_week
+      }
+    },
+    changePagesAll(state:TaskState, action:any){
+      let current_page_all = state.current_page_all + action.payload
+      if(current_page_all > 0 && current_page_all <= state.all_pages_all){
+        state.current_page_all = current_page_all
+      }
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getTask.pending, (state:TaskState, action:PayloadAction) => {
-        state.loading = true
+    builder.addCase(getTaskDay.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
     });
-    builder.addCase(getTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+    builder.addCase(getTaskDay.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
         
+      state.loading = false
     });
-    builder.addCase(getTask.rejected, (state:TaskState) => {
-        state.loading = false
+    builder.addCase(getTaskDay.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+
+    builder.addCase(getTaskWeek.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getTaskWeek.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      
+      state.loading = false
+    });
+    builder.addCase(getTaskWeek.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+
+    builder.addCase(getTaskAll.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getTaskAll.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      
+      state.loading = false
+    });
+    builder.addCase(getTaskAll.rejected, (state:TaskState) => {
+      state.loading = false
     });
   },
+
+  
 });
 
 export default taskSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar } = taskSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePagesDay, changePagesWeek, changePagesAll } = taskSlice.actions;

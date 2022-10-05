@@ -2,16 +2,16 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { TaskState } from '../ts/anyTypes';
+import { ControlState } from '../ts/anyTypes';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
-export const getControl = createAsyncThunk(
-  'control/getControl',
-  async (params: CallableFunction) => {
-
+export const getControlTaskAll = createAsyncThunk(
+  'control/getControlTaskAll',
+  async (params: any) => {
+    alert("Загрузка задач в разделе контроль")
     // return {response, params}
   },
 )
@@ -25,23 +25,26 @@ const controlSlice = createSlice({
 
     // for sidebar
     isVisibleSideBar: false,
+    // get control data for table
+    controls_task_all: [],
+
   },
   reducers: {
-    setCurrentVariantTable(state:TaskState, action:any){
+    setCurrentVariantTable(state:ControlState, action:any){
         state.current_variant_table = action.payload
     },
-    changeVisibleSideBar(state:TaskState){
+    changeVisibleSideBar(state:ControlState){
       state.isVisibleSideBar = !state.isVisibleSideBar
   }
   },
   extraReducers: (builder) => {
-    builder.addCase(getControl.pending, (state:TaskState, action:PayloadAction) => {
+    builder.addCase(getControlTaskAll.pending, (state:ControlState, action:PayloadAction) => {
         state.loading = true
     });
-    builder.addCase(getControl.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+    builder.addCase(getControlTaskAll.fulfilled, (state:ControlState,  { payload }:PayloadAction<any>) => {
         
     });
-    builder.addCase(getControl.rejected, (state:TaskState) => {
+    builder.addCase(getControlTaskAll.rejected, (state:ControlState) => {
         state.loading = false
     });
   },

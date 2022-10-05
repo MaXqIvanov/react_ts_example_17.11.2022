@@ -1,17 +1,18 @@
+import { TaskState } from './../ts/anyTypes';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { TaskState } from '../ts/anyTypes';
+import { EmployesState } from '../ts/anyTypes';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
-export const getEmployes = createAsyncThunk(
+export const getEmployesAll = createAsyncThunk(
   'employes/getEmployes',
-  async (params: CallableFunction) => {
-
+  async (params: any, {getState}:any) => {
+    alert(`Загрузка данных в разделе Сотрудники - Списки всех сотрудников на странице ${getState().employes.current_page}`)
     // return {response, params}
   },
 )
@@ -25,27 +26,40 @@ const controlSlice = createSlice({
 
     // for sidebar
     isVisibleSideBar: false,
+    // get_employes_all
+    employes_all: [],
+
+    // for pagination
+    current_page: 1,
+    all_pages: 10
+
   },
   reducers: {
-    setCurrentVariantTable(state:TaskState, action:any){
+    setCurrentVariantTable(state:EmployesState, action:any){
         state.current_variant_table = action.payload
     },
-    changeVisibleSideBar(state:TaskState){
+    changeVisibleSideBar(state:EmployesState, action:any){
       state.isVisibleSideBar = !state.isVisibleSideBar
-  }
+    },
+    changePages(state:EmployesState, action:any){
+      let current_page = state.current_page + action.payload
+      if(current_page > 0 && current_page <= state.all_pages){
+        state.current_page = current_page
+      }
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getEmployes.pending, (state:TaskState, action:PayloadAction) => {
+    builder.addCase(getEmployesAll.pending, (state:EmployesState, action:PayloadAction) => {
         state.loading = true
     });
-    builder.addCase(getEmployes.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+    builder.addCase(getEmployesAll.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
         
     });
-    builder.addCase(getEmployes.rejected, (state:TaskState) => {
+    builder.addCase(getEmployesAll.rejected, (state:EmployesState) => {
         state.loading = false
     });
   },
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages } = controlSlice.actions;

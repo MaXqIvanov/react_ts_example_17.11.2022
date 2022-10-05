@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { TaskState } from '../ts/anyTypes';
+import { PositionState } from '../ts/anyTypes';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
@@ -27,21 +27,21 @@ const controlSlice = createSlice({
     isVisibleSideBar: false,
   },
   reducers: {
-    setCurrentVariantTable(state:TaskState, action:any){
+    setCurrentVariantTable(state:PositionState, action:any){
         state.current_variant_table = action.payload
     },
-    changeVisibleSideBar(state:TaskState){
+    changeVisibleSideBar(state:PositionState){
       state.isVisibleSideBar = !state.isVisibleSideBar
   }
   },
   extraReducers: (builder) => {
-    builder.addCase(getPosition.pending, (state:TaskState, action:PayloadAction) => {
+    builder.addCase(getPosition.pending, (state:PositionState, action:PayloadAction) => {
         state.loading = true
     });
-    builder.addCase(getPosition.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+    builder.addCase(getPosition.fulfilled, (state:PositionState,  { payload }:PayloadAction<any>) => {
         
     });
-    builder.addCase(getPosition.rejected, (state:TaskState) => {
+    builder.addCase(getPosition.rejected, (state:PositionState) => {
         state.loading = false
     });
   },

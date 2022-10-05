@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../scss/Task.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
+import { useAppDispatch } from '../../hooks/redux';
+import { getControlTaskAll } from '../../store/controlSlice';
 
 function createData(number: number, name_task:string, position:string, OA:number,) {
     return { number, name_task, position, OA };
@@ -24,6 +26,11 @@ function createData(number: number, name_task:string, position:string, OA:number
   ];
 
 export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(getControlTaskAll(''))
+    }, [])
+    
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>

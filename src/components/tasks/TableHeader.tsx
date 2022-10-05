@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../scss/Task.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +13,7 @@ import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
+import { changePagesAll, changePagesDay, changePagesWeek, changeVisibleSideBar, getTaskAll, getTaskDay, getTaskWeek } from '../../store/taskSlice';
 
 function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, monday:number,
     thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number, stat: number) {
@@ -30,9 +30,20 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
 
 
 export const TableHeader = ({visible}:any) => {
-    const { current_variant_table }  = useSelector((state:RootState) => state.task)
+    const { current_variant_table, current_page_day, all_pages_day, current_page_week,
+            all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
     const dispatch = useAppDispatch()
     const [isVisibleHref, setIsVisibleHref] = useState<any>(null)
+    useEffect(() => {
+      if(current_variant_table === 1){
+        dispatch(getTaskAll(''))
+      }else if(current_variant_table === 2){
+        dispatch(getTaskWeek(''))
+      }else{
+        dispatch(getTaskDay(''))
+      }
+    }, [current_variant_table, current_page_day, current_page_week, current_page_all])
+    
   return (
     <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -161,15 +172,42 @@ export const TableHeader = ({visible}:any) => {
                     </TableBody>
                 </Table>
                 }
-                <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>1</div>
-                        <div style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                {
+                    current_variant_table === 1 &&
+                    <div className={styles.thead_footer_custom}>
+                        <div>страница</div>
+                        <div className={styles.footer_group_btn}>
+                            <div onClick={()=> dispatch(changePagesAll(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
+                            <div className={styles.footer_group_btn_center}>{current_page_all}</div>
+                            <div onClick={()=> dispatch(changePagesAll(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                        </div>
+                        <div>из {all_pages_day}</div>
                     </div>
-                    <div>из 2</div>
-                </div>
+                }
+                {
+                    current_variant_table === 2 &&
+                    <div className={styles.thead_footer_custom}>
+                        <div>страница</div>
+                        <div className={styles.footer_group_btn}>
+                            <div onClick={()=> dispatch(changePagesWeek(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
+                            <div className={styles.footer_group_btn_center}>{current_page_week}</div>
+                            <div onClick={()=> dispatch(changePagesWeek(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                        </div>
+                        <div>из {all_pages_week}</div>
+                    </div>
+                }
+                {
+                    current_variant_table === 3 &&
+                    <div className={styles.thead_footer_custom}>
+                        <div>страница</div>
+                        <div className={styles.footer_group_btn}>
+                            <div onClick={()=> dispatch(changePagesDay(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
+                            <div className={styles.footer_group_btn_center}>{current_page_day}</div>
+                            <div onClick={()=> dispatch(changePagesDay(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                        </div>
+                        <div>из {all_pages_all}</div>
+                    </div>
+                }
             </TableContainer>
         </div>
     </div>

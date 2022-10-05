@@ -113,7 +113,7 @@ export const CreateSideBar = () => {
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}><span>ЗАКРЫТЬ</span></div>
+                  <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.btn_cancel_side_bar}><span>ЗАКРЫТЬ</span></div>
                   <div className={styles.btn_save_side_bar}><span>ЗАВЕРШИТЬ</span></div>
                 </div>
             </div>
