@@ -30,6 +30,8 @@ export type ControlState = {
     loading: boolean,
     isVisibleSideBar: boolean,
     controls_task_all: Array<any>
+    current_page: number,
+    all_pages: number,
 }
 export type PositionState = {
     variant_table: Array<any>,

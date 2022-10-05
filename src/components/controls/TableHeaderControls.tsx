@@ -11,7 +11,9 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { getControlTaskAll } from '../../store/controlSlice';
+import { changePagesControl, getControlTaskAll } from '../../store/controlSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 function createData(number: number, name_task:string, position:string, OA:number,) {
     return { number, name_task, position, OA };
@@ -27,10 +29,11 @@ function createData(number: number, name_task:string, position:string, OA:number
 
 export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
     const dispatch = useAppDispatch()
+    const {current_page, all_pages} = useSelector((state:RootState)=> state.control)
     useEffect(() => {
         dispatch(getControlTaskAll(''))
-    }, [])
-    
+    }, [current_page])
+
   return (
     <div className={`${styles.table} custom_table`}>
         <div className={styles.table_wrapper}>
@@ -65,11 +68,11 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
                 <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
-                        <div style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>1</div>
-                        <div style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
+                        <div onClick={()=> dispatch(changePagesControl(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
+                        <div className={styles.footer_group_btn_center}>{current_page}</div>
+                        <div onClick={()=> dispatch(changePagesControl(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
-                    <div>из 2</div>
+                    <div>из {all_pages}</div>
                 </div>
             </TableContainer>
         </div>

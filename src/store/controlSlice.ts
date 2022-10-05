@@ -1,3 +1,4 @@
+import { RootState } from './store';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
@@ -10,8 +11,8 @@ interface CommonHeaderProperties extends HeadersDefaults {
 
 export const getControlTaskAll = createAsyncThunk(
   'control/getControlTaskAll',
-  async (params: any) => {
-    alert("Загрузка задач в разделе контроль")
+  async (params: any, {getState}: any) => {
+    alert(`Загрузка задач в разделе контроль страница ${getState().control.current_page}`)
     // return {response, params}
   },
 )
@@ -27,6 +28,8 @@ const controlSlice = createSlice({
     isVisibleSideBar: false,
     // get control data for table
     controls_task_all: [],
+    current_page: 1,
+    all_pages: 10,
 
   },
   reducers: {
@@ -35,7 +38,13 @@ const controlSlice = createSlice({
     },
     changeVisibleSideBar(state:ControlState){
       state.isVisibleSideBar = !state.isVisibleSideBar
-  }
+    },
+    changePagesControl(state:ControlState, action:any){
+      let current_page = state.current_page + action.payload
+      if(current_page > 0 && current_page <= state.all_pages){
+        state.current_page = current_page
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getControlTaskAll.pending, (state:ControlState, action:PayloadAction) => {
@@ -51,4 +60,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePagesControl } = controlSlice.actions;
