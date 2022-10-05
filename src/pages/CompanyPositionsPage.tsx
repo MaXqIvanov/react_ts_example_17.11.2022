@@ -1,15 +1,21 @@
+import { LinearProgress } from '@mui/material'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { AddedSideBar } from '../components/company_positions/AddedSideBar'
 import { NavHeaderComPosition } from '../components/company_positions/NavHeaderComPosition'
 import { SideBar } from '../components/company_positions/SideBar'
 import { TableHeaderComPosition } from '../components/company_positions/TableHeaderComPosition'
 import styles from '../scss/CompanyPosition.module.scss'
+import { RootState } from '../store/store'
 
 export const CompanyPositionsPage = () => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const [isadded_sidebar, setIsAddedSideBar] = useState<boolean>(false)
+  const {loading} = useSelector((state: RootState)=> state.position)
+  
   return (
     <div className={styles.company_employes}>
+      {loading && <LinearProgress className={`linear_progress`}/>}
       <div className={styles.company_employes_wrapper}>
         <NavHeaderComPosition setIsAddedSideBar={setIsAddedSideBar}/>
         <TableHeaderComPosition setIsVisibleSideBar={setIsVisibleSideBar}/>

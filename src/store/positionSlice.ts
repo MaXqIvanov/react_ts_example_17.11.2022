@@ -12,7 +12,8 @@ export const getPosition = createAsyncThunk(
   'position/getPosition',
   async (params: any, {getState}:any) => {
     alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
-    // return {response, params}
+    const response = await api.get(`v1/images/search`)
+    return {response}
   },
 )
 
@@ -45,13 +46,14 @@ const controlSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getPosition.pending, (state:PositionState, action:PayloadAction) => {
-        state.loading = true
+      state.loading = true
     });
     builder.addCase(getPosition.fulfilled, (state:PositionState,  { payload }:PayloadAction<any>) => {
-        
+      
+      state.loading = false
     });
     builder.addCase(getPosition.rejected, (state:PositionState) => {
-        state.loading = false
+      state.loading = false
     });
   },
 });

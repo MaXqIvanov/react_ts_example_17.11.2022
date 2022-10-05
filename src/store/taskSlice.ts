@@ -11,6 +11,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 export const getTaskDay = createAsyncThunk(
   'task/getTaskDay',
   async (params:any, {getState}:any) => {
+    console.log(params);
     alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
     const response = await api.get(`v1/images/search`)
     return {response}

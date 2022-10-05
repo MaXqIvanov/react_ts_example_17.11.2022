@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
-import { setCurrentVariantTable } from '../../store/taskSlice';
+import { getTaskAll, getTaskDay, getTaskWeek, setCurrentVariantTable } from '../../store/taskSlice';
 import { Switch } from '@mui/material';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss'
@@ -23,7 +23,21 @@ import styles from '../../scss/Task.module.scss'
 export const NavHeader = ({visible}:any) => {
     const nav = useNavigate()
     const dispatch = useAppDispatch()
-    const { variant_table, current_variant_table }  = useSelector((state:RootState) => state.task)
+    const { variant_table, current_variant_table, current_page_day, all_pages_day, current_page_week,
+        all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
+        // Variables for calendar_day
+    const [calendar_day_day, setCalendarDayDay] = useState<any>('')
+    const [calendar_day_month, setCalendarDayMonth] = useState<any>('')
+    const [calendar_day_year, setCalendarDayYear] = useState<any>('')
+        // Variables for calendar week
+        // НАЧАЛО НЕДЕЛИ
+    const [now_day, setNowDay] = useState<any>('')
+    const [now_month, setNowMonth] = useState<any>('')
+    const [now_year, setNowYear] = useState<any>('')
+        // КОНЕЦ НЕДЕЛИ
+    const [last_day, setLastDay] = useState<any>('')
+    const [last_month, setLastMonth] = useState<any>('')
+    const [last_year, setLastYear] = useState<any>('')
     const [choose_btn_week, setChooseBtnWeek] = useState<number>(1)
     const select_btn_week:any = [
         {
@@ -50,20 +64,22 @@ export const NavHeader = ({visible}:any) => {
             }     
         }
     }, [])
+
+    useEffect(() => {
+        if(current_variant_table === 1){
+          dispatch(getTaskAll(''))
+        }else if(current_variant_table === 2){
+          dispatch(getTaskWeek({now_day: now_day, now_month: now_month, now_year: now_year, last_day: last_day, last_month: last_month, last_year: last_year}))
+        }else{
+          dispatch(getTaskDay({calendar_day_day: calendar_day_day, calendar_day_month: calendar_day_month, calendar_day_year: calendar_day_year}))
+        }
+      }, [current_variant_table, current_page_day, current_page_week, current_page_all, calendar_day_day, calendar_day_month, calendar_day_year, now_day, last_day ])
     
     // const [current_days, setCurrentDays] = useState<number>(1)
     // для работы с неделями
     const [value, setValue] = React.useState(null);
     const [current_date, setCurrentDate] = useState<string>('')
     const [isVisibleCalendarWeeks, setIsVisibleCalendarWeeks] = useState<boolean>(false);
-    // НАЧАЛО НЕДЕЛИ
-    const [now_day, setNowDay] = useState<any>('')
-    const [now_month, setNowMonth] = useState<any>('')
-    const [now_year, setNowYear] = useState<any>('')
-    // КОНЕЦ НЕДЕЛИ
-    const [last_day, setLastDay] = useState<any>('')
-    const [last_month, setLastMonth] = useState<any>('')
-    const [last_year, setLastYear] = useState<any>('')
 
     const selectDate = (date:any) => {
         let dayOne = date[0]._d.getDate();
@@ -450,9 +466,6 @@ export const NavHeader = ({visible}:any) => {
     
     const [isVisibleCalendarDays, setIsVisibleCalendarDays] = useState<boolean>(false);
     const [current_date_day, setCurrentDateDay] = useState<string>(`${moment().toDate().getDate() >= 10 ? moment().toDate().getDate() : "0" + moment().toDate().getDate() }.${moment().toDate().getMonth() + 1 >= 10 ? moment().toDate().getMonth() + 1  : '0' + (moment().toDate().getMonth() + 1)}.${moment().toDate().getFullYear()}`)
-    const [calendar_day_day, setCalendarDayDay] = useState<any>('')
-    const [calendar_day_month, setCalendarDayMonth] = useState<any>('')
-    const [calendar_day_year, setCalendarDayYear] = useState<any>('')
     const selectDateDay = (date:any) => {
         console.log(date);        
         let dayOne = date._d.getDate();

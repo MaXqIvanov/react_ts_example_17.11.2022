@@ -13,24 +13,27 @@ export const getEmployesAll = createAsyncThunk(
   'employes/getEmployes',
   async (params: any, {getState}:any) => {
     alert(`Загрузка данных в разделе Сотрудники - Списки всех сотрудников на странице ${getState().employes.current_page}`)
-    // return {response, params}
+    const response = await api.get(`v1/images/search`)
+    return {response}
   },
 )
 
     // section_company_employes
   export const getEmployesCompany = createAsyncThunk(
-    'employes/getEmployes',
+    'employes/getEmployesCompany',
     async (params: any, {getState}:any) => {
       alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
-      // return {response, params}
+      const response = await api.get(`v1/images/search`)
+      return {response}
     },
   )
   // section_admin_employes
   export const getEmployesAdmin = createAsyncThunk(
-    'employes/getEmployes',
+    'employes/getEmployesAdmin',
     async (params: any, {getState}:any) => {
       alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_admin_employes}`)
-      // return {response, params}
+      const response = await api.get(`v1/images/search`)
+      return {response}
     },
   )
 
@@ -92,11 +95,36 @@ const controlSlice = createSlice({
         state.loading = true
     });
     builder.addCase(getEmployesAll.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
-        
+      
+      state.loading = false
     });
     builder.addCase(getEmployesAll.rejected, (state:EmployesState) => {
         state.loading = false
     });
+
+    builder.addCase(getEmployesCompany.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      
+      state.loading = false
+    });
+    builder.addCase(getEmployesCompany.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+
+    builder.addCase(getEmployesAdmin.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getEmployesAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      
+      state.loading = false
+    });
+    builder.addCase(getEmployesAdmin.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+
+
   },
 });
 

@@ -30,19 +30,11 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
 
 
 export const TableHeader = ({visible}:any) => {
-    const { current_variant_table, current_page_day, all_pages_day, current_page_week,
-            all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
+    const { current_variant_table, current_page_day, all_pages_day, current_page_week, all_pages_week, current_page_all, all_pages_all }
+    = useSelector((state:RootState) => state.task)
+    
     const dispatch = useAppDispatch()
     const [isVisibleHref, setIsVisibleHref] = useState<any>(null)
-    useEffect(() => {
-      if(current_variant_table === 1){
-        dispatch(getTaskAll(''))
-      }else if(current_variant_table === 2){
-        dispatch(getTaskWeek(''))
-      }else{
-        dispatch(getTaskDay(''))
-      }
-    }, [current_variant_table, current_page_day, current_page_week, current_page_all])
     
   return (
     <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table`}>
