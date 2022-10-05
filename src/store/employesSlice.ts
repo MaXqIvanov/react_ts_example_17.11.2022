@@ -12,7 +12,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 export const getEmployesAll = createAsyncThunk(
   'employes/getEmployes',
   async (params: any, {getState}:any) => {
-    alert(`Загрузка данных в разделе Сотрудники - Списки всех сотрудников на странице ${getState().employes.current_page}`)
+    // alert(`Загрузка данных в разделе Сотрудники - Списки всех сотрудников на странице ${getState().employes.current_page}`)
     const response = await api.get(`v1/images/search`)
     return {response}
   },
@@ -22,7 +22,7 @@ export const getEmployesAll = createAsyncThunk(
   export const getEmployesCompany = createAsyncThunk(
     'employes/getEmployesCompany',
     async (params: any, {getState}:any) => {
-      alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
+      // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
       const response = await api.get(`v1/images/search`)
       return {response}
     },
@@ -31,7 +31,7 @@ export const getEmployesAll = createAsyncThunk(
   export const getEmployesAdmin = createAsyncThunk(
     'employes/getEmployesAdmin',
     async (params: any, {getState}:any) => {
-      alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_admin_employes}`)
+      // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_admin_employes}`)
       const response = await api.get(`v1/images/search`)
       return {response}
     },

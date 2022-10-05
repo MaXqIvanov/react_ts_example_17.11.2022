@@ -10,10 +10,12 @@ interface CommonHeaderProperties extends HeadersDefaults {
 
 export const getProfile = createAsyncThunk(
   'auth/getProfile',
-  async (params: CallableFunction) => {
+  async (params: any) => {
     const token = Cookies.get('token')
-    const response = await api.get(`/users?token=${token}`)
-    return {response, params}
+    // const response = await api.get(`/users?token=${token}`)
+    // return {response, params}
+    const response = await api.get(`v1/images/search`)
+    return {response}
   },
 )
 
@@ -48,13 +50,12 @@ const authSlice = createSlice({
     });
     builder.addCase(getProfile.fulfilled, (state:AuthState,  { payload }:PayloadAction<any>) => {
         state.loading = false
-        if(payload.response.data?.length == 0){
-            payload.params('/auth')
-        }else {
-            state.auth = true
-            state.user = payload.response.data[0]
-        }
-        
+        // if(payload.response.data?.length == 0){
+        //     payload.params('/auth')
+        // }else {
+        //     state.auth = true
+        //     state.user = payload.response.data[0]
+        // }
     });
     builder.addCase(getProfile.rejected, (state:AuthState) => {
         state.loading = false

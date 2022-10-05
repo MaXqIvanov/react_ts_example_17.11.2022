@@ -11,7 +11,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 export const getPosition = createAsyncThunk(
   'position/getPosition',
   async (params: any, {getState}:any) => {
-    alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
     const response = await api.get(`v1/images/search`)
     return {response}
   },

@@ -16,12 +16,17 @@ import { AdminCompanyPage } from './pages/AdminCompanyPage';
 import { AdminEmployesPage } from './pages/AdminEmployesPage';
 import './App.scss';
 import { ChooseWorkCompany } from './pages/ChooseWorkCompany';
+import { useAppDispatch } from './hooks/redux';
+import { getProfile } from './store/authSlice';
 
 function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
   const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
-  useEffect(() => {    
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getProfile(''))
     if(window.location.pathname !== '/auth'){
       setIsVisibleSideBar(true)
     }else{

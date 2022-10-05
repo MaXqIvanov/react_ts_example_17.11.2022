@@ -18,7 +18,7 @@ export const getListCompany = createAsyncThunk(
 export const getCompanyAll = createAsyncThunk(
   'company/getCompanyAll',
   async (params: any, {getState}:any) => {
-    alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
     const response = await api.get(`v1/images/search`)
     return response
   },

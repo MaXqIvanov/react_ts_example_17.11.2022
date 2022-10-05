@@ -12,7 +12,7 @@ export const getTaskDay = createAsyncThunk(
   'task/getTaskDay',
   async (params:any, {getState}:any) => {
     console.log(params);
-    alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
+    // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
     const response = await api.get(`v1/images/search`)
     return {response}
   },
@@ -21,7 +21,7 @@ export const getTaskDay = createAsyncThunk(
 export const getTaskWeek = createAsyncThunk(
   'task/getTaskWeek',
   async (params:any, {getState}:any) => {
-    alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
+    // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
     const response = await api.get(`v1/images/search`)
     return {response}
   },
@@ -30,7 +30,7 @@ export const getTaskWeek = createAsyncThunk(
 export const getTaskAll = createAsyncThunk(
   'task/getTaskAll',
   async (params:any, {getState}:any) => {
-    alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+    // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
     const response = await api.get(`v1/images/search`)
     return {response}
   },
