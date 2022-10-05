@@ -26,7 +26,7 @@ export type CompanyState = {
     listCompany: Array<any>,
     current_page: number,
     all_pages: number,
-    
+
 }
 export type ControlState = {
     variant_table: Array<any>,
@@ -62,4 +62,6 @@ export type EmployesState = {
     all_pages: number
     current_page_company_employes: number,
     all_pages_company_employes: number,
+    current_page_admin_employes: number,
+    all_pages_admin_employes: number,
 }

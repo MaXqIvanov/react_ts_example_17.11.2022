@@ -25,6 +25,14 @@ export const getEmployesAll = createAsyncThunk(
       // return {response, params}
     },
   )
+  // section_admin_employes
+  export const getEmployesAdmin = createAsyncThunk(
+    'employes/getEmployes',
+    async (params: any, {getState}:any) => {
+      alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_admin_employes}`)
+      // return {response, params}
+    },
+  )
 
 const controlSlice = createSlice({
   name: 'employes',
@@ -45,7 +53,9 @@ const controlSlice = createSlice({
     // section_company_employes
     current_page_company_employes: 1,
     all_pages_company_employes: 10,
-
+    // section_admin_employes
+    current_page_admin_employes: 1,
+    all_pages_admin_employes: 10,
   },
   reducers: {
     setCurrentVariantTable(state:EmployesState, action:any){
@@ -68,6 +78,14 @@ const controlSlice = createSlice({
         state.current_page_company_employes = current_page_company_employes
       }
     },
+
+    // section_admin_employes
+    changePagesAdminEmployes(state:EmployesState, action:any){
+      let current_page_admin_employes = state.current_page_admin_employes + action.payload
+      if(current_page_admin_employes > 0 && current_page_admin_employes <= state.all_pages_admin_employes){
+        state.current_page_admin_employes = current_page_admin_employes
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getEmployesAll.pending, (state:EmployesState, action:PayloadAction) => {
@@ -83,4 +101,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes } = controlSlice.actions;
