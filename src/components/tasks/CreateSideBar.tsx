@@ -96,7 +96,7 @@ export const CreateSideBar = () => {
                   <label className={report && report.length > 0 ? `${styles.visible_label}` : `${styles.not_visible_label}`}>Отчёт/артефакт</label>
                   <TextareaAutosize
                     aria-label="minimum height"
-                    minRows={4}
+                    minRows={3}
                     id="text_area"
                     placeholder="Отчёт/артефакт"
                     className={`text_area ${styles.text_field}`}
