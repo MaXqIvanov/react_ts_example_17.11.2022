@@ -440,6 +440,14 @@
     }
   }
 }
+.MuiInputBase-root{
+  &::before{
+    border-bottom: 0.6px solid #9CB9C5 !important;
+  }
+  &::after{
+    border-bottom: 0px !important;
+  }
+}
 
 // #mui-rte-root{
 //   padding: 5px !important;
