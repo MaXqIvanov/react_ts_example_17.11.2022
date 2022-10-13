@@ -30,7 +30,7 @@ export const userAuth = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {token: '', id: null, username: '', email: '', password: '', profile_img: 'https://s3-alpha-sig.figma.com/img/4234/be2b/c2c8992b81f8685935c0441a326a6b93?Expires=1665360000&Signature=f4Co~v3Bk1-WrftyugVR0EwRnTL7MiPpdQ9CnyG1lyea2mpYvh8lhdk7wvnNvXCU3yKreyVKZbD8ZVCMCI0djCig~IS6XnileUzU4Y3ICX6y3MWlNad0sv1EwpDc0C7UstWTr7y9k8CR-WgTm6Qg8mV3DLPun~uk31gveoZxBnpvc7IU0ZXxt4IbUhAGsb0~-AMGEU0HHSHswcSJf11qdROelaE-vqilNrg4~dg41LTmu-1X~YPLYh33by4mrpqvvMLRiUHCWewp9vybcCIQQN~408LH8sR6TetpENKFDY8fo4SGIYTyCwEzIBOs-CUsqZXorWLMHQh4Xiz~ZtnOcA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'},
+    user: {token: '', id: null, username: '', email: '', password: '', profile_img: 'https://s3-alpha-sig.figma.com/img/4234/be2b/c2c8992b81f8685935c0441a326a6b93?Expires=1666569600&Signature=JYp-hhrTznzfi8wBz8bAwmvkFnAPiVH5TK6301ZbO2Sh56XcXKnTu4S7mryMbVXem895~Zk-2OZMVucp-4oJHkMk4vTpPC0eqzueRFW8U3cs4W5hJCHhgEfu3LYevDKj2-CR77T65XeLOhZzgzcCDh1~RVSFVGKYGshTcQ0kkmnqBG0zBR7R3FZ278R85jHIw-~CsAJbtnLXWDUmyz-x4xieUA7bE~DQZFxRH79z3YdAO4OTb5kCRjgetEP8v9fQ56G9RVSjnZAN459CeHaNtW828hH11nnhVdYCcmsoBhDv~Of8FMDBq-kVY5DX2WJSyazSJWnH-MWQd~MBL5q5uA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'},
     auth: true,
     loading: true,
   },

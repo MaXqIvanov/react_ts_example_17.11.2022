@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import styles from '../scss/Auth.module.scss'
 import InputMask from 'react-input-mask';
 import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-export const AuthPage = () => {
+export const AuthPage = ({setIsVisibleSideBar}:any) => {
   const [user_phone, setUserPhone] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [errors, setErrors] = useState<string>('')
+  const nav = useNavigate()
   const auth = ()=>{
     console.log(user_phone);
     if(user_phone?.includes('_')){  
@@ -18,7 +20,9 @@ export const AuthPage = () => {
       return
     }
     setErrors('')
+    setIsVisibleSideBar(true)
     alert('Вход в систему прошёл успешно')
+    nav('/')
   }
   return (
     <div className={styles.auth}>

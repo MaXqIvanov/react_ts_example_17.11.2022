@@ -122,7 +122,10 @@ export const Header = ({setIsVisibleSideBar}:any) => {
         <div className={styles.alert_title}>Вы действительо хотите выйти ?</div>
         <div className={styles.alert_btn_group}>
           <div onClick={()=> setIsVisibleAlert(false)} className={styles.btn_cancel}>ОТМЕНА</div>
-          <div onClick={()=> dispatch(logout(router))} className={styles.btn_accept}>ДА</div>
+          <div onClick={()=> {
+            dispatch(logout(router))
+            setIsVisibleSideBar(false)
+          }} className={styles.btn_accept}>ДА</div>
         </div>
         <div onClick={()=> setIsVisibleAlert(false)} className={styles.btn_cancel_img}></div>
       </div>}

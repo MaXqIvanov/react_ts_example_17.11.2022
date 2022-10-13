@@ -57,7 +57,7 @@ function App() {
             <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
            </>
            :
-           <Route path={'/auth'} element={<AuthPage />} />
+           <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
           } 
         </Routes>
         </div>
