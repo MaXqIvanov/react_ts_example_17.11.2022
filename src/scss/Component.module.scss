@@ -19,7 +19,7 @@
     font-weight: 400;
     font-size: 29.3053px;
     line-height: 35px;
-    color: #03A9F4;
+    color: #0088CC;
     cursor: pointer;
 }
 .group_header{
@@ -35,11 +35,12 @@
     display: flex;
     align-items: center;
     text-align: center;
-    text-decoration-line: underline;
-    text-transform: uppercase;
-    color: #03A9F4;
-    margin-left: 5vw;
+    color: #0088CC;
+    margin-right: 20px;
     cursor: pointer;
+    border: 1px solid #0088CC;
+    padding: 8px 9px;
+    border-radius: 2px;
 }
 .header_name{
     font-style: normal;
@@ -55,10 +56,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    height: 45px;
+    height: 30px;
     background-position: center;
-    width: 45px;
+    width: 30px;
     cursor: pointer;
+    margin-right: 3px;
 }
 
 // sidebar_header
@@ -320,14 +322,14 @@
 .sidebar{
     height: 100%;
     width: 210px;
-    min-width: 185px !important;
+    min-width: 210px !important;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .sidebar_wrapper{
     top: 0;
-    width: 185px;
+    width: 210px;
     min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
@@ -338,7 +340,7 @@
 .sidebar_wrapper_position{
     top: 60px;
     height: 90%;
-    width: 185px !important;
+    width: 210px !important;
     min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;

@@ -34,9 +34,9 @@ export const Header = ({setIsVisibleSideBar}:any) => {
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
           <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>
-          <div onClick={()=> router('/choose_company')} className={styles.header_name_company}>ООО “Купипродай”</div>
         </div>
         <div className={styles.group_header}>
+          <div onClick={()=> router('/choose_company')} className={styles.header_name_company}>ООО “Купипродай”</div>
           <div className={styles.header_name}>Иванов Иван Иванович</div>
           <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}}
           className={styles.header_user_img}></div>

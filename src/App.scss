@@ -26,6 +26,7 @@
     z-index: 4;
     position: absolute !important;
     right: 20px;
+    // top: 0px;
   }
   .rc-calendar-footer-btn{
     display: none;
@@ -35,17 +36,26 @@
 .custom_table{
   td{
     border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+    border-right: 0px !important;
   }
   th{
-    border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
-    border-left: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    // border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+    // border-left: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
     border-right: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    // border-top: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    border-bottom: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    border-left: 0px !important;
+    border-top: 0px !important;
 /* black */
+  }
+  .table_cell{
+    border-right: 0px !important;
   }
   table{
     border-bottom: 0px !important;
-    border: 0.6px solid rgba($color: #E3EAEE, $alpha: 1) !important;
+    border: 0px solid rgba($color: #E3EAEE, $alpha: 1) !important;
     box-sizing: border-box !important;
+    
   }
   thead{
     background: #E3EAEE !important;
@@ -56,14 +66,37 @@
     }
   }
 }
+.custom_table_task{
+  box-shadow: 0px !important;
+}
+
+.MuiPaper-root{
+  border-radius: 2px !important;
+  box-shadow: 0px 0px 0px !important;
+}
+.MuiTableContainer-root{
+  box-shadow: 0px !important;
+}
+.MuiPaper-elevation{
+  box-shadow: 0px !important;
+}
+.MuiPaper-rounded{
+  box-shadow: 0px !important;
+}
+
 .custom_table{
   min-height: 76vh;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  border: 2px solid #E3EAEE  !important;
-  border-radius: 5px;
+  // border: 2px solid #E3EAEE  !important;
+  border: 0.554916px solid #CDD9DF !important;
+
+  border-radius: 2px !important;
   box-sizing: border-box !important;
+  border-width: 0.02px !important;
+
+  box-shadow: 0px !important;
 }
   // end  table-head
   // for select input
@@ -230,7 +263,7 @@
   margin-bottom: 5px;
 }
 .rc-calendar{
-  margin-top: 42px !important;
+  margin-top: 40px !important;
 }
 .MuiSwitch-root{
   padding: 6px !important;
@@ -467,6 +500,8 @@
   text-decoration-line: none !important;
 }
 .MuiTableCell-root{
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
   @media(max-width: 1500px){
     padding: 12px !important;
   }
@@ -528,5 +563,12 @@
   position: absolute !important;
   top: 60px;
   right: 0px;
-  left: 187.7px;
+  left: 211px;
+}
+.table_cell{
+  border-right: 0px !important;
+  border: 0px !important;
+}
+.MuiLinearProgress-root{
+  height: 3px !important;
 }

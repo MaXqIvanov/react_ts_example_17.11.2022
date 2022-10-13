@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 330px;
+    width: 307px;
     height: fit-content;
     flex-direction: column;
 }
@@ -18,15 +18,25 @@ input {
     margin-top: 11px;
     width: 99%;
     // padding: 9px;
-    padding-left: 9px;
+    padding-left: 15px;
     padding-right: 9px;
     // padding-top: 15px;
     // padding-bottom: 15px;
+    border-radius: 3px;
     height: 60px;
-    border: 1px solid #9CB9C5;
+    // border: 1px solid #9CB9C5;
+    border: 1px solid #c6d2d9;
+    transition: all linear 0.42s;
     &::placeholder{
-        color: #9CB9C5;
+        // color: #9CB9C5;
+        // color: #c6d2d9;
+        color: #b2b2b2;
     }
+    &:focus{
+        border: 1px solid #99abb5 !important;
+        outline: 0px !important;
+    }
+    // #c6d2d9 
 }
 .auth_title{
     font-style: italic;
@@ -36,18 +46,19 @@ input {
     letter-spacing: 3px;
     /* main color */
 
-    color: #03A9F4;
+    color: #0088CC;
 }
 .auth_btn{
     margin-top: 11px;
-    background: #03A9F4;
-    width: 105%;
+    background: #0088CC;
+    width: 107%;
     height: 60px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border-radius: 3px;
+    cursor: pointer;
     span{
         font-family: 'Roboto';
         font-style: normal;

@@ -37,7 +37,7 @@ export const TableHeader = ({visible}:any) => {
     const [isVisibleHref, setIsVisibleHref] = useState<any>(null)
     
   return (
-    <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table`}>
+    <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table_task`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className={'custom_table'}>
             {
@@ -45,18 +45,18 @@ export const TableHeader = ({visible}:any) => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>№</TableCell>
+                        <TableCell style={{borderLeft: '0px'}}>№</TableCell>
                         <TableCell>Название задачи</TableCell>
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
-                        <TableCell align="right">О/А</TableCell>
+                        <TableCell className={`table_cell`} align="right">О/А</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {rows.map((row) => (
                         <TableRow
                         key={row.name_task}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
+                        sx={{'&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell style={{width: '1%'}} component="th" scope="row">
                             {row.number}
@@ -80,7 +80,7 @@ export const TableHeader = ({visible}:any) => {
                     <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
-                        <TableCell>Название задачи</TableCell>
+                        <TableCell >Название задачи</TableCell>
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
                         <TableCell align="right">О/А</TableCell>
@@ -90,7 +90,7 @@ export const TableHeader = ({visible}:any) => {
                         <TableCell align="right">ЧТ, 15 сен 7.0</TableCell>
                         <TableCell align="right">ПТ, 16 сен 8.0</TableCell>
                         <TableCell align="right">СБ, 17 сен 7.0</TableCell>
-                        <TableCell align="right">ВС, 18 сен 8.0</TableCell>
+                        <TableCell className={`table_cell ${styles.table_cell}`} align="right">ВС, 18 сен 8.0</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -137,7 +137,7 @@ export const TableHeader = ({visible}:any) => {
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
                         <TableCell style={{minWidth: '20px'}} className={`header_oa`} align="right">О/А</TableCell>
-                        <TableCell align="right">СТАТ</TableCell>
+                        <TableCell className={`table_cell`} align="right">СТАТ</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>

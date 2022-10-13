@@ -171,6 +171,7 @@ export const NavHeader = ({visible}:any) => {
             if(current_day_week > 1){
                 let current_week = current_day - (current_day_week - 1)
                 if(current_week > 0){
+                    alert('top')
                     setNowDay(current_week)
                     let next_week = current_week + 7
                     if(next_week <= moment(`${current_month}.${(current_day)}.${current_year}`).daysInMonth()){
@@ -539,14 +540,18 @@ export const NavHeader = ({visible}:any) => {
                 dispatch(setCurrentVariantTable(Number(elem.id)))
                 !visible && nav(`/?setting=${elem.id}`)
             }} key={elem.id}
-            style={{borderLeft: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5',
-            borderRight: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #9CB9C5'}}
+            style={{borderLeft: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #CDD9DF',
+            borderTopLeftRadius: index == 0 ? '3px' : '0px',
+            borderBottomLeftRadius: index == 0 ? '3px' : '0px',
+            borderTopRightRadius: index == 2 ? '3px' : '0px',
+            borderBottomRightRadius: index == 2 ? '3px' : '0px',
+            borderRight: index == 1 ? '0px solid #9CB9C5' : '1.10983px solid #CDD9DF'}}
             className={ elem.id !== current_variant_table ? styles.current_btn : styles.current_btn_active }>
                 <span>{elem.title}</span>
             </div>)}
             {
                 current_variant_table !== 1 &&
-                <div className={styles.nav_header_time}>Загрузка по норме 15 ч.</div>
+                <div className={styles.nav_header_time}></div>
             }
         </div>
         {

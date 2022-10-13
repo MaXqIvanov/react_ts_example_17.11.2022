@@ -35,7 +35,7 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
     }, [current_page])
 
   return (
-    <div className={`${styles.table} custom_table`}>
+    <div className={`${styles.table}`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className="custom_table">
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -44,7 +44,7 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
                         <TableCell>№</TableCell>
                         <TableCell>Название задачи</TableCell>
                         <TableCell align="left">Должность</TableCell>
-                        <TableCell style={{width:'1%'}} align="left">Норма</TableCell>
+                        <TableCell className={`table_cell`} style={{width:'1%'}} align="left">Норма</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>

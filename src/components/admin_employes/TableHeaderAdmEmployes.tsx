@@ -34,14 +34,14 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
     }, [current_page_admin_employes])
     
   return (
-    <div className={`${styles.table} custom_table`}>
+    <div className={`${styles.table}`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className={'custom_table'}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
-                        <TableCell>ФИО</TableCell>
+                        <TableCell className={`table_cell`}>ФИО</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -53,7 +53,7 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                             <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
+                            <TableCell className={`table_cell`} style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.name_employ}
                             </TableCell>
                         </TableRow>

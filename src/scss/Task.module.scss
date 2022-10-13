@@ -1,4 +1,5 @@
 
+$dark-gray: #666666;
 .task{
     background: #F1F6F8;
     height: 100%;
@@ -7,8 +8,8 @@
 }
 .task_wrapper{
     padding: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     height: calc(100% -40px);
     width: calc(100% -40px);
     position: relative;
@@ -21,6 +22,11 @@
 .nav_header_btn{
     display: flex;
     align-items: center;
+    color: $dark-gray;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.7573px;
+    line-height: 21px;
 }
 .current_btn{
     width: 130px;
@@ -29,7 +35,7 @@
     align-items: center;
     background: white;
     height: 40px;
-    border: 1.10983px solid #9CB9C5;
+    border: 1.10983px solid #CDD9DF;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -40,7 +46,7 @@
     align-items: center;
     background: #E3EAEE;
     height: 40px;
-    border: 1.10983px solid #9CB9C5;
+    border: 1.10983px solid #CDD9DF;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -56,15 +62,16 @@
     display: flex;
 }
 .calendar_body{
-    margin-left: 5px;
+    // margin-left: 5px;
     width: 25vw;
-    height: 40px;
+    height: 38px;
     background: #FFFFFF;
     border: 1.10983px solid #9CB9C5;
     display: flex;
     align-items: center;
     color: #3C3C3C;
     min-width: 250px;
+    border-radius: 3.3px !important;
     @media(min-width: 1500px){
         min-width: 498.5px;
     }
@@ -82,23 +89,26 @@
     color: #3C3C3C;
 }
 .calendar_img{
-    height: 35px;
-    width: 35px;
+    height: 22.2px;
+    width: 22.2px;
     background-size: contain;
     background-position: center;
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
 }
 .calendar_current_date{
     width: calc(100% - 122.5px);
     text-align: center;
+    color: $dark-gray;
 }
 .group_btn{
-    width: 10%;
     display: flex;
+    min-width: 80px;
+    width: 80px;
 }
 .group_btn_left{
-    height: 40px;
+    height: 38px;
     width: 40px;
     min-width: 40px;
     border: 1.10983px solid #9CB9C5;
@@ -108,8 +118,9 @@
     cursor: pointer;
 }
 .group_btn_right{
-    height: 40px;
+    height: 38px;
     width: 40px;
+    max-width: 40px;
     min-width: 40px;
     border: 1.10983px solid #9CB9C5;
     border-right: 0px;
@@ -118,11 +129,13 @@
     background-repeat: no-repeat;
     background-size: 15px 15px;
     cursor: pointer;
+    border-top-right-radius: 3.3px !important;
+    border-bottom-right-radius: 3.3px !important;
 }
 
 // work width Table
 .table{
-    margin-top: 16px;
+    margin-top: 20px;
     height: 100%;
     width: 100%;
 }
@@ -635,3 +648,6 @@
 // height: 100%;
 // width: 100%;
 // min-height: calc(100vh - 60px);
+.table_cell{
+
+}

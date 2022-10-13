@@ -34,7 +34,7 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
     }, [current_page_company_employes])
     
   return (
-    <div className={`${styles.table} custom_table`}>
+    <div className={`${styles.table}`}>
         <div className={styles.table_wrapper}>
             <TableContainer component={Paper} className={'custom_table'}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -42,7 +42,7 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                     <TableRow>
                         <TableCell>№</TableCell>
                         <TableCell>ФИО</TableCell>
-                        <TableCell align="left">Сотрудник</TableCell>
+                        <TableCell className={`table_cell`} align="left">Сотрудник</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
