@@ -171,11 +171,10 @@ export const NavHeader = ({visible}:any) => {
             if(current_day_week > 1){
                 let current_week = current_day - (current_day_week - 1)
                 if(current_week > 0){
-                    alert('top')
                     setNowDay(current_week)
                     let next_week = current_week + 7
                     if(next_week <= moment(`${current_month}.${(current_day)}.${current_year}`).daysInMonth()){
-                        setLastDay(next_week)
+                        setLastDay(next_week - 1)
                         setLastMonth(current_month)
                         setLastYear(current_year)
                     }else{
