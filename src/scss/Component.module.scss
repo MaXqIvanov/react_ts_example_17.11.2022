@@ -43,7 +43,11 @@ $text_input: #3C3C3C;
     cursor: pointer;
     border: 1px solid #0088CC;
     padding: 8px 9px;
+    width: 165px;
     border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .header_name{
     font-style: normal;
@@ -111,7 +115,7 @@ $text_input: #3C3C3C;
 }
 .close_user_side_menu_btn{
     position: absolute;
-    left: -0.5%;
+    left: 0.3%;
     top: 16px;
     height: 16px;
     width: 16px;
@@ -120,6 +124,11 @@ $text_input: #3C3C3C;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    opacity: 0.8;
+    transition: all linear 0.22s;
+    &:hover{
+        opacity: 1;
+    }
 }
 @keyframes animation_sidebar {
     0%{
@@ -493,4 +502,45 @@ $text_input: #3C3C3C;
     height: 35px;
     width: 35px;
     cursor: pointer;
+}
+
+.header_name_group{
+    position: relative;
+}
+
+.header_name_company_wrapper{
+    position: absolute;
+    top: 38px;
+    left: 0px;
+    background: rgb(255, 255, 255);
+    width: 180px;
+    z-index: 99999999;
+    cursor: pointer;
+    min-width: 180px;
+    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.25);
+    max-height: 500px;
+    overflow-y: scroll;
+}
+.one_company_name{
+    margin-left: 10px;
+    padding-top: 6px;
+    padding-bottom: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #3C3C3C;
+}
+.one_company_title{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #3C3C3C; 
+    border-bottom: 1px solid #3C3C3C;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

@@ -20,15 +20,17 @@ import { Switch } from '@mui/material';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss'
 
-export const NavHeader = ({visible}:any) => {
+export const NavHeader = ({visible, setCurrentDayTask}:any) => {
     const nav = useNavigate()
     const dispatch = useAppDispatch()
     const { variant_table, current_variant_table, current_page_day, all_pages_day, current_page_week,
         all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
+    
         // Variables for calendar_day
     const [calendar_day_day, setCalendarDayDay] = useState<any>('')
     const [calendar_day_month, setCalendarDayMonth] = useState<any>('')
     const [calendar_day_year, setCalendarDayYear] = useState<any>('')
+
         // Variables for calendar week
         // НАЧАЛО НЕДЕЛИ
     const [now_day, setNowDay] = useState<any>('')

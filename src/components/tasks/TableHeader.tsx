@@ -29,7 +29,7 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
   ];
 
 
-export const TableHeader = ({visible}:any) => {
+export const TableHeader = ({visible, current_day_task}:any) => {
     const { current_variant_table, current_page_day, all_pages_day, current_page_week, all_pages_week, current_page_all, all_pages_all }
     = useSelector((state:RootState) => state.task)
     
@@ -137,7 +137,7 @@ export const TableHeader = ({visible}:any) => {
                         <TableCell align="right">Начало до</TableCell>
                         <TableCell align="right">Норма</TableCell>
                         <TableCell style={{minWidth: '20px'}} className={`header_oa`} align="right">О/А</TableCell>
-                        <TableCell className={`table_cell`} align="right">СТАТ</TableCell>
+                        <TableCell className={`table_cell`} align="right">{current_day_task}</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -158,7 +158,7 @@ export const TableHeader = ({visible}:any) => {
                             {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
                             https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> }
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.stat}</TableCell>
+                        <TableCell style={{cursor: 'pointer', width: '90px'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.stat}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

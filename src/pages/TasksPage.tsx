@@ -11,13 +11,13 @@ import { RootState } from '../store/store'
 export const TasksPage = ({visible}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const {isVisibleSideBar, loading} = useSelector((state:RootState)=> state.task)
-
+  const [current_day_task, setCurrentDayTask] = useState('Вт, 13 сен 3.0')
   return (
     <div className={visible ? styles.task_employes : styles.task}>
       {loading && !visible && <LinearProgress className={`linear_progress`}/>}
       <div className={styles.task_wrapper}>
-        <NavHeader visible={visible}/>
-        <TableHeader visible={visible}/>
+        <NavHeader visible={visible} setCurrentDayTask={setCurrentDayTask}/>
+        <TableHeader visible={visible} current_day_task={current_day_task}/>
         {isVisibleSideBar ? visible ?
         <CreateSideBar />
         :
