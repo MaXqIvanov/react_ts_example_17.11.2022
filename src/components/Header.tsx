@@ -57,57 +57,58 @@ export const Header = ({setIsVisibleSideBar}:any) => {
                 hidden
               />
             </Button> */}
-            <div className={styles.group_img_user}>
-              <div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user}></div>
-              <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
-                <input
-                  type="file"
-                  hidden
-                />
-              </Button>
-            </div>
             <div className={styles.text_field_block}>
-              <TextField
-                className={`${styles.text_field}`}
-                label="ФИО"
-                InputProps={{
-                  type: 'string',
-                }}
-              />
-              <TextField
-                className={`${styles.text_field}`}
-                label="Должность"
-                InputProps={{
-                  type: 'string',
-                }}
-              />
-              <div className={styles.group_input_mask}>
-              <label className={phoneHolder && phoneHolder!.match(/[0-9]/g)!.length > 0 ? `${styles.visible_label}` : ''}>Номер телефона</label>
-              <InputMask onClick={()=> setIsVisibleLabel(true)} onBlur={()=> setIsVisibleLabel(false)} mask="+7(999)999-99-99" value={phoneHolder} onChange={((e:any) => {
-                setPhoneHolder(e.target.value)
-              })} required placeholder={'Номер телефона'} className={`form-input ${styles.input_phone} ${styles.text_field}`} />
+              <div className={styles.group_img_user}>
+                <div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user}></div>
+                <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
+                  <input
+                    type="file"
+                    hidden
+                  />
+                </Button>
               </div>
-              <TextField
-                className={`${styles.text_field}`}
-                label="Новый пароль"
-                InputProps={{
-                  type: 'password',
-                }}
-              />
-              <TextField
-                className={`${styles.text_field}`}
-                label="Повторить пароль"
-                InputProps={{
-                  type: 'password',
-                }}
-              />
-            </div>
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="ФИО"
+                  InputProps={{
+                    type: 'string',
+                  }}
+                />
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Должность"
+                  InputProps={{
+                    type: 'string',
+                  }}
+                />
+                <div className={styles.group_input_mask}>
+                <label className={phoneHolder && phoneHolder!.match(/[0-9]/g)!.length > 0 ? `${styles.visible_label}` : ''}>Номер телефона</label>
+                <InputMask onClick={()=> setIsVisibleLabel(true)} onBlur={()=> setIsVisibleLabel(false)} mask="+7(999)999-99-99" value={phoneHolder} onChange={((e:any) => {
+                  setPhoneHolder(e.target.value)
+                })} required placeholder={'Номер телефона'} className={`form-input ${styles.input_phone} ${styles.text_field}`} />
+                </div>
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Новый пароль"
+                  InputProps={{
+                    type: 'password',
+                  }}
+                />
+                <TextField
+                  className={`${styles.text_field}`}
+                  label="Повторить пароль"
+                  InputProps={{
+                    type: 'password',
+                  }}
+                />
+              </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>
                   <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} className={styles.btn_cancel_side_bar}>ОТМЕНА</div>
                   <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
                 </div>
-                <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_quit_account}>ВЫЙТИ</div>
+                {/* <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_quit_account}>ВЫЙТИ</div> */}
+                <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_exit_profile}></div>
             </div>
           </div>
         </div>

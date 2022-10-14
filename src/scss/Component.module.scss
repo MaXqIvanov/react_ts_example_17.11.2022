@@ -1,4 +1,7 @@
 // header
+$dark-blue: #0088CC;
+$dark-gray: #666666;
+$text_input: #3C3C3C;
 .header{
     height: 60px;
     width: 100%;
@@ -132,7 +135,7 @@
     position: relative;
     height: fit-content;
     width: fit-content;
-    margin-bottom: 15px;
+    margin-bottom: -20px;
 }
 .img_user{
     height: 200px;
@@ -158,18 +161,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 .text_field{
     margin-top: 30px !important;
     animation: input_animation linear alternate 0.4s;
     max-height: 40px;
+    width: 100%;
+    border-radius: 3px !important;
     input{
       padding: 11px 12px !important;  
       background: white !important;
-      width: 350px;
-      min-width: 350px!important;
+      width: 100% !important;
+      min-width: 360px !important;
       border-color: #9CB9C5 !important;
-      border-radius: 0px !important;
+      border-radius: 3px !important;
       margin-top: -2px !important;
 
       &:focus{
@@ -257,7 +263,7 @@
     align-items: center;
 }
 .group_btn_side_bar_save_close{
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -302,12 +308,13 @@
     }
 }
 .btn_save_side_bar{
-    background: #03A9F4;
+    background-color: $dark-blue;
     padding: 15px;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
+    border-radius: 3px !important;
     span{
         font-style: normal;
         font-weight: 400;
@@ -473,5 +480,17 @@
     background: #03A9F4;
     padding: 5px 40px 5px 40px;
     text-align: center;
+    cursor: pointer;
+}
+
+.btn_exit_profile{
+    background-image: url('../assets/exit_profile.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 5px;
+    right: -10px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
 }
