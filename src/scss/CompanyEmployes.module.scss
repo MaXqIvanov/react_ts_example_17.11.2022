@@ -1,3 +1,5 @@
+$dark-blue: #0088CC;
+
 .company_employes{
     background: #F1F6F8;
     height: 100%;
@@ -226,8 +228,8 @@
 }
 .img_user_added_photo{
     position: absolute;
-    bottom: 30px;
-    right: -157px;
+    bottom: 31px;
+    right: -160px;
     height: 50px;
     width: 50px;
     background-size: contain;
@@ -455,3 +457,61 @@
     color: rgba($color: #3C3C3C, $alpha: 0.5);
 }
 // end_sidebar_header
+.added_employes{
+    margin-top: -1px;
+    height: 37px;
+    background-color: $dark-blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 235px;
+    border-radius: 3px;
+    border: 1px solid #0088CC;
+    cursor: pointer;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        
+        display: flex;
+        align-items: center;
+        text-align: center;
+        
+        /* input background */
+        
+        color: #FFFFFF;
+    }
+}
+.postpone_employes{
+    margin-top: -1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 37px;
+    background-color: $dark-blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 235px;
+    border-radius: 3px;
+    border: 1px solid #0088CC;
+    cursor: pointer;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        
+        display: flex;
+        align-items: center;
+        text-align: center;
+        
+        /* input background */
+        
+        color: #FFFFFF;
+    }
+}

@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
-import { getTaskAll, getTaskDay, getTaskWeek, setCurrentVariantTable } from '../../store/taskSlice';
+import { changeVisibleSideBar, getTaskAll, getTaskDay, getTaskWeek, setCurrentVariantTable } from '../../store/taskSlice';
 import { Switch } from '@mui/material';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss'
@@ -548,11 +548,18 @@ export const NavHeader = ({visible}:any) => {
             className={ elem.id !== current_variant_table ? styles.current_btn : styles.current_btn_active }>
                 <span>{elem.title}</span>
             </div>)}
-            {
-                current_variant_table !== 1 &&
-                <div className={styles.nav_header_time}></div>
-            }
         </div>
+        {
+                current_variant_table == 1 &&
+                <div className={`${styles.nav_header_calendar}`}>
+                    {visible && 
+                        <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
+                            <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
+                        </div>
+                    }
+                </div>
+                
+        }
         {
             current_variant_table === 2 &&
             <div className={styles.nav_header_calendar}>
@@ -571,6 +578,11 @@ export const NavHeader = ({visible}:any) => {
                         <div onClick={()=>getCurrentWeeks(4)} style={{backgroundImage: `url(${btn_right})`}} className={styles.group_btn_right}></div>
                     </div>
                 </div>
+                {visible && 
+                    <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
+                        <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
+                    </div>
+                }
             {isVisibleCalendarWeeks && 
             <div className={`${styles.calendar_side_wrapper} calendar_week`}>
                 <div className={styles.calendar_side_panel}>
@@ -627,6 +639,11 @@ export const NavHeader = ({visible}:any) => {
                         }} style={{backgroundImage: `url(${btn_right})`}} className={styles.group_btn_right}></div>
                     </div>
                 </div>
+                {visible && 
+                    <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
+                        <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
+                    </div>
+                }
             {isVisibleCalendarDays && <Calendar value={moment(`${calendar_day_month}.${(calendar_day_day)}.${calendar_day_year}`)} onSelect={(date:any)=> selectDateDay(date)}/> }
             </div> 
         }

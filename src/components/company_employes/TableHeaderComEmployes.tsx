@@ -14,16 +14,16 @@ import { changePagesCompanyEmployes, getEmployesCompany } from '../../store/empl
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-function createData(number: number, name_employ:string, employes:string,) {
-    return { number, name_employ, employes };
+function createData(number: number, employes:string, name_employ:string,) {
+    return { number, employes, name_employ };
   }
   
   const rows = [
-    createData(1, 'Ярослав Столиков Генадьевич', "Менеджер отдела продаж"),
-    createData(2, 'Ярослав Столиков Генадьевич2', "Менеджер отдела продаж"), 
-    createData(3, 'Ярослав Столиков Генадьевич3', "Менеджер отдела продаж"),
-    createData(4, 'Ярослав Столиков Генадьевич4', "Менеджер отдела продаж"),
-    createData(5, 'Ярослав Столиков Генадьевич5', "Менеджер отдела продаж"),
+    createData(1, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич'),
+    createData(2, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич2'), 
+    createData(3, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич3'),
+    createData(4, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич4'),
+    createData(5, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич5'),
   ];
 
 export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
@@ -41,8 +41,8 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                     <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
-                        <TableCell>ФИО</TableCell>
-                        <TableCell className={`table_cell`} align="left">Сотрудник</TableCell>
+                        <TableCell align="left">Должность</TableCell>
+                        <TableCell className={`table_cell`}>ФИО</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -55,9 +55,9 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                                 {index + 1}
                             </TableCell>
                             <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                {row.name_employ}
+                                {row.employes}
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.employes}</TableCell>  
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.name_employ}</TableCell>  
                         </TableRow>
                     ))}
                     </TableBody>

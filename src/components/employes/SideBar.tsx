@@ -19,9 +19,9 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
             <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
             <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
             <div className={styles.added_task_btn_wrapper}>
-              <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
+              {/* <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
                 ДОБАВИТЬ ЗАДАЧУ  
-              </div>
+              </div> */}
             </div>
             <TasksPage visible={visible}/>
           </div>

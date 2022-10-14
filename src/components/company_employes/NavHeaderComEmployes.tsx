@@ -30,8 +30,9 @@ export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}
-              <div onClick={()=> setIsSearchSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_changed})`}} className={styles.com_employes_btn_changed}></div>              
-              <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div>
+
+              {/* <div onClick={()=> setIsSearchSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_changed})`}} className={styles.com_employes_btn_changed}></div>              
+              <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div> */}
                 <TextField
                   className='custom_search'
                   label="Поиск..."
@@ -39,6 +40,8 @@ export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any
                     type: 'search',
                   }}
                 />
+                <div onClick={()=> setIsSearchSideBar(true)} className={styles.postpone_employes}><span>Перенести сотрудника</span></div>
+                <div onClick={()=> setIsAddedSideBar(true)} className={styles.added_employes}><span>Добавить сотрудника</span></div>
               {/* )}
             />
           </Stack> */}

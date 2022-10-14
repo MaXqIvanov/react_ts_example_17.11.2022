@@ -14,7 +14,7 @@ export const TasksPage = ({visible}:any) => {
 
   return (
     <div className={visible ? styles.task_employes : styles.task}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && !visible && <LinearProgress className={`linear_progress`}/>}
       <div className={styles.task_wrapper}>
         <NavHeader visible={visible}/>
         <TableHeader visible={visible}/>

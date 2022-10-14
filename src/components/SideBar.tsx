@@ -60,15 +60,15 @@ export const SideBar = () => {
     const sidebar_navigation_company = [
         {
             id: 4,
-            title: 'СОТРУДНИКИ',
-            image: `${img_company_employes}`,
-            links: `/company_employes`
-        },
-        {
-            id: 5,
             title: 'ДОЛЖНОСТИ',
             image: `${img_positions}`,
             links: `/company_positions`
+        },  
+        {
+            id: 5,
+            title: 'СОТРУДНИКИ',
+            image: `${img_company_employes}`,
+            links: `/company_employes`
         }
     ]
     const sidebar_navigation_admin = [
