@@ -66,7 +66,7 @@ export const SideBar = () => {
         },  
         {
             id: 5,
-            title: 'СОТРУДНИКИ',
+            title: 'Пользователи',
             image: `${img_company_employes}`,
             links: `/company_employes`
         }

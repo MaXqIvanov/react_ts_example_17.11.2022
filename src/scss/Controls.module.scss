@@ -299,7 +299,7 @@
 .group_btn_side_bar_save_close{
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     @media(max-width: 1500px){
         width: 85%;
     }
@@ -322,7 +322,7 @@
     cursor: pointer;
 }
 .btn_cancel_side_bar{
-    background: #00A089;
+    background-color: rgba($color: #00A089, $alpha: 0.5);
     padding: 15px;
     display: flex;
     align-items: center;
@@ -335,7 +335,7 @@
         font-size: 24px;
         line-height: 28px;
         text-transform: uppercase;
-        color: #F0F0F0;
+        color: #ffffff;
     }
     cursor: pointer;
     @media(max-width: 1500px){
@@ -347,8 +347,9 @@
     }
 }
 .btn_save_side_bar{
-    background: #C92703;
+    background-color: rgba($color: #C92703, $alpha: 0.5);
     padding: 15px;    display: flex;
+    margin-left: 20px;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -359,7 +360,7 @@
         font-size: 24px;
         line-height: 28px;
         text-transform: uppercase;
-        color: #F0F0F0;
+        color: #ffffff;
     }
     cursor: pointer;
     @media(max-width: 1500px){

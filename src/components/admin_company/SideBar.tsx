@@ -45,7 +45,7 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                     </Select>
                 </FormControl>
                 </div>
-                <FormControl fullWidth className={`${styles.select_position}`}>
+                {/* <FormControl fullWidth className={`${styles.select_position}`}>
                   <label className={comment && comment.length > 0 ? `${styles.visible_label}` : `${styles.not_visible_label}`}>Комментарий</label>
                   <TextareaAutosize
                     aria-label="minimum height"
@@ -57,7 +57,7 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
                     onChange={(e:any)=> setComment(e.target.value)}
                     style={{ width: '99%', marginTop: '30px' }}
                   />
-                </FormControl>
+                </FormControl> */}
             </div>
             <div className={styles.group_btn_side_bar}>
                 <div className={styles.group_btn_side_bar_save_close}>

@@ -28,7 +28,6 @@ export const NavHeaderComPosition = ({setIsAddedSideBar}:any) => {
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}
-              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ ДОЛЖНОСТЬ +</div>              
                 <TextField
                   className='custom_search'
                   label="Поиск..."
@@ -36,6 +35,7 @@ export const NavHeaderComPosition = ({setIsAddedSideBar}:any) => {
                     type: 'search',
                   }}
                 />
+                <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ ДОЛЖНОСТЬ +</div>              
               {/* )}
             />
           </Stack> */}

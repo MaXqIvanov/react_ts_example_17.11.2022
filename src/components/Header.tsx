@@ -41,7 +41,9 @@ export const Header = ({setIsVisibleSideBar}:any) => {
             {
               isVisibleLabel && 
                 <div onClick={()=> setIsVisibleLabel(true)} className={styles.header_name_company_wrapper}>
-                  <div className={`${styles.one_company_title}`}>Выбрать компанию</div>
+                  <div className={`${styles.one_company_title}`}>Выбрать компанию
+                    <div className={`${styles.separate_line}`}></div>
+                  </div>
                   <div className={`${styles.one_company_name}`}>ООО “Купипродай”</div>
                   <div className={`${styles.one_company_name}`}>ООО “Соберипострой"</div>
                 </div>

@@ -27,8 +27,7 @@ export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
               id="free-solo-2-demo"
               disableClearable
               options={top100Films.map((option) => option.title)}
-              renderInput={(params) => ( */}
-              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ КОМПАНИЮ +</div>              
+              renderInput={(params) => ( */}   
                 <TextField
                   className='custom_search'
                   label="Поиск..."
@@ -36,6 +35,7 @@ export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
                     type: 'search',
                   }}
                 />
+              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ КОМПАНИЮ +</div>           
               {/* )}
             />
           </Stack> */}

@@ -445,7 +445,7 @@ $dark-blue: #0088CC;
 .group_btn_side_bar_save_close{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     min-width: 350px;
     @media(max-width: 1500px){
         width: 100%;
@@ -469,13 +469,16 @@ $dark-blue: #0088CC;
     cursor: pointer;
 }
 .btn_cancel_side_bar{
+    padding: 15px 0px;
+    width: 200px;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
     display: flex;
     align-items: center;
-    justify-content: left;
+    text-align: center;
+    justify-content: center;
     text-transform: uppercase;
     color: #03A9F4;
     cursor: pointer;
@@ -488,8 +491,14 @@ $dark-blue: #0088CC;
     }
 }
 .btn_save_side_bar{
-    background: #03A9F4;
-    padding: 15px;
+    background-color: $dark-blue;
+    width: 200px;
+    margin-left: 9px;
+    padding: 15px 0px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     span{
         font-style: normal;
         font-weight: 400;

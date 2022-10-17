@@ -1,3 +1,5 @@
+$dark-blue: #0088CC;
+
 .company_employes{
     background: #F1F6F8;
     height: 100%;
@@ -20,7 +22,7 @@
 .nav_header_btn{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
 }
 // work width Table
@@ -94,24 +96,54 @@
 
 // new code
 .com_position_btn_added{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
+    // font-style: normal;
+    // font-weight: 400;
+    // font-size: 16px;
+    // line-height: 19px;
+    // /* identical to box height */
 
+    // display: flex;
+    // align-items: center;
+    // text-align: center;
+    // text-transform: uppercase;
+
+    // /* main color */
+    // border: 1px solid #03A9F4;
+    // padding: 8px 10px;
+    // color: #03A9F4;
+    // background: white;
+    // cursor: pointer;
+    // margin-top: -9px;
+
+    margin-top: -1px;
+    margin-left: 10px;
+    // margin-right: 10px;
+    height: 37px;
+    background-color: $dark-blue;
+    color: white;
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-
-    /* main color */
-    border: 1px solid #03A9F4;
-    padding: 8px 10px;
-    color: #03A9F4;
-    background: white;
+    width: 235px;
+    border-radius: 3px;
+    border: 1px solid #0088CC;
     cursor: pointer;
-    margin-top: -9px;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        
+        display: flex;
+        align-items: center;
+        text-align: center;
+        
+        /* input background */
+        
+        color: #FFFFFF;
+    }
+
 }
 
 
@@ -318,7 +350,7 @@
 .group_btn_side_bar_save_close{
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     @media(max-width: 1500px){
         width: 80%;
     }
@@ -437,7 +469,8 @@
 }
 .btn_save_side_bar{
     background: #03A9F4;
-    padding: 15px;
+    width: 200px;
+    margin-left: 9px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -461,8 +494,9 @@
     }
 }
 .btn_cancel_side_bar{
-    background: #03A9F4;
-    padding: 15px;
+    // background: #03A9F4;
+    padding: 15px 0px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -474,7 +508,7 @@
         line-height: 28px;
         text-align: center;
         text-transform: uppercase;
-        color: #F0F0F0;
+        color: #03A9F4;
     }
     cursor: pointer;
     @media(max-width: 1500px){
