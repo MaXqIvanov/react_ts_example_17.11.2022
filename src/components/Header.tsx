@@ -30,7 +30,7 @@ export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSide
     <div id="header" className={styles.header}>
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
-          <div onClick={()=> setIsCollapseSideBar(true)} className={styles.sidebar_icon_collapse}></div>
+          <div onClick={()=> setIsCollapseSideBar(!isCollapseSideBar)} className={styles.sidebar_icon_collapse}></div>
           <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>
         </div>
         <div className={styles.group_header}>
