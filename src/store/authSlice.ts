@@ -79,7 +79,9 @@ const authSlice = createSlice({
         }else if(payload.response.status < 300) {
             state.auth = true
             state.user = payload.response.data
-            state.user_company = payload.response2.data
+            if(payload?.response2?.data){
+              state.user_company = payload.response2.data
+            }
             if(payload.id_company){
               state.current_company = payload.id_company
             }else{

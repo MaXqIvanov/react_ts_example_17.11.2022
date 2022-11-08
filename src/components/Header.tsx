@@ -55,9 +55,9 @@ export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSide
           </div>
           {/* <div className={styles.header_name}>Иванов Иван Иванович</div> */}
           <div className={styles.separate_line_for_header}></div>
-          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user.avatar ? `url(${user.avatar})` : `none`}}
-          className={user.avatar ? styles.header_user_img : styles.header_user_not_img}>
-            <span>{user.avatar ? '' : user?.name?.split(' ')[0]?.split('')[0] + user?.name?.split(' ')[1]?.split('')[0]}</span></div>
+          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user?.avatar ? `url(${user?.avatar})` : `none`}}
+          className={user?.avatar ? styles.header_user_img : styles.header_user_not_img}>
+            <span>{user?.avatar ? '' : user?.name?.split(' ')[0]?.split('')[0] + user?.name?.split(' ')[1]?.split('')[0]}</span></div>
         </div>
       </div>
       {isVisibleUserMenu &&

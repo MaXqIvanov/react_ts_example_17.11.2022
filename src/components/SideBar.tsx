@@ -112,6 +112,21 @@ export const SideBar = ({isCollapseSideBar}:any) => {
       }      
       // дописать как появитяс бэк
     }, [window.location.pathname])
+
+    useEffect(() => {
+      if(user.is_staff){
+        return
+      } else if(user.is_admin){
+        return
+      } else if(user.is_executor){
+        router('/')
+      } else if(user.is_controller){
+        router('/controls')
+      } else if(user.is_analyst){
+        router('/employes')
+      }
+    }, [user])
+    
     
     
     useEffect(() => {

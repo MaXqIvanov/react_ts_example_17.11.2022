@@ -20,7 +20,7 @@ import { useAppDispatch } from './hooks/redux';
 import { getProfile } from './store/authSlice';
 
 function App() {
-  const { auth, loading, current_company } = useSelector((state:RootState)=> state.auth)
+  const { auth, loading, current_company, user } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
   const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
   const [isCollapseSideBar, setIsCollapseSideBar] = useState<boolean>(false);
@@ -51,14 +51,14 @@ function App() {
            <>
             <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
             {/* tasks */}
-            <Route path={'/'} element={<TasksPage />} />
+            {(user.is_staff || user.is_admin || user.is_executor) && <Route path={'/'} element={<TasksPage />} />}
              {/* end tasks */}
-            <Route path={'/controls'} element={<ControlsPage />} />
-            <Route path={'/employes'} element={<EmployesPage />} />
-            <Route path={'/company_employes'} element={<CompanyEmployesPage />} />
-            <Route path={'/company_positions'} element={<CompanyPositionsPage />} />
-            <Route path={'/admin_companies'} element={<AdminCompanyPage />} />
-            <Route path={'/admin_employes'} element={<AdminEmployesPage />} />
+            {(user.is_staff || user.is_admin || user.is_controller) && <Route path={'/controls'} element={<ControlsPage />} /> }
+            {(user.is_staff || user.is_admin || user.is_analyst) && <Route path={'/employes'} element={<EmployesPage />} />}
+            {user.is_admin && <Route path={'/company_employes'} element={<CompanyEmployesPage />} />}
+            {user.is_admin && <Route path={'/company_positions'} element={<CompanyPositionsPage />} />}
+            {user.is_staff && <Route path={'/admin_companies'} element={<AdminCompanyPage />} />}
+            {user.is_staff && <Route path={'/admin_employes'} element={<AdminEmployesPage />} />}
             <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
            </>
            :
