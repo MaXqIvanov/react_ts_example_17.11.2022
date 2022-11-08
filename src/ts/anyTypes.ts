@@ -2,6 +2,9 @@ export type AuthState = {
     user: any,
     auth: boolean,
     loading: boolean,
+    user_company: Array<any>,
+    current_company: any,
+    first_render: boolean,
 }
 export type TaskState = {
     loading: boolean,

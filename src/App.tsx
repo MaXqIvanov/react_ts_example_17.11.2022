@@ -20,7 +20,7 @@ import { useAppDispatch } from './hooks/redux';
 import { getProfile } from './store/authSlice';
 
 function App() {
-  const { auth, loading } = useSelector((state:RootState)=> state.auth)
+  const { auth, loading, current_company } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
   const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
   const [isCollapseSideBar, setIsCollapseSideBar] = useState<boolean>(false);
@@ -28,7 +28,7 @@ function App() {
   const nav = useNavigate()
   useEffect(() => {
     dispatch(getProfile({nav: nav}))
-  }, [])
+  }, [current_company.id])  
 
   useEffect(() => {
     if(auth === true){

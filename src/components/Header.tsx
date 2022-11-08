@@ -8,39 +8,50 @@ import camera_img from '../assets/camera_img.svg';
 import { Button, TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
 import { useAppDispatch } from '../hooks/redux';
-import { logout } from '../store/authSlice';
+import { changeCurrentCompany, logout } from '../store/authSlice';
 import img_user from '../assets/img_user.svg';
+import useClickOutSide from '../hooks/useClickOutSide';
 
 export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSideBar, isCollapseSideBar}:any) => {
   const router = useNavigate()
   const dispatch = useAppDispatch()
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false)
-  const {user} = useSelector((state:RootState)=> state.auth)
+  const {user, user_company, current_company} = useSelector((state:RootState)=> state.auth)
   const [phoneHolder, setPhoneHolder] = useState<string>('')
   const [isVisibleAlert, setIsVisibleAlert] = useState<boolean>(false)
   const [isVisibleModal, setIsVisibleModal] = useState<boolean>(false)
   // for ui
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false)
-  
+  const custom_select = useClickOutSide(()=> {
+    setIsVisibleLabel(false)
+  })
 
   return (
     <div id="header" className={styles.header}>
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
-          <div onClick={()=> setIsCollapseSideBar(!isCollapseSideBar)} className={styles.sidebar_icon_collapse}></div>
+          <div onClick={()=> setIsCollapseSideBar(true)} className={styles.sidebar_icon_collapse}></div>
           <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>
         </div>
         <div className={styles.group_header}>
           <div className={styles.header_name_group}>
-            <div onClick={()=> setIsVisibleLabel(!isVisibleLabel)} className={styles.header_name_company}><span>ООО “Купипродай”</span></div>
+            <div onClick={()=> setIsVisibleLabel(!isVisibleLabel)} className={styles.header_name_company}><span>{current_company?.name}</span></div>
             {
-              isVisibleLabel && 
-                <div onClick={()=> setIsVisibleLabel(true)} className={styles.header_name_company_wrapper}>
-                  <div className={`${styles.one_company_name}`}><span>ООО “Купипродай”</span></div>
-                  <div className={`${styles.one_company_name}`}><span>ООО “Соберипострой"</span></div>
-                  <div className={`${styles.one_company_name}`}><span>ООО “Соберипострой 2"</span></div>
-                </div>
-            }
+              isVisibleLabel &&(
+                user_company?.length > 0 ?
+                  <div ref={custom_select} onClick={()=> setIsVisibleLabel(true)} className={styles.header_name_company_wrapper}>
+                  {user_company.map((elem:any)=>
+                    <div onClick={()=> {
+                      dispatch(changeCurrentCompany({elem: elem, setIsVisibleLabel: setIsVisibleLabel}))
+                    }} key={elem.id} className={`${styles.one_company_name}`}>
+                      <span>{elem.name}</span>
+                    </div>)}
+                  </div>
+                  :
+                  <div ref={custom_select} onClick={()=> setIsVisibleLabel(true)} className={styles.header_name_company_wrapper}>
+                    <div className={`${styles.one_company_name}`}><span>Данных нет</span></div>
+                  </div>
+                )}
           </div>
           {/* <div className={styles.header_name}>Иванов Иван Иванович</div> */}
           <div className={styles.separate_line_for_header}></div>
