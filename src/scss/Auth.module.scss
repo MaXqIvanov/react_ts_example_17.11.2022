@@ -1,3 +1,7 @@
+$main_background_color: #F2F6F8;
+$btn_color: #03A9F4;
+$btn_border: #90A4AE;
+
 .auth{
     width: 100%;
     height: 100%;
@@ -7,76 +11,105 @@
     align-items: center;
 }
 .auth_wrapper{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 307px;
-    height: fit-content;
+    width: 485px;
+    height: 191px;
     flex-direction: column;
+    background: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
 }
 input {
-    margin-top: 11px;
-    width: 99%;
-    // padding: 9px;
-    padding-left: 15px;
-    padding-right: 9px;
-    // padding-top: 15px;
-    // padding-bottom: 15px;
+    width: 442px;
+    padding-left: 10.5px;
+    padding-right: 10.5px;
     border-radius: 3px;
-    height: 60px;
-    // border: 1px solid #9CB9C5;
+    height: 27px;
     border: 1px solid #c6d2d9;
     transition: all linear 0.42s;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
     &::placeholder{
-        // color: #9CB9C5;
-        // color: #c6d2d9;
-        color: #b2b2b2;
+        color: #6C757D;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
     }
     &:focus{
         border: 1px solid #99abb5 !important;
         outline: 0px !important;
     }
-    // #c6d2d9 
+}
+.phone_input{
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.password_input{
+    position: absolute;
+    top: 99px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .auth_title{
-    font-style: italic;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Roboto';
+    font-style: normal;
     font-weight: 400;
-    font-size: 55.71px;
-    line-height: 67px;
-    letter-spacing: 3px;
-    /* main color */
-
-    color: #0088CC;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #03A9F4; 
 }
 .auth_btn{
-    margin-top: 11px;
-    background: #0088CC;
-    width: 107%;
-    height: 60px;
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $btn_color;
+    width: 465px;
+    height: 31px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 3px;
+    border: 1px solid $btn_border;
+    border-radius: 2px;
     cursor: pointer;
     span{
-        font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
-        font-size: 24px;
-        line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-align: center;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+        
         text-transform: uppercase;
-        color: #F0F0F0;
+        
+        /* white */
+        
+        color: #FFFFFF;
     }
 }
 .errors{
+    position: absolute;
+    bottom: 16px;
+    left: 0px;
     color: red;
     font-size: small;
     text-align: left;
-    width: 105%;
+    width: calc(100% -20px);
+    margin-left: 10px;
     margin-top: 2px;
     height: 12px;
 }

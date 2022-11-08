@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { RootState } from './store/store';
 import loadingScreen from './assets/preload.json';
 import { AuthPage } from './pages/AuthPage';
@@ -23,28 +23,33 @@ function App() {
   const { auth, loading } = useSelector((state:RootState)=> state.auth)
   console.log(window.location.href);
   const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
+  const [isCollapseSideBar, setIsCollapseSideBar] = useState<boolean>(false);
   const dispatch = useAppDispatch()
+  const nav = useNavigate()
+  useEffect(() => {
+    dispatch(getProfile({nav: nav}))
+  }, [])
 
   useEffect(() => {
-    dispatch(getProfile(''))
-    if(window.location.pathname !== '/auth'){
+    if(auth === true){
       setIsVisibleSideBar(true)
     }else{
       setIsVisibleSideBar(false)
     }
-  }, [])
+  }, [auth])
+  
   
   return (
     <>
     {!loading ? 
       <>
-        {auth ?  <Header setIsVisibleSideBar={setIsVisibleSideBar}></Header> : <></> }
+        {auth ?  <Header setIsCollapseSideBar={setIsCollapseSideBar} isCollapseSideBar={isCollapseSideBar} isVusubleSideBar={isVusubleSideBar} setIsVisibleSideBar={setIsVisibleSideBar}></Header> : <></> }
         <div className={'wrapper'}>
-        {isVusubleSideBar && <SideBar />}
+        {isVusubleSideBar === true && <SideBar isCollapseSideBar={isCollapseSideBar}/>}
         <Routes>
            { auth ? 
            <>
-            <Route path={'/auth'} element={<AuthPage />} />
+            <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
             {/* tasks */}
             <Route path={'/'} element={<TasksPage />} />
              {/* end tasks */}

@@ -3,8 +3,11 @@ import styles from '../scss/Auth.module.scss'
 import InputMask from 'react-input-mask';
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../hooks/redux';
+import { userAuth } from '../store/authSlice';
 
 export const AuthPage = ({setIsVisibleSideBar}:any) => {
+  const dispatch = useAppDispatch()
   const [user_phone, setUserPhone] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [errors, setErrors] = useState<string>('')
@@ -20,9 +23,11 @@ export const AuthPage = ({setIsVisibleSideBar}:any) => {
       return
     }
     setErrors('')
-    setIsVisibleSideBar(true)
-    alert('Вход в систему прошёл успешно')
-    nav('/')
+    dispatch(userAuth({
+      nav: nav,
+      login: user_phone,
+      password: password,
+    }))
   }
   return (
     <div className={styles.auth}>
@@ -33,7 +38,7 @@ export const AuthPage = ({setIsVisibleSideBar}:any) => {
         })} required placeholder={'+7 (___) ___-__-__'} className={styles.phone_input} />
         <input onChange={((e:any)=> {
           setPassword(e.target.value)
-        })} placeholder='Пароль'/>
+        })} placeholder='Пароль' className={styles.password_input}/>
         <div onClick={()=> auth()} className={styles.auth_btn}><span>Войти</span></div>
         {errors ? <div className={styles.errors}>{errors}</div>
         :<div className={styles.errors}></div>}

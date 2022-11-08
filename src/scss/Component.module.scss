@@ -2,6 +2,8 @@
 $dark-blue: #0088CC;
 $dark-gray: #666666;
 $text_input: #3C3C3C;
+$main_color: #03A9F4;
+$border_left_color: #03A9F4;
 .header{
     height: 60px;
     width: 100%;
@@ -10,19 +12,30 @@ $text_input: #3C3C3C;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    border-left: 2px solid $border_left_color;
 }
 .header_wrapper{
     height: fit-content;
-    width: 98%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0px 14.27px;
+}
+.sidebar_icon_collapse{
+    background-image: url('../assets/header_icon_for_sidebar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 .header_logo{
-    font-style: italic;
+    font-style: normal;
     font-weight: 400;
-    font-size: 29.3053px;
-    line-height: 35px;
-    color: #0088CC;
+    font-size: 24px;
+    line-height: 28px;
+    color: $main_color;
     cursor: pointer;
 }
 .group_header{
@@ -33,17 +46,17 @@ $text_input: #3C3C3C;
 .header_name_company{
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 12px;
+    line-height: 14px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #0088CC;
-    margin-right: 20px;
+    color: $main_color;
+    margin-right: 11px;
     cursor: pointer;
-    border: 1px solid #0088CC;
-    padding: 8px 9px;
-    width: 165px;
+    border: 1px solid $main_color;
+    padding: 7.5px 10.5px;
+    width: fit-content;
     border-radius: 2px;
     display: flex;
     justify-content: center;
@@ -63,11 +76,30 @@ $text_input: #3C3C3C;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    height: 30px;
+    height: 40px;
     background-position: center;
-    width: 30px;
+    width: 40px;
     cursor: pointer;
     margin-right: 3px;
+}
+.header_user_not_img{
+    border-radius: 50%;
+    height: 40px;
+    background-position: center;
+    width: 40px;
+    text-align: center;
+    background: #009688;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    span{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 1.2px; 
+    }
 }
 
 // sidebar_header
@@ -353,9 +385,9 @@ $text_input: #3C3C3C;
 .sidebar{
     height: 100%;
     width: 210px;
-    min-width: 210px !important;
+    min-width: 210px;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
 }
 .sidebar_wrapper{
@@ -366,22 +398,37 @@ $text_input: #3C3C3C;
     flex-direction: column;
     position: fixed;
     border-right: 1px solid #9CB9C5;
+    border-left: 2px solid $border_left_color;
     height: 100%;
+    box-sizing: border-box;
 }
 .sidebar_wrapper_position{
     top: 60px;
     height: 90%;
-    width: 210px !important;
+    width: 210px ;
     min-height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     position: absolute;
     border-right: 1px solid #9CB9C5;
+    border-left: 2px solid $border_left_color;
+    box-sizing: border-box;
+}
+.sidebar_collapse_wrapper{
+    overflow-x: hidden;
+    max-width: 40px;
+    width: 40px !important;
+    min-width: unset !important;
+}
+.sidebar_collapse{
+    max-width: 40px !important; 
+    min-width: unset !important;
+    width: 40px !important;
 }
 .navigation_main{
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     height: 60px;
-    padding-left: 20px;
+    padding-left: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -390,11 +437,13 @@ $text_input: #3C3C3C;
     background: #E3EAEE;
 }
 .navigation_img{
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 31.5px;
-    width: 31.5px;
+    height: 20px;
+    min-height: 20px;
+    width: 20px;
+    min-width: 20px;
 }
 .navigation_title{
     margin-left: 16px;
@@ -514,27 +563,28 @@ $text_input: #3C3C3C;
 .header_name_company_wrapper{
     position: absolute;
     top: 40px;
-    left: -20px;
+    right: 10px;
+    transform: translate(0, 0%);
     background: rgb(255, 255, 255);
-    width: 220px;
     z-index: 99999999;
+    width: 385px;
+    height: fit-content;
+    max-height: 306px;
     cursor: pointer;
-    min-width: 220px;
-    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.25);
-    max-height: 500px;
     overflow-y: auto;
 }
 .one_company_name{
+    height: 34px;
     margin-left: 10px;
-    padding-top: 6px;
     padding-bottom: 0px;
-    margin-top: 4px;
     margin-bottom: 4px;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 12px;
+    line-height: 14px;
     color: #3C3C3C;
+    display: flex;
+    align-items: center;
 }
 .separate_line{
     position: absolute;
@@ -555,4 +605,10 @@ $text_input: #3C3C3C;
     margin-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+.separate_line_for_header{
+    border-left: 1px dashed #C6D2D9;
+    height: 40px;
+    width: 1px;
+    margin-right: 10px;
 }

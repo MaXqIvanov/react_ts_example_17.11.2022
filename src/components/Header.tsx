@@ -11,7 +11,7 @@ import { useAppDispatch } from '../hooks/redux';
 import { logout } from '../store/authSlice';
 import img_user from '../assets/img_user.svg';
 
-export const Header = ({setIsVisibleSideBar}:any) => {
+export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSideBar, isCollapseSideBar}:any) => {
   const router = useNavigate()
   const dispatch = useAppDispatch()
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false)
@@ -21,18 +21,13 @@ export const Header = ({setIsVisibleSideBar}:any) => {
   const [isVisibleModal, setIsVisibleModal] = useState<boolean>(false)
   // for ui
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false)
+  
 
-  useEffect(() => {
-    if(window.location.pathname !== '/auth'){
-      setIsVisibleSideBar(true)
-    }else{
-      setIsVisibleSideBar(false)
-    }
-  }, [window.location.href])
   return (
     <div id="header" className={styles.header}>
       <div className={styles.header_wrapper}>
         <div className={styles.group_header}>
+          <div onClick={()=> setIsCollapseSideBar(!isCollapseSideBar)} className={styles.sidebar_icon_collapse}></div>
           <div onClick={()=> router('/')} className={styles.header_logo}>WorkTracker</div>
         </div>
         <div className={styles.group_header}>
@@ -41,17 +36,17 @@ export const Header = ({setIsVisibleSideBar}:any) => {
             {
               isVisibleLabel && 
                 <div onClick={()=> setIsVisibleLabel(true)} className={styles.header_name_company_wrapper}>
-                  <div className={`${styles.one_company_title}`}>Выбрать компанию
-                    <div className={`${styles.separate_line}`}></div>
-                  </div>
-                  <div className={`${styles.one_company_name}`}>ООО “Купипродай”</div>
-                  <div className={`${styles.one_company_name}`}>ООО “Соберипострой"</div>
+                  <div className={`${styles.one_company_name}`}><span>ООО “Купипродай”</span></div>
+                  <div className={`${styles.one_company_name}`}><span>ООО “Соберипострой"</span></div>
+                  <div className={`${styles.one_company_name}`}><span>ООО “Соберипострой 2"</span></div>
                 </div>
             }
           </div>
-          <div className={styles.header_name}>Иванов Иван Иванович</div>
-          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}}
-          className={styles.header_user_img}></div>
+          {/* <div className={styles.header_name}>Иванов Иван Иванович</div> */}
+          <div className={styles.separate_line_for_header}></div>
+          <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user.avatar ? `url(${user.avatar})` : `none`}}
+          className={user.avatar ? styles.header_user_img : styles.header_user_not_img}>
+            <span>{user.avatar ? '' : user?.name?.split(' ')[0]?.split('')[0] + user?.name?.split(' ')[1]?.split('')[0]}</span></div>
         </div>
       </div>
       {isVisibleUserMenu &&
