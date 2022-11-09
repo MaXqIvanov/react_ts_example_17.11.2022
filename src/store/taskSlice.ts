@@ -21,8 +21,10 @@ export const getTaskDay = createAsyncThunk(
 export const getTaskWeek = createAsyncThunk(
   'task/getTaskWeek',
   async (params:any, {getState}:any) => {
+    console.log("this getTaskWeek");
+    console.log(params);
     // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
-    const response = await api.get(`v1/images/search`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}`)
     return {response}
   },
 )
@@ -109,7 +111,10 @@ const taskSlice = createSlice({
       state.loading = true
     });
     builder.addCase(getTaskWeek.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
-      
+      console.log(payload);
+      if(payload.response.status < 300){
+        state.get_all_task_week = payload.response.data
+      }
       state.loading = false
     });
     builder.addCase(getTaskWeek.rejected, (state:TaskState) => {

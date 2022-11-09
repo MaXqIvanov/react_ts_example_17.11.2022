@@ -20,21 +20,26 @@ function createData(number: number, name_task:string, begining:number, OA:any, c
     return {number, name_task, begining, OA, carbs, monday, thuesday, thirtday, firstday, friday, saturday, sunday, stat};
   }
   
-  const rows = [
-    createData(1, 'Frozen yoghurt', 159, "file", 24, 4.0, 10, 20, 30, 40, 50, 60, 15),
-    createData(2, 'Ice cream sandwich', 237, "file", 37, 4.3, 10, 20, 30, 40, 50, 60, 25),
-    createData(3, 'Eclair', 262, "file", 24, 6.0 , 10, 20, 30, 40, 50, 60, 35),
-    createData(4, 'Cupcake', 305, "file", 67, 4.3, 10, 20, 30, 40, 50, 60, 15),
-    createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
-  ];
+//   const rows = [
+//     createData(1, 'Frozen yoghurt', 159, "file", 24, 4.0, 10, 20, 30, 40, 50, 60, 15),
+//     createData(2, 'Ice cream sandwich', 237, "file", 37, 4.3, 10, 20, 30, 40, 50, 60, 25),
+//     createData(3, 'Eclair', 262, "file", 24, 6.0 , 10, 20, 30, 40, 50, 60, 35),
+//     createData(4, 'Cupcake', 305, "file", 67, 4.3, 10, 20, 30, 40, 50, 60, 15),
+//     createData(5, 'Gingerbread', 356, "file", 49, 3.9, 10, 20, 30, 40, 50, 60, 25),
+//   ];
 
 
 export const TableHeader = ({visible, current_day_task}:any) => {
-    const { current_variant_table, current_page_day, all_pages_day, current_page_week, all_pages_week, current_page_all, all_pages_all }
+    const { current_variant_table, current_page_day, all_pages_day, current_page_week, all_pages_week, current_page_all, all_pages_all, get_all_task_week }
     = useSelector((state:RootState) => state.task)
     
     const dispatch = useAppDispatch()
     const [isVisibleHref, setIsVisibleHref] = useState<any>(null)
+    const [rows, setRows] = useState<any>([])
+    useEffect(() => {
+        setRows(get_all_task_week)
+    }, [get_all_task_week])
+    
     
   return (
     <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table_task`}>
@@ -53,13 +58,13 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {rows?.length > 0 && rows.map((row:any, index: number) => (
                         <TableRow
-                        key={row.name_task}
+                        key={row.id}
                         sx={{'&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell style={{width: '1%'}} component="th" scope="row">
-                            {row.number}
+                            {index + 1}
                         </TableCell>
                         <TableCell style={{width: '60%'}} component="th" scope="row">
                             {row.name_task}
@@ -81,47 +86,47 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                     <TableRow>
                         <TableCell>№</TableCell>
                         <TableCell >Название задачи</TableCell>
-                        <TableCell align="right">Начало до</TableCell>
-                        <TableCell align="right">Норма</TableCell>
-                        <TableCell align="right">О/А</TableCell>
-                        <TableCell align="right">ПН, 12 сен 4.0</TableCell>
-                        <TableCell align="right">ВН, 13 сен 5.0</TableCell>
-                        <TableCell align="right">СР, 14 сен 6.0</TableCell>
-                        <TableCell align="right">ЧТ, 15 сен 7.0</TableCell>
-                        <TableCell align="right">ПТ, 16 сен 8.0</TableCell>
-                        <TableCell align="right">СБ, 17 сен 7.0</TableCell>
-                        <TableCell className={`table_cell ${styles.table_cell}`} align="right">ВС, 18 сен 8.0</TableCell>
+                        <TableCell align="center">Начало до</TableCell>
+                        <TableCell align="center">Норма</TableCell>
+                        <TableCell align="center">О/А</TableCell>
+                        <TableCell align="center">{rows[0]?.days[0]?.weekday === ''}, {rows[0]?.days[0]?.date}</TableCell>
+                        <TableCell align="center">ВТ, {rows[0]?.days[1]?.date}</TableCell>
+                        <TableCell align="center">СР, {rows[0]?.days[2]?.date}</TableCell>
+                        <TableCell align="center">ЧТ, {rows[0]?.days[3]?.date}</TableCell>
+                        <TableCell align="center">ПТ, {rows[0]?.days[4]?.date}</TableCell>
+                        <TableCell align="center">СБ, {rows[0]?.days[5]?.date}</TableCell>
+                        <TableCell className={`table_cell ${styles.table_cell}`} align="center">ВС, {rows[0]?.days[6]?.date}</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {rows?.length > 0 && rows?.map((row:any, index: number) => (
                         <TableRow
-                        key={row.name_task}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
-                            {row.number}
+                            {index + 1}
                         </TableCell>
                         <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{cursor: 'pointer'}} component="th" scope="row">
-                            {row.name_task}
+                            {row.name}
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right">
-                            {isVisibleHref === row.number &&
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.start_before}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.norm}</TableCell>
+                        <TableCell onClick={()=> setIsVisibleHref(row.id)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right">
+                            {isVisibleHref === row?.id &&
                             <div className={styles.href_link}>
                                 <a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
                                     https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0
                                 </a>
                             </div> }
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.monday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thuesday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.thirtday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.firstday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.friday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.saturday}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.sunday}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[0]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[1]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[2]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[3]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[4]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[5]?.do === true ? row?.norm : ''}</TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center' }} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[6]?.do === true ? row?.norm : ''}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
@@ -141,9 +146,9 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {rows?.length > 0 && rows.map((row:any) => (
                         <TableRow
-                        key={row.name_task}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">

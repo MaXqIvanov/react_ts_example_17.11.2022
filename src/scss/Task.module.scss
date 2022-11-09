@@ -1,6 +1,8 @@
 
 $dark-gray: #666666;
 $dark-blue: #0088CC;
+$border-color: #C6D2D9;
+
 .task{
     background: #F1F6F8;
     height: 100%;
@@ -8,9 +10,9 @@ $dark-blue: #0088CC;
     min-height: calc(100vh - 60px);
 }
 .task_wrapper{
-    padding: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding: 6px;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
     height: calc(100% -40px);
     width: calc(100% -40px);
     position: relative;
@@ -30,26 +32,40 @@ $dark-blue: #0088CC;
     line-height: 21px;
 }
 .current_btn{
-    width: 130px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
-    height: 40px;
-    border: 1.10983px solid #CDD9DF;
+    height: 31px;
+    border: 1px solid $border-color;
     box-sizing: border-box;
     cursor: pointer;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: #333333;
+    }
 }
 .current_btn_active{
-    width: 130px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #E3EAEE;
-    height: 40px;
-    border: 1.10983px solid #CDD9DF;
+    height: 31px;
+    border: 1px solid $border-color;
     box-sizing: border-box;
     cursor: pointer;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: #333333;
+    }
 }
 .nav_header_time{
     font-style: normal;
@@ -64,27 +80,28 @@ $dark-blue: #0088CC;
 }
 .calendar_body{
     // margin-left: 5px;
-    width: 25vw;
-    height: 38px;
+    width: 257px;
+    height: 32px;
     background: #FFFFFF;
-    border: 1.10983px solid #9CB9C5;
+    border: 1px solid $border-color;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     color: #3C3C3C;
-    min-width: 250px;
+    min-width: 257px;
     border-radius: 3.3px !important;
-    @media(min-width: 1500px){
-        min-width: 498.5px;
-    }
-    @media(max-width: 1500px){
-        width: 32vw;
-    }
+    // @media(min-width: 1500px){
+    //     min-width: 498.5px;
+    // }
+    // @media(max-width: 1500px){
+    //     width: 32vw;
+    // }
 }
 .calendar_body_calendar_day{
     width: 350px;
     height: 40px;
     background: #FFFFFF;
-    border: 1.10983px solid #9CB9C5;
+    border: 1px solid $border-color;
     display: flex;
     align-items: center;
     color: #3C3C3C;
@@ -94,42 +111,63 @@ $dark-blue: #0088CC;
     width: 22.2px;
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
 }
 .calendar_current_date{
-    width: calc(100% - 122.5px);
-    text-align: center;
+    position: relative;
+    width: 169px;
+    text-align: left;
     color: $dark-gray;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
 }
-.group_btn{
-    display: flex;
-    min-width: 80px;
-    width: 80px;
-}
-.group_btn_left{
-    height: 38px;
-    width: 40px;
-    min-width: 40px;
-    border-right: 1.10983px solid #9CB9C5;
-    border-left: 1.10983px solid #9CB9C5;
-    background-position: center;
+.calendar_img_btn{
+    background-image: url('../assets/task/btn_arrow.svg');
     background-repeat: no-repeat;
-    background-size: 15px 15px;
+    background-size: contain;
+    height: 5px;
+    width: 8px;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    transform: translate(-50%, -50%);
     cursor: pointer;
 }
+.group_btn{
+    position: relative;
+    display: flex;
+    min-width: 68px;
+    width: 68px;
+}
+.group_btn_left{
+    height: 34px;
+    width: 34px;
+    min-width: 34px;
+    border: 1px solid $border-color;
+    border: 1px solid $border-color;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 6px 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
 .group_btn_right{
-    height: 38px;
-    width: 40px;
-    max-width: 40px;
-    min-width: 40px;
+    height: 34px;
+    width: 34px;
+    max-width: 34px;
+    min-width: 34px;
     // border: 1.10983px solid #9CB9C5;
     border-right: 0px;
     border-left: 0px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 15px 15px;
+    background-size: 6px 10px;
     cursor: pointer;
     border-top-right-radius: 3.3px !important;
     border-bottom-right-radius: 3.3px !important;
@@ -137,7 +175,7 @@ $dark-blue: #0088CC;
 
 // work width Table
 .table{
-    margin-top: 20px;
+    margin-top: 11px;
     height: 100%;
     width: 100%;
 }
@@ -588,30 +626,41 @@ $dark-blue: #0088CC;
     z-index: 5;
     position: absolute;
     right: 520px;
-    top: 52.2px;
-    height: 256px;
-    width: 200px;
+    top: 45.7px;
+    height: 244.5px;
+    width: 118px;
     background: white;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    box-shadow: -2px 0px 5px #ccc;
     background-clip: padding-box;
-    border: 1px solid #ccc;
-    border-right: 0px !important;
+    border: 1px solid #90A4AE;
 }
 .side_panel_btn_current_week{
-    height: 60px;
+    height: 20px;
+    border-top-left-radius:2px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    &:first-child{
+        margin-top: 8px;
+    }
 }
 .side_panel_btn_after_week{
-    height: 60px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
 }
 .side_panel_btn_acitve{
     background: #03A9F4;

@@ -35,7 +35,7 @@ export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSide
         </div>
         <div className={styles.group_header}>
           <div className={styles.header_name_group}>
-            <div onClick={()=> setIsVisibleLabel(!isVisibleLabel)} className={styles.header_name_company}><span>{current_company?.name}</span></div>
+            <div onClick={()=> setIsVisibleLabel(!isVisibleLabel)} className={styles.header_name_company}><span>{current_company?.name ? current_company?.name : 'вы не состоите ни в одной компании'}</span></div>
             {
               isVisibleLabel &&(
                 user_company?.length > 0 ?

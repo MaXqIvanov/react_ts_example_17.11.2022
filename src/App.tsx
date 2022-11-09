@@ -28,7 +28,7 @@ function App() {
   const nav = useNavigate()
   useEffect(() => {
     dispatch(getProfile({nav: nav}))
-  }, [current_company.id])  
+  }, [current_company?.id, auth])  
 
   useEffect(() => {
     if(auth === true){

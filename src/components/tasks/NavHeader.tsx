@@ -8,7 +8,7 @@ import enUS from 'rc-calendar/lib/locale/en_US';
 
 import moment from 'moment';
 import 'moment/locale/ru';
-import calendar_img from '../../assets/clarity_calendar-line.svg'
+import calendar_img from '../../assets/task/calendar.svg'
 import btn_left from '../../assets/btn_left.svg'
 import btn_right from '../../assets/btn_right.svg'
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar, getTaskAll, getTaskDay, getTaskWeek, setCurrentVariantTable } from '../../store/taskSlice';
-import { Switch } from '@mui/material';
+import { Switch, TextField } from '@mui/material';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss'
 
@@ -25,6 +25,7 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
     const dispatch = useAppDispatch()
     const { variant_table, current_variant_table, current_page_day, all_pages_day, current_page_week,
         all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
+    const [search, setSearch] = useState<string>('')
     
         // Variables for calendar_day
     const [calendar_day_day, setCalendarDayDay] = useState<any>('')
@@ -45,6 +46,16 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
 
     const [choose_btn_week, setChooseBtnWeek] = useState<number>(1)
     const select_btn_week:any = [
+        // {
+        //     id: 1,
+        //     title: 'Сегодня',
+        //     class: `${styles.side_panel_btn_current_week}`
+        // },
+        // {
+        //     id: 2,
+        //     title: 'Вчера',
+        //     class: `${styles.side_panel_btn_current_week}`
+        // },
         {
             id: 1,
             title: 'Текущая неделя',
@@ -52,7 +63,7 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
         },
         {
             id: 2,
-            title: 'Прошлая неделя неделя',
+            title: 'Прошлая неделя',
             class: `${styles.side_panel_btn_after_week}`
         }
     ]
@@ -569,7 +580,10 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                     <div onClick={()=> 
                         setIsVisibleCalendarWeeks(!isVisibleCalendarWeeks)
                         } style={{backgroundImage: `url(${calendar_img})`}} className={styles.calendar_img}></div>
-                    <div className={styles.calendar_current_date }>
+                    <div className={styles.calendar_current_date}>
+                        <div onClick={()=> 
+                        setIsVisibleCalendarWeeks(!isVisibleCalendarWeeks)
+                        } className={styles.calendar_img_btn}></div>
                         {/* !! work here */}
                      {`${now_day >= 10 ? now_day : '0' + now_day}.${now_month >= 10 ? now_month : '0'+ now_month}.${now_year} - 
                        ${last_day >= 10 ? last_day : '0' + last_day}.${last_month >= 10 ? last_month : '0'+ last_month}.${last_year} `}
@@ -579,6 +593,16 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                         <div onClick={()=>getCurrentWeeks(3)} style={{backgroundImage: `url(${btn_left})`}} className={styles.group_btn_left}></div>
                         <div onClick={()=>getCurrentWeeks(4)} style={{backgroundImage: `url(${btn_right})`}} className={styles.group_btn_right}></div>
                     </div>
+                </div>
+                <div className='custom_search_wrapper'>
+                    <input
+                    onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                    style={{marginLeft: '10px'}}
+                    className='custom_search'
+                    placeholder='Поиск'
+                    ></input>
+                    <div className='custom_search_icon'></div>
                 </div>
                 {visible && 
                     <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
@@ -603,7 +627,8 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                 hoverValue={[moment(`${(now_month)}.${(now_day)}.${now_year}`), moment(`${(last_month)}.${(last_day)}.${last_year}`)]}
                 onHoverChange={(date:any)=> selectDate(date)}
                 onSelect={(date:any)=> selectDate(date)}
-                onChange={()=> selectDateHover('')}/>
+                onChange={()=> selectDateHover('')}
+                />
             </div>
             }
             </div>

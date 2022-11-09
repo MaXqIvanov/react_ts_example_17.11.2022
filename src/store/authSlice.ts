@@ -73,10 +73,10 @@ const authSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state:AuthState,  { payload }:PayloadAction<any>) => {
         console.log(payload);
         state.loading = false
-        state.first_render = false
         if(payload.response.status >= 400){
             payload.params.nav('/auth')
         }else if(payload.response.status < 300) {
+            state.first_render = false
             state.auth = true
             state.user = payload.response.data
             if(payload?.response2?.data){
@@ -100,8 +100,11 @@ const authSlice = createSlice({
         if(payload.response.status > 300){
             alert(payload.response.data.detail)
         }else if(payload.response.status < 300){
-            Cookies.set('token', payload.response.data.token)
-            Cookies.set('user', JSON.stringify(payload.response.data.user))
+            Cookies.set('token', payload.response.data.token, {expires: 90})
+            Cookies.set('user', JSON.stringify(payload.response.data.user), {expires: 90})
+            api.defaults.headers = {
+              Authorization: `Bearer ${payload.response.data.token}`
+            } as CommonHeaderProperties;
             state.auth = true
             state.user = payload.response.data
             payload.params.nav('/')
