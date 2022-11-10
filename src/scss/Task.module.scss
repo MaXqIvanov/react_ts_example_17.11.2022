@@ -750,3 +750,12 @@ $border-color: #C6D2D9;
         padding-right: 10px;
     }
 }
+
+.table_link{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}

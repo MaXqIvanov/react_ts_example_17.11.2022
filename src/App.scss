@@ -5,6 +5,18 @@ $text_input: #3C3C3C;
 $main_background_color: #F2F6F8;
 $border_main: #C6D2D9;
 
+.bg_light_red{
+  background-color: rgba($color: #F44336, $alpha: 0.5)
+}
+.bg_light_green{
+  background-color: rgba($color: #009688, $alpha: 0.5)
+}
+.bg_white{
+  // background-color: white;
+}
+.bg_light_yellow{
+  background-color: rgba($color: #FF9800, $alpha: 0.5)
+}
 .spinner_app{
     height: 90vh;
     z-index: 9999999;
@@ -44,22 +56,48 @@ $border_main: #C6D2D9;
   // table head
 .custom_table{
   td{
-    border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
+    position: relative;
+    // border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
     border-bottom: 0.572072px solid rgba($color: #C6D2D9, $alpha: 1) !important;
     border-right: 0px !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    max-height: 30px !important;
   }
   th{
-    // border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
-    // border-left: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
-    border-right: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
+    position: relative;
+    max-height: 30px !important;
+    // border-right: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
     // border-top: 0.572072px dashed rgba($color: #3C3C3C, $alpha: 0.4) !important;
     border-bottom: 0.572072px solid rgba($color: #C6D2D9, $alpha: 1) !important;
     border-left: 0px !important;
     border-top: 0px !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
 /* black */
   }
+  .border_dashed{
+    border-right: 1px dashed rgba($color: $border_main, $alpha: 1) !important;
+    height: 70%;
+    width: 99.2%;
+    position: absolute;
+    top: 50%;
+    left: 51.3%;
+    // background: red;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+  }
   .table_cell{
+    position: relative;
     border-right: 0px !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
   }
   table{
     border-bottom: 0px !important;
@@ -589,10 +627,10 @@ $border_main: #C6D2D9;
   text-decoration-line: none !important;
 }
 .MuiTableCell-root{
-  padding-top: 9px !important;
-  padding-bottom: 9px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
   @media(max-width: 1500px){
-    padding: 12px !important;
+    padding: 8px !important;
   }
 }
 // #mui-rte-editor{
