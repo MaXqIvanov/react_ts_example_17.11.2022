@@ -50,7 +50,7 @@ const taskSlice = createSlice({
     loading: false,
     // for work
     variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' } ],
-    current_variant_table: 1,
+    current_variant_table: 2,
     // for sidebar
     isVisibleSideBar: false,
     // task for day
@@ -131,7 +131,7 @@ const taskSlice = createSlice({
     });
     builder.addCase(getTaskAll.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
       if(payload.response.status < 300){
-        state.get_all_task_all = payload.response.data.results
+        state.get_all_task_week = payload.response.data.results
       }
       state.loading = false
     });

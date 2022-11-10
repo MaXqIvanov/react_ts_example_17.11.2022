@@ -27,6 +27,7 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
     const dispatch = useAppDispatch()
     const { variant_table, current_variant_table, current_page_day, all_pages_day, current_page_week,
         all_pages_week, current_page_all, all_pages_all }  = useSelector((state:RootState) => state.task)
+    const { current_company } = useSelector((state: RootState)=> state.auth)
     const [search, setSearch] = useState<string>('')
     const debouncedSearchTerm = useDebounce(search, 300);
 
@@ -93,7 +94,7 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
         }else{
           dispatch(getTaskDay({now_day: calendar_day_day, now_month: calendar_day_month, now_year: calendar_day_year, search: search}))
         }
-      }, [ debouncedSearchTerm, current_variant_table, current_page_day, current_page_week, current_page_all, calendar_day_day, calendar_day_month, calendar_day_year, is_change_day ])
+      }, [ current_company, debouncedSearchTerm, current_variant_table, current_page_day, current_page_week, current_page_all, calendar_day_day, calendar_day_month, calendar_day_year, is_change_day ])
     
     useEffect(() => {
         setSearch('')
