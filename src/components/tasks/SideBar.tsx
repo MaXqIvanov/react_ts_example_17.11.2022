@@ -15,6 +15,8 @@ export const SideBar = () => {
   const completeTask = ()=> {
     if(spend_time?.length > 0){
       alert('Отправка данных')
+    }else{
+      alert('Затрачено минут обязательное поле')
     }
   }
   return (
