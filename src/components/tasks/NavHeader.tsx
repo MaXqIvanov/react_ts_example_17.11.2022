@@ -582,6 +582,16 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
         {
                 current_variant_table == 1 &&
                 <div className={`${styles.nav_header_calendar}`}>
+                    <div className='custom_search_wrapper'>
+                        <input
+                        onChange={(e) => setSearch(e.target.value)}
+                        value={search}
+                        style={{marginLeft: '10px'}}
+                        className='custom_search'
+                        placeholder='Поиск'
+                        ></input>
+                        <div className='custom_search_icon'></div>
+                    </div>
                     {visible && 
                         <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
                             <span>ДОБАВИТЬ ЗАДАЧУ + </span> 

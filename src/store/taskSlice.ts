@@ -37,7 +37,7 @@ export const getTaskAll = createAsyncThunk(
     
     let company:any = localStorage.getItem('WT_company')
     
-    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}`)
+    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}`)
     return {response}
   },
 )
@@ -54,24 +54,27 @@ const taskSlice = createSlice({
     // for sidebar
     isVisibleSideBar: false,
     // task for day
+    // ? dont work
     get_all_task_day: [],
     current_task_day: {},
+    // ? end dont work
     // task for week
     get_all_task_week: [],
-    current_task_week: {},
+    current_task_week: {} as any,
     // task for all 
+    // ? dont work
     get_all_task_all: [],
     current_task_all: {},
-
+    // ? end dont work
     // for pagination for day
     current_page_day: 1,
-    all_pages_day: 10,
+    all_pages_day: 1,
     // for pagination for week
     current_page_week: 1,
-    all_pages_week: 10,
+    all_pages_week: 1,
     // for pagination for all
     current_page_all: 1,
-    all_pages_all: 10,
+    all_pages_all: 1,
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
@@ -98,6 +101,10 @@ const taskSlice = createSlice({
         state.current_page_all = current_page_all
       }
     },
+    getCurrentTask(state:TaskState, action:any){
+      console.log(action.payload);
+      state.current_task_week = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getTaskDay.pending, (state:TaskState, action:PayloadAction) => {
@@ -144,4 +151,4 @@ const taskSlice = createSlice({
 });
 
 export default taskSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePagesDay, changePagesWeek, changePagesAll } = taskSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePagesDay, changePagesWeek, changePagesAll, getCurrentTask } = taskSlice.actions;
