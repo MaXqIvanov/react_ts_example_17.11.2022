@@ -98,8 +98,9 @@ $border-color: #C6D2D9;
     // }
 }
 .calendar_body_calendar_day{
-    width: 350px;
-    height: 40px;
+    position: relative;
+    width: 248px;
+    height: 32px;
     background: #FFFFFF;
     border: 1px solid $border-color;
     display: flex;
@@ -127,6 +128,19 @@ $border-color: #C6D2D9;
     line-height: 14px;
     color: #333333;
 }
+.calendar_current_date_day{
+    position: relative;
+    width: 169px;
+    text-align: left;
+    color: $dark-gray;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
+    text-align: center;
+    padding-right: 20px;
+}
 .calendar_img_btn{
     background-image: url('../assets/task/btn_arrow.svg');
     background-repeat: no-repeat;
@@ -139,6 +153,19 @@ $border-color: #C6D2D9;
     transform: translate(-50%, -50%);
     cursor: pointer;
 }
+.calendar_img_btn_day{
+    background-image: url('../assets/task/btn_arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 5px;
+    width: 8px;
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 99;
+}
 .group_btn{
     position: relative;
     display: flex;
@@ -146,16 +173,16 @@ $border-color: #C6D2D9;
     width: 68px;
 }
 .group_btn_left{
-    height: 34px;
-    width: 34px;
-    min-width: 34px;
+    height: 32px;
+    width: 32px;
+    min-width: 32px;
     border: 1px solid $border-color;
     border: 1px solid $border-color;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 6px 10px;
     cursor: pointer;
-    box-sizing: border-box;
+    // box-sizing: border-box;
 }
 .group_btn_right{
     height: 34px;
@@ -169,6 +196,7 @@ $border-color: #C6D2D9;
     background-repeat: no-repeat;
     background-size: 6px 10px;
     cursor: pointer;
+    box-sizing: border-box;
     border-top-right-radius: 3.3px !important;
     border-bottom-right-radius: 3.3px !important;
 }
@@ -245,15 +273,15 @@ $border-color: #C6D2D9;
 // new code
 .group_for_checked{
     display: flex;
-    height: 40px;
+    height: 32px;
     margin-right: 10px;
     align-items: center;
 }
 .title_checked{
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 12px;
+    line-height: 14px;
 
     /* black */
 

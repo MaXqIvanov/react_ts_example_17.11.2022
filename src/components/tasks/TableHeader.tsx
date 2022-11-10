@@ -128,37 +128,37 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                             </div> } */}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[0].status === 'red' ? 'bg_light_red' : row.days[0].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[0]?.status === 'red' ? 'bg_light_red' : row.days[0]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[0]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[1].status === 'red' ? 'bg_light_red' : row.days[1].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[1]?.status === 'red' ? 'bg_light_red' : row.days[1]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[1]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[2].status === 'red' ? 'bg_light_red' : row.days[2].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[2]?.status === 'red' ? 'bg_light_red' : row.days[2]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[2]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[3].status === 'red' ? 'bg_light_red' : row.days[3].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[3]?.status === 'red' ? 'bg_light_red' : row.days[3]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[3]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[4].status === 'red' ? 'bg_light_red' : row.days[4].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[4]?.status === 'red' ? 'bg_light_red' : row.days[4]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[4]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[5].status === 'red' ? 'bg_light_red' : row.days[5].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[5]?.status === 'red' ? 'bg_light_red' : row.days[5]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[5]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell className={`${row.days[6].status === 'red' ? 'bg_light_red' : row.days[6].status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
+                        <TableCell className={`${row.days[6]?.status === 'red' ? 'bg_light_red' : row.days[6]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">
                             {row?.days[6]?.do === true ? row?.norm : ''}
                             {/* <div className={'border_dashed'}></div> */}
@@ -173,33 +173,39 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>№</TableCell>
-                        <TableCell>Название задачи</TableCell>
-                        <TableCell align="right">Начало до</TableCell>
-                        <TableCell align="right">Норма</TableCell>
-                        <TableCell style={{minWidth: '20px'}} className={`header_oa`} align="right">О/А</TableCell>
-                        <TableCell className={`table_cell`} align="right">{current_day_task}</TableCell>
+                        <TableCell>№<div className={'border_dashed'}></div></TableCell>
+                        <TableCell>Название задачи<div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{textAlign: 'center'}} align="right">Начало до<div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{textAlign: 'center'}} align="right">Норма<div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{minWidth: '20px', textAlign: 'center'}} className={`header_oa`} align="right">О/А<div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{textAlign: 'center'}} className={`table_cell`} align="right">{rows[0]?.days[0]?.weekday}, {rows[0]?.days[0]?.day} {rows[0]?.days[0]?.month}</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows?.length > 0 && rows.map((row:any) => (
+                    {rows?.length > 0 && rows.map((row:any, index: number) => (
                         <TableRow
                         key={row.id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
+                        // sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
-                            {row.number}
+                            {index + 1}
+                            <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell onClick={()=> dispatch(changeVisibleSideBar())} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
-                            {row.name_task}
+                            {row.name}
+                            <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.begining}</TableCell>
-                        <TableCell style={{cursor: 'pointer'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.carbs}</TableCell>
-                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '30px'}} className={styles.paperclip_img} align="right">
-                            {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
-                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> }
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.start_before}
+                        <div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.norm}
+                        <div className={'border_dashed'}></div></TableCell>
+                        <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '30px', textAlign: 'center'}} className={styles.paperclip_img} align="right">
+                            <a target={'_blank'} href={row.artefact} className={`${styles.table_link}`}></a>
+                            {/* {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
+                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> } */}
+                            <div className={'border_dashed'}></div>
                         </TableCell>
-                        <TableCell style={{cursor: 'pointer', width: '90px'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row.stat}</TableCell>
+                        <TableCell className={`${row.days[0]?.status === 'red' ? 'bg_light_red' : row.days[0]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `} style={{cursor: 'pointer', width: '90px', textAlign: 'center'}} onClick={()=> dispatch(changeVisibleSideBar())} align="right">{row?.days[0]?.do === true ? row?.norm : ''}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

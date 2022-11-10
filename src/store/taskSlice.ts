@@ -13,7 +13,7 @@ export const getTaskDay = createAsyncThunk(
   async (params:any, {getState}:any) => {
     console.log(params);
     // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
-    const response = await api.get(`v1/images/search`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}`)
     return {response}
   },
 )
@@ -24,7 +24,7 @@ export const getTaskWeek = createAsyncThunk(
     console.log("this getTaskWeek");
     console.log(params);
     // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}`)
     return {response}
   },
 )
@@ -33,7 +33,11 @@ export const getTaskAll = createAsyncThunk(
   'task/getTaskAll',
   async (params:any, {getState}:any) => {
     // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
-    const response = await api.get(`v1/images/search`)
+    console.log(params);
+    
+    let company:any = localStorage.getItem('WT_company')
+    
+    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}`)
     return {response}
   },
 )
@@ -100,7 +104,8 @@ const taskSlice = createSlice({
       state.loading = true
     });
     builder.addCase(getTaskDay.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
-        
+      console.log(payload);
+      state.get_all_task_week = payload.response.data
       state.loading = false
     });
     builder.addCase(getTaskDay.rejected, (state:TaskState) => {
@@ -125,7 +130,9 @@ const taskSlice = createSlice({
       state.loading = true
     });
     builder.addCase(getTaskAll.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
-      
+      if(payload.response.status < 300){
+        state.get_all_task_all = payload.response.data.results
+      }
       state.loading = false
     });
     builder.addCase(getTaskAll.rejected, (state:TaskState) => {
