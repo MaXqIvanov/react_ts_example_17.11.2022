@@ -3,6 +3,7 @@ import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
 import { TaskState } from '../ts/anyTypes';
+import moment from 'moment';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
@@ -42,6 +43,18 @@ export const getTaskAll = createAsyncThunk(
   },
 )
 
+export const finishTask = createAsyncThunk(
+  'task/finishTask',
+  async (params:any, {getState}:any) => {
+    // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+    console.log(params);
+    const response = await api.post(`tasks/execute/${getState().task.current_task_week.id}/complete/`,{
+      time_spent: params.time_spent
+    })
+    return {response}
+  },
+)
+
 
 const taskSlice = createSlice({
   name: 'task',
@@ -61,6 +74,7 @@ const taskSlice = createSlice({
     // task for week
     get_all_task_week: [],
     current_task_week: {} as any,
+    current_task_index: 0,
     // task for all 
     // ? dont work
     get_all_task_all: [],
@@ -103,7 +117,8 @@ const taskSlice = createSlice({
     },
     getCurrentTask(state:TaskState, action:any){
       console.log(action.payload);
-      state.current_task_week = action.payload
+      state.current_task_week = action.payload.current_task 
+      state.current_task_index = action.payload.index
     }
   },
   extraReducers: (builder) => {
@@ -145,6 +160,32 @@ const taskSlice = createSlice({
     builder.addCase(getTaskAll.rejected, (state:TaskState) => {
       state.loading = false
     });
+    // finishTask
+    builder.addCase(finishTask.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(finishTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      // state.get_all_task_week = payload.response.data
+      if(payload.response.status < 300){
+        let current_day_week = moment().toDate().getDay() - 1
+        alert(payload.response.data.detail)
+        try {
+          state.get_all_task_week[state.current_task_index].days[current_day_week] = {...state.get_all_task_week[state.current_task_index].days[current_day_week], status: 'green'} 
+        } catch (error) {
+          
+        }
+      }
+      else{
+        alert(payload.response.data.detail)
+      }
+      state.isVisibleSideBar = false
+      state.loading = false
+    });
+    builder.addCase(finishTask.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+
   },
 
   

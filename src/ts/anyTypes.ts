@@ -23,6 +23,7 @@ export type TaskState = {
     all_pages_week: number,
     current_page_all: number,
     all_pages_all: number,
+    current_task_index: number,
 }
 export type CompanyState = {
     loading: boolean,
@@ -32,19 +33,19 @@ export type CompanyState = {
 
 }
 export type ControlState = {
-    variant_table: Array<any>,
-    current_variant_table: number,
     loading: boolean,
     isVisibleSideBar: boolean,
     controls_task_all: Array<any>
     current_page: number,
     all_pages: number,
+    position_all: Array<any>,
+    position_current: any,
 }
 export type PositionState = {
-    variant_table: Array<any>,
-    current_variant_table: number,
     loading: boolean,
     isVisibleSideBar: boolean,
+    position_all: Array<any>,
+    position_current: any,
     // pagination
     current_page: number,
     all_pages: number,

@@ -5,17 +5,18 @@
     min-height: calc(100vh - 60px);
 }
 .controls_wrapper{
-    padding: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    height: calc(100% - 24px);
-    width: calc(100% - 40px);
+    padding: 6px;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
+    height: calc(100% -40px);
+    width: calc(100% -40px);
     position: relative;
 }
 .nav_header{
     display: flex;
     width: 100%;
     justify-content: right;
+    align-items: center;
 }
 .nav_header_btn{
     width: fit-content;
@@ -23,7 +24,7 @@
     align-items: right;
 }
 .table{
-    margin-top: 16px;
+    margin-top: 11px;
     height: 100%;
     width: 100%;
 }
@@ -85,8 +86,16 @@
     text-align: center;
 }
 .select_position{
-    width: 350px !important;
+    width: 450px !important ;
+    height: 34px !important;
+    
+    /* white */
+    
     background: #FFFFFF;
+    /* blue-gray-3 */
+    
+    border: 1px solid #C6D2D9;
+    border-radius: 2px;
 }
 .input_label{
     margin-top: -4px !important;

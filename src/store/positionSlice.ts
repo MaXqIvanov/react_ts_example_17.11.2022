@@ -12,7 +12,8 @@ export const getPosition = createAsyncThunk(
   'position/getPosition',
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
-    const response = await api.get(`v1/images/search`)
+    let company:any = localStorage.getItem('WT_company')
+    const response = await api.get(`companies/companies/positions_list/${JSON.parse(company).id}`)
     return {response}
   },
 )
@@ -20,10 +21,10 @@ export const getPosition = createAsyncThunk(
 const controlSlice = createSlice({
   name: 'position',
   initialState: {
-    variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' }],
-    current_variant_table: 1,
     loading: false,
 
+    position_all: [],
+    position_current: {},
     // for sidebar
     isVisibleSideBar: false,
     // for pagination
@@ -31,9 +32,6 @@ const controlSlice = createSlice({
     all_pages: 10,
   },
   reducers: {
-    setCurrentVariantTable(state:PositionState, action:any){
-        state.current_variant_table = action.payload
-    },
     changeVisibleSideBar(state:PositionState){
       state.isVisibleSideBar = !state.isVisibleSideBar
     },
@@ -43,13 +41,18 @@ const controlSlice = createSlice({
         state.current_page = current_page
       }
     },
+    getCurrentPosition(state: PositionState, action:any){
+      state.position_current = action.current
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPosition.pending, (state:PositionState, action:PayloadAction) => {
       state.loading = true
     });
     builder.addCase(getPosition.fulfilled, (state:PositionState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
       
+      state.position_all = payload.response.data
       state.loading = false
     });
     builder.addCase(getPosition.rejected, (state:PositionState) => {
@@ -59,4 +62,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages } = controlSlice.actions;
+export const { changeVisibleSideBar, changePages, getCurrentPosition } = controlSlice.actions;

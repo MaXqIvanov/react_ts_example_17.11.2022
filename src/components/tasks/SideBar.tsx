@@ -4,7 +4,7 @@ import styles from '../../scss/Task.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
+import { changeVisibleSideBar, finishTask } from '../../store/taskSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
@@ -14,7 +14,9 @@ export const SideBar = () => {
   const [spend_time, setSpendTime] = useState<string>('')
   const completeTask = ()=> {
     if(spend_time?.length > 0){
-      alert('Отправка данных')
+      dispatch(finishTask({
+        time_spent: spend_time,
+      }))
     }else{
       alert('Затрачено минут обязательное поле')
     }

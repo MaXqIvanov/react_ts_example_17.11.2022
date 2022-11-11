@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../scss/Task.module.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -28,11 +28,14 @@ function createData(number: number, name_task:string, position:string, OA:number
   ];
 
 export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
+    const [rows, setRows] = useState<any>([])
     const dispatch = useAppDispatch()
-    const {current_page, all_pages} = useSelector((state:RootState)=> state.control)
+    const {current_page, all_pages, controls_task_all} = useSelector((state:RootState)=> state.control)
+
     useEffect(() => {
-        dispatch(getControlTaskAll(''))
-    }, [current_page])
+        setRows(controls_task_all)
+    }, [controls_task_all])
+    
 
   return (
     <div className={`${styles.table}`}>
@@ -41,25 +44,28 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>№</TableCell>
-                        <TableCell>Название задачи</TableCell>
-                        <TableCell align="left">Должность</TableCell>
-                        <TableCell className={`table_cell`} style={{width:'1%'}} align="left">Норма</TableCell>
+                        <TableCell>№<div className={'border_dashed'}></div></TableCell>
+                        <TableCell>Название задачи<div className={'border_dashed'}></div></TableCell>
+                        <TableCell align="center">Должность<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`} style={{width:'1%'}} align="center">Норма</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row:any, index:number) => (
                         <TableRow
                         key={row.name_task}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                             <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {row.number}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
                             <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.name_task}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.position}</TableCell>
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.position}
+                            <div className={'border_dashed'}></div></TableCell>
                             <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'10%', cursor: 'pointer'}} className={styles.paperclip_img} align="left">{row.OA }</TableCell>        
                         </TableRow>
                     ))}

@@ -64,19 +64,19 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         sx={{'&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {index + 1}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
                             {row.name}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell style={{cursor: 'pointer'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="center">{row.start_before}
                         <div className={'border_dashed'}></div></TableCell>
                         <TableCell style={{cursor: 'pointer'}} align="center">{row.norm}
@@ -133,23 +133,23 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {index + 1}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{cursor: 'pointer'}} component="th" scope="row">
                             {row.name}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">{row.start_before}
                         <div className={'border_dashed'}></div></TableCell>
                         <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">{row.norm}
                         <div className={'border_dashed'}></div></TableCell>
                         <TableCell onClick={()=> setIsVisibleHref(row.id)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '29px'}} className={styles.paperclip_img} align="right">
@@ -168,49 +168,49 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         <>
                         <TableCell className={`${row?.days[0]?.status === 'red' ? 'bg_light_red' : row?.days[0]?.status === 'green' ? 'bg_light_green' : row?.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[0]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[1]?.status === 'red' ? 'bg_light_red' : row.days[1]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[1]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[2]?.status === 'red' ? 'bg_light_red' : row.days[2]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[2]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[3]?.status === 'red' ? 'bg_light_red' : row.days[3]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[3]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[4]?.status === 'red' ? 'bg_light_red' : row.days[4]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[4]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[5]?.status === 'red' ? 'bg_light_red' : row.days[5]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[5]?.do === true ? row?.norm : ''}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell className={`${row.days[6]?.status === 'red' ? 'bg_light_red' : row.days[6]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `}
                          style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">
                             {row?.days[6]?.do === true ? row?.norm : ''}
                             {/* <div className={'border_dashed'}></div> */}
@@ -284,23 +284,23 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         // sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{width: '1%', cursor: 'pointer'}} component="th" scope="row">
                             {index + 1}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} style={{width: '60%', cursor: 'pointer'}} component="th" scope="row">
                             {row.name}
                             <div className={'border_dashed'}></div>
                         </TableCell>
                         <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">{row.start_before}
                         <div className={'border_dashed'}></div></TableCell>
                         <TableCell style={{cursor: 'pointer', textAlign: 'center'}} onClick={()=>{
-                         dispatch(getCurrentTask(row))
+                         dispatch(getCurrentTask({current_task: row, index: index}))
                          dispatch(changeVisibleSideBar())}} align="right">{row.norm}
                         <div className={'border_dashed'}></div></TableCell>
                         <TableCell onClick={()=> setIsVisibleHref(row.number)} style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '30px', textAlign: 'center'}} className={styles.paperclip_img} align="right">
@@ -311,11 +311,11 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         </TableCell>
                         {rows[0]?.days?.length > 0 ?
                             <TableCell className={`${row.days[0]?.status === 'red' ? 'bg_light_red' : row.days[0]?.status === 'green' ? 'bg_light_green' : row.start_before !== null ? 'bg_light_yellow' : 'bg_white'} `} style={{cursor: 'pointer', width: '90px', textAlign: 'center'}} onClick={()=>{
-                                dispatch(getCurrentTask(row))
+                                dispatch(getCurrentTask({current_task: row, index: index}))
                                 dispatch(changeVisibleSideBar())}} align="right">{row?.days[0]?.do === true ? row?.norm : ''}</TableCell>
                             :
                             <TableCell style={{cursor: 'pointer', width: '90px', textAlign: 'center'}} onClick={()=>{
-                                dispatch(getCurrentTask(row))
+                                dispatch(getCurrentTask({current_task: row, index: index}))
                                 dispatch(changeVisibleSideBar())}} align="right">...</TableCell>
                         }
                         </TableRow>
