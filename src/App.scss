@@ -822,10 +822,14 @@ $border_main: #C6D2D9;
   }
 }
 .custom_btn_wrapper{
-  position: absolute;
-  bottom: 13px;
-  right: 10px;
+  // position: absolute;
+  // bottom: 13px;
+  // right: 10px;
   display: flex;
+  justify-content: right;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 13px;
   .btn_cancel{
     display: flex;
     justify-content: center;
@@ -854,6 +858,60 @@ $border_main: #C6D2D9;
       font-weight: 400;
       font-size: 12px;
       line-height: 14px;
+    }
+  }
+  .btn_mistake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 106px;
+    height: 31px;
+    background: rgba(244, 67, 54, 0.5);
+    border-radius: 2px;
+    cursor: pointer;
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      /* identical to box height */
+
+      text-transform: uppercase;
+
+      /* white */
+
+      color: #FFFFFF;
+    }
+    transition: all linear 0.22s;
+    &:hover{
+      background: rgba(244, 67, 54, 1);
+    }
+  }
+  .btn_good{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98px;
+    height: 31px;
+    background: rgba(0, 150, 136, 0.5);
+    border-radius: 2px;
+    cursor: pointer;
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      /* identical to box height */
+
+      text-transform: uppercase;
+
+      /* white */
+
+      color: #FFFFFF;
+    }
+    transition: all linear 0.22s;
+    &:hover{
+      background: rgba(0, 150, 136, 1);
     }
   }
 }

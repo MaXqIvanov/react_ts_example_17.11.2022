@@ -24,12 +24,21 @@ export const getControlTaskAll = createAsyncThunk(
   },
 )
 export const getPosition = createAsyncThunk(
-  'position/getPosition',
+  'control/getPosition',
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
     let company:any = localStorage.getItem('WT_company')
     const response = await api.get(`companies/companies/positions_list/${JSON.parse(company).id}`)
     return {response}
+  },
+)
+// tasks/reports/10/approve/
+export const taskApprove = createAsyncThunk(
+  'control/taskApprove',
+  async (params: any, {getState}:any) => {
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
+    const response = await api.post(`tasks/reports/${getState().control.controls_task_current.id}/approve/`)
+    return {response, params}
   },
 )
 
@@ -44,6 +53,8 @@ const controlSlice = createSlice({
     isVisibleSideBar: false,
     // get control data for table
     controls_task_all: [],
+    controls_task_current: {} as any,
+    controls_task_index: 0,
     current_page: 1,
     all_pages: 10,
 
@@ -61,6 +72,10 @@ const controlSlice = createSlice({
     selectCurrentPosition(state: ControlState, action:any){
       state.position_current = action.payload.current_position
       action.payload.setIsVisibleSelect(false)
+    },
+    setControlsTaskCurrent(state: ControlState, action:any){
+      state.controls_task_current = action.payload.task_current
+      state.controls_task_index = action.payload.index
     }
   },
   extraReducers: (builder) => {
@@ -89,8 +104,23 @@ const controlSlice = createSlice({
     builder.addCase(getPosition.rejected, (state:ControlState) => {
       state.loading = false
     });
+    // taskApprove
+    builder.addCase(taskApprove.pending, (state:ControlState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(taskApprove.fulfilled, (state:ControlState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 300){
+        state.controls_task_all.splice(state.controls_task_index, 1)
+        state.isVisibleSideBar = false
+      }
+      state.loading = false
+    });
+    builder.addCase(taskApprove.rejected, (state:ControlState) => {
+      state.loading = false
+    });
   },
 });
 
 export default controlSlice.reducer;
-export const { changeVisibleSideBar, changePagesControl, selectCurrentPosition } = controlSlice.actions;
+export const { changeVisibleSideBar, changePagesControl, selectCurrentPosition, setControlsTaskCurrent } = controlSlice.actions;

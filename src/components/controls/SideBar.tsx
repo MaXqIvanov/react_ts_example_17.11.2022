@@ -1,53 +1,60 @@
 import { TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../scss/Controls.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
+import { useAppDispatch } from '../../hooks/redux';
+import { changeVisibleSideBar, taskApprove } from '../../store/controlSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
+export const SideBar = (props: any) => {
+  const dispatch = useAppDispatch()
+  const {controls_task_current} = useSelector((state: RootState)=> state.control)
+  const [spend_time, setSpendTime] = useState<string>('')
+
   return (
     <>
         <div className={styles.user_side_menu}>
           <div className={styles.user_side_menu_wrapper}>
-            <div onClick={()=> setIsVisibleSideBar(!isvisible_sidebaer)} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_btn}></div>
-            <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
-            <div className={styles.text_field_block}>
-                <div className={styles.task_title}>Задача</div>
-                <div className={`${styles.current_task} min-width`}>Выполнение контроля открытия магазина</div>
-                <div className={styles.task_begining_title}>Начало до</div>
-                <div className={styles.task_begining}>10:00</div>
-                <div className={styles.task_begining_title}>Переодичность</div>
-                <div className={`${styles.task_periodicity} min-width`}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</div>
-                <div className={styles.task_begining_title}>Отчёт/артефакт</div>
-                <div className={`${styles.task_reports} min-width`}>
-                    <a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
-                        https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0
-                    </a>
-                </div>
-                <div className={styles.task_begining_title}>Норма (минуты)</div>
-                <div className={styles.task_norma}>10</div>
-                <div className={styles.task_begining_title}>Затрачено (минуты)</div>
-                <div className={styles.task_spent}>15</div>
-                <div className={styles.task_begining_title}>Комментарий</div>
-                <div className={`${styles.task_comment} min-width`}>Открытие и закрытие магазина должно проводиться в соответствии с установленным регламентом по пункту 6.6.6 ст. 13</div>
-              {/* <TextField
-                value={'10'}
-                className={`${styles.text_field}`}
-                label="Затрачено времени (минуты)"
-                InputProps={{
-                  type: 'string',
-                }}
-              /> */}
+            <div className={styles.side_menu_header}>
+              <span>{controls_task_current._task.name}</span>
+              <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.btn_close}></div>
             </div>
-            <div className={styles.group_btn_side_bar}>
-                <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}><span>ВСЕ ХОРОШО</span></div>
-                  <div className={styles.btn_save_side_bar}><span>ЕСТЬ ОШИБКИ</span></div>
-                </div>
+            <div style={{marginTop: '20px'}} className={'wrapper_input'}>
+              <div className={'label'}>Начало до</div>
+              <input disabled value={controls_task_current._task.start_before}/>
+            </div>
+            <div style={{marginTop: '20px'}} className={'wrapper_input'}>
+              <div className={'label'}>Переодичность</div>
+              <input disabled value={controls_task_current.start_before}/>
+            </div>
+            <div style={{marginTop: '20px'}} className={'wrapper_input'}>
+              <div className={'label'}>Отчет/Артефакт</div>
+              <div className={'artefact'}>
+                <a href={controls_task_current._task.artefact}>
+                  {controls_task_current._task.artefact}
+                </a>
+              </div>
+            </div>
+            <div className={'wrapper_input_two_btn'}>
+              <div style={{marginTop: '20px', marginLeft: '20px'}} className={'wrapper_input'}>
+                <div className={'label'}>Норма</div>
+                <input disabled value={controls_task_current._task.norm}/>
+              </div>
+              <div style={{marginTop: '20px'}} className={'wrapper_input'}>
+                <div className={'label'}>Затрачено минут</div>
+                <input disabled type={'number'} value={controls_task_current.time_spent}/>
+              </div>
+            </div>
+            <div className={'custom_btn_wrapper'}>
+                <div onClick={()=> dispatch(changeVisibleSideBar())} className={'btn_cancel'}><span>Отмена</span></div>
+                <div style={{marginRight: '10px'}} onClick={()=> alert('')} className={'btn_mistake'}><span>есть ошибки</span></div>
+                <div onClick={()=> dispatch(taskApprove(''))} className={'btn_good'}><span>все хорошо</span></div>
             </div>
           </div>
         </div>
-        <div onClick={()=> setIsVisibleSideBar(false)} className={styles.user_side_menu_plug}></div>
+        <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.user_side_menu_plug}></div>
       </>
   )
 }

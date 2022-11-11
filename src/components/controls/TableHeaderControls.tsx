@@ -11,21 +11,10 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import paperclip_img from '../../assets/task/mdi_paperclip.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesControl, getControlTaskAll } from '../../store/controlSlice';
+import { changePagesControl, changeVisibleSideBar, getControlTaskAll, setControlsTaskCurrent } from '../../store/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-function createData(number: number, name_task:string, position:string, OA:number,) {
-    return { number, name_task, position, OA };
-  }
-  
-  const rows = [
-    createData(1, 'Frozen yoghurt', "Менеджер отдела продаж", 15),
-    createData(2, 'Ice cream sandwich', "Менеджер отдела продаж", 15), 
-    createData(3, 'Eclair', "Менеджер отдела продаж", 14),
-    createData(4, 'Cupcake', "Менеджер отдела продаж", 12),
-    createData(5, 'Gingerbread', "Менеджер отдела продаж", 10),
-  ];
 
 export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
     const [rows, setRows] = useState<any>([])
@@ -47,31 +36,62 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
                         <TableCell>№<div className={'border_dashed'}></div></TableCell>
                         <TableCell>Название задачи<div className={'border_dashed'}></div></TableCell>
                         <TableCell align="center">Должность<div className={'border_dashed'}></div></TableCell>
-                        <TableCell className={`table_cell`} style={{width:'1%'}} align="center">Норма</TableCell>
+                        <TableCell className={`table_cell`} style={{width:'1%'}} align="center">Начало до<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`} style={{width:'1%'}} align="center">Норма<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`} align="center">О/А<div className={'border_dashed'}></div></TableCell>
+                        <TableCell style={{textAlign: 'center'}} className={`table_cell`} align="right">{rows[0]?.created}</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {rows.map((row:any, index:number) => (
                         <TableRow
-                        key={row.name_task}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'1%', cursor: 'pointer'}}  component="th" scope="row">
-                                {row.number}
+                            <TableCell onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                                dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                                }} style={{width:'1%', cursor: 'pointer'}}  component="th" scope="row">
+                                {index + 1}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                {row.name_task}
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                            dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                            }} component="th" scope="row">
+                                {row._task.name}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.position}
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                            dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                            }} align="center">{row._task.position}
                             <div className={'border_dashed'}></div></TableCell>
-                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width:'10%', cursor: 'pointer'}} className={styles.paperclip_img} align="left">{row.OA }</TableCell>        
+
+                            <TableCell onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                            dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                            }} style={{width:'10%', cursor: 'pointer', textAlign: 'center'}} className={styles.paperclip_img} align="left">{row._task.start_before }<div className={'border_dashed'}></div></TableCell>        
+                            <TableCell onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                            dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                            }} style={{width:'10%', cursor: 'pointer', textAlign: 'center'}} className={styles.paperclip_img} align="left">{row._task.norm }<div className={'border_dashed'}></div></TableCell>    
+                            <TableCell style={{backgroundImage: `url(${paperclip_img})`, cursor: 'pointer', width: '30px', textAlign: 'center'}} className={styles.paperclip_img} align="right">
+                            <a target={'_blank'} href={row._task.artefact} className={`${styles.table_link}`}></a>
+                            {/* {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
+                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> } */}
+                            <div className={'border_dashed'}></div>
+                            </TableCell>
+                            <TableCell style={{cursor: 'pointer'}} className={row.is_approve ? 'bg_light_green' : row.is_reject ? 'bg_light_red' : ''} onClick={()=> {
+                                dispatch(changeVisibleSideBar())
+                            dispatch(setControlsTaskCurrent({task_current: row, index: index}))
+                            }} align="center">{row.time_spent}
+                            </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
                 </Table>
-                <div className={styles.thead_footer_custom}>
+                {/* <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
                         <div onClick={()=> dispatch(changePagesControl(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
@@ -79,7 +99,7 @@ export const TableHeaderControls = ({setIsVisibleSideBar}:any) => {
                         <div onClick={()=> dispatch(changePagesControl(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
                     <div>из {all_pages}</div>
-                </div>
+                </div> */}
             </TableContainer>
         </div>
     </div>

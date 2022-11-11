@@ -337,7 +337,8 @@ $border-color: #C6D2D9;
     top: 50%;
     left: 50%;
     width: 425px;
-    height: 403px;
+    height: fit-content;
+    min-height: 403px;
     background: white;
     transform: translate(-50%, -50%);
     // animation: linear alternate animation_sidebar 0.35s;
@@ -347,12 +348,13 @@ $border-color: #C6D2D9;
     z-index: 99999;
     border: 1px solid #C6D2D9;
     border-radius: 1px;
+    padding: 10px 0px;
 }
 .user_side_menu_wrapper{
     position: absolute;
     width: calc(100%);
-    height: calc(100% - 20px);
-    padding: 10px 0px;
+    height: fit-content;
+    // padding: 10px 0px;
     display: flex;
     flex-direction: column;
     // align-items: center;

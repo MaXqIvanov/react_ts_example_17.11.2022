@@ -40,6 +40,8 @@ export type ControlState = {
     all_pages: number,
     position_all: Array<any>,
     position_current: any,
+    controls_task_current: any,
+    controls_task_index: number,
 }
 export type PositionState = {
     loading: boolean,
