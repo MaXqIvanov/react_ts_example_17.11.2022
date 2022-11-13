@@ -56,7 +56,8 @@ $border_main: #C6D2D9;
   }
 
   // table head
-.custom_table{
+.custom_table,
+.custom_table_emp{
   td{
     position: relative;
     // border: 0.554916px dashed rgba($color: #3C3C3C, $alpha: 0.5) !important;
@@ -136,6 +137,20 @@ $border_main: #C6D2D9;
 
 .custom_table{
   min-height: calc(100vh - 130px);
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  // border: 2px solid #E3EAEE  !important;
+  border: 0.554916px solid #CDD9DF !important;
+
+  border-radius: 2px !important;
+  box-sizing: border-box !important;
+  border-width: 0.02px !important;
+
+  box-shadow: 0px !important;
+}
+.custom_table_emp{
+  min-height: calc(100vh - 132px);
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;

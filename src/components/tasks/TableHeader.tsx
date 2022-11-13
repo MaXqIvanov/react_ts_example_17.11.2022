@@ -44,7 +44,7 @@ export const TableHeader = ({visible, current_day_task}:any) => {
   return (
     <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table_task`}>
         <div className={styles.table_wrapper}>
-            <TableContainer component={Paper} className={'custom_table'}>
+            <TableContainer component={Paper} className={visible ? 'custom_table_emp' : 'custom_table'}>
             {
                     current_variant_table === 1 &&
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -323,7 +323,7 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                     </TableBody>
                 </Table>
                 }
-                {
+                {/* {
                     current_variant_table === 1 &&
                     <div className={styles.thead_footer_custom}>
                         <div>страница</div>
@@ -358,7 +358,7 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         </div>
                         <div>из {all_pages_all}</div>
                     </div>
-                }
+                } */}
             </TableContainer>
         </div>
     </div>

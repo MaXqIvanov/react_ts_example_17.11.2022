@@ -41,6 +41,15 @@ export const taskApprove = createAsyncThunk(
     return {response, params}
   },
 )
+// tasks/reports/{{report_id}}/reject/
+export const taskReject = createAsyncThunk(
+  'control/taskReject',
+  async (params: any, {getState}:any) => {
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
+    const response = await api.post(`tasks/reports/${getState().control.controls_task_current.id}/reject/`)
+    return {response, params}
+  },
+)
 
 const controlSlice = createSlice({
   name: 'control',
@@ -117,6 +126,21 @@ const controlSlice = createSlice({
       state.loading = false
     });
     builder.addCase(taskApprove.rejected, (state:ControlState) => {
+      state.loading = false
+    });
+    // taskReject
+    builder.addCase(taskReject.pending, (state:ControlState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(taskReject.fulfilled, (state:ControlState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 300){
+        state.controls_task_all.splice(state.controls_task_index, 1)
+        state.isVisibleSideBar = false
+      }
+      state.loading = false
+    });
+    builder.addCase(taskReject.rejected, (state:ControlState) => {
       state.loading = false
     });
   },

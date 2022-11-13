@@ -1,12 +1,14 @@
 import { TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../scss/Controls.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, taskApprove } from '../../store/controlSlice';
+import { changeVisibleSideBar, taskApprove, taskReject } from '../../store/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import axios from 'axios';
+import { ArrowFunction } from 'typescript';
 
 export const SideBar = (props: any) => {
   const dispatch = useAppDispatch()
@@ -49,7 +51,7 @@ export const SideBar = (props: any) => {
             </div>
             <div className={'custom_btn_wrapper'}>
                 <div onClick={()=> dispatch(changeVisibleSideBar())} className={'btn_cancel'}><span>Отмена</span></div>
-                <div style={{marginRight: '10px'}} onClick={()=> alert('')} className={'btn_mistake'}><span>есть ошибки</span></div>
+                <div style={{marginRight: '10px'}} onClick={()=> dispatch(taskReject(''))} className={'btn_mistake'}><span>есть ошибки</span></div>
                 <div onClick={()=> dispatch(taskApprove(''))} className={'btn_good'}><span>все хорошо</span></div>
             </div>
           </div>

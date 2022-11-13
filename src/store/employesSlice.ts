@@ -13,7 +13,8 @@ export const getEmployesAll = createAsyncThunk(
   'employes/getEmployes',
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе Сотрудники - Списки всех сотрудников на странице ${getState().employes.current_page}`)
-    const response = await api.get(`v1/images/search`)
+    let company:any = localStorage.getItem('WT_company')
+    const response = await api.get(`companies/employees/?company=${JSON.parse(company).id}`)
     return {response}
   },
 )
@@ -40,15 +41,14 @@ export const getEmployesAll = createAsyncThunk(
 const controlSlice = createSlice({
   name: 'employes',
   initialState: {
-    variant_table: [ { id: 1, title: 'Все' }, { id:2 , title: 'Неделя' }, { id: 3, title: 'День' }],
-    current_variant_table: 1,
     loading: false,
 
     // for sidebar
     isVisibleSideBar: false,
     // get_employes_all
     employes_all: [],
-
+    employes_current: {} as any,
+    employes_current_index: 1,
     // for pagination
     current_page: 1,
     all_pages: 10,
@@ -62,10 +62,13 @@ const controlSlice = createSlice({
   },
   reducers: {
     setCurrentVariantTable(state:EmployesState, action:any){
-        state.current_variant_table = action.payload
     },
     changeVisibleSideBar(state:EmployesState, action:any){
       state.isVisibleSideBar = !state.isVisibleSideBar
+    },
+    setCurrentEmployes(state:EmployesState, action:any){
+      state.employes_current = action.payload.employes_current
+      state.employes_current_index = action.payload.index
     },
     changePages(state:EmployesState, action:any){
       let current_page = state.current_page + action.payload
@@ -95,7 +98,8 @@ const controlSlice = createSlice({
         state.loading = true
     });
     builder.addCase(getEmployesAll.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
-      
+      console.log(payload);
+      state.employes_all = payload.response.data.results
       state.loading = false
     });
     builder.addCase(getEmployesAll.rejected, (state:EmployesState) => {
@@ -129,4 +133,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes, setCurrentEmployes } = controlSlice.actions;

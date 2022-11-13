@@ -10,6 +10,7 @@ import { RootState } from '../../store/store'
 export const NavHeaderControls = () => {
   const dispatch = useAppDispatch()
   const {position_all, position_current} = useSelector((state: RootState)=> state.control)
+  const { current_company } = useSelector((state: RootState)=> state.auth)
   const [isVisibleSelect, setIsVisibleSelect] = useState<boolean>(false)
   const [is_approve, setCheckedTask] = useState<boolean>(false)
   const [position, setPosition] = useState('');
@@ -26,7 +27,7 @@ export const NavHeaderControls = () => {
   }, [])
   useEffect(() => {
     dispatch(getControlTaskAll({is_approve: is_approve}))
-  }, [position_current, is_approve])
+  }, [position_current, is_approve, current_company])
   
   
 

@@ -1,12 +1,26 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../scss/Employes.module.scss'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useAppDispatch } from '../../hooks/redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { getEmployesAll } from '../../store/employesSlice';
+import useDebounce from '../../hooks/use-debounce';
 
 export const NavHeaderEmployes = () => {
   const [position, setPosition] = React.useState('');
+  const [search, setSearch] = useState('')
+  const debouncedSearchTerm = useDebounce(search, 300);
+  const dispatch = useAppDispatch()
+  const {} = useSelector((state: RootState)=> state.employes)
+  const { current_company } = useSelector((state: RootState)=> state.auth)
+
+  useEffect(() => {
+    dispatch(getEmployesAll(''))
+}, [debouncedSearchTerm, current_company])
 
   const handleChange = (event:any) => {
     setPosition(event.target.value);
@@ -28,13 +42,16 @@ export const NavHeaderEmployes = () => {
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}
-                <TextField
-                  className='custom_search'
-                  label="Поиск..."
-                  InputProps={{
-                    type: 'search',
-                  }}
-                />
+              <div className='custom_search_wrapper'>
+                <input
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                style={{marginLeft: '10px'}}
+                className='custom_search'
+                placeholder='Поиск'
+                ></input>
+                <div className='custom_search_icon'></div>
+            </div>
               {/* )}
             />
           </Stack> */}

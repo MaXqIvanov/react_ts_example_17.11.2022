@@ -54,15 +54,14 @@ export type PositionState = {
 }
 
 export type EmployesState = {
-    variant_table: Array<any>,
-    current_variant_table: number,
     loading: boolean,
 
     // for sidebar
     isVisibleSideBar: boolean,
     // get_employes_all
     employes_all: Array<any>,
-
+    employes_current: any,
+    employes_current_index: number,
     // for pagination
     current_page: number,
     all_pages: number

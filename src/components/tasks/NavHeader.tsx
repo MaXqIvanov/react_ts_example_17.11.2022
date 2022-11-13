@@ -592,11 +592,11 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                         ></input>
                         <div className='custom_search_icon'></div>
                     </div>
-                    {visible && 
+                    {/* {visible && 
                         <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
                             <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
                         </div>
-                    }
+                    } */}
                 </div>
                 
         }
@@ -631,11 +631,11 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                     ></input>
                     <div className='custom_search_icon'></div>
                 </div>
-                {visible && 
+                {/* {visible && 
                     <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
                         <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
                     </div>
-                }
+                } */}
             {isVisibleCalendarWeeks && 
             <div ref={rangeCalendar} className={`${styles.calendar_side_wrapper} calendar_week`}>
                 <div className={styles.calendar_side_panel}>
@@ -706,11 +706,11 @@ export const NavHeader = ({visible, setCurrentDayTask}:any) => {
                     ></input>
                     <div className='custom_search_icon'></div>
                 </div>
-                {visible && 
+                {/* {visible && 
                     <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
                         <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
                     </div>
-                }
+                } */}
             {isVisibleCalendarDays && <div ref={CalendarDay}>
                     <Calendar value={moment(`${calendar_day_month}.${(calendar_day_day)}.${calendar_day_year}`)} onSelect={(date:any)=> selectDateDay(date)}/>
                 </div>}
