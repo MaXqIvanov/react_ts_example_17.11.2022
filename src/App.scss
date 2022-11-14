@@ -1159,3 +1159,244 @@ $border_main: #C6D2D9;
   // padding-bottom: 2px !important;
   margin-top: -3px !important;
 }
+
+.modal_choose_interval{
+  width: 425px;
+  height: 302px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 2px $border_main;
+
+  .custom_select_wrapper{
+    position: absolute;
+    top: 10px;
+    left: 215px;
+    width: 80px !important;
+    height: 31px !important;
+    box-sizing: border-box;
+    min-width: 80px !important;
+  }
+}
+.modal_choose_interval_wrapper{
+  position: relative;
+  height: 90%;
+  width: calc(100% - 20px);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.modal_interval_title{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  /* dark-gray */
+
+  color: #343A40;
+}
+.modal_interval_input{
+  position: absolute;
+  left: 171px;
+  top: 10px;
+  width: 34px;
+  height: 31px;
+  box-sizing: border-box;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  input{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+.modal_interval_title{
+  position: absolute;
+  top: 17px;
+  left: 20px;
+}
+.position_current_day{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  height: 34px;
+  padding: 0px 10px ;
+  display: flex;
+  align-items: center;
+
+  &:hover{
+    background: #E4EAEE;
+  }
+  span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+.modal_repeat_day{
+  position: absolute;
+  top: 104px;
+  left: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  /* dark-gray */
+
+  color: #343A40;
+}
+.modal_all_day{
+  display: flex;
+  position: absolute;
+  top: 140px;
+  left: 20px;
+}
+.modal_current_day{
+  height: 31px;
+  width: 37px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #C6D2D9;
+  border-radius: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+  span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
+  }
+}
+.modal_current_day_active{
+  height: 31px;
+  width: 37px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #03A9F4;
+  border: 1px solid #C6D2D9;
+  border-radius: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+  span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+  }
+}
+.custom_btn_wrapper_interval{
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  display: flex;
+  justify-content: right;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 13px;
+  .btn_cancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8.5px 10.5px;
+    margin-right: 10px;
+    cursor: pointer;
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      color: #03A9F4;
+    }
+  }
+  .btn_complete{
+    background-color: #03A9F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8.5px 10.5px;
+    cursor: pointer;
+    span{
+      color: white;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .btn_mistake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 106px;
+    height: 31px;
+    background: rgba(244, 67, 54, 0.5);
+    border-radius: 2px;
+    cursor: pointer;
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      /* identical to box height */
+
+      text-transform: uppercase;
+
+      /* white */
+
+      color: #FFFFFF;
+    }
+    transition: all linear 0.22s;
+    &:hover{
+      background: rgba(244, 67, 54, 1);
+    }
+  }
+  .btn_good{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98px;
+    height: 31px;
+    background: rgba(0, 150, 136, 0.5);
+    border-radius: 2px;
+    cursor: pointer;
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      /* identical to box height */
+
+      text-transform: uppercase;
+
+      /* white */
+
+      color: #FFFFFF;
+    }
+    transition: all linear 0.22s;
+    &:hover{
+      background: rgba(0, 150, 136, 1);
+    }
+  }
+}

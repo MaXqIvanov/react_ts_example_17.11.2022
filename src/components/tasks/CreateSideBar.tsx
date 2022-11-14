@@ -1,10 +1,10 @@
 import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from '@mui/material'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../../scss/Task.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
+import { changeVisibleSideBar, createTask } from '../../store/taskSlice';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -12,6 +12,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import MUIRichTextEditor from 'mui-text-editor'
 import { Editor } from '@tinymce/tinymce-react';
+import moment from 'moment';
 
 
 const myTheme = createTheme({
@@ -45,26 +46,26 @@ export const CreateSideBar = () => {
       id: 1,
       title: 'Ежедневно'
     },
-    {
-      id: 2,
-      title: 'Еженедельно (вторник)'
-    },
-    {
-      id: 3,
-      title: 'Ежемесячно (первый вторник)'
-    },
-    {
-      id: 4,
-      title: 'Ежемесячно (выбранная дата)'
-    },
-    {
-      id: 5,
-      title: 'Ежегодно (16.08)'
-    },
-    {
-      id: 6,
-      title: 'По будням (с понедельника по пятницу'
-    },
+    // {
+    //   id: 2,
+    //   title: 'Еженедельно (вторник)'
+    // },
+    // {
+    //   id: 3,
+    //   title: 'Ежемесячно (первый вторник)'
+    // },
+    // {
+    //   id: 4,
+    //   title: 'Ежемесячно (выбранная дата)'
+    // },
+    // {
+    //   id: 5,
+    //   title: `Ежегодно (${moment().date()}.${moment().month()})`
+    // },
+    // {
+    //   id: 6,
+    //   title: 'По будням (с понедельника по пятницу'
+    // },
     {
       id: 7,
       title: 'Не повторять'
@@ -80,8 +81,80 @@ export const CreateSideBar = () => {
   };
 
   const editorRef:any = useRef(null);
+  const [name_task, setNameTask] = useState<string>('')
+  const [norm, setNorm] = useState<any>()
+  const [start_before, setStartBefore] = useState<any>()
+  const [artefact, setArtefact] = useState<string>('')
+  const [select_delta_type, setSelectDeltaType] = useState([
+  {
+    id: 1,
+    title: 'День',
+  },
+  {
+    id: 2,
+    title: 'Неделя',
+  },
+  {
+    id: 3,
+    title: 'Год',
+  }
+  ])
+  const [delta_type, setDeltaType] = useState<typeof select_delta_type[0] | null>({
+    id: 1,
+    title: 'День',
+  },)
+  const [is_select_delta_type, setIsSelectDeltaType] = useState<boolean>(false)
+  const [delta, setDelta] = useState<number | null>(1)
+  const [mon, setMon] = useState<boolean>(false)
+  const [tue, setTue] = useState<boolean>(false)
+  const [wed, setWed] = useState<boolean>(false)
+  const [thu, setThu] = useState<boolean>(false)
+  const [fri, setFri] = useState<boolean>(false)
+  const [sat, setSat] = useState<boolean>(false)
+  const [sun, setSun] = useState<boolean>(false)
+  const [visibleChooseData, setVisibleChooseData] = useState<boolean>(false)
 
+  useEffect(() => {
+    if(period_task_current.id === 1){
+      setMon(true)
+      setTue(true)
+      setWed(true)
+      setThu(true)
+      setFri(true)
+      setSat(true)
+      setSun(true)
+      setDelta(1)
+      setDeltaType({
+        id: 1,
+        title: 'День',
+      },)
+    }
+    if(period_task_current.id === 7){
+      setMon(false)
+      setTue(false)
+      setWed(false)
+      setThu(false)
+      setFri(false)
+      setSat(false)
+      setSun(false)
+      setDelta(null)
+      setDeltaType(null)
+    }
+    if(period_task_current.id === 999){
+      setVisibleChooseData(!visibleChooseData)
+    }
+  }, [period_task_current])
   
+  const saveNewInterval = ()=>{
+    setPeriosTaskCurrent({
+      id: period_select[period_select.length - 1].id + 1,
+      title: `Кажд. ${delta} ${delta_type?.title}. - ${mon ? '' : 'понедельник '}${tue ? '' : 'вторник '}${wed ? '' : 'среда '}${thu ? '' : 'четверг '}${fri ? '' : 'пятница '} ${sat ? '' : 'суббота '} ${sun ? '' : 'воскресенье'}`
+    })
+    period_select.splice(period_select.length - 2,0, {
+      id: period_select[period_select.length - 1].id + 1,
+      title: `Кажд. ${delta} ${delta_type?.title}. - ${mon ? '' : 'понедельник '}${tue ? '' : 'вторник '}${wed ? '' : 'среда '}${thu ? '' : 'четверг '}${fri ? '' : 'пятница '} ${sat ? '' : 'суббота '} ${sun ? '' : 'воскресенье'}`
+    })
+  }
 
   return (
     <>
@@ -94,7 +167,7 @@ export const CreateSideBar = () => {
                 {/* <TextField className={`${styles.current_task_field} current_task_field`} id="standard-basic" label="Задача" variant="standard" /> */}
                 <div className={'wrapper_input_width_label'}>
                   <div className={'label'}>Название</div>
-                  <input className={'input'}/>
+                  <input onChange={(e)=> setNameTask(e.target.value)} value={name_task} className={'input'}/>
                 </div>
                 <div style={{marginTop: '29px'}} className={'custom_select_wrapper_create'}>
                   <div className='label'>Периодичность</div>
@@ -112,15 +185,15 @@ export const CreateSideBar = () => {
                 </div>
                 <div style={{marginTop: '10px'}} className={'wrapper_input_width_label'}>
                   <div className={'label'}>Начало до</div>
-                  <input placeholder='00:00' className={'input'}/>
+                  <input type={'number'} onChange={(e)=> setStartBefore(e.target.value)} value={start_before} placeholder='00:00' className={'input'}/>
                 </div>
                 <div style={{marginTop: '10px'}} className={'wrapper_input_width_label'}>
                   <div className={'label'}>Отчет/Артефакт</div>
-                  <textarea rows={3}></textarea>
+                  <textarea onChange={(e)=> setArtefact(e.target.value)} value={artefact} rows={3}></textarea>
                 </div>
                 <div style={{marginTop: '10px', width: '142px'}} className={'wrapper_input_width_label'}>
-                  <div className={'label'}>Начало до</div>
-                  <input className={'input'}/>
+                  <div className={'label'}>Норма</div>
+                  <input type={'number'} onChange={(e) => setNorm(e.target.value)} value={norm} className={'input'}/>
                 </div>
                 <Editor apiKey='uhkrpnl1dfs4w8nt8a22oug4eap1yhb657nso942f8slxhu6' onInit={(evt, editor) => editorRef.current = editor}
                   initialValue="<p>Описание задачи</p>"
@@ -135,78 +208,87 @@ export const CreateSideBar = () => {
                       'undo redo | formatselect | bold italic | \
                       alignleft aligncenter alignright alignjustify | \
                       bullist numlist outdent indent | removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                    content_style: `body { font-family: Roboto,Arial,sans-serif; font-size:12px; color: #343A40; line-height: 14px;}
+                    p { margin-block-start: 0.2em; margin-block-end: 0.2em }`
                   }} />
-                {/* <ThemeProvider theme={myTheme}>
-                  <MUIRichTextEditor onChange={(e)=> console.log(e)} label="Описание задачи"/>
-                </ThemeProvider> */}
-                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DesktopDatePicker
-                    className={`${styles.date_picker_desctop} ${styles.text_field}`}
-                    label="Дата старта задачи"
-                    inputFormat="MM/DD/YYYY"
-                    value={date_start_task}
-                    onChange={handleChange}
-                    renderInput={(params:any) => <TextField {...params} />}
-                  />
-                </LocalizationProvider> */}
-                {/* <div className={`${styles.select_position_wrapper}`}>
-                  <FormControl fullWidth className={styles.select_position}>
-                    <InputLabel id="demo-simple-select-label" className={styles.input_label}>Переодичность</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={period_task}
-                      label="Переодичность"
-                      className='custom_select'
-                      onChange={(e:any)=>setPeriosTask(e.target.value)}
-                    >
-                      <MenuItem value={10}>Кажд. 2 нед. -вторник, пятница, до 02.12.2022</MenuItem>
-                      <MenuItem value={20}>Программист</MenuItem>
-                      <MenuItem value={30}>Админ</MenuItem>
-                    </Select>
-                  </FormControl>
-                </div> */}
-                {/* <TextField
-                  value={'18:00'}
-                  className={`${styles.text_field}`}
-                  label="Крайнее время выполнения"
-                  InputProps={{
-                    type: 'string',
-                  }}
-                />
-                <TextField
-                  value={'10'}
-                  className={`${styles.text_field}`}
-                  label="Норма (минуты)"
-                  InputProps={{
-                    type: 'string',
-                  }}
-                />
-                 <FormControl fullWidth className={`${styles.select_position}`}>
-                  <label className={report && report.length > 0 ? `${styles.visible_label}` : `${styles.not_visible_label}`}>Отчёт/артефакт</label>
-                  <TextareaAutosize
-                    aria-label="minimum height"
-                    minRows={3}
-                    id="text_area"
-                    placeholder="Отчёт/артефакт"
-                    className={`text_area ${styles.text_field}`}
-                    onChange={(e:any)=> setReport(e.target.value)}
-                    value={report}
-                    style={{ width: '97%', marginTop: '30px' }}
-                  />
-                </FormControl> */}
-                
-                
             </div>
-            <div className={styles.group_btn_side_bar}>
-                <div className={styles.group_btn_side_bar_save_close}>
-                  <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.btn_cancel_side_bar}><span>ЗАКРЫТЬ</span></div>
-                  <div onClick={()=> console.log(editorRef.current.getContent())} className={styles.btn_save_side_bar}><span>ЗАВЕРШИТЬ</span></div>
+            <div style={{width: '100%'}} className={'custom_btn_wrapper'}>
+                <div style={{display: 'flex', marginRight: '10px'}}>
+                  <div onClick={()=> dispatch(changeVisibleSideBar())} className={'btn_cancel'}><span>Отмена</span></div>
+                  <div onClick={()=>{
+                    dispatch(createTask({
+                      'name': name_task,
+                      'artefact': artefact,
+                      'description': editorRef.current,
+                      'norm': norm,
+                      'start_before': start_before,
+                      'start': `${moment().day()}.${moment().month()}.${moment().year()}`,
+                      'end': null,
+                      'mon': mon,
+                      'thu': thu,
+                      'tue': tue,
+                      'wed': wed,
+                      'fri': fri,
+                      'sat': sat,
+                      'sun': sun,
+                      'delta': delta,
+                      'delta_type': delta_type?.title
+                    }))
+                    // console.log(editorRef.current.getContent())
+                  }} className={'btn_complete'}><span>СОХРАНИТЬ</span></div>
                 </div>
             </div>
           </div>
         </div>
+        {visibleChooseData &&
+          <div className='modal_choose_interval'>
+            <div className='modal_choose_interval_wrapper'>
+              <div className='modal_interval_title'>Повторять с интервалом</div>
+              <input className={'modal_interval_input'}/>
+              <div onClick={()=> setIsSelectDeltaType(!is_select_delta_type)} className={'custom_select_wrapper'}>
+                <div className={'select_body'}>{delta_type?.title}</div>
+                <div className={'select_arrow'}></div>
+                {is_select_delta_type &&
+                  <div className={'select_additional'}>
+                    {select_delta_type?.length > 0 &&
+                    select_delta_type.map((elem:any)=> <div key={elem.id} onClick={()=> setDeltaType(elem)} className={'position_current_day'}>
+                      <span>{elem.title}</span>
+                    </div>)}
+                  </div>
+                }
+              </div>
+              <div className='modal_repeat_day'>Дни повторения</div>
+              <div className='modal_all_day'>
+                <div onClick={()=> 
+                  setMon(!mon)
+                } className={mon === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Пн</span></div>
+                <div onClick={()=> 
+                  setTue(!tue)
+                } className={tue === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Вт</span></div>
+                <div onClick={()=> 
+                  setWed(!wed)
+                } className={wed === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Ср</span></div>
+                <div onClick={()=> 
+                  setThu(!thu)
+                } className={thu === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Чт</span></div>
+                <div onClick={()=> 
+                  setFri(!fri)
+                } className={fri === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Пт</span></div>
+                <div  onClick={()=> 
+                  setSat(!sat)
+                }className={sat === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Сб</span></div>
+                <div onClick={()=> 
+                  setSun(!sun)
+                } className={sun === true ? 'modal_current_day' : 'modal_current_day_active'}><span>Вс</span></div>
+              </div>
+              <div style={{width: '100%'}} className={'custom_btn_wrapper_interval'}>
+                <div style={{display: 'flex', marginRight: '10px'}}>
+                  <div onClick={()=> setVisibleChooseData(false)} className={'btn_cancel'}><span>Отмена</span></div>
+                  <div onClick={()=> saveNewInterval()} className={'btn_complete'}><span>СОХРАНИТЬ</span></div>
+                </div>
+              </div>
+            </div>
+          </div>}
         <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.user_side_menu_plug}></div>
       </>
   )

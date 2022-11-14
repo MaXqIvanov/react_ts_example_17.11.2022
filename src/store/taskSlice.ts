@@ -14,7 +14,7 @@ export const getTaskDay = createAsyncThunk(
   async (params:any, {getState}:any) => {
     console.log(params);
     // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
     return {response}
   },
 )
@@ -25,7 +25,7 @@ export const getTaskWeek = createAsyncThunk(
     console.log("this getTaskWeek");
     console.log(params);
     // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
     return {response}
   },
 )
@@ -38,7 +38,7 @@ export const getTaskAll = createAsyncThunk(
     
     let company:any = localStorage.getItem('WT_company')
     
-    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}`)
+    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
     return {response}
   },
 )
@@ -54,6 +54,72 @@ export const finishTask = createAsyncThunk(
     return {response}
   },
 )
+// create task
+export interface createTask {
+  name: string;
+  norm: number;
+  start_before?: any;
+  description: string;
+  artefact: string;
+  start: string;
+  end?: any;
+  delta_type?: string | null;
+  delta?: number | null;
+  mon: boolean;
+  tue: boolean;
+  wed: boolean;
+  thu: boolean;
+  fri: boolean;
+  sat: boolean;
+  sun: boolean;
+}
+export const createTask = createAsyncThunk(
+  'task/createTask',
+  async (params: createTask, {getState}:any) => {
+    // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+    console.log(params);
+    const response = await api.post(`tasks/tasks/`,{
+      "name": params.name,
+      "norm": params.norm,
+      "start_before": params.start_before,
+      "description": params.description,
+      "artefact": params.artefact,
+      "start": params.start,
+      "end": params.end,
+      "delta_type": params.delta_type,
+      "delta": params.delta,
+      "mon": params.mon,
+      "tue": params.tue,
+      "wed": params.wed,
+      "thu": params.thu,
+      "fri": params.fri,
+      "sat": params.sat,
+      "sun": params.sun,
+      "position": getState().employes.employes_current._user.id,
+      "company": getState().auth.current_company.id,
+    })
+    return {response}
+  },
+)
+// "name": "test task week 1",
+// "norm": 15,
+// "start_before": null,
+// "description": "That is a new test task!",
+// "artefact": "https://google.com",
+// "start": "26.09.2022",
+// "end": null,
+// "delta_type": "week",
+// "delta": 1,
+// "mon": false,
+// "tue": false,
+// "wed": false,
+// "thu": false,
+// "fri": true,
+// "sat": true,
+// "sun": false,
+// "position": 1,
+// "company": 2,
+// "parent_task": 61
 
 
 const taskSlice = createSlice({
