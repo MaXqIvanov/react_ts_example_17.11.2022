@@ -25,7 +25,7 @@ export const getTaskWeek = createAsyncThunk(
     console.log("this getTaskWeek");
     console.log(params);
     // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
   },
 )
@@ -38,7 +38,7 @@ export const getTaskAll = createAsyncThunk(
     
     let company:any = localStorage.getItem('WT_company')
     
-    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
+    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
   },
 )
@@ -78,27 +78,32 @@ export const createTask = createAsyncThunk(
   async (params: createTask, {getState}:any) => {
     // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
     console.log(params);
-    const response = await api.post(`tasks/tasks/`,{
-      "name": params.name,
-      "norm": params.norm,
-      "start_before": params.start_before,
-      "description": params.description,
-      "artefact": params.artefact,
-      "start": params.start,
-      "end": params.end,
-      "delta_type": params.delta_type,
-      "delta": params.delta,
-      "mon": params.mon,
-      "tue": params.tue,
-      "wed": params.wed,
-      "thu": params.thu,
-      "fri": params.fri,
-      "sat": params.sat,
-      "sun": params.sun,
-      "position": getState().employes.employes_current._user.id,
-      "company": getState().auth.current_company.id,
-    })
-    return {response}
+    try {
+      const response = await api.post(`tasks/tasks/`,{
+        name: params.name,
+        norm: params.norm,
+        start_before: params.start_before,
+        // description: params.description,
+        artefact: params.artefact,
+        start: params.start,
+        end: params.end,
+        delta_type: params.delta_type,
+        delta: params.delta,
+        mon: params.mon,
+        tue: params.tue,
+        wed: params.wed,
+        thu: params.thu,
+        fri: params.fri,
+        sat: params.sat,
+        sun: params.sun,
+        position: getState().employes.employes_current._user.id,
+        company: getState().auth.current_company.id,
+      }) 
+      return {response}
+    } catch (error) {
+      console.log(error);
+      
+    }
   },
 )
 // "name": "test task week 1",
@@ -155,6 +160,8 @@ const taskSlice = createSlice({
     // for pagination for all
     current_page_all: 1,
     all_pages_all: 1,
+    
+    need_load_data: false,
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
@@ -249,6 +256,23 @@ const taskSlice = createSlice({
       state.loading = false
     });
     builder.addCase(finishTask.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+    // createTask
+    builder.addCase(createTask.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(createTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 300){
+        alert('Создание задачи прошло успешно')
+        state.isVisibleSideBar = false
+        state.need_load_data = !state.need_load_data
+      }
+      // state.get_all_task_week = payload.response.data
+      state.loading = false
+    });
+    builder.addCase(createTask.rejected, (state:TaskState) => {
       state.loading = false
     });
 

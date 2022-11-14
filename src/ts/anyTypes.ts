@@ -24,6 +24,7 @@ export type TaskState = {
     current_page_all: number,
     all_pages_all: number,
     current_task_index: number,
+    need_load_data: boolean,
 }
 export type CompanyState = {
     loading: boolean,

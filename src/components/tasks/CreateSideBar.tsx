@@ -89,19 +89,23 @@ export const CreateSideBar = () => {
   {
     id: 1,
     title: 'День',
+    value: 'day'
   },
   {
     id: 2,
     title: 'Неделя',
+    value: 'week'
   },
   {
     id: 3,
     title: 'Год',
+    value: 'year'
   }
   ])
   const [delta_type, setDeltaType] = useState<typeof select_delta_type[0] | null>({
     id: 1,
     title: 'День',
+    value: 'day'
   },)
   const [is_select_delta_type, setIsSelectDeltaType] = useState<boolean>(false)
   const [delta, setDelta] = useState<number | null>(1)
@@ -127,6 +131,7 @@ export const CreateSideBar = () => {
       setDeltaType({
         id: 1,
         title: 'День',
+        value: 'day'
       },)
     }
     if(period_task_current.id === 7){
@@ -137,7 +142,8 @@ export const CreateSideBar = () => {
       setFri(false)
       setSat(false)
       setSun(false)
-      setDelta(null)
+      // need null but...
+      setDelta(1)
       setDeltaType(null)
     }
     if(period_task_current.id === 999){
@@ -150,7 +156,7 @@ export const CreateSideBar = () => {
       id: period_select[period_select.length - 1].id + 1,
       title: `Кажд. ${delta} ${delta_type?.title}. - ${mon ? '' : 'понедельник '}${tue ? '' : 'вторник '}${wed ? '' : 'среда '}${thu ? '' : 'четверг '}${fri ? '' : 'пятница '} ${sat ? '' : 'суббота '} ${sun ? '' : 'воскресенье'}`
     })
-    period_select.splice(period_select.length - 2,0, {
+    period_select.splice(period_select.length - 1,0, {
       id: period_select[period_select.length - 1].id + 1,
       title: `Кажд. ${delta} ${delta_type?.title}. - ${mon ? '' : 'понедельник '}${tue ? '' : 'вторник '}${wed ? '' : 'среда '}${thu ? '' : 'четверг '}${fri ? '' : 'пятница '} ${sat ? '' : 'суббота '} ${sun ? '' : 'воскресенье'}`
     })
@@ -185,7 +191,7 @@ export const CreateSideBar = () => {
                 </div>
                 <div style={{marginTop: '10px'}} className={'wrapper_input_width_label'}>
                   <div className={'label'}>Начало до</div>
-                  <input type={'number'} onChange={(e)=> setStartBefore(e.target.value)} value={start_before} placeholder='00:00' className={'input'}/>
+                  <input type={'string'} onChange={(e)=> e.target.value.length <= 5 ? setStartBefore((e.target.value.length === 2 && e.target.value.length > start_before.length) ? e.target.value + ':' : e.target.value):''} value={start_before} placeholder='00:00' className={'input'}/>
                 </div>
                 <div style={{marginTop: '10px'}} className={'wrapper_input_width_label'}>
                   <div className={'label'}>Отчет/Артефакт</div>
@@ -232,7 +238,7 @@ export const CreateSideBar = () => {
                       'sat': sat,
                       'sun': sun,
                       'delta': delta,
-                      'delta_type': delta_type?.title
+                      'delta_type': delta_type?.value
                     }))
                     // console.log(editorRef.current.getContent())
                   }} className={'btn_complete'}><span>СОХРАНИТЬ</span></div>
