@@ -64,7 +64,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                     ))}
                     </TableBody>
                 </Table>
-                <div className={styles.thead_footer_custom}>
+                {/* <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
                         <div onClick={()=> dispatch(changePagesCompany(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
@@ -72,7 +72,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                         <div onClick={()=> dispatch(changePagesCompany(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
                     <div>из {all_pages}</div>
-                </div>
+                </div> */}
             </TableContainer>
         </div>
     </div>
