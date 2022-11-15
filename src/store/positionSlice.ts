@@ -18,6 +18,17 @@ export const getPosition = createAsyncThunk(
   },
 )
 
+// companies/positions/
+export const getPositionCompanyAll = createAsyncThunk(
+  'position/getPositionCompanyAll',
+  async (params: any, {getState}:any) => {
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
+    let company:any = localStorage.getItem('WT_company')
+    const response = await api.get(`companies/positions/?search=${params.search}`)
+    return {response, params}
+  },
+)
+
 const controlSlice = createSlice({
   name: 'position',
   initialState: {
@@ -25,6 +36,10 @@ const controlSlice = createSlice({
 
     position_all: [],
     position_current: {},
+    // company section
+    position_company_all: [],
+    position_company_current: {} as any,
+    position_company_index: 1,
     // for sidebar
     isVisibleSideBar: false,
     // for pagination
@@ -44,6 +59,10 @@ const controlSlice = createSlice({
     getCurrentPosition(state: PositionState, action:any){
       state.position_current = action.current
     },
+    getCurrentPositionCompany(state: PositionState, action:any){
+      state.position_company_current = action.payload.current_position_company
+      state.position_company_index = action.payload.index
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPosition.pending, (state:PositionState, action:PayloadAction) => {
@@ -58,8 +77,21 @@ const controlSlice = createSlice({
     builder.addCase(getPosition.rejected, (state:PositionState) => {
       state.loading = false
     });
+    // getPositionCompanyAll
+    builder.addCase(getPositionCompanyAll.pending, (state:PositionState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getPositionCompanyAll.fulfilled, (state:PositionState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      
+      state.position_company_all = payload.response.data.results
+      state.loading = false
+    });
+    builder.addCase(getPositionCompanyAll.rejected, (state:PositionState) => {
+      state.loading = false
+    });
   },
 });
 
 export default controlSlice.reducer;
-export const { changeVisibleSideBar, changePages, getCurrentPosition } = controlSlice.actions;
+export const { changeVisibleSideBar, changePages, getCurrentPosition, getCurrentPositionCompany } = controlSlice.actions;

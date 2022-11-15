@@ -1,10 +1,10 @@
 import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from '../../scss/Task.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, createTask } from '../../store/taskSlice';
+import { changeTask, changeVisibleSideBar, createTask } from '../../store/taskSlice';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -173,7 +173,23 @@ export const EditSideBarEmployesTask = () => {
     setArtefact(current_task_week.artefact)
     setNorm(current_task_week.norm)
     editorRef.current = current_task_week.description
+    setDelta(current_task_week.delta)
+    setDeltaType(current_task_week.delta_type)
+    setMon(current_task_week.mon)
+    setTue(current_task_week.tue)
+    setWed(current_task_week.wed)
+    setThu(current_task_week.thu)
+    setFri(current_task_week.fri)
+    setSat(current_task_week.sat)
+    setSun(current_task_week.sun)
+
   }, [current_task_week])
+  
+  useEffect(() => {
+    editorRef.current = current_task_week.description
+  }, [name_task, start_before, norm, artefact, period_select])
+  
+
 
   return (
     <>
@@ -235,10 +251,11 @@ export const EditSideBarEmployesTask = () => {
                 <div style={{display: 'flex', marginRight: '10px'}}>
                   <div onClick={()=> dispatch(changeVisibleSideBarCreate(''))} className={'btn_cancel'}><span>Отмена</span></div>
                   <div onClick={()=>{
-                    dispatch(createTask({
+                    dispatch(changeTask({
                       'name': name_task,
                       'artefact': artefact,
-                      'description': editorRef.current,
+                    //   'description': editorRef.current?.description ? editorRef.current?.description : editorRef.current.getContent(),
+                      'description': editorRef.current.annotator ? editorRef.current : editorRef.current.getContent(),
                       'norm': norm,
                       'start_before': start_before,
                       'start': `${moment().day()}.${moment().month()}.${moment().year()}`,

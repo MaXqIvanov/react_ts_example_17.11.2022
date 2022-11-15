@@ -19,16 +19,17 @@ export const getEmployesAll = createAsyncThunk(
   },
 )
 
-    // section_company_employes
+    // section_company_employes Компания / Должности
   export const getEmployesCompany = createAsyncThunk(
     'employes/getEmployesCompany',
     async (params: any, {getState}:any) => {
+      let company:any = localStorage.getItem('WT_company')
       // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
-      const response = await api.get(`v1/images/search`)
+      const response = await api.get(`companies/employees/?company=${JSON.parse(company).id}`)
       return {response}
     },
   )
-  // section_admin_employes
+  // section_admin_employes Компания / Пользователи
   export const getEmployesAdmin = createAsyncThunk(
     'employes/getEmployesAdmin',
     async (params: any, {getState}:any) => {
@@ -55,6 +56,8 @@ const controlSlice = createSlice({
     all_pages: 10,
 
     // section_company_employes
+    employes_company_all: [],
+    employes_company_current: {} as any,
     current_page_company_employes: 1,
     all_pages_company_employes: 10,
     // section_admin_employes
@@ -114,7 +117,8 @@ const controlSlice = createSlice({
       state.loading = true
     });
     builder.addCase(getEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
-      
+      console.log(payload);
+      state.employes_company_all = payload.response.data
       state.loading = false
     });
     builder.addCase(getEmployesCompany.rejected, (state:EmployesState) => {

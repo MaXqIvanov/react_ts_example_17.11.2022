@@ -49,9 +49,13 @@ export type PositionState = {
     isVisibleSideBar: boolean,
     position_all: Array<any>,
     position_current: any,
+    // company section
+    position_company_all: Array<any>,
+    position_company_current: Object,
     // pagination
     current_page: number,
     all_pages: number,
+    position_company_index: number,
 }
 
 export type EmployesState = {
@@ -71,4 +75,7 @@ export type EmployesState = {
     current_page_admin_employes: number,
     all_pages_admin_employes: number,
     isVisibleSideBarCreate: boolean,
+
+    employes_company_all: Array<any>,
+    employes_company_current: Object,
 }
