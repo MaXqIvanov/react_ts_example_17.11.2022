@@ -45,6 +45,7 @@ const controlSlice = createSlice({
 
     // for sidebar
     isVisibleSideBar: false,
+    isVisibleSideBarCreate: false,
     // get_employes_all
     employes_all: [],
     employes_current: {} as any,
@@ -65,6 +66,9 @@ const controlSlice = createSlice({
     },
     changeVisibleSideBar(state:EmployesState, action:any){
       state.isVisibleSideBar = !state.isVisibleSideBar
+    },
+    changeVisibleSideBarCreate(state: EmployesState, action: any){
+      state.isVisibleSideBarCreate = !state.isVisibleSideBarCreate
     },
     setCurrentEmployes(state:EmployesState, action:any){
       state.employes_current = action.payload.employes_current

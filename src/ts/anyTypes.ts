@@ -70,4 +70,5 @@ export type EmployesState = {
     all_pages_company_employes: number,
     current_page_admin_employes: number,
     all_pages_admin_employes: number,
+    isVisibleSideBarCreate: boolean,
 }
