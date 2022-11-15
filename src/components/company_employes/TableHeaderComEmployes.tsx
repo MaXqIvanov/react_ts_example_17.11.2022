@@ -40,8 +40,8 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>№</TableCell>
-                        <TableCell align="left">Должность</TableCell>
+                        <TableCell>№<div className={'border_dashed'}></div></TableCell>
+                        <TableCell align="left">Должность<div className={'border_dashed'}></div></TableCell>
                         <TableCell className={`table_cell`}>ФИО</TableCell>
                     </TableRow>
                     </TableHead>
@@ -53,9 +53,11 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                         >
                             <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
                             <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.employes}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
                             <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.name_employ}</TableCell>  
                         </TableRow>
