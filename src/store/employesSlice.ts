@@ -137,4 +137,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes, setCurrentEmployes } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes, setCurrentEmployes, changeVisibleSideBarCreate } = controlSlice.actions;

@@ -14,7 +14,7 @@ export const getTaskDay = createAsyncThunk(
   async (params:any, {getState}:any) => {
     console.log(params);
     // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}`: ''}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
   },
 )
@@ -83,7 +83,7 @@ export const createTask = createAsyncThunk(
         name: params.name,
         norm: params.norm,
         start_before: params.start_before,
-        // description: params.description,
+        description: params.description,
         artefact: params.artefact,
         start: params.start,
         end: params.end,

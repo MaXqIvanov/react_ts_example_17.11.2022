@@ -150,24 +150,24 @@ $border-color: #C6D2D9;
 .user_side_menu{
     position: fixed;
     z-index: 9999;
-    top: 5vh;
-    right: 10vw;
+    // top: 5vh;
+    // right: 10vw;
     // bottom: 0;
-    width: 80vw;
-    height: 90%;
-    min-height: 90vh;
+    // width: 80vw;
+    // height: 90%;
+    // min-height: 90vh;
     min-width: 450px;
     background: white;
     display: flex;
     justify-content: center;
     overflow-y: auto;
-    @media(max-width: 1500px){
+    // @media(max-width: 1500px){
         top: 2vh;
         min-height: 96vh;
         width: 90vw;
         right: 5vw;
         height: 96%;
-    }
+    // }
 }
 .user_side_menu_wrapper{
     position: absolute;
