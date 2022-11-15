@@ -14,7 +14,7 @@ export const getProfile = createAsyncThunk(
     let current_company:any = localStorage.getItem('WT_company')
     current_company = JSON.parse(current_company)
     console.log(current_company);
-    if(!current_company.id){
+    if(!current_company?.id){
       localStorage.removeItem('WT_company')
     }
     let response2:any;

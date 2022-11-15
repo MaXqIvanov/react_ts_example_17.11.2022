@@ -5,10 +5,10 @@
     min-height: calc(100vh - 60px);
 }
 .admin_employes_wrapper{
-    padding: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    height: 100%;
+    padding: 6px;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
+    height: calc(100% -40px);
     width: calc(100% -40px);
     position: relative;
 }
@@ -18,14 +18,14 @@
     justify-content: right;
 }
 .nav_header_btn{
-    width: fit-content;
-    display: flex;
     width: 100%;
-    justify-content: space-between;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
 }
 // work width Table
 .table{
-    margin-top: 16px;
+    margin-top: 11px;
     height: 100%;
     width: 100%;
 }
@@ -383,3 +383,27 @@
     }
 }
 // end_sidebar_header
+.added_employes{
+    margin-top: -1px;
+    height: 34px;
+    background-color: #03A9F4;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 199px;
+    border: 1px solid #03A9F4;
+    border-radius: 2px;    
+    cursor: pointer;
+    margin-left: 10px;
+    box-sizing: border-box;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+        
+        text-transform: uppercase;
+    }
+}

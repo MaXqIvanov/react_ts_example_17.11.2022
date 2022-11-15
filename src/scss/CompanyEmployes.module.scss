@@ -7,10 +7,10 @@ $dark-blue: #0088CC;
     min-height: calc(100vh - 60px);
 }
 .company_employes_wrapper{
-    padding: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    height: 100%;
+    padding: 6px;
+    // padding-top: 12px;
+    // padding-bottom: 12px;
+    height: calc(100% -40px);
     width: calc(100% -40px);
     position: relative;
 }
@@ -26,7 +26,7 @@ $dark-blue: #0088CC;
 }
 // work width Table
 .table{
-    margin-top: 16px;
+    margin-top: 11px;
     height: 100%;
     width: 100%;
 }
@@ -459,30 +459,26 @@ $dark-blue: #0088CC;
 // end_sidebar_header
 .added_employes{
     margin-top: -1px;
-    height: 37px;
-    background-color: $dark-blue;
+    height: 34px;
+    background-color: #03A9F4;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 235px;
-    border-radius: 3px;
-    border: 1px solid #0088CC;
+    width: 167px;
+    border: 1px solid #03A9F4;
+    border-radius: 2px;    
     cursor: pointer;
+    margin-left: 10px;
+    box-sizing: border-box;
     span{
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
+        font-size: 12px;
+        line-height: 14px;
         /* identical to box height */
         
-        display: flex;
-        align-items: center;
-        text-align: center;
-        
-        /* input background */
-        
-        color: #FFFFFF;
+        text-transform: uppercase;
     }
 }
 .postpone_employes{

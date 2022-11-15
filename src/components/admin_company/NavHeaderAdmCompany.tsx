@@ -7,7 +7,7 @@ import styles from '../../scss/AdminCompany.module.scss'
 
 export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
-
+  const [search, setSearch] = useState<string>('')
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
@@ -28,14 +28,17 @@ export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}   
-                <TextField
+              <div className='custom_search_wrapper'>
+                  <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  style={{marginLeft: '10px'}}
                   className='custom_search'
-                  label="Поиск..."
-                  InputProps={{
-                    type: 'search',
-                  }}
-                />
-              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}>ДОБАВИТЬ КОМПАНИЮ +</div>           
+                  placeholder='Поиск'
+                  ></input>
+                  <div className='custom_search_icon'></div>
+              </div>
+              <div onClick={()=> setIsAddedSideBar(true)} className={styles.com_position_btn_added}><span>ДОБАВИТЬ КОМПАНИЮ</span></div>           
               {/* )}
             />
           </Stack> */}
