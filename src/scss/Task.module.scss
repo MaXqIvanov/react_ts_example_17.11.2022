@@ -818,3 +818,61 @@ $border-color: #C6D2D9;
     height: 100%;
     z-index: 9999;
 }
+.user_side_menu_create{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    width: 538px;
+    height: 678px;
+    background-color: white;
+    // padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #C6D2D9;
+    border-radius: 1px;
+}
+.user_side_menu_create_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .close_user_side_menu_create_btn{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        height: 12px;
+        width: 12px;
+        // transform: translate(-50% , -50%);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+    .side_menu_title{
+        width: 100%;
+        height: 34px;
+        min-height: 34px;
+        border-bottom: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        box-sizing: border-box;
+
+        span{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 14px;
+            color: #6C757D;
+        }
+    }
+    .text_field_block_create{
+        padding: 20px;
+        height: fit-content;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

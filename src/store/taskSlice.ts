@@ -14,7 +14,7 @@ export const getTaskDay = createAsyncThunk(
   async (params:any, {getState}:any) => {
     console.log(params);
     // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.now_day && params.now_day + '.'+params.now_month+'.'+params.now_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
   },
 )
@@ -25,7 +25,7 @@ export const getTaskWeek = createAsyncThunk(
     console.log("this getTaskWeek");
     console.log(params);
     // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
-    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}`)
+    const response = await api.get(`tasks/execute/to_range/?start=${params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year}&end=${params.last_day && params.last_day + '.'+params.last_month+'.'+params.last_year}${params.search && '&search=' + params.search}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
   },
 )
@@ -38,8 +38,18 @@ export const getTaskAll = createAsyncThunk(
     
     let company:any = localStorage.getItem('WT_company')
     
-    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}`)
+    const response = await api.get(`tasks/execute/?company=${JSON.parse(company).id}${params.search ? `&search=${params.search}` : ''}${params.visible ? `&position=${getState().employes.employes_current._user.id}&analyst`: ''}`)
     return {response}
+  },
+)
+
+export const getCurrentTask = createAsyncThunk(
+  'task/getCurrentTask',
+  async (params:{current_task: any, index: number}, {getState}:any) => {
+    console.log(params);
+    // alert(`Загрузка данных с бэка раздел неделя страница ${getState().task.current_page_week}`)
+    const response = await api.get(`tasks/tasks/${params.current_task.id}/`)
+    return {response, params}
   },
 )
 
@@ -54,6 +64,110 @@ export const finishTask = createAsyncThunk(
     return {response}
   },
 )
+// create task
+export interface createTask {
+  name: string;
+  norm: number;
+  start_before?: any;
+  description: string;
+  artefact: string;
+  start: string;
+  end?: any;
+  delta_type?: string | null;
+  delta?: number | null;
+  mon: boolean;
+  tue: boolean;
+  wed: boolean;
+  thu: boolean;
+  fri: boolean;
+  sat: boolean;
+  sun: boolean;
+}
+export const createTask = createAsyncThunk(
+  'task/createTask',
+  async (params: createTask, {getState}:any) => {
+    // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+    console.log(params);
+    try {
+      const response = await api.post(`tasks/tasks/`,{
+        name: params.name,
+        norm: params.norm,
+        start_before: params.start_before,
+        description: params.description,
+        artefact: params.artefact,
+        start: params.start,
+        end: params.end,
+        delta_type: params.delta_type,
+        delta: params.delta,
+        mon: params.mon,
+        tue: params.tue,
+        wed: params.wed,
+        thu: params.thu,
+        fri: params.fri,
+        sat: params.sat,
+        sun: params.sun,
+        position: getState().employes.employes_current._user.id,
+        company: getState().auth.current_company.id,
+      }) 
+      return {response}
+    } catch (error) {
+      console.log(error);
+      
+    }
+  },
+)
+
+export const changeTask = createAsyncThunk(
+  'task/changeTask',
+  async (params: createTask, {getState}:any) => {
+    // alert(`Загрузка данных с бэка раздел все страница ${getState().task.current_page_all} `)
+    console.log(params);
+    try {
+      const response = await api.put(`tasks/tasks/${getState().task.current_task_week.id}/`,{
+        name: params.name,
+        norm: params.norm,
+        start_before: params.start_before,
+        description: params.description,
+        artefact: params.artefact,
+        start: params.start,
+        end: params.end,
+        delta_type: params.delta_type,
+        delta: params.delta,
+        mon: params.mon,
+        tue: params.tue,
+        wed: params.wed,
+        thu: params.thu,
+        fri: params.fri,
+        sat: params.sat,
+        sun: params.sun,
+        position: getState().employes.employes_current._user.id,
+        company: getState().auth.current_company.id,
+      }) 
+      return {response, params}
+    } catch (error) {
+      console.log(error);
+    }
+  },
+)
+// "name": "test task week 1",
+// "norm": 15,
+// "start_before": null,
+// "description": "That is a new test task!",
+// "artefact": "https://google.com",
+// "start": "26.09.2022",
+// "end": null,
+// "delta_type": "week",
+// "delta": 1,
+// "mon": false,
+// "tue": false,
+// "wed": false,
+// "thu": false,
+// "fri": true,
+// "sat": true,
+// "sun": false,
+// "position": 1,
+// "company": 2,
+// "parent_task": 61
 
 
 const taskSlice = createSlice({
@@ -89,6 +203,8 @@ const taskSlice = createSlice({
     // for pagination for all
     current_page_all: 1,
     all_pages_all: 1,
+    
+    need_load_data: false,
   },
   reducers: {
     setCurrentVariantTable(state:TaskState, action:any){
@@ -115,11 +231,11 @@ const taskSlice = createSlice({
         state.current_page_all = current_page_all
       }
     },
-    getCurrentTask(state:TaskState, action:any){
-      console.log(action.payload);
-      state.current_task_week = action.payload.current_task 
-      state.current_task_index = action.payload.index
-    }
+    // getCurrentTask(state:TaskState, action:any){
+    //   console.log(action.payload);
+    //   state.current_task_week = action.payload.current_task 
+    //   state.current_task_index = action.payload.index
+    // }
   },
   extraReducers: (builder) => {
     builder.addCase(getTaskDay.pending, (state:TaskState, action:PayloadAction) => {
@@ -185,11 +301,53 @@ const taskSlice = createSlice({
     builder.addCase(finishTask.rejected, (state:TaskState) => {
       state.loading = false
     });
-
+    // createTask
+    builder.addCase(createTask.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(createTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 300){
+        alert('Создание задачи прошло успешно')
+        state.isVisibleSideBar = false
+        state.need_load_data = !state.need_load_data
+      }
+      // state.get_all_task_week = payload.response.data
+      state.loading = false
+    });
+    builder.addCase(createTask.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+    // getCurrentTask
+    builder.addCase(getCurrentTask.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getCurrentTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      state.current_task_index = payload.params.index
+      state.current_task_week = payload.response.data
+      state.loading = false
+    });
+    builder.addCase(getCurrentTask.rejected, (state:TaskState) => {
+      state.loading = false
+    });
+    // changeTask
+    // need_load_data
+    builder.addCase(changeTask.pending, (state:TaskState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(changeTask.fulfilled, (state:TaskState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      state.need_load_data = !state.need_load_data
+      state.loading = false
+    });
+    builder.addCase(changeTask.rejected, (state:TaskState) => {
+      state.loading = false
+    });
   },
 
   
 });
 
 export default taskSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePagesDay, changePagesWeek, changePagesAll, getCurrentTask } = taskSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, changePagesDay, changePagesWeek, changePagesAll } = taskSlice.actions;

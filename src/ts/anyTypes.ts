@@ -24,6 +24,7 @@ export type TaskState = {
     current_page_all: number,
     all_pages_all: number,
     current_task_index: number,
+    need_load_data: boolean,
 }
 export type CompanyState = {
     loading: boolean,
@@ -48,9 +49,13 @@ export type PositionState = {
     isVisibleSideBar: boolean,
     position_all: Array<any>,
     position_current: any,
+    // company section
+    position_company_all: Array<any>,
+    position_company_current: Object,
     // pagination
     current_page: number,
     all_pages: number,
+    position_company_index: number,
 }
 
 export type EmployesState = {
@@ -69,4 +74,8 @@ export type EmployesState = {
     all_pages_company_employes: number,
     current_page_admin_employes: number,
     all_pages_admin_employes: number,
+    isVisibleSideBarCreate: boolean,
+
+    employes_company_all: Array<any>,
+    employes_company_current: Object,
 }

@@ -40,8 +40,9 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>№</TableCell>
-                        <TableCell className={`table_cell`}>ФИО</TableCell>
+                        <TableCell>№<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`}>ФИО<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`}>Компания</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -52,15 +53,20 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                         >
                             <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell className={`table_cell`} style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
+                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
                                 {row.name_employ}
+                                <div className={'border_dashed'}></div>
+                            </TableCell>
+                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
+                                Какая то
                             </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
                 </Table>
-                <div className={styles.thead_footer_custom}>
+                {/* <div className={styles.thead_footer_custom}>
                     <div>страница</div>
                     <div className={styles.footer_group_btn}>
                         <div onClick={()=> dispatch(changePagesAdminEmployes(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
@@ -68,7 +74,7 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                         <div onClick={()=> dispatch(changePagesAdminEmployes(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
                     </div>
                     <div>из {all_pages_admin_employes}</div>
-                </div>
+                </div> */}
             </TableContainer>
         </div>
     </div>

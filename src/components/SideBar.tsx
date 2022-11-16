@@ -20,12 +20,12 @@ export const SideBar = ({isCollapseSideBar}:any) => {
 
     useEffect(() => {
         window.addEventListener('scroll', function(e) {
-            console.log(document.getElementById('header')!.getBoundingClientRect().top);
+            // console.log(document.getElementById('header')!.getBoundingClientRect().top);
             setTopMargin(document.getElementById('header')!.getBoundingClientRect().top)
           });
         return () => {
             window.removeEventListener('scroll' , function(e) {
-                console.log(document.getElementById('header')!.getBoundingClientRect().top);
+                // console.log(document.getElementById('header')!.getBoundingClientRect().top);
                 setTopMargin(document.getElementById('header')!.getBoundingClientRect().top)
               })
         } 
@@ -90,7 +90,7 @@ export const SideBar = ({isCollapseSideBar}:any) => {
         },
         {
             id: 7,
-            title: 'СОТРУДНИКИ',
+            title: 'АДМИНИСТРАТОРЫ',
             image: `${img_admin_employes}`,
             links: `/admin_employes`,
             access: (user.is_staff === true) === true ? true : false

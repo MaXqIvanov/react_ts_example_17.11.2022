@@ -9,7 +9,7 @@ import styles from '../../scss/AdminEmployes.module.scss';
 
 export const NavHeaderAdmEmployes = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
-
+  const [search, setSearch] = useState<string>('')
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
@@ -30,14 +30,18 @@ export const NavHeaderAdmEmployes = ({setIsAddedSideBar}:any) => {
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => ( */}          
-              <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div>
-                <TextField
+              {/* <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div> */}
+              <div className='custom_search_wrapper'>
+                  <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  style={{marginLeft: '10px'}}
                   className='custom_search'
-                  label="Поиск..."
-                  InputProps={{
-                    type: 'search',
-                  }}
-                />
+                  placeholder='Поиск'
+                  ></input>
+                  <div className='custom_search_icon'></div>
+              </div>
+              <div onClick={()=> setIsAddedSideBar(true)} className={styles.added_employes}><span>Добавить администратора</span></div>
               {/* )}
             />
           </Stack> */}

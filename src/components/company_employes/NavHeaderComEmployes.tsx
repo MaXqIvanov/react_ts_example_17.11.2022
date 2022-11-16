@@ -9,7 +9,7 @@ import styles from '../../scss/CompanyEmployes.module.scss'
 
 export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any) => {
   const [position, setPosition] = React.useState('');
-
+  const [search, setSearch] = useState<string>('')
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
@@ -33,14 +33,17 @@ export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any
 
               {/* <div onClick={()=> setIsSearchSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_changed})`}} className={styles.com_employes_btn_changed}></div>              
               <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div> */}
-                <TextField
+              <div className='custom_search_wrapper'>
+                  <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  style={{marginLeft: '10px'}}
                   className='custom_search'
-                  label="Поиск..."
-                  InputProps={{
-                    type: 'search',
-                  }}
-                />
-                <div onClick={()=> setIsSearchSideBar(true)} className={styles.postpone_employes}><span>Перенести сотрудника</span></div>
+                  placeholder='Поиск'
+                  ></input>
+                  <div className='custom_search_icon'></div>
+              </div>
+                {/* <div onClick={()=> setIsSearchSideBar(true)} className={styles.postpone_employes}><span>Перенести сотрудника</span></div> */}
                 <div onClick={()=> setIsAddedSideBar(true)} className={styles.added_employes}><span>Добавить сотрудника</span></div>
               {/* )}
             />

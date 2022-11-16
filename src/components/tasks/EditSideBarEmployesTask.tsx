@@ -1,10 +1,10 @@
 import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from '../../scss/Task.module.scss'
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg'
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, createTask } from '../../store/taskSlice';
+import { changeTask, changeVisibleSideBar, createTask } from '../../store/taskSlice';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,6 +13,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import MUIRichTextEditor from 'mui-text-editor'
 import { Editor } from '@tinymce/tinymce-react';
 import moment from 'moment';
+import { changeVisibleSideBarCreate } from '../../store/employesSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 
 const myTheme = createTheme({
@@ -36,7 +39,7 @@ Object.assign(myTheme, {
   }
 })
 
-export const CreateSideBar = () => {
+export const EditSideBarEmployesTask = () => {
   const dispatch = useAppDispatch()
   const [date_start_task, setDateStartTask] = useState('')
   const [period_task_current, setPeriosTaskCurrent] = useState({id: 1, title: 'Ежедневно'})
@@ -160,13 +163,39 @@ export const CreateSideBar = () => {
       id: period_select[period_select.length - 1].id + 1,
       title: `Кажд. ${delta} ${delta_type?.title}. - ${mon ? '' : 'понедельник '}${tue ? '' : 'вторник '}${wed ? '' : 'среда '}${thu ? '' : 'четверг '}${fri ? '' : 'пятница '} ${sat ? '' : 'суббота '} ${sun ? '' : 'воскресенье'}`
     })
-  }
+  }  
+
+  const {current_task_week} = useSelector((state: RootState)=> state.task)
+
+  useEffect(() => {
+    setNameTask(current_task_week.name)
+    setStartBefore(current_task_week.start_before)
+    setArtefact(current_task_week.artefact)
+    setNorm(current_task_week.norm)
+    editorRef.current = current_task_week.description
+    setDelta(current_task_week.delta)
+    setDeltaType(current_task_week.delta_type)
+    setMon(current_task_week.mon)
+    setTue(current_task_week.tue)
+    setWed(current_task_week.wed)
+    setThu(current_task_week.thu)
+    setFri(current_task_week.fri)
+    setSat(current_task_week.sat)
+    setSun(current_task_week.sun)
+
+  }, [current_task_week])
+  
+  useEffect(() => {
+    editorRef.current = current_task_week.description
+  }, [name_task, start_before, norm, artefact, period_select])
+  
+
 
   return (
     <>
         <div className={`${styles.user_side_menu_create} user_side_menu`}>
           <div className={styles.user_side_menu_create_wrapper}>
-            <div onClick={()=> dispatch(changeVisibleSideBar())} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_create_btn}></div>
+            <div onClick={()=> dispatch(changeVisibleSideBarCreate(''))} style={{backgroundImage: `url(${close_btn})`}} className={styles.close_user_side_menu_create_btn}></div>
             <div className={styles.side_menu_title}><span>Задача</span></div>
             {/* <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div> */}
             <div className={styles.text_field_block_create}>
@@ -202,7 +231,7 @@ export const CreateSideBar = () => {
                   <input type={'number'} onChange={(e) => setNorm(e.target.value)} value={norm} className={'input'}/>
                 </div>
                 <Editor apiKey='uhkrpnl1dfs4w8nt8a22oug4eap1yhb657nso942f8slxhu6' onInit={(evt, editor) => editorRef.current = editor}
-                  initialValue="<p>Описание задачи</p>"
+                  initialValue={`${editorRef.current}`}
                   init={{
                     height: 500,
                     menubar: false,
@@ -220,12 +249,13 @@ export const CreateSideBar = () => {
             </div>
             <div style={{width: '100%'}} className={'custom_btn_wrapper'}>
                 <div style={{display: 'flex', marginRight: '10px'}}>
-                  <div onClick={()=> dispatch(changeVisibleSideBar())} className={'btn_cancel'}><span>Отмена</span></div>
+                  <div onClick={()=> dispatch(changeVisibleSideBarCreate(''))} className={'btn_cancel'}><span>Отмена</span></div>
                   <div onClick={()=>{
-                    dispatch(createTask({
+                    dispatch(changeTask({
                       'name': name_task,
                       'artefact': artefact,
-                      'description': editorRef.current.getContent(),
+                    //   'description': editorRef.current?.description ? editorRef.current?.description : editorRef.current.getContent(),
+                      'description': editorRef.current.annotator ? editorRef.current : editorRef.current.getContent(),
                       'norm': norm,
                       'start_before': start_before,
                       'start': `${moment().day()}.${moment().month()}.${moment().year()}`,
@@ -295,7 +325,7 @@ export const CreateSideBar = () => {
               </div>
             </div>
           </div>}
-        <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.user_side_menu_plug}></div>
+        <div onClick={()=> dispatch(changeVisibleSideBarCreate(''))} className={styles.user_side_menu_plug}></div>
       </>
   )
 }

@@ -82,7 +82,7 @@ export const TableHeaderEmployes = ({setIsVisibleSideBar}:any) => {
                                     index: index,
                                 }))
                                 }} align="left">{row?._position}<div className={'border_dashed'}></div></TableCell>  
-                            <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer'}} onClick={()=>{
+                            <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '30px', maxWidth: '30px'}} onClick={()=>{
                                  setIsVisibleSideBar(true)
                                 dispatch(setCurrentEmployes({
                                     employes_current: row,
