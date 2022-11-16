@@ -28,7 +28,9 @@ export type TaskState = {
 }
 export type CompanyState = {
     loading: boolean,
-    listCompany: Array<any>,
+    company_admin_all: Array<Object>,
+    company_admin_current: Object,
+    company_admin_index: number,
     current_page: number,
     all_pages: number,
 

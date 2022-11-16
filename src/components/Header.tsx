@@ -57,7 +57,7 @@ export const Header = ({setIsVisibleSideBar, isVusubleSideBar, setIsCollapseSide
           <div className={styles.separate_line_for_header}></div>
           <div onClick={()=> setIsVisibleUserMenu(!isVisibleUserMenu)} style={{backgroundImage: user?.avatar ? `url(${user?.avatar})` : `none`}}
           className={user?.avatar ? styles.header_user_img : styles.header_user_not_img}>
-            <span>{user?.avatar ? '' : user?.name?.split(' ')[0]?.split('')[0] + user?.name?.split(' ')[1]?.split('')[0]}</span></div>
+            <span>{user?.avatar ? '' : user?.name?.split(' ')[0]?.split('')[0] ? user?.name?.split(' ')[0]?.split('')[0]?.toUpperCase() : '' + user?.name?.split(' ')[1]?.split('')[0] ? user?.name?.split(' ')[1]?.split('')[0]?.toUpperCase() : ''}</span></div>
         </div>
       </div>
       {isVisibleUserMenu &&

@@ -28,35 +28,10 @@ const companySlice = createSlice({
   name: 'company',
   initialState: {
     loading: false,
-    
+    company_admin_all: [],
+    company_admin_current: {} as any,
+    company_admin_index: 1,
     // one_company user
-    listCompany: [
-      {
-        id: 1,
-        name_company: 'ООО Купипродай',
-        company_root: [
-          "Исполнитель",
-          "Контроллёр",
-          "Аналитик"
-        ]
-      },
-      {
-        id: 2,
-        name_company: 'ООО Соберипострой',
-        company_root: [
-          "Исполнитель",
-        ]
-      },
-      {
-        id: 3,
-        name_company: 'ООО Принесуподай',
-        company_root: [
-          "Исполнитель",
-          "Контроллёр",
-        ]
-      },
-    ],
-
     // for admin_company
     // for pagination
     current_page: 1,

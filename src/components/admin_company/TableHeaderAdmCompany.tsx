@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,25 +13,24 @@ import { useAppDispatch } from '../../hooks/redux';
 import { changePagesCompany, getCompanyAll } from '../../store/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
+import useClickOutSide from '../../hooks/useClickOutSide';
 
 function createData(number: number, name_company:string, employes:string,) {
     return { number, name_company, employes };
   }
   
-  const rows = [
-    createData(1, 'ООО Медвед', "Иванов Иван Иванович"),
-    createData(2, 'ООО Медвед2', "Иванов Иван Иванович"), 
-    createData(3, 'ООО Медвед3', "Иванов Иван Иванович"),
-    createData(4, 'ООО Медвед4', "Иванов Иван Иванович"),
-    createData(5, 'ООО Медвед5', "Иванов Иван Иванович"),
-  ];
 
 export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
     const dispatch = useAppDispatch()
-    const {current_page, all_pages} = useSelector((state:RootState)=> state.company)
+    const {company_admin_all, company_admin_current} = useSelector((state:RootState)=> state.company)
+    const [rows, setRows] = useState<any>([])
     useEffect(() => {
-      dispatch(getCompanyAll(''))
-    }, [current_page])
+      setRows(company_admin_all)
+    }, [company_admin_all])
+    const [is_delete_btn, setIsDeleteBtn] = useState<boolean>(false)
+    const delete_btn = useClickOutSide(()=> {
+        setIsDeleteBtn(false)
+    })
     
   return (
     <div className={`${styles.table}`}>
@@ -46,7 +45,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row, index) => (
+                    {rows.map((row: typeof rows[0], index: number) => (
                         <TableRow
                         key={row.number}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
@@ -60,6 +59,25 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                                 <div className={'border_dashed'}></div>
                             </TableCell>
                             <TableCell style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.employes}</TableCell>  
+                            <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '21px', maxWidth: '21px', minWidth: '21px'}} onClick={()=>{
+                                setIsDeleteBtn(true)
+                                // dispatch(getCurrentCompany({admin_current: row, index: index}))
+                                //  setIsVisibleSideBar(true)
+                                // dispatch(setCurrentEmployes({
+                                //     employes_current: row,
+                                //     index: index,
+                                // }))
+                            }} align="center"><div className={styles.btn_table}></div>
+                                {is_delete_btn && company_admin_current.id === row.id && <div onClick={()=>
+                                {
+                                    window.confirm('Вы уверены что хотите удалить компанию ?') &&
+                                        // dispatch(deleteEmployesCompanyAdmin(''))
+                                        alert('удалил')
+
+                                    
+    
+                                }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
+                            </TableCell>  
                         </TableRow>
                     ))}
                     </TableBody>
