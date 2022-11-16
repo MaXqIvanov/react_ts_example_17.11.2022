@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,28 +10,22 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/AdminEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesAdminEmployes, getEmployesAdmin } from '../../store/employesSlice';
+import { deleteEmployesCompanyAdmin, getCurrentAdmin, getEmployesAdmin } from '../../store/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-
-function createData(number: number, name_employ:string) {
-    return { number, name_employ };
-  }
-  
-  const rows = [
-    createData(1, 'Ярослав Столиков Генадьевич'),
-    createData(2, 'Ярослав Столиков Генадьевич2'), 
-    createData(3, 'Ярослав Столиков Генадьевич3'),
-    createData(4, 'Ярослав Столиков Генадьевич4'),
-    createData(5, 'Ярослав Столиков Генадьевич5'),
-  ];
+import useClickOutSide from '../../hooks/useClickOutSide';
 
 export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
     const dispatch = useAppDispatch()
-    const {current_page_admin_employes, all_pages_admin_employes} = useSelector((state:RootState)=> state.employes)
+    const {employes_admin_all, employes_admin_current} = useSelector((state:RootState)=> state.employes)
+    const [rows, setRows] = useState<any>([])
     useEffect(() => {
-      dispatch(getEmployesAdmin(''))
-    }, [current_page_admin_employes])
+      setRows(employes_admin_all)
+    }, [employes_admin_all])
+    const [is_delete_btn, setIsDeleteBtn] = useState<boolean>(false)
+    const delete_btn = useClickOutSide(()=> {
+        setIsDeleteBtn(false)
+    })
     
   return (
     <div className={`${styles.table}`}>
@@ -42,26 +36,54 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                     <TableRow>
                         <TableCell>№<div className={'border_dashed'}></div></TableCell>
                         <TableCell className={`table_cell`}>ФИО<div className={'border_dashed'}></div></TableCell>
-                        <TableCell className={`table_cell`}>Компания</TableCell>
+                        <TableCell className={`table_cell`}>Компания<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`}></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row, index) => (
+                    {rows.map((row: typeof rows[0], index:number) => (
                         <TableRow
-                        key={row.number}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
+                            <TableCell onClick={()=> {
+                                 setIsVisibleSideBar(true)
+                                  dispatch(getCurrentAdmin({admin_current: row, index: index}))
+                                 }} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                {row.name_employ}
+                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> {
+                                 setIsVisibleSideBar(true)
+                                 dispatch(getCurrentAdmin({admin_current: row, index: index}))
+                                }} component="th" scope="row">
+                                {row.name}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                Какая то
+                            <TableCell className={`table_cell`} style={{cursor: 'pointer', width: '50%'}} onClick={()=> {
+                                 setIsVisibleSideBar(true)
+                                 dispatch(getCurrentAdmin({admin_current: row, index: index}))
+                                }} component="th" scope="row">
+                                {row.companies_str_short}
+                                <div className={'border_dashed'}></div>
                             </TableCell>
+                            <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '21px', maxWidth: '21px', minWidth: '21px'}} onClick={()=>{
+                                setIsDeleteBtn(true)
+                                dispatch(getCurrentAdmin({admin_current: row, index: index}))
+                                //  setIsVisibleSideBar(true)
+                                // dispatch(setCurrentEmployes({
+                                //     employes_current: row,
+                                //     index: index,
+                                // }))
+                            }} align="center"><div className={styles.btn_table}></div>
+                                {is_delete_btn && employes_admin_current.id === row.id && <div onClick={()=>
+                                {
+                                    window.confirm('Вы уверены что хотите удалить администратора ?') &&
+                                        dispatch(deleteEmployesCompanyAdmin(''))
+                                    
+    
+                                }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
+                            </TableCell>  
                         </TableRow>
                     ))}
                     </TableBody>

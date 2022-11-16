@@ -874,6 +874,10 @@ $border_main: #C6D2D9;
     align-items: center;
     padding: 8.5px 10.5px;
     cursor: pointer;
+    border: 1px solid #03A9F4;
+    border-radius: 2px;
+    height: 31px;
+    box-sizing: border-box;
     span{
       color: white;
       font-style: normal;
@@ -1048,6 +1052,7 @@ $border_main: #C6D2D9;
       background-color: #E4EAEE;
       border: 1px solid #C6D2D9;
     }
+    appearance: unset !important;
   }
   .artefact{
     height: fit-content;
@@ -1406,5 +1411,125 @@ $border_main: #C6D2D9;
     &:hover{
       background: rgba(0, 150, 136, 1);
     }
+  }
+}
+
+.wrapper_input_percent{
+  width: 90%;
+
+  input{
+    width: calc(100% - 21px);
+    min-width: none;
+    max-width: none;
+    color: #333333;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 2px;
+    border: 1px solid #C6D2D9;
+    &:disabled{
+      background-color: #E4EAEE;
+      border: 1px solid #C6D2D9;
+    }
+    &:focus{
+      outline: 0px 0px 0px;
+      box-shadow: 0px 0px 0px;
+    }
+    &::placeholder{
+      color: $border_main;
+    }
+  }
+}
+
+.custom_select_wrapper_admin{
+  cursor: pointer;
+  position: relative;
+  width: calc(90% + 2px);
+  height: 32px;
+  min-width: 200px;
+
+  /* white */
+
+  background: #FFFFFF;
+  /* blue-gray-3 */
+
+  border: 1px solid #C6D2D9;
+  border-radius: 2px;
+  padding: 8.5px 10.5px;
+  box-sizing: border-box;
+  
+  .select_body{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
+  }
+  .select_arrow{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(-50%, 0px);
+    background-image: url('./assets/task/btn_arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 5px;
+    width: 8px;
+    cursor: pointer;
+  }
+  .select_additional{
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    background: white;
+    height: fit-content;
+    max-height: 140px;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0px 0px 4px 1px #c5cbce;
+    border-radius: 1px;
+    overflow-y: auto;
+
+    
+    span{
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .position_current{
+    height: 34px;
+    padding: 0px 10px ;
+    display: flex;
+    align-items: center;
+
+    &:hover{
+      background: #E4EAEE;
+    }
+  }
+}
+
+.delete_btn{
+  position: absolute;
+  top: 25px;
+  right: 12px;
+  background: white;  
+  width: 68px;
+  height: 31px;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid $border_main;
+  span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
   }
 }

@@ -72,10 +72,15 @@ export type EmployesState = {
     all_pages: number
     current_page_company_employes: number,
     all_pages_company_employes: number,
-    current_page_admin_employes: number,
-    all_pages_admin_employes: number,
+    // current_page_admin_employes: number,
+    // all_pages_admin_employes: number,
     isVisibleSideBarCreate: boolean,
-
+    // emp_company
     employes_company_all: Array<any>,
     employes_company_current: Object,
+    // emp_admin
+    employes_admin_all: Array<any>
+    employes_admin_current: Object,
+    position_all_admin: Array<Object>,
+    employes_admin_index: number,
 }

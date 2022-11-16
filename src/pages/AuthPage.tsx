@@ -33,7 +33,7 @@ export const AuthPage = ({setIsVisibleSideBar}:any) => {
     <div className={styles.auth}>
       <div className={styles.auth_wrapper}>
         <div className={styles.auth_title}>WorkTracker</div>
-        <InputMask mask="+7(999)999-99-99" value={user_phone} onChange={((e: any) => {
+        <InputMask mask="+7 (999) 999-99-99" value={user_phone} onChange={((e: any) => {
           setUserPhone(e.target.value)
         })} required placeholder={'+7 (___) ___-__-__'} className={styles.phone_input} />
         <input onChange={((e:any)=> {

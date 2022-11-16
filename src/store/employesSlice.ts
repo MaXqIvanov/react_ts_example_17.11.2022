@@ -34,8 +34,47 @@ export const getEmployesAll = createAsyncThunk(
     'employes/getEmployesAdmin',
     async (params: any, {getState}:any) => {
       // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_admin_employes}`)
-      const response = await api.get(`v1/images/search`)
-      return {response}
+      const response = await api.get(`accounts/admins/?search=${params.search}`)
+      return {response, params}
+    },
+  )
+  export const getEmployesCompanyAdmin = createAsyncThunk(
+    'employes/getEmployesCompanyAdmin',
+    async (params: any, {getState}:any) => {
+      const response = await api.get(`companies/companies`)
+      return {response, params}
+    },
+  )
+  // accounts/admins/
+  export const createEmployesCompanyAdmin = createAsyncThunk(
+    'employes/createEmployesCompanyAdmin',
+    async (params: any, {getState}:any) => {
+      const response = await api.post(`accounts/admins/`,{
+        phone: params.phone,
+        name: params.name,
+        password: params.password,
+        company: params.company,
+
+      })
+      return {response, params}
+    },
+  )
+  export const changeEmployesCompanyAdmin = createAsyncThunk(
+    'employes/changeEmployesCompanyAdmin',
+    async (params: any, {getState}:any) => {
+      console.log(params);
+      
+      const response = await api.put(`accounts/admins/${getState().employes.employes_admin_current.id}/`,params)
+      return {response, params}
+    },
+  )
+  export const deleteEmployesCompanyAdmin = createAsyncThunk(
+    'employes/deleteEmployesCompanyAdmin',
+    async (params: any, {getState}:any) => {
+      console.log(params);
+      
+      const response = await api.delete(`accounts/admins/${getState().employes.employes_admin_current.id}/`)
+      return {response, params}
     },
   )
 
@@ -61,8 +100,10 @@ const controlSlice = createSlice({
     current_page_company_employes: 1,
     all_pages_company_employes: 10,
     // section_admin_employes
-    current_page_admin_employes: 1,
-    all_pages_admin_employes: 10,
+    employes_admin_all: [],
+    employes_admin_current: {} as any,
+    employes_admin_index: 1,
+    position_all_admin: [],
   },
   reducers: {
     setCurrentVariantTable(state:EmployesState, action:any){
@@ -92,13 +133,18 @@ const controlSlice = createSlice({
       }
     },
 
-    // section_admin_employes
-    changePagesAdminEmployes(state:EmployesState, action:any){
-      let current_page_admin_employes = state.current_page_admin_employes + action.payload
-      if(current_page_admin_employes > 0 && current_page_admin_employes <= state.all_pages_admin_employes){
-        state.current_page_admin_employes = current_page_admin_employes
-      }
+    getCurrentAdmin(state: EmployesState, action: any){
+      state.employes_admin_current = action.payload.admin_current
+      state.employes_admin_index = action.payload.index
     },
+    
+    // section_admin_employes
+    // changePagesAdminEmployes(state:EmployesState, action:any){
+    //   let current_page_admin_employes = state.current_page_admin_employes + action.payload
+    //   if(current_page_admin_employes > 0 && current_page_admin_employes <= state.all_pages_admin_employes){
+    //     state.current_page_admin_employes = current_page_admin_employes
+    //   }
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(getEmployesAll.pending, (state:EmployesState, action:PayloadAction) => {
@@ -129,16 +175,70 @@ const controlSlice = createSlice({
       state.loading = true
     });
     builder.addCase(getEmployesAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
-      
+      console.log(payload)
+      state.employes_admin_all = payload.response.data.results
       state.loading = false
     });
     builder.addCase(getEmployesAdmin.rejected, (state:EmployesState) => {
         state.loading = false
     });
-
-
+    // getEmployesCompanyAdmin
+    builder.addCase(getEmployesCompanyAdmin.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(getEmployesCompanyAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      state.position_all_admin = payload.response.data.results
+      state.loading = false
+    });
+    builder.addCase(getEmployesCompanyAdmin.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+// createEmployesCompanyAdmin
+    builder.addCase(createEmployesCompanyAdmin.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(createEmployesCompanyAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status >= 400){
+        alert(payload.response.data.phone ? payload.response.data.phone[0] : 'Создать администратора не получилось')
+      }else{
+        state.employes_admin_all = [...state.employes_admin_all, payload.response.data]
+        state.loading = false
+        payload.params.setIsAddedSideBar(false)
+      }
+    });
+    builder.addCase(createEmployesCompanyAdmin.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+    // changeEmployesCompanyAdmin
+    builder.addCase(changeEmployesCompanyAdmin.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(changeEmployesCompanyAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      state.employes_admin_all[state.employes_admin_index] = payload.response.data
+      state.loading = false
+      payload.params.setIsVisibleSideBar(false)
+    });
+    builder.addCase(changeEmployesCompanyAdmin.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+    // deleteEmployesCompanyAdmin
+    builder.addCase(deleteEmployesCompanyAdmin.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(deleteEmployesCompanyAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      state.employes_admin_all.splice(state.employes_admin_index, 1)
+      state.employes_admin_current = {}
+      state.loading = false
+    });
+    builder.addCase(deleteEmployesCompanyAdmin.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
   },
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, changePages, changePagesCompanyEmployes, changePagesAdminEmployes, setCurrentEmployes, changeVisibleSideBarCreate } = controlSlice.actions;
+export const { setCurrentVariantTable, changeVisibleSideBar, getCurrentAdmin, changePages, changePagesCompanyEmployes, setCurrentEmployes, changeVisibleSideBarCreate } = controlSlice.actions;
