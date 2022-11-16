@@ -10,7 +10,7 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyPosition.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesCompany, getCompanyAll } from '../../store/companySlice';
+import { changePagesCompany, setCurrentCompany } from '../../store/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import useClickOutSide from '../../hooks/useClickOutSide';
@@ -41,26 +41,39 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                     <TableRow>
                         <TableCell>№<div className={'border_dashed'}></div></TableCell>
                         <TableCell>Компания<div className={'border_dashed'}></div></TableCell>
-                        <TableCell className={`table_cell`} align="left">Сотрудник</TableCell>
+                        <TableCell className={`table_cell`} align="left">Администратор<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`}></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row: typeof rows[0], index: number) => (
+                    {rows?.length > 0 && rows.map((row: typeof rows[0], index: number) => (
                         <TableRow
                         key={row.number}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
+                            <TableCell onClick={()=>{
+                                 setIsVisibleSideBar(true)
+                                 dispatch(setCurrentCompany({company_current: row, index: index}))
+                                }} style={{width: '10px', cursor: 'pointer', maxWidth: '10px'}}  component="th" scope="row">
                                 {index + 1}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                {row.name_company}
+                            <TableCell style={{cursor: 'pointer', width: '49.5%'}} onClick={()=>{
+                                 setIsVisibleSideBar(true)
+                                 dispatch(setCurrentCompany({company_current: row, index: index}))
+                               }} component="th" scope="row">
+                                {row.name}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer', width: '50%'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.employes}</TableCell>  
+                            <TableCell style={{cursor: 'pointer', width: '49.5%'}} onClick={()=>{
+                                 setIsVisibleSideBar(true)
+                                 dispatch(setCurrentCompany({company_current: row, index: index}))
+                               }} align="left">
+                                {row?.admin?._user?.name}
+                                <div className={'border_dashed'}></div></TableCell>  
                             <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '21px', maxWidth: '21px', minWidth: '21px'}} onClick={()=>{
                                 setIsDeleteBtn(true)
+                                dispatch(setCurrentCompany({company_current: row, index: index}))
                                 // dispatch(getCurrentCompany({admin_current: row, index: index}))
                                 //  setIsVisibleSideBar(true)
                                 // dispatch(setCurrentEmployes({

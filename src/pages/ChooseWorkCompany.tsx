@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { OneCompanyComponent } from '../components/choose_company/OneCompanyComponent'
 import { useAppDispatch } from '../hooks/redux'
 import styles from '../scss/ChooseWorkCompany.module.scss'
-import { getListCompany } from '../store/companySlice'
 import { RootState } from '../store/store'
 
 export const ChooseWorkCompany = ({isCollapseSideBar}:any) => {
@@ -12,7 +11,7 @@ export const ChooseWorkCompany = ({isCollapseSideBar}:any) => {
   const dispatch = useAppDispatch()
   const {loading} = useSelector((state:RootState)=> state.company)
   useEffect(() => {
-    dispatch(getListCompany(''))
+    // dispatch(getListCompany(''))
   }, [])
   
   return (

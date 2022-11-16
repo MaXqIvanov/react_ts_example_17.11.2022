@@ -2,20 +2,20 @@ export type AuthState = {
     user: any,
     auth: boolean,
     loading: boolean,
-    user_company: Array<any>,
+    user_company: Array<Object>,
     current_company: any,
     first_render: boolean,
 }
 export type TaskState = {
     loading: boolean,
-    variant_table: Array<any>,
+    variant_table: Array<Object>,
     current_variant_table: number,
     isVisibleSideBar: boolean,
-    get_all_task_day: Array<any>,
+    get_all_task_day: Array<Object>,
     current_task_day: any,
     get_all_task_week: Array<any>,
     current_task_week: any,
-    get_all_task_all: Array<any>,
+    get_all_task_all: Array<Object>,
     current_task_all: any,
     current_page_day: number,
     all_pages_day: number,
@@ -33,7 +33,7 @@ export type CompanyState = {
     company_admin_index: number,
     current_page: number,
     all_pages: number,
-
+    company_employes: Array<Object>
 }
 export type ControlState = {
     loading: boolean,
@@ -52,7 +52,7 @@ export type PositionState = {
     position_all: Array<any>,
     position_current: any,
     // company section
-    position_company_all: Array<any>,
+    position_company_all: Array<Object>,
     position_company_current: Object,
     // pagination
     current_page: number,
@@ -66,8 +66,8 @@ export type EmployesState = {
     // for sidebar
     isVisibleSideBar: boolean,
     // get_employes_all
-    employes_all: Array<any>,
-    employes_current: any,
+    employes_all: Array<Object>,
+    employes_current: Object,
     employes_current_index: number,
     // for pagination
     current_page: number,
@@ -78,10 +78,10 @@ export type EmployesState = {
     // all_pages_admin_employes: number,
     isVisibleSideBarCreate: boolean,
     // emp_company
-    employes_company_all: Array<any>,
+    employes_company_all: Array<Object>,
     employes_company_current: Object,
     // emp_admin
-    employes_admin_all: Array<any>
+    employes_admin_all: Array<Object>
     employes_admin_current: Object,
     position_all_admin: Array<Object>,
     employes_admin_index: number,

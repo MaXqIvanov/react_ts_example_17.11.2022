@@ -1,9 +1,14 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import styles from '../../scss/AdminCompany.module.scss'
+import useDebounce from '../../hooks/use-debounce';
+import { useAppDispatch } from '../../hooks/redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { getCompanyAdmin } from '../../store/companySlice';
 
 export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
   const [position, setPosition] = React.useState('');
@@ -11,6 +16,13 @@ export const NavHeaderAdmCompany = ({setIsAddedSideBar}:any) => {
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
+  const debouncedSearchTerm = useDebounce(search, 300);
+  const dispatch = useAppDispatch()
+  const { current_company } = useSelector((state: RootState)=> state.auth)
+
+  useEffect(() => {
+    dispatch(getCompanyAdmin({search: search}))
+}, [debouncedSearchTerm, current_company])
 
   return (
     <div className={styles.nav_header}>
