@@ -8,14 +8,14 @@ import { TableHeaderComPosition } from '../components/company_positions/TableHea
 import styles from '../scss/CompanyPosition.module.scss'
 import { RootState } from '../store/store'
 
-export const CompanyPositionsPage = () => {
+export const CompanyPositionsPage = ({isCollapseSideBar}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const [isadded_sidebar, setIsAddedSideBar] = useState<boolean>(false)
   const {loading} = useSelector((state: RootState)=> state.position)
   
   return (
     <div className={styles.company_employes}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
       <div className={styles.company_employes_wrapper}>
         <NavHeaderComPosition setIsAddedSideBar={setIsAddedSideBar}/>
         <TableHeaderComPosition setIsVisibleSideBar={setIsVisibleSideBar}/>

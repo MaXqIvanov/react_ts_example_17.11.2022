@@ -86,13 +86,14 @@ $border_main: #C6D2D9;
   .border_dashed{
     border-right: 1px dashed rgba($color: $border_main, $alpha: 1) !important;
     height: 70%;
-    width: 99.2%;
+    width: calc(100% - 8px);
     position: absolute;
     top: 50%;
-    left: 51.3%;
+    // left: 51.3%;
     // background: red;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     z-index: 999;
+    box-sizing: border-box;
   }
   .table_cell{
     position: relative;
@@ -112,7 +113,7 @@ $border_main: #C6D2D9;
     background: #E3EAEE !important;
     tr{
       th{
-        color: #3C3C3C !important;
+        color: #3C3C3C;
       }
     }
   }
@@ -750,7 +751,13 @@ $border_main: #C6D2D9;
   position: absolute !important;
   top: 60px;
   right: 0px;
-  left: 211px;
+  left: 210.1px;
+}
+.linear_progress_collapse{
+  position: absolute !important;
+  top: 60px;
+  right: 0px;
+  left: 40px;
 }
 .table_cell{
   border-right: 0px !important;

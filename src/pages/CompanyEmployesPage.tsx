@@ -9,7 +9,7 @@ import { TableHeaderComEmployes } from '../components/company_employes/TableHead
 import styles from '../scss/CompanyEmployes.module.scss'
 import { RootState } from '../store/store'
 
-export const CompanyEmployesPage = () => {
+export const CompanyEmployesPage = ({isCollapseSideBar}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const [isadded_sidebar, setIsAddedSideBar] = useState<boolean>(false)
   const [issearch_sidebar, setIsSearchSideBar] = useState<boolean>(false)
@@ -17,7 +17,7 @@ export const CompanyEmployesPage = () => {
   
   return (
     <div className={styles.company_employes}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
       <div className={styles.company_employes_wrapper}>
         <NavHeaderComEmployes setIsAddedSideBar={setIsAddedSideBar} setIsSearchSideBar={setIsSearchSideBar}/>
         <TableHeaderComEmployes setIsVisibleSideBar={setIsVisibleSideBar}/>

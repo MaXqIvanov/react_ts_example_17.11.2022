@@ -51,14 +51,14 @@ function App() {
            <>
             <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
             {/* tasks */}
-            {(user.is_staff || user.is_executor) && <Route path={'/'} element={<TasksPage />} />}
+            {(user.is_staff || user.is_executor) && <Route path={'/'} element={<TasksPage isCollapseSideBar={isCollapseSideBar}/>} />}
              {/* end tasks */}
-            {(user.is_staff || user.is_controller) && <Route path={'/controls'} element={<ControlsPage />} /> }
-            {(user.is_staff || user.is_analyst) && <Route path={'/employes'} element={<EmployesPage />} />}
-            {(user.is_admin || user.is_staff) && <Route path={'/company_employes'} element={<CompanyEmployesPage />} />}
-            {(user.is_admin || user.is_staff) && <Route path={'/company_positions'} element={<CompanyPositionsPage />} />}
-            {user.is_staff && <Route path={'/admin_companies'} element={<AdminCompanyPage />} />}
-            {user.is_staff && <Route path={'/admin_employes'} element={<AdminEmployesPage />} />}
+            {(user.is_staff || user.is_controller) && <Route path={'/controls'} element={<ControlsPage isCollapseSideBar={isCollapseSideBar}/>} /> }
+            {(user.is_staff || user.is_analyst) && <Route path={'/employes'} element={<EmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
+            {(user.is_admin || user.is_staff) && <Route path={'/company_employes'} element={<CompanyEmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
+            {(user.is_admin || user.is_staff) && <Route path={'/company_positions'} element={<CompanyPositionsPage isCollapseSideBar={isCollapseSideBar}/>} />}
+            {user.is_staff && <Route path={'/admin_companies'} element={<AdminCompanyPage isCollapseSideBar={isCollapseSideBar}/>} />}
+            {user.is_staff && <Route path={'/admin_employes'} element={<AdminEmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
             <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
            </>
            :

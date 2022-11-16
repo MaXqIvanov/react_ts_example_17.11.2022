@@ -15,6 +15,8 @@ import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
 import { changePagesAll, changePagesDay, changePagesWeek, changeVisibleSideBar, getCurrentTask, getTaskAll, getTaskDay, getTaskWeek } from '../../store/taskSlice';
 import { changeVisibleSideBarCreate } from '../../store/employesSlice';
+import moment from 'moment';
+import 'moment/locale/ru';
 
 function createData(number: number, name_task:string, begining:number, OA:any, carbs:number, monday:number,
     thuesday: number, thirtday: number, firstday: number, friday: number, saturday: number, sunday: number, stat: number) {
@@ -34,6 +36,9 @@ export const TableHeader = ({visible, current_day_task}:any) => {
         setRows(get_all_task_week)
     }, [get_all_task_week])
     
+    const countSumHours = ({day}:any)=>{
+        return (rows.reduce((old: any, new_value:any)=> new_value.norm + old ,0)/60).toFixed(1)
+    }
     
   return (
     <div onClick={()=>isVisibleHref !== null && setIsVisibleHref(null)} className={`${styles.table} custom_table_task`}>
@@ -95,13 +100,13 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                             <TableCell align="center">Начало до<div className={'border_dashed'}></div></TableCell>
                             <TableCell align="center">Норма<div className={'border_dashed'}></div></TableCell>
                             <TableCell align="center">О/А<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[0]?.weekday}, {rows[0]?.days[0]?.day} {rows[0]?.days[0]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[1]?.weekday}, {rows[0]?.days[1]?.day} {rows[0]?.days[1]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[2]?.weekday}, {rows[0]?.days[2]?.day} {rows[0]?.days[2]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[3]?.weekday}, {rows[0]?.days[3]?.day} {rows[0]?.days[3]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[4]?.weekday}, {rows[0]?.days[4]?.day} {rows[0]?.days[4]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell align="center">{rows[0]?.days[5]?.weekday}, {rows[0]?.days[5]?.day} {rows[0]?.days[5]?.month}<div className={'border_dashed'}></div></TableCell>
-                            <TableCell className={`table_cell ${styles.table_cell}`} align="center">{rows[0]?.days[6]?.weekday}, {rows[0]?.days[6]?.day} {rows[0]?.days[6]?.month}</TableCell>
+                            <TableCell style={{color: ((moment().date() === rows[0]?.days[0]?.day) && moment().locale('ru').format('MMMM').includes(rows[0]?.days[0]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[0]?.weekday}, {rows[0]?.days[0]?.day} {rows[0]?.days[0]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[1]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[1]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[1]?.weekday}, {rows[0]?.days[1]?.day} {rows[0]?.days[1]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[2]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[2]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[2]?.weekday}, {rows[0]?.days[2]?.day} {rows[0]?.days[2]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[3]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[3]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[3]?.weekday}, {rows[0]?.days[3]?.day} {rows[0]?.days[3]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[4]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[4]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[4]?.weekday}, {rows[0]?.days[4]?.day} {rows[0]?.days[4]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[5]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[5]?.month)) ? '#03A9F4' : '#3C3C3C'}} align="center">{rows[0]?.days[5]?.weekday}, {rows[0]?.days[5]?.day} {rows[0]?.days[5]?.month}<div className={'border_dashed'}></div><br></br>{countSumHours({day: 0})}</TableCell>
+                            <TableCell style={{color: (moment().date() === rows[0]?.days[6]?.day && moment().locale('ru').format('MMMM').includes(rows[0]?.days[6]?.month)) ? '#03A9F4' : '#3C3C3C'}} className={`table_cell ${styles.table_cell}`} align="center">{rows[0]?.days[6]?.weekday}, {rows[0]?.days[6]?.day} {rows[0]?.days[6]?.month}<br></br>{countSumHours({day: 0})}</TableCell>
                         </TableRow>
                         :
                         <TableRow>
@@ -265,7 +270,7 @@ export const TableHeader = ({visible, current_day_task}:any) => {
                         <TableCell style={{textAlign: 'center'}} align="right">Норма<div className={'border_dashed'}></div></TableCell>
                         <TableCell style={{minWidth: '20px', textAlign: 'center'}} className={`header_oa`} align="right">О/А<div className={'border_dashed'}></div></TableCell>
                         {rows[0]?.days?.length > 0 ?
-                        <TableCell style={{textAlign: 'center'}} className={`table_cell`} align="right">{rows[0]?.days[0]?.weekday}, {rows[0]?.days[0]?.day} {rows[0]?.days[0]?.month}</TableCell>
+                        <TableCell style={{textAlign: 'center', color: ((moment().date() === rows[0]?.days[0]?.day) && moment().locale('ru').format('MMMM').includes(rows[0]?.days[0]?.month)) ? '#03A9F4' : '#3C3C3C'}} className={`table_cell`} align="right">{rows[0]?.days[0]?.weekday}, {rows[0]?.days[0]?.day} {rows[0]?.days[0]?.month}<br></br>{countSumHours({day: 0})}</TableCell>
                         :
                         <TableCell style={{textAlign: 'center'}} className={`table_cell`} align="right">...</TableCell>
                         }

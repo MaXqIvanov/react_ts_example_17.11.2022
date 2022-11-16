@@ -7,12 +7,12 @@ import { TableHeaderEmployes } from '../components/employes/TableHeaderEmployes'
 import styles from '../scss/Employes.module.scss'
 import { RootState } from '../store/store'
 
-export const EmployesPage = () => {
+export const EmployesPage = ({isCollapseSideBar}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const {loading} = useSelector((state:RootState)=> state.employes)
   return (
     <div className={styles.employes}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
       <div className={styles.employes_wrapper}>
         <NavHeaderEmployes />
         <TableHeaderEmployes setIsVisibleSideBar={setIsVisibleSideBar}/>

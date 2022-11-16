@@ -8,14 +8,14 @@ import { TableHeaderAdmCompany } from '../components/admin_company/TableHeaderAd
 import styles from '../scss/AdminCompany.module.scss'
 import { RootState } from '../store/store'
 
-export const AdminCompanyPage = () => {
+export const AdminCompanyPage = ({isCollapseSideBar}:any) => {
   const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false)
   const [isadded_sidebar, setIsAddedSideBar] = useState<boolean>(false)
   const {loading} = useSelector((state: RootState)=> state.company)
   
   return (
     <div className={styles.admin_company}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
       <div className={styles.admin_company_wrapper}>
         <NavHeaderAdmCompany setIsAddedSideBar={setIsAddedSideBar}/>
         <TableHeaderAdmCompany setIsVisibleSideBar={setIsVisibleSideBar}/>

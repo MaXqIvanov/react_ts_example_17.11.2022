@@ -201,7 +201,7 @@ export const CreateSideBar = () => {
                   <div className={'label'}>Норма</div>
                   <input type={'number'} onChange={(e) => setNorm(e.target.value)} value={norm} className={'input'}/>
                 </div>
-                <Editor apiKey='uhkrpnl1dfs4w8nt8a22oug4eap1yhb657nso942f8slxhu6' onInit={(evt, editor) => editorRef.current = editor}
+                <Editor apiKey='uhkrpnl1dfs4w8nt8a22oug4eap1yhb657nso942f8slxhu6' onInit={(evt:any, editor:any) => editorRef.current = editor}
                   initialValue="<p>Описание задачи</p>"
                   init={{
                     height: 500,

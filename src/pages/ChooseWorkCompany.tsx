@@ -7,7 +7,7 @@ import styles from '../scss/ChooseWorkCompany.module.scss'
 import { getListCompany } from '../store/companySlice'
 import { RootState } from '../store/store'
 
-export const ChooseWorkCompany = () => {
+export const ChooseWorkCompany = ({isCollapseSideBar}:any) => {
   // mock data
   const dispatch = useAppDispatch()
   const {listCompany, loading} = useSelector((state:RootState)=> state.company)
@@ -18,7 +18,7 @@ export const ChooseWorkCompany = () => {
   return (
     <>
       <div className={styles.choose_company}>
-      {loading && <LinearProgress className={`linear_progress`}/>}
+      {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
         <div className={styles.choose_company_wrapper}>
           <div className={styles.choose_company_title}>Компании</div>
           {listCompany ? listCompany.map((elem:any) => <OneCompanyComponent key={elem.id} elem={elem}/>)
