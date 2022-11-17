@@ -23,6 +23,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
+    "dotenv": "^16.0.3",
     "js-cookie": "^3.0.1",
     "lottie-react": "^2.3.1",
     "moment": "^2.29.4",
@@ -72,7 +73,7 @@
   "prettier": {
     "singleQuote": true,
     "printWidth": 100
-    },
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
@@ -80,6 +81,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1"
