@@ -20,55 +20,108 @@ import { useAppDispatch } from './hooks/redux';
 import { getProfile } from './store/authSlice';
 
 function App() {
-  const { auth, loading, current_company, user } = useSelector((state:RootState)=> state.auth)
+  const { auth, loading, current_company, user } = useSelector((state: RootState) => state.auth);
   console.log(window.location.href);
-  const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false)
+  const [isVusubleSideBar, setIsVisibleSideBar] = useState<boolean>(false);
   const [isCollapseSideBar, setIsCollapseSideBar] = useState<boolean>(false);
-  const dispatch = useAppDispatch()
-  const nav = useNavigate()
+  const dispatch = useAppDispatch();
+  const nav = useNavigate();
   useEffect(() => {
-    dispatch(getProfile({nav: nav}))
-  }, [current_company?.id, auth])  
+    dispatch(getProfile({ nav: nav }));
+  }, [current_company?.id, auth]);
 
   useEffect(() => {
-    if(auth === true){
-      setIsVisibleSideBar(true)
-    }else{
-      setIsVisibleSideBar(false)
+    if (auth === true) {
+      setIsVisibleSideBar(true);
+    } else {
+      setIsVisibleSideBar(false);
     }
-  }, [auth])
-  
-  
+  }, [auth]);
+
   return (
     <>
-    {!loading ? 
-      <>
-        {auth ?  <Header setIsCollapseSideBar={setIsCollapseSideBar} isCollapseSideBar={isCollapseSideBar} isVusubleSideBar={isVusubleSideBar} setIsVisibleSideBar={setIsVisibleSideBar}></Header> : <></> }
-        <div className={'wrapper'}>
-        {isVusubleSideBar === true && <SideBar isCollapseSideBar={isCollapseSideBar}/>}
-        <Routes>
-           { auth ? 
-           <>
-            <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
-            {/* tasks */}
-            {(user.is_staff || user.is_executor) && <Route path={'/'} element={<TasksPage isCollapseSideBar={isCollapseSideBar}/>} />}
-             {/* end tasks */}
-            {(user.is_staff || user.is_controller) && <Route path={'/controls'} element={<ControlsPage isCollapseSideBar={isCollapseSideBar}/>} /> }
-            {(user.is_staff || user.is_analyst) && <Route path={'/employes'} element={<EmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
-            {(user.is_admin || user.is_staff) && <Route path={'/company_employes'} element={<CompanyEmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
-            {(user.is_admin || user.is_staff) && <Route path={'/company_positions'} element={<CompanyPositionsPage isCollapseSideBar={isCollapseSideBar}/>} />}
-            {user.is_staff && <Route path={'/admin_companies'} element={<AdminCompanyPage isCollapseSideBar={isCollapseSideBar}/>} />}
-            {user.is_staff && <Route path={'/admin_employes'} element={<AdminEmployesPage isCollapseSideBar={isCollapseSideBar}/>} />}
-            <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
-           </>
-           :
-           <Route path={'/auth'} element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar}/>} />
-          } 
-        </Routes>
+      {!loading ? (
+        <>
+          {auth ? (
+            <Header
+              setIsCollapseSideBar={setIsCollapseSideBar}
+              isCollapseSideBar={isCollapseSideBar}
+              isVusubleSideBar={isVusubleSideBar}
+              setIsVisibleSideBar={setIsVisibleSideBar}
+            ></Header>
+          ) : (
+            <></>
+          )}
+          <div className={'wrapper'}>
+            {isVusubleSideBar === true && <SideBar isCollapseSideBar={isCollapseSideBar} />}
+            <Routes>
+              {auth ? (
+                <>
+                  <Route
+                    path={'/auth'}
+                    element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar} />}
+                  />
+                  {/* tasks */}
+                  {(user.is_staff || user.is_executor) && (
+                    <Route
+                      path={'/'}
+                      element={<TasksPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {/* end tasks */}
+                  {(user.is_staff || user.is_controller) && (
+                    <Route
+                      path={'/controls'}
+                      element={<ControlsPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {(user.is_staff || user.is_analyst) && (
+                    <Route
+                      path={'/employes'}
+                      element={<EmployesPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {(user.is_admin || user.is_staff) && (
+                    <Route
+                      path={'/company_employes'}
+                      element={<CompanyEmployesPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {(user.is_admin || user.is_staff) && (
+                    <Route
+                      path={'/company_positions'}
+                      element={<CompanyPositionsPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {user.is_staff && (
+                    <Route
+                      path={'/admin_companies'}
+                      element={<AdminCompanyPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  {user.is_staff && (
+                    <Route
+                      path={'/admin_employes'}
+                      element={<AdminEmployesPage isCollapseSideBar={isCollapseSideBar} />}
+                    />
+                  )}
+                  <Route path={'/choose_company'} element={<ChooseWorkCompany />} />
+                </>
+              ) : (
+                <Route
+                  path={'/auth'}
+                  element={<AuthPage setIsVisibleSideBar={setIsVisibleSideBar} />}
+                />
+              )}
+            </Routes>
+          </div>
+        </>
+      ) : (
+        <div className="loading">
+          <Lottie className="spinner_app" animationData={loadingScreen} />
         </div>
-      </>  
-      : <div className='loading'><Lottie className='spinner_app' animationData={loadingScreen} /></div>}
-    </>    
+      )}
+    </>
   );
 }
 
