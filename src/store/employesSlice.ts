@@ -25,7 +25,7 @@ export const getEmployesAll = createAsyncThunk(
     async (params: any, {getState}:any) => {
       let company:any = localStorage.getItem('WT_company')
       // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
-      const response = await api.get(`companies/employees/?company=${JSON.parse(company).id}`)
+      const response = await api.get(`companies/employees/?company=${JSON.parse(company).id}&search=${params.search}`)
       return {response}
     },
   )
@@ -97,6 +97,7 @@ const controlSlice = createSlice({
     // section_company_employes
     employes_company_all: [],
     employes_company_current: {} as any,
+    employes_company_index: 1,
     current_page_company_employes: 1,
     all_pages_company_employes: 10,
     // section_admin_employes
@@ -116,13 +117,18 @@ const controlSlice = createSlice({
     },
     setCurrentEmployes(state:EmployesState, action:any){
       state.employes_current = action.payload.employes_current
-      state.employes_current_index = action.payload.index
+      state.employes_company_index = action.payload.index
     },
     changePages(state:EmployesState, action:any){
       let current_page = state.current_page + action.payload
       if(current_page > 0 && current_page <= state.all_pages){
         state.current_page = current_page
       }
+    },
+    // section_company_employes
+    setCurrentEmployesCompany(state:EmployesState, action:any){
+      state.employes_company_current = action.payload.employes_current
+      state.employes_current_index = action.payload.index
     },
 
     // section_company_employes
@@ -164,7 +170,7 @@ const controlSlice = createSlice({
     });
     builder.addCase(getEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
       console.log(payload);
-      state.employes_company_all = payload.response.data
+      state.employes_company_all = payload.response.data.results
       state.loading = false
     });
     builder.addCase(getEmployesCompany.rejected, (state:EmployesState) => {
@@ -188,7 +194,7 @@ const controlSlice = createSlice({
     });
     builder.addCase(getEmployesCompanyAdmin.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
       console.log(payload);
-      state.position_all_admin = payload.response.data.results
+      state.position_all_admin = payload.response.data.results ? payload.response.data.results : payload.response.data
       state.loading = false
     });
     builder.addCase(getEmployesCompanyAdmin.rejected, (state:EmployesState) => {
@@ -241,4 +247,4 @@ const controlSlice = createSlice({
 });
 
 export default controlSlice.reducer;
-export const { setCurrentVariantTable, changeVisibleSideBar, getCurrentAdmin, changePages, changePagesCompanyEmployes, setCurrentEmployes, changeVisibleSideBarCreate } = controlSlice.actions;
+export const { setCurrentVariantTable, setCurrentEmployesCompany, changeVisibleSideBar, getCurrentAdmin, changePages, changePagesCompanyEmployes, setCurrentEmployes, changeVisibleSideBarCreate } = controlSlice.actions;

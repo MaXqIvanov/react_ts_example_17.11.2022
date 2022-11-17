@@ -1,11 +1,16 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import com_employes_btn_added from '../../assets/company/la_user-plus.svg'
 import com_employes_btn_changed from '../../assets/company/la_user-cog.svg'
 import styles from '../../scss/CompanyEmployes.module.scss'
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../hooks/redux';
+import { RootState } from '../../store/store';
+import useDebounce from '../../hooks/use-debounce';
+import { getEmployesCompany } from '../../store/employesSlice';
 
 export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any) => {
   const [position, setPosition] = React.useState('');
@@ -13,6 +18,13 @@ export const NavHeaderComEmployes = ({setIsAddedSideBar, setIsSearchSideBar}:any
   const handleChange = (event:any) => {
     setPosition(event.target.value);
   };
+  const debouncedSearchTerm = useDebounce(search, 300);
+  const dispatch = useAppDispatch()
+  const { current_company } = useSelector((state: RootState)=> state.auth)
+
+  useEffect(() => {
+    dispatch(getEmployesCompany({search: search}))
+}, [debouncedSearchTerm, current_company])
 
   return (
     <div className={styles.nav_header}>

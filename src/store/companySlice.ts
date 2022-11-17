@@ -96,7 +96,9 @@ const companySlice = createSlice({
       state.loading = true
     });
     builder.addCase(getCompanyAdmin.fulfilled, (state:CompanyState,  { payload }:PayloadAction<any>) => {
-      state.company_admin_all = payload.response.data.results
+      console.log(payload);
+      
+      state.company_admin_all = payload.response.data.results ? payload.response.data.results : payload.response.data
       state.loading = false
     });
     builder.addCase(getCompanyAdmin.rejected, (state:CompanyState) => {

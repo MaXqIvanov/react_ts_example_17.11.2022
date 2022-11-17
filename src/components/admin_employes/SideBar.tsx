@@ -35,10 +35,12 @@ export const SideBar = ({setIsVisibleSideBar, isvisible_sidebaer}:any) => {
     setNamePosition(employes_admin_current.name)
     setPhoneHolder(employes_admin_current.phone)
     
-    let current_position = position_all_admin.filter((elem:any)=> elem.name === employes_admin_current.companies_str_short)[0]
-    if(current_position)
-    {
-      setPosition(current_position)
+    if(position_all_admin?.length > 0){
+      let current_position = position_all_admin.filter((elem:any)=> elem.name === employes_admin_current.companies_str_short)[0]
+      if(current_position)
+      {
+        setPosition(current_position)
+      }
     }
   }, [employes_admin_current, position_all_admin])
   

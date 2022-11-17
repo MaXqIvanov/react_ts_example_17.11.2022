@@ -41,7 +41,7 @@ export const TableHeaderAdmEmployes = ({setIsVisibleSideBar}:any) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row: typeof rows[0], index:number) => (
+                    {rows?.length && rows.map((row: typeof rows[0], index:number) => (
                         <TableRow
                         key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}

@@ -23,7 +23,6 @@ export const getPositionCompanyAll = createAsyncThunk(
   'position/getPositionCompanyAll',
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().position.current_page}`)
-    let company:any = localStorage.getItem('WT_company')
     const response = await api.get(`companies/positions/?search=${params.search}`)
     return {response, params}
   },

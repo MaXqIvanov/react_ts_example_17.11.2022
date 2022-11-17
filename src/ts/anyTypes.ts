@@ -80,6 +80,7 @@ export type EmployesState = {
     // emp_company
     employes_company_all: Array<Object>,
     employes_company_current: Object,
+    employes_company_index: number,
     // emp_admin
     employes_admin_all: Array<Object>
     employes_admin_current: Object,

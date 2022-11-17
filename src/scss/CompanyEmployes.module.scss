@@ -122,7 +122,7 @@ $dark-blue: #0088CC;
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 2;
+    z-index: 9999;
     background: rgb(0, 0, 0);
     width: 100%;
     height: 100%;
@@ -136,7 +136,7 @@ $dark-blue: #0088CC;
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 3;
+    z-index: 9999;
     background: rgb(0, 0, 0);
     width: 100%;
     height: 100%;
@@ -146,56 +146,54 @@ $dark-blue: #0088CC;
 }
 .user_side_menu{
     position: fixed;
-    z-index: 3;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30vw;
-    height: 100%;
-    min-height: 100vh;
-    min-width: 450px;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 644px;
     background: white;
-    animation: linear alternate animation_sidebar 0.35s;
     display: flex;
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
+    transform: translate(-50%, -50%);
+    border: 1px solid #C6D2D9;
+    border-radius: 1px;
+    box-sizing: border-box;
 }
 .user_side_menu_added{
     position: fixed;
-    z-index: 4;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30vw;
-    height: 100%;
-    min-height: 100vh;
-    min-width: 450px;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 644px;
     background: white;
-    animation: linear alternate animation_sidebar 0.35s;
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    transform: translate(-50%, -50%);
+    border: 1px solid #C6D2D9;
+    border-radius: 1px;
+    box-sizing: border-box;
 }
 .user_side_menu_wrapper{
     position: absolute;
-    left: 3.5%;
-    width: calc(90% - 20px);
-    height: calc(100% - 40px);
-    padding: 20px;
+    width: calc(100%);
+    height: calc(100%);
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    box-sizing: border-box;
 }
 .close_user_side_menu_btn{
     position: absolute;
-    left: -0.5%;
-    top: 16px;
-    height: 16px;
-    width: 16px;
-    transform: translate(-50% , -50%);
+    right: 10px;
+    top: 10px;
+    height: 12px;
+    width: 12px;
+    // transform: translate(-50% , -50%);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -405,6 +403,9 @@ $dark-blue: #0088CC;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: fit-content;
+    padding: 0px 10px;
+    box-sizing: border-box;
 }
 .text_field_title{
     width: fit-content;
@@ -419,7 +420,7 @@ $dark-blue: #0088CC;
     margin-bottom: 40px;
 }
 .group_for_checked{
-    margin-top: 20px;
+    margin-top: 12px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -447,6 +448,16 @@ $dark-blue: #0088CC;
 .title_checked{
     display: flex;
     align-items: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+
+    /* dark-gray */
+
+    color: #343A40;
 }
 .search_side_bar_title{
     font-style: normal;
@@ -509,5 +520,59 @@ $dark-blue: #0088CC;
         /* input background */
         
         color: #FFFFFF;
+    }
+}
+.btn_table{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../assets/employes/table_icon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 16px;
+    width: 16px;
+}
+.side_menu_header{
+    width: 100%;
+    min-height: 34px;
+    min-height: 34px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #C6D2D9;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;  
+        color: #6C757D;
+    }
+}
+
+.header_user_not_img{
+    margin-top: 10px;
+    border-radius: 50% !important;
+    height: 100px;
+    background-position: center;
+    width: 100px;
+    text-align: center;
+    background: #009688 !important;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    span{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 1.2px; 
+    }
+    &:hover{
+        background: #009688 !important;
     }
 }

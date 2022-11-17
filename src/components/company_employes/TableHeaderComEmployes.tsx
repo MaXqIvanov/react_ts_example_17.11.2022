@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,28 +10,28 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesCompanyEmployes, getEmployesCompany } from '../../store/employesSlice';
+import { changePagesCompanyEmployes, getEmployesCompany, setCurrentEmployesCompany } from '../../store/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import useClickOutSide from '../../hooks/useClickOutSide';
 
 function createData(number: number, employes:string, name_employ:string,) {
     return { number, employes, name_employ };
   }
   
-  const rows = [
-    createData(1, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич'),
-    createData(2, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич2'), 
-    createData(3, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич3'),
-    createData(4, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич4'),
-    createData(5, "Менеджер отдела продаж", 'Ярослав Столиков Генадьевич5'),
-  ];
 
 export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
     const dispatch = useAppDispatch()
-    const {current_page_company_employes, all_pages_company_employes} = useSelector((state:RootState)=> state.employes)
+    const {employes_company_all, employes_company_current} = useSelector((state:RootState)=> state.employes)
+    const [rows, setRows] = useState<any>([])
     useEffect(() => {
-      dispatch(getEmployesCompany(''))
-    }, [current_page_company_employes])
+      setRows(employes_company_all)
+    }, [employes_company_all])
+    const [is_delete_btn, setIsDeleteBtn] = useState<boolean>(false)
+    const delete_btn = useClickOutSide(()=> {
+        setIsDeleteBtn(false)
+    })
+
     
   return (
     <div className={`${styles.table}`}>
@@ -42,26 +42,68 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                     <TableRow>
                         <TableCell>№<div className={'border_dashed'}></div></TableCell>
                         <TableCell align="left">Должность<div className={'border_dashed'}></div></TableCell>
-                        <TableCell className={`table_cell`}>ФИО</TableCell>
+                        <TableCell className={`table_cell`}>ФИО<div className={'border_dashed'}></div></TableCell>
+                        <TableCell className={`table_cell`}></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row, index) => (
+                    {rows?.length ? rows.map((row:any, index:number) => (
                         <TableRow
                         key={row.number}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
-                            <TableCell onClick={()=> setIsVisibleSideBar(true)} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
+                            <TableCell onClick={()=> {
+                                setIsVisibleSideBar(true)
+                                dispatch(setCurrentEmployesCompany({
+                                    employes_current: row,
+                                    index: index
+                                }))
+                               }} style={{width: '1%', cursor: 'pointer'}}  component="th" scope="row">
                                 {index + 1}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} component="th" scope="row">
-                                {row.employes}
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> {
+                                setIsVisibleSideBar(true)
+                                dispatch(setCurrentEmployesCompany({
+                                    employes_current: row,
+                                    index: index
+                                }))
+                           }} component="th" scope="row">
+                                {row._position}
                                 <div className={'border_dashed'}></div>
                             </TableCell>
-                            <TableCell style={{cursor: 'pointer'}} onClick={()=> setIsVisibleSideBar(true)} align="left">{row.name_employ}</TableCell>  
+                            <TableCell style={{cursor: 'pointer'}} onClick={()=> {
+                                setIsVisibleSideBar(true)
+                                dispatch(setCurrentEmployesCompany({
+                                    employes_current: row,
+                                    index: index
+                                }))
+                           }} align="left">{row._user.name}
+                            <div className={'border_dashed'}></div></TableCell>
+                            <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '21px', maxWidth: '21px', minWidth: '21px'}} onClick={()=>{
+                                setIsDeleteBtn(true)
+                                dispatch(setCurrentEmployesCompany({company_current: row, index: index}))
+                                dispatch(setCurrentEmployesCompany({
+                                    employes_current: row,
+                                    index: index
+                                }))
+                                // dispatch(getCurrentCompany({admin_current: row, index: index}))
+                                //  setIsVisibleSideBar(true)
+                                // dispatch(setCurrentEmployes({
+                                //     employes_current: row,
+                                //     index: index,
+                                // }))
+                            }} align="center"><div className={styles.btn_table}></div>
+                                {is_delete_btn && employes_company_current?.id === row.id && <div onClick={()=>
+                                {
+                                    window.confirm('Вы уверены что хотите удалить компанию ?') &&
+                                        // dispatch(deleteCompanyAdmin(''))
+                                        alert('удалил')
+    
+                                }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
+                            </TableCell>  
                         </TableRow>
-                    ))}
+                    )):<div></div>}
                     </TableBody>
                 </Table>
                 {/* <div className={styles.thead_footer_custom}>
