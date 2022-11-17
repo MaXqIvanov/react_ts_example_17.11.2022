@@ -14,6 +14,7 @@ import camera_img from '../../assets/camera_img.svg';
 import useClickOutSide from '../../hooks/useClickOutSide';
 import { useAppDispatch } from '../../hooks/redux';
 import { getPositionCompanyAll } from '../../store/positionSlice';
+import { createEmployesCompany } from '../../store/employesSlice';
 
 export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
   const dispatch = useAppDispatch()
@@ -52,6 +53,8 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
       preview.src = "";
     }
     setImage(target.files[0])
+    console.log(target.files[0]);
+    
     setImagePriview(preview)
   };
 
@@ -129,69 +132,25 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
             <input id="s2d_analitik" type="checkbox" className="switch"
             onChange={(e:any)=> setIsAnalitik(e.target.checked)} checked={isAnalitik} />
           </div>
-          {/* <div style={{marginTop: '10px', width: '100%'}} className={'wrapper_input_percent'}>
-              <input type={'password'} placeholder='Пароль' value={password} onChange={(e:any)=> setPassword(e.target.value)}/>
-            </div>
-            <div style={{marginTop: '10px', width: '100%'}} className={'wrapper_input_percent'}>
-              <input type={'password'} placeholder='Повторите пароль' value={repeat_password} onChange={(e:any)=> setRepeatPassword(e.target.value)}/>
-          </div> */}
-          {/* <div className={styles.group_img_user}>
-            <div style={{backgroundImage: `url(${user.profile_img})`}} className={styles.img_user}></div> */}
-            {/* <Button component="label" style={{backgroundImage: `url(${camera_img})`}} className={styles.img_user_added_photo}>
-                <input
-                  type="file"
-                  hidden
-                />
-            </Button> */}
-          {/* </div> */}
-          <div className={styles.text_field_block}>
-            <div className={`${styles.select_position_wrapper}`}>
-                <div className={styles.text_field_block}>
-                {/* <TextField
-                    className={`${styles.text_field}`}
-                    label="ФИО"
-                    InputProps={{
-                    type: 'string',
-                    }}
-                />
-                <TextField
-                    className={`${styles.text_field}`}
-                    label="Должность"
-                    InputProps={{
-                    type: 'string',
-                    }}
-                />
-                <div className={styles.group_input_mask}>
-                <label className={phoneHolder && phoneHolder!.match(/[0-9]/g)!.length > 0 ? `${styles.visible_label}` : ''}>Номер телефона</label>
-                <InputMask onClick={()=> setIsVisibleLabel(true)} onBlur={()=> setIsVisibleLabel(false)} mask="+7(999)999-99-99" value={phoneHolder} onChange={((e:any) => {
-                    setPhoneHolder(e.target.value)
-                })} required placeholder={'Номер телефона'} className={`form-input ${styles.input_phone} ${styles.text_field}`} />
-                </div> */}
-                {/* <TextField
-                    className={`${styles.text_field}`}
-                    label="Новый пароль"
-                    InputProps={{
-                    type: 'password',
-                    }}
-                />
-                <TextField
-                    className={`${styles.text_field}`}
-                    label="Повторить пароль"
-                    InputProps={{
-                    type: 'password',
-                    }}
-                /> */}
+          <div style={{display: 'flex' , justifyContent: 'right', width: '100%', marginRight: '10px', marginBottom: '0px', marginTop: '30px'}} className={'custom_btn_wrapper'}>
+                <div onClick={()=> setIsAddedSideBar(!isadded_sidebar)} className={'btn_cancel'}><span>Отмена</span></div>
+                <div
+                  onClick={()=> dispatch(createEmployesCompany({
+                    phone: phoneHolder,
+                    name: name,
+                    password: password,
+                    position: position.id,
+                    is_active: isActive,
+                    is_executor: isExecutor,
+                    is_controller: isController,
+                    is_analyst: isAnalitik,
+                    avatar: image?.name ? image : undefined,
+                    setIsAddedSideBar: setIsAddedSideBar
+                  }))}
+                  className={'btn_complete'}><span>Соханить</span>
                 </div>
-             
-          </div>
-          </div>
-        </div>
-        {/* <div className={styles.group_btn_side_bar}>
-            <div className={styles.group_btn_side_bar_save_close}>
-              <div className={styles.btn_cancel_side_bar}><span>УДАЛИТЬ</span></div>
-              <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
             </div>
-        </div> */}
+          </div>
       </div>
     </div>
     <div onClick={()=> setIsAddedSideBar(false)} className={styles.user_side_menu_plug_added}></div>

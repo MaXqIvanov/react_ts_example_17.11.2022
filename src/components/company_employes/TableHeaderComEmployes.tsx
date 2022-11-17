@@ -10,7 +10,7 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesCompanyEmployes, getEmployesCompany, setCurrentEmployesCompany } from '../../store/employesSlice';
+import { changePagesCompanyEmployes, deleteEmployesCompany, getEmployesCompany, setCurrentEmployesCompany } from '../../store/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
@@ -96,9 +96,9 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                             }} align="center"><div className={styles.btn_table}></div>
                                 {is_delete_btn && employes_company_current?.id === row.id && <div onClick={()=>
                                 {
-                                    window.confirm('Вы уверены что хотите удалить компанию ?') &&
-                                        // dispatch(deleteCompanyAdmin(''))
-                                        alert('удалил')
+                                    window.confirm('Вы уверены что хотите удалить пользователя ?') &&
+                                        dispatch(deleteEmployesCompany(''))
+
     
                                 }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
                             </TableCell>  

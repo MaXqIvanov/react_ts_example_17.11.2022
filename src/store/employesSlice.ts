@@ -20,6 +20,7 @@ export const getEmployesAll = createAsyncThunk(
 )
 
     // section_company_employes Компания / Должности
+    // ?? Компания - пользователи
   export const getEmployesCompany = createAsyncThunk(
     'employes/getEmployesCompany',
     async (params: any, {getState}:any) => {
@@ -29,6 +30,39 @@ export const getEmployesAll = createAsyncThunk(
       return {response}
     },
   )
+  export const createEmployesCompany = createAsyncThunk(
+    'employes/createEmployesCompany',
+    async (params: any, {getState}:any) => {
+      console.log(params);
+      let company:any = localStorage.getItem('WT_company')
+      params = {...params, 'company': JSON.parse(company).id}
+      // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
+      const response = await api.post(`companies/employees/`, params)
+      return {response, params}
+    },
+  )
+  export const changeEmployesCompany = createAsyncThunk(
+    'employes/changeEmployesCompany',
+    async (params: any, {getState}:any) => {
+      console.log(params);
+      let company:any = localStorage.getItem('WT_company')
+      params = {...params, 'company': JSON.parse(company).id, 'user': getState().employes.employes_company_current.user}
+      // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
+      const response = await api.put(`companies/employees/${getState().employes.employes_company_current.id}/`, params)
+      return {response, params}
+    },
+  )
+  export const deleteEmployesCompany = createAsyncThunk(
+    'employes/deleteEmployesCompany',
+    async (params: any, {getState}:any) => {
+      console.log(params);
+      
+      // alert(`Загрузка данных в разделе Компании Сотрудники - на странице ${getState().employes.current_page_company_employes}`)
+      const response = await api.delete(`companies/employees/${getState().employes.employes_company_current.id}/`)
+      return {response, params}
+    },
+  )
+  // ?? Администраторы
   // section_admin_employes Компания / Пользователи
   export const getEmployesAdmin = createAsyncThunk(
     'employes/getEmployesAdmin',
@@ -174,6 +208,51 @@ const controlSlice = createSlice({
       state.loading = false
     });
     builder.addCase(getEmployesCompany.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+    // createEmployesCompany
+    builder.addCase(createEmployesCompany.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(createEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 400){
+        state.employes_company_all = [...state.employes_company_all, payload.response.data]
+        payload.params.setIsAddedSideBar(false)
+      }
+      state.loading = false
+    });
+    builder.addCase(createEmployesCompany.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+    // changeEmployesCompany
+    builder.addCase(changeEmployesCompany.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(changeEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 400){
+        state.employes_company_all[state.employes_company_index] = payload.response.data
+        payload.params.setIsVisibleSideBar(false)
+      }
+      state.loading = false
+    });
+    builder.addCase(changeEmployesCompany.rejected, (state:EmployesState) => {
+        state.loading = false
+    });
+    // deleteEmployesCompany
+    builder.addCase(deleteEmployesCompany.pending, (state:EmployesState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(deleteEmployesCompany.fulfilled, (state:EmployesState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 400){
+        state.employes_company_all.splice(state.employes_company_index, 1)
+        state.employes_company_current = {}
+      }
+      state.loading = false
+    });
+    builder.addCase(deleteEmployesCompany.rejected, (state:EmployesState) => {
         state.loading = false
     });
 
