@@ -46,7 +46,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows?.length > 0 && rows.map((row: typeof rows[0], index: number) => (
+                    {rows?.length > 0 ? rows.map((row: typeof rows[0], index: number) => (
                         <TableRow
                         key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
@@ -89,7 +89,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                                 }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
                             </TableCell>  
                         </TableRow>
-                    ))}
+                    )): <div></div>}
                     </TableBody>
                 </Table>
                 {/* <div className={styles.thead_footer_custom}>

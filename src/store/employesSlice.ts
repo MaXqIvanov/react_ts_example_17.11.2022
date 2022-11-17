@@ -219,6 +219,8 @@ const controlSlice = createSlice({
       if(payload.response.status < 400){
         state.employes_company_all = [...state.employes_company_all, payload.response.data]
         payload.params.setIsAddedSideBar(false)
+      }else{
+        alert('Данный телефон уже зарегистриован в системе')
       }
       state.loading = false
     });

@@ -14,7 +14,7 @@ export const CompanyPositionsPage = ({isCollapseSideBar}:any) => {
   const {loading} = useSelector((state: RootState)=> state.position)
   
   return (
-    <div className={styles.company_employes}>
+    <div style={{overflowY: (isadded_sidebar) ? 'hidden' : 'auto', maxHeight:  (isvisible_sidebaer || isadded_sidebar) ? 'calc(100vh - 60px)' : 'none'}} className={styles.company_employes}>
       {loading && <LinearProgress className={isCollapseSideBar ? 'linear_progress_collapse' :`linear_progress`}/>}
       <div className={styles.company_employes_wrapper}>
         <NavHeaderComPosition setIsAddedSideBar={setIsAddedSideBar}/>

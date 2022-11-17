@@ -82,7 +82,7 @@ export const TableHeaderComEmployes = ({setIsVisibleSideBar}:any) => {
                             <div className={'border_dashed'}></div></TableCell>
                             <TableCell className={styles.custom_cell_table} style={{cursor: 'pointer', width: '21px', maxWidth: '21px', minWidth: '21px'}} onClick={()=>{
                                 setIsDeleteBtn(true)
-                                dispatch(setCurrentEmployesCompany({company_current: row, index: index}))
+                                // dispatch(setCurrentEmployesCompany({company_current: row, index: index}))
                                 dispatch(setCurrentEmployesCompany({
                                     employes_current: row,
                                     index: index
