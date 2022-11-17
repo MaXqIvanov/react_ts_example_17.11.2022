@@ -44,7 +44,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
                   <div className={'select_body'}>{admin.name ? admin.name : 'Администратор'}</div>
                   <div className={'select_arrow'}></div>
                   {isVisibleSelect &&
-                    <div ref={select} style={{maxHeight: '65px'}} className={'select_additional'}>
+                    <div ref={select} style={{maxHeight: '100px'}} className={'select_additional'}>
                       {company_employes?.length > 0 &&
                       company_employes.map((elem:any)=> <div onClick={()=> setAdmin(elem)} className={'position_current'}>
                         <span>{elem.name}</span>
@@ -64,54 +64,7 @@ export const AddedSideBar = ({setIsAddedSideBar, isadded_sidebar}:any) => {
                   setIsAddedSideBar: setIsAddedSideBar
                 }))} className={'btn_complete'}><span>Соханить</span></div>
             </div>
-            {/* <div className={styles.text_field_block}> */}
-                {/* <TextField
-                    value={name_position}
-                    className={`${styles.text_field}`}
-                    onChange={(e:any)=> setNamePosition(e.target.value)}
-                    label="Название"
-                    InputProps={{
-                    type: 'string',
-                    }}
-                />
-                <div className={`${styles.select_position_wrapper}`}>
-                <FormControl fullWidth className={`${styles.select_position}`}>
-                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Администратор</InputLabel>
-                    <Select
-                    className='custom_select'
-                    labelId="select_simple"
-                    id="select_simple"
-                    value={position}
-                    label="Статус"
-                    onChange={(e:any)=> setPosition(e.target.value)}
-                    >
-                    <MenuItem value={10}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович</MenuItem>
-                    <MenuItem value={20}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович2</MenuItem>
-                    <MenuItem value={30}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович3</MenuItem>
-                    </Select>
-                </FormControl>
-                </div> */}
-                {/* <FormControl fullWidth className={`${styles.select_position}`}>
-                  <label className={comment && comment.length > 0 ? `${styles.visible_label}` : `${styles.not_visible_label}`}>Комментарий</label>
-                  <TextareaAutosize
-                    aria-label="minimum height"
-                    minRows={8}
-                    id="text_area"
-                    placeholder="Комментарий"
-                    className={`text_area`}
-                    value={comment}
-                    onChange={(e:any)=> setComment(e.target.value)}
-                    style={{ width: '99%', marginTop: '30px' }}
-                  />
-                </FormControl> */}
             </div>
-            {/* <div className={styles.group_btn_side_bar}>
-                <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}><span>ОТМЕНА</span></div>
-                  <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
-                </div>
-            </div> */}
-          {/* </div> */}
         </div>
         <div onClick={()=> setIsAddedSideBar(false)} className={styles.user_side_menu_plug}></div>
       </>

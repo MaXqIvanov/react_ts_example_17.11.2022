@@ -10,7 +10,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 export const getCompanyEmployes = createAsyncThunk(
   'company/getCompanyEmployes',
   async (params: any, {getState}:any) => {
-    const response = await api.get(`accounts/admins/`)
+    const response = await api.get(`accounts/admins/?page_size=999999`)
     return {response}
   },
 )
@@ -19,7 +19,7 @@ export const getCompanyAdmin = createAsyncThunk(
   'company/getCompanyAdmin',
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
-    const response = await api.get(`companies/companies/?search=${params.search}`)
+    const response = await api.get(`companies/companies/?search=${params.search}&page_size=999999`)
     return {response, params}
   },
 )
@@ -28,6 +28,23 @@ export const createCompanyAdmin = createAsyncThunk(
   async (params: any, {getState}:any) => {
     // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
     const response = await api.post(`companies/companies/`, params)
+    return {response, params}
+  },
+)
+export const changeCompanyAdmin = createAsyncThunk(
+  'company/changeCompanyAdmin',
+  async (params: any, {getState}:any) => {
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
+    const response = await api.put(`companies/companies/${getState().company.company_admin_current.id}/`, params)
+    return {response, params}
+  },
+)
+// deleteCompanyAdmin
+export const deleteCompanyAdmin = createAsyncThunk(
+  'company/deleteCompanyAdmin',
+  async (params: any, {getState}:any) => {
+    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
+    const response = await api.delete(`companies/companies/${getState().company.company_admin_current.id}/`)
     return {response, params}
   },
 )
@@ -92,11 +109,47 @@ const companySlice = createSlice({
     builder.addCase(createCompanyAdmin.fulfilled, (state:CompanyState,  { payload }:PayloadAction<any>) => {
       console.log(payload);
       if(payload.response.status < 400){
-        state.company_admin_all = [...state.company_admin_all, payload.response.data] 
+        state.company_admin_all = [...state.company_admin_all, payload.response.data]
+        payload.params.setIsAddedSideBar(false)
+      }else{
+        alert(payload.response.data.name ? payload.response.data.name[0] : 'Создать компанию не получилось')
       }
       state.loading = false
     });
     builder.addCase(createCompanyAdmin.rejected, (state:CompanyState) => {
+      state.loading = false
+    });
+    // changeCompanyAdmin
+    builder.addCase(changeCompanyAdmin.pending, (state:CompanyState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(changeCompanyAdmin.fulfilled, (state:CompanyState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 400){
+        state.company_admin_all[state.company_admin_index] = payload.response.data
+        payload.params.setIsVisibleSideBar(false)
+      }else{
+        alert(payload.response.data.name ? payload.response.data.name[0] : 'Изменить компанию не получилось')
+      }
+      state.loading = false
+    });
+    builder.addCase(changeCompanyAdmin.rejected, (state:CompanyState) => {
+      state.loading = false
+    });
+    // deleteCompanyAdmin
+    builder.addCase(deleteCompanyAdmin.pending, (state:CompanyState, action:PayloadAction) => {
+      state.loading = true
+    });
+    builder.addCase(deleteCompanyAdmin.fulfilled, (state:CompanyState,  { payload }:PayloadAction<any>) => {
+      console.log(payload);
+      if(payload.response.status < 400){
+        state.company_admin_all.splice(state.company_admin_index, 1)
+      }else{
+        alert(payload.response.data.name ? payload.response.data.name[0] : 'Удалить компанию не получилось')
+      }
+      state.loading = false
+    });
+    builder.addCase(deleteCompanyAdmin.rejected, (state:CompanyState) => {
       state.loading = false
     });
   },

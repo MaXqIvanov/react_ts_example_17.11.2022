@@ -10,7 +10,7 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg'
 import footer_right_btn from '../../assets/task/footer_right_btn.svg'
 import styles from '../../scss/CompanyPosition.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePagesCompany, setCurrentCompany } from '../../store/companySlice';
+import { changePagesCompany, deleteCompanyAdmin, setCurrentCompany } from '../../store/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import useClickOutSide from '../../hooks/useClickOutSide';
@@ -48,7 +48,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                     <TableBody>
                     {rows?.length > 0 && rows.map((row: typeof rows[0], index: number) => (
                         <TableRow
-                        key={row.number}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                             <TableCell onClick={()=>{
@@ -84,10 +84,7 @@ export const TableHeaderAdmCompany = ({setIsVisibleSideBar}:any) => {
                                 {is_delete_btn && company_admin_current.id === row.id && <div onClick={()=>
                                 {
                                     window.confirm('Вы уверены что хотите удалить компанию ?') &&
-                                        // dispatch(deleteEmployesCompanyAdmin(''))
-                                        alert('удалил')
-
-                                    
+                                        dispatch(deleteCompanyAdmin(''))
     
                                 }} ref={delete_btn} className={'delete_btn'}><span>Удалить</span></div>}
                             </TableCell>  

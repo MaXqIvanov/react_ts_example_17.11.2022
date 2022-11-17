@@ -160,6 +160,7 @@ $dark-blue: #0088CC;
     left: 50%;
     width: 538px;
     height: 204px;
+    max-height: 204px;
     min-width: 538px;
     transform: translate(-50%, -50%);
     border: 1px solid #C6D2D9;
@@ -167,8 +168,8 @@ $dark-blue: #0088CC;
     background: white;
     display: flex;
     justify-content: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
 }
 .user_side_menu_wrapper{
     width: calc(100%);
