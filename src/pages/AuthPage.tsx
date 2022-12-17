@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/redux';
-import { userAuth } from '../store/authSlice';
+import { userAuth } from '../store/reducers/auth/ActionAuth';
 
 export const AuthPage = ({ setIsVisibleSideBar }: any) => {
   const dispatch = useAppDispatch();

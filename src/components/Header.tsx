@@ -8,7 +8,7 @@ import camera_img from '../assets/camera_img.svg';
 import { Button, TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
 import { useAppDispatch } from '../hooks/redux';
-import { changeCurrentCompany, logout } from '../store/authSlice';
+import { changeCurrentCompany, logout } from '../store/reducers/auth/authSlice';
 import img_user from '../assets/img_user.svg';
 import useClickOutSide from '../hooks/useClickOutSide';
 
@@ -116,16 +116,6 @@ export const Header = ({
                 style={{ backgroundImage: `url(${close_btn})` }}
                 className={styles.close_user_side_menu_btn}
               ></div>
-              {/* <Button
-              variant="contained"
-              component="label"
-            >
-              Upload File
-              <input
-                type="file"
-                hidden
-              />
-            </Button> */}
               <div className={styles.text_field_block}>
                 <div className={styles.group_img_user}>
                   <div

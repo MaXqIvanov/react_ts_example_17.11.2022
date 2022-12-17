@@ -4,9 +4,13 @@ export interface IUser{
   is_controller: boolean;
   is_analyst: boolean;
   is_admin: boolean;
+  avatar: string;
+  name: string;
+  profile_img: string;
 }
 export interface ICompany{
   id: number;
+  name: string;
 }
 export interface TAuthState{
   user: IUser;
