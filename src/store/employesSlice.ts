@@ -1,4 +1,4 @@
-import { TaskState, EmployesState } from './../ts/anyTypes';
+import { TaskState, EmployesState } from '../ts/storeTypes';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';

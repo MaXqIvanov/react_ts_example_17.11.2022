@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { TaskState } from '../ts/anyTypes';
+import { TaskState } from '../ts/storeTypes';
 import moment from 'moment';
 
 interface CommonHeaderProperties extends HeadersDefaults {
@@ -14,7 +14,6 @@ export const getTaskDay = createAsyncThunk(
   async (params: any, { getState }: any) => {
     console.log(params);
     const company: any = localStorage.getItem('WT_company');
-    // alert(`Загрузка данных с бэка раздел день страница ${getState().task.current_page_day}`)
     const response = await api.get(
       `tasks/execute/to_range/?start=${
         params.now_day && params.now_day + '.' + params.now_month + '.' + params.now_year

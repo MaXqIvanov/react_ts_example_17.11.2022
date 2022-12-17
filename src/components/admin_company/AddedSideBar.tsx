@@ -31,7 +31,7 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
   });
 
   useEffect(() => {
-    dispatch(getCompanyEmployes(''));
+    dispatch(getCompanyEmployes());
   }, []);
 
   return (

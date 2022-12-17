@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { PositionState } from '../ts/anyTypes';
+import { PositionState } from '../ts/storeTypes';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;

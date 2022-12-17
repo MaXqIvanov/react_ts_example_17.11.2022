@@ -1,9 +1,19 @@
-export type AuthState = {
-  user: any;
+export interface IUser{
+  is_staff: boolean;
+  is_executor: boolean;
+  is_controller: boolean;
+  is_analyst: boolean;
+  is_admin: boolean;
+}
+export interface ICompany{
+  id: number;
+}
+export interface TAuthState{
+  user: IUser;
   auth: boolean;
   loading: boolean;
-  user_company: Array<Object>;
-  current_company: any;
+  user_company: ICompany[];
+  current_company: ICompany;
   first_render: boolean;
 };
 export type TaskState = {
@@ -26,14 +36,14 @@ export type TaskState = {
   current_task_index: number;
   need_load_data: boolean;
 };
-export type CompanyState = {
+export type TCompanyState = {
   loading: boolean;
-  company_admin_all: Array<Object>;
-  company_admin_current: Object;
+  company_admin_all:  object[];
+  company_admin_current: object;
   company_admin_index: number;
   current_page: number;
   all_pages: number;
-  company_employes: Array<Object>;
+  company_employes: object[];
 };
 export type ControlState = {
   loading: boolean;

@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
-import { ControlState } from '../ts/anyTypes';
+import { ControlState } from '../ts/storeTypes';
 import moment from 'moment';
 
 interface CommonHeaderProperties extends HeadersDefaults {

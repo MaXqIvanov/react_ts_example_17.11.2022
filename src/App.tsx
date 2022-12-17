@@ -17,7 +17,7 @@ import { AdminEmployesPage } from './pages/AdminEmployesPage';
 import './App.scss';
 import { ChooseWorkCompany } from './pages/ChooseWorkCompany';
 import { useAppDispatch } from './hooks/redux';
-import { getProfile } from './store/authSlice';
+import { getProfile } from './store/reducers/auth/ActionAuth';
 
 function App() {
   const { auth, loading, current_company, user } = useSelector((state: RootState) => state.auth);

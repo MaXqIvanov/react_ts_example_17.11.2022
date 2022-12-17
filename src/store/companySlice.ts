@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import api from '../plugins/axios/api';
 import { HeadersDefaults } from 'axios';
-import { CompanyState } from '../ts/anyTypes';
+import { TCompanyState } from '../ts/storeTypes';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
@@ -9,7 +9,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
 
 export const getCompanyEmployes = createAsyncThunk(
   'company/getCompanyEmployes',
-  async (params: any, { getState }: any) => {
+  async (_, { getState }: any) => {
     const response = await api.get(`accounts/admins/?page_size=999999`);
     return { response };
   }
@@ -69,14 +69,14 @@ const companySlice = createSlice({
     all_pages: 10,
   },
   reducers: {
-    changePagesCompany(state: CompanyState, action: any) {
+    changePagesCompany(state: TCompanyState, action: any) {
       const current_page = state.current_page + action.payload;
       if (current_page > 0 && current_page <= state.all_pages) {
         state.current_page = current_page;
       }
     },
     setCurrentCompany(
-      state: CompanyState,
+      state: TCompanyState,
       action: { payload: { company_current: Object; index: number } }
     ) {
       state.company_admin_current = action.payload.company_current;
@@ -84,28 +84,28 @@ const companySlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCompanyEmployes.pending, (state: CompanyState, action: PayloadAction) => {
+    builder.addCase(getCompanyEmployes.pending, (state: TCompanyState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       getCompanyEmployes.fulfilled,
-      (state: CompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<any>) => {
         console.log(payload);
 
         state.company_employes = payload.response.data.results;
         state.loading = false;
       }
     );
-    builder.addCase(getCompanyEmployes.rejected, (state: CompanyState) => {
+    builder.addCase(getCompanyEmployes.rejected, (state: TCompanyState) => {
       state.loading = false;
     });
 
-    builder.addCase(getCompanyAdmin.pending, (state: CompanyState, action: PayloadAction) => {
+    builder.addCase(getCompanyAdmin.pending, (state: TCompanyState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       getCompanyAdmin.fulfilled,
-      (state: CompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<any>) => {
         console.log(payload);
 
         state.company_admin_all = payload.response.data.results
@@ -114,16 +114,16 @@ const companySlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(getCompanyAdmin.rejected, (state: CompanyState) => {
+    builder.addCase(getCompanyAdmin.rejected, (state: TCompanyState) => {
       state.loading = false;
     });
     // createCompanyAdmin
-    builder.addCase(createCompanyAdmin.pending, (state: CompanyState, action: PayloadAction) => {
+    builder.addCase(createCompanyAdmin.pending, (state: TCompanyState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       createCompanyAdmin.fulfilled,
-      (state: CompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all = [...state.company_admin_all, payload.response.data];
@@ -138,16 +138,16 @@ const companySlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(createCompanyAdmin.rejected, (state: CompanyState) => {
+    builder.addCase(createCompanyAdmin.rejected, (state: TCompanyState) => {
       state.loading = false;
     });
     // changeCompanyAdmin
-    builder.addCase(changeCompanyAdmin.pending, (state: CompanyState, action: PayloadAction) => {
+    builder.addCase(changeCompanyAdmin.pending, (state: TCompanyState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       changeCompanyAdmin.fulfilled,
-      (state: CompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all[state.company_admin_index] = payload.response.data;
@@ -162,16 +162,16 @@ const companySlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(changeCompanyAdmin.rejected, (state: CompanyState) => {
+    builder.addCase(changeCompanyAdmin.rejected, (state: TCompanyState) => {
       state.loading = false;
     });
     // deleteCompanyAdmin
-    builder.addCase(deleteCompanyAdmin.pending, (state: CompanyState, action: PayloadAction) => {
+    builder.addCase(deleteCompanyAdmin.pending, (state: TCompanyState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       deleteCompanyAdmin.fulfilled,
-      (state: CompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all.splice(state.company_admin_index, 1);
@@ -185,7 +185,7 @@ const companySlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(deleteCompanyAdmin.rejected, (state: CompanyState) => {
+    builder.addCase(deleteCompanyAdmin.rejected, (state: TCompanyState) => {
       state.loading = false;
     });
   },
