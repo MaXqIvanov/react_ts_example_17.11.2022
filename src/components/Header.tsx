@@ -12,12 +12,18 @@ import { changeCurrentCompany, logout } from '../store/reducers/auth/authSlice';
 import img_user from '../assets/img_user.svg';
 import useClickOutSide from '../hooks/useClickOutSide';
 
+interface IPropsHeader {
+  setIsVisibleSideBar: CallableFunction;
+  isVusubleSideBar: boolean;
+  setIsCollapseSideBar: CallableFunction;
+  isCollapseSideBar: boolean;
+}
 export const Header = ({
   setIsVisibleSideBar,
   isVusubleSideBar,
   setIsCollapseSideBar,
   isCollapseSideBar,
-}: any) => {
+}: IPropsHeader) => {
   const router = useNavigate();
   const dispatch = useAppDispatch();
   const [isVisibleUserMenu, setIsVisibleUserMenu] = useState<boolean>(false);
@@ -88,7 +94,6 @@ export const Header = ({
                 </div>
               ))}
           </div>
-          {/* <div className={styles.header_name}>Иванов Иван Иванович</div> */}
           <div className={styles.separate_line_for_header}></div>
           <div
             onClick={() => setIsVisibleUserMenu(!isVisibleUserMenu)}
@@ -198,8 +203,6 @@ export const Header = ({
                     <span>СОХРАНИТЬ</span>
                   </div>
                 </div>
-                {/* <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_quit_account}>ВЫЙТИ</div> */}
-                {/* <div onClick={()=> setIsVisibleAlert(true)} className={styles.btn_exit_profile}></div> */}
               </div>
             </div>
           </div>
