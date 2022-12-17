@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import authSlice from './authSlice';
-import companySlice from './companySlice';
+import authSlice from './reducers/auth/authSlice';
+import companySlice from './reducers/company/companySlice';
 import controlSlice from './controlSlice';
 import employesSlice from './employesSlice';
 import positionSlice from './positionSlice';

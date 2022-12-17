@@ -1,16 +1,16 @@
 import { LinearProgress } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { AddedSideBar } from '../components/admin_company/AddedSideBar';
+import { ModalWindowAdded } from '../components/admin_company/ModalWindowAdded';
 import { NavHeaderAdmCompany } from '../components/admin_company/NavHeaderAdmCompany';
-import { SideBar } from '../components/admin_company/SideBar';
+import { ModalWindow } from '../components/admin_company/ModalWindow';
 import { TableHeaderAdmCompany } from '../components/admin_company/TableHeaderAdmCompany';
 import styles from '../scss/AdminCompany.module.scss';
 import { RootState } from '../store/store';
 
 export const AdminCompanyPage = ({ isCollapseSideBar }: any) => {
-  const [isvisible_sidebaer, setIsVisibleSideBar] = useState<boolean>(false);
-  const [isadded_sidebar, setIsAddedSideBar] = useState<boolean>(false);
+  const [isvisible_modal, setIsVisibleModalWindow] = useState<boolean>(false);
+  const [is_added_modal, setIsModalWindowAdded] = useState<boolean>(false);
   const { loading } = useSelector((state: RootState) => state.company);
 
   return (
@@ -21,16 +21,16 @@ export const AdminCompanyPage = ({ isCollapseSideBar }: any) => {
         />
       )}
       <div className={styles.admin_company_wrapper}>
-        <NavHeaderAdmCompany setIsAddedSideBar={setIsAddedSideBar} />
-        <TableHeaderAdmCompany setIsVisibleSideBar={setIsVisibleSideBar} />
-        {isvisible_sidebaer && (
-          <SideBar
-            setIsVisibleSideBar={setIsVisibleSideBar}
-            isvisible_sidebaer={isvisible_sidebaer}
+        <NavHeaderAdmCompany setIsModalWindowAdded={setIsModalWindowAdded} />
+        <TableHeaderAdmCompany setIsVisibleSideBar={setIsVisibleModalWindow} />
+        {isvisible_modal && (
+          <ModalWindow
+            setIsVisibleModalWindow={setIsVisibleModalWindow}
+            isvisible_modal={isvisible_modal}
           />
         )}
-        {isadded_sidebar && (
-          <AddedSideBar setIsAddedSideBar={setIsAddedSideBar} isadded_sidebar={isadded_sidebar} />
+        {is_added_modal && (
+          <ModalWindowAdded setIsModalWindowAdded={setIsModalWindowAdded} is_added_modal={is_added_modal} />
         )}
       </div>
     </div>

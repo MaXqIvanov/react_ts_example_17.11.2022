@@ -1,31 +1,24 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextareaAutosize,
-  TextField,
-} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/AdminCompany.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
-import img_user from '../../assets/img_user.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
-import { createCompanyAdmin, getCompanyEmployes } from '../../store/companySlice';
+import { changeCompanyAdmin, getCompanyEmployes } from '../../store/reducers/company/ActionCompany';
 
-export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
+interface IPropsModalWindow {
+  setIsVisibleModalWindow: CallableFunction;
+  isvisible_modal: boolean;
+} 
+export const ModalWindow = ({ setIsVisibleModalWindow, isvisible_modal }: IPropsModalWindow) => {
   const dispatch = useAppDispatch();
   const [admin, setAdmin] = useState<any>({});
   const [name, setName] = useState<string>('');
-  const [comment, setComment] = useState<string>('');
-  const { user } = useSelector((state: RootState) => state.auth);
   const [isVisibleSelect, setIsVisibleSelect] = useState<boolean>(false);
-  const { company_employes } = useSelector((state: RootState) => state.company);
+  const { company_employes, company_admin_current } = useSelector(
+    (state: RootState) => state.company
+  );
   const select = useClickOutSide(() => {
     setIsVisibleSelect(false);
   });
@@ -33,13 +26,19 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
   useEffect(() => {
     dispatch(getCompanyEmployes());
   }, []);
+  useEffect(() => {
+    setName(company_admin_current.name);
+    if (company_admin_current.admin) {
+      setAdmin(company_admin_current.admin._user);
+    }
+  }, [company_admin_current]);
 
   return (
     <>
       <div className={styles.user_side_menu}>
         <div className={styles.user_side_menu_wrapper}>
           <div
-            onClick={() => setIsAddedSideBar(!isadded_sidebar)}
+            onClick={() => setIsVisibleModalWindow(!isvisible_modal)}
             style={{ backgroundImage: `url(${close_btn})` }}
             className={styles.close_user_side_menu_btn}
           ></div>
@@ -87,19 +86,16 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
             }}
             className={'custom_btn_wrapper_position'}
           >
-            <div onClick={() => setIsAddedSideBar(!isadded_sidebar)} className={'btn_cancel'}>
+            <div onClick={() => setIsVisibleModalWindow(!isvisible_modal)} className={'btn_cancel'}>
               <span>Отмена</span>
             </div>
             <div
               onClick={() =>
                 dispatch(
-                  createCompanyAdmin({
-                    // phone: phoneHolder,
+                  changeCompanyAdmin({
                     name: name,
                     admin: admin.id,
-                    // password: password,
-                    // company: position.id,
-                    setIsAddedSideBar: setIsAddedSideBar,
+                    setIsVisibleSideBar: setIsVisibleModalWindow,
                   })
                 )
               }
@@ -110,7 +106,7 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
           </div>
         </div>
       </div>
-      <div onClick={() => setIsAddedSideBar(false)} className={styles.user_side_menu_plug}></div>
+      <div onClick={() => setIsVisibleModalWindow(false)} className={styles.user_side_menu_plug}></div>
     </>
   );
 };

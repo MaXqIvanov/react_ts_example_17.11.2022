@@ -1,53 +1,36 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextareaAutosize,
-  TextField,
-} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/AdminCompany.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
-import img_user from '../../assets/img_user.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
-import { changeCompanyAdmin, getCompanyEmployes } from '../../store/companySlice';
+import { createCompanyAdmin, getCompanyEmployes } from '../../store/reducers/company/ActionCompany';
 
-export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
+interface IPropsModalWindowAdded {
+  setIsModalWindowAdded: CallableFunction;
+  is_added_modal: boolean;
+}
+export const ModalWindowAdded = ({ setIsModalWindowAdded, is_added_modal }: IPropsModalWindowAdded) => {
   const dispatch = useAppDispatch();
   const [admin, setAdmin] = useState<any>({});
   const [name, setName] = useState<string>('');
-  const [comment, setComment] = useState<string>('');
-  const { user } = useSelector((state: RootState) => state.auth);
   const [isVisibleSelect, setIsVisibleSelect] = useState<boolean>(false);
-  const { company_employes, company_admin_current } = useSelector(
-    (state: RootState) => state.company
-  );
+  const { company_employes } = useSelector((state: RootState) => state.company);
   const select = useClickOutSide(() => {
     setIsVisibleSelect(false);
   });
 
   useEffect(() => {
-    dispatch(getCompanyEmployes(''));
+    dispatch(getCompanyEmployes());
   }, []);
-  useEffect(() => {
-    setName(company_admin_current.name);
-    if (company_admin_current.admin) {
-      setAdmin(company_admin_current.admin._user);
-    }
-  }, [company_admin_current]);
 
   return (
     <>
       <div className={styles.user_side_menu}>
         <div className={styles.user_side_menu_wrapper}>
           <div
-            onClick={() => setIsVisibleSideBar(!isvisible_sidebaer)}
+            onClick={() => setIsModalWindowAdded(!is_added_modal)}
             style={{ backgroundImage: `url(${close_btn})` }}
             className={styles.close_user_side_menu_btn}
           ></div>
@@ -59,7 +42,7 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
               <input
                 placeholder="Наименование компании"
                 value={name}
-                onChange={(e: any) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div
@@ -95,16 +78,16 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
             }}
             className={'custom_btn_wrapper_position'}
           >
-            <div onClick={() => setIsVisibleSideBar(!isvisible_sidebaer)} className={'btn_cancel'}>
+            <div onClick={() => setIsModalWindowAdded(!is_added_modal)} className={'btn_cancel'}>
               <span>Отмена</span>
             </div>
             <div
               onClick={() =>
                 dispatch(
-                  changeCompanyAdmin({
+                  createCompanyAdmin({
                     name: name,
                     admin: admin.id,
-                    setIsVisibleSideBar: setIsVisibleSideBar,
+                    setIsModalWindowAdded: setIsModalWindowAdded,
                   })
                 )
               }
@@ -115,7 +98,7 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
           </div>
         </div>
       </div>
-      <div onClick={() => setIsVisibleSideBar(false)} className={styles.user_side_menu_plug}></div>
+      <div onClick={() => setIsModalWindowAdded(false)} className={styles.user_side_menu_plug}></div>
     </>
   );
 };

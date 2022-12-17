@@ -8,7 +8,7 @@ import useDebounce from '../../hooks/use-debounce';
 import { useAppDispatch } from '../../hooks/redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { getCompanyAdmin } from '../../store/companySlice';
+import { getCompanyAdmin } from '../../store/reducers/company/companySlice';
 
 export const NavHeaderAdmCompany = ({ setIsAddedSideBar }: any) => {
   const [position, setPosition] = React.useState('');

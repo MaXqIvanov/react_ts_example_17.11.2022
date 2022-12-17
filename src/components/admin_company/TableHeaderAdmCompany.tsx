@@ -14,7 +14,7 @@ import {
   changePagesCompany,
   deleteCompanyAdmin,
   setCurrentCompany,
-} from '../../store/companySlice';
+} from '../../store/reducers/company/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import useClickOutSide from '../../hooks/useClickOutSide';

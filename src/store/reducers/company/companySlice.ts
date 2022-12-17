@@ -1,58 +1,11 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import api from '../plugins/axios/api';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
-import { TCompanyState } from '../ts/storeTypes';
+import { TCompanyState } from '../../../ts/storeTypes';
+import { changeCompanyAdmin, createCompanyAdmin, deleteCompanyAdmin, getCompanyAdmin, getCompanyEmployes } from './ActionCompany';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
-
-export const getCompanyEmployes = createAsyncThunk(
-  'company/getCompanyEmployes',
-  async (_, { getState }: any) => {
-    const response = await api.get(`accounts/admins/?page_size=999999`);
-    return { response };
-  }
-);
-
-export const getCompanyAdmin = createAsyncThunk(
-  'company/getCompanyAdmin',
-  async (params: any, { getState }: any) => {
-    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
-    const response = await api.get(`companies/companies/?search=${params.search}&page_size=999999`);
-    return { response, params };
-  }
-);
-export const createCompanyAdmin = createAsyncThunk(
-  'company/createCompanyAdmin',
-  async (params: any, { getState }: any) => {
-    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
-    const response = await api.post(`companies/companies/`, params);
-    return { response, params };
-  }
-);
-export const changeCompanyAdmin = createAsyncThunk(
-  'company/changeCompanyAdmin',
-  async (params: any, { getState }: any) => {
-    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
-    const response = await api.put(
-      `companies/companies/${getState().company.company_admin_current.id}/`,
-      params
-    );
-    return { response, params };
-  }
-);
-// deleteCompanyAdmin
-export const deleteCompanyAdmin = createAsyncThunk(
-  'company/deleteCompanyAdmin',
-  async (params: any, { getState }: any) => {
-    // alert(`Загрузка данных в разделе должности - Списки всех сотрудников на странице ${getState().company.current_page}`)
-    const response = await api.delete(
-      `companies/companies/${getState().company.company_admin_current.id}/`
-    );
-    return { response, params };
-  }
-);
 
 const companySlice = createSlice({
   name: 'company',
