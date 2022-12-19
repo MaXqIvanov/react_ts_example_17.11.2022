@@ -16,7 +16,7 @@ import {
   changeVisibleSideBar,
   getControlTaskAll,
   setControlsTaskCurrent,
-} from '../../store/controlSlice';
+} from '../../store/reducers/control/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 

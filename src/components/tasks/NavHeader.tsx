@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RangeCalendar from 'rc-calendar/lib/RangeCalendar';
 import Calendar from 'rc-calendar';
-import DatePicker from 'rc-calendar/lib/Picker';
-
-import zhCN from 'rc-calendar/lib/locale/ru_RU';
-import enUS from 'rc-calendar/lib/locale/en_US';
-
 import moment from 'moment';
 import 'moment/locale/ru';
 import calendar_img from '../../assets/task/calendar.svg';
@@ -16,17 +11,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
 import {
-  changeVisibleSideBar,
-  getTaskAll,
-  getTaskDay,
-  getTaskWeek,
   setCurrentVariantTable,
-} from '../../store/taskSlice';
-import { Switch, TextField } from '@mui/material';
+} from '../../store/reducers/tasks/taskSlice';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss';
 import useDebounce from '../../hooks/use-debounce';
 import useClickOutSide from '../../hooks/useClickOutSide';
+import { getTaskAll, getTaskDay, getTaskWeek } from '../../store/reducers/tasks/ActionSlice';
 
 export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
   const nav = useNavigate();
@@ -60,21 +51,10 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
   const [last_day, setLastDay] = useState<any>('');
   const [last_month, setLastMonth] = useState<any>('');
   const [last_year, setLastYear] = useState<any>('');
-  // Variable for load data - change now_day or last_day
   const [is_change_day, setIsChangesDay] = useState<boolean>(false);
 
   const [choose_btn_week, setChooseBtnWeek] = useState<number>(1);
   const select_btn_week: any = [
-    // {
-    //     id: 1,
-    //     title: 'Сегодня',
-    //     class: `${styles.side_panel_btn_current_week}`
-    // },
-    // {
-    //     id: 2,
-    //     title: 'Вчера',
-    //     class: `${styles.side_panel_btn_current_week}`
-    // },
     {
       id: 1,
       title: 'Текущая неделя',
@@ -144,8 +124,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
     setSearch('');
   }, [current_variant_table]);
 
-  // const [current_days, setCurrentDays] = useState<number>(1)
-  // для работы с неделями
   const [value, setValue] = React.useState(null);
   const [current_date, setCurrentDate] = useState<string>('');
   const [isVisibleCalendarWeeks, setIsVisibleCalendarWeeks] = useState<boolean>(false);
@@ -309,14 +287,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
       }
     }
     if (number === 3) {
-      // НАЧАЛО НЕДЕЛИ
-      // ? const [now_day, setNowDay] = useState<any>('')
-      // ? const [now_month, setNowMonth] = useState<any>('')
-      // ? const [now_year, setNowYear] = useState<any>('')
-      // КОНЕЦ НЕДЕЛИ
-      // ? const [last_day, setLastDay] = useState<any>('')
-      // ? const [last_month, setLastMonth] = useState<any>('')
-      // ? const [last_year, setLastYear] = useState<any>('')
       const week_day = moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay();
       if (week_day !== 1) {
         const different_day =
@@ -447,18 +417,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
       }
     }
     if (number === 4) {
-      // НАЧАЛО НЕДЕЛИ
-      // let element:any = document.getElementsByClassName("rc-calendar-prev-month-btn");
-      // console.log(element);
-
-      // element[0].click()
-      // ? const [now_day, setNowDay] = useState<any>('')
-      // ? const [now_month, setNowMonth] = useState<any>('')
-      // ? const [now_year, setNowYear] = useState<any>('')
-      // КОНЕЦ НЕДЕЛИ
-      // ? const [last_day, setLastDay] = useState<any>('')
-      // ? const [last_month, setLastMonth] = useState<any>('')
-      // ? const [last_year, setLastYear] = useState<any>('')
       const week_day = moment(`${now_month}.${now_day}.${now_year}`).toDate().getDay();
       if (week_day !== 1) {
         const different_day =
@@ -708,11 +666,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
             ></input>
             <div className="custom_search_icon"></div>
           </div>
-          {/* {visible && 
-                        <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
-                            <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
-                        </div>
-                    } */}
         </div>
       )}
       {current_variant_table === 2 && (
@@ -760,11 +713,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
             ></input>
             <div className="custom_search_icon"></div>
           </div>
-          {/* {visible && 
-                    <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
-                        <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
-                    </div>
-                } */}
           {isVisibleCalendarWeeks && (
             <div ref={rangeCalendar} className={`${styles.calendar_side_wrapper} calendar_week`}>
               <div className={styles.calendar_side_panel}>
@@ -783,9 +731,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
                       <span>{elem.title}</span>
                     </div>
                   ))}
-                {/* <div className={styles.side_panel_btn_current_week}><span>Текущая неделя</span></div>
-                    <div className={styles.side_panel_btn_after_week}><span>Прошлая неделя</span></div> 
-                      //    */}
               </div>
               <RangeCalendar
                 defaultValue={[
@@ -887,11 +832,6 @@ export const NavHeader = ({ visible, setCurrentDayTask }: any) => {
             ></input>
             <div className="custom_search_icon"></div>
           </div>
-          {/* {visible && 
-                    <div onClick={()=> dispatch(changeVisibleSideBar())} className={styles.added_task_btn}>
-                        <span>ДОБАВИТЬ ЗАДАЧУ + </span> 
-                    </div>
-                } */}
           {isVisibleCalendarDays && (
             <div ref={CalendarDay}>
               <Calendar

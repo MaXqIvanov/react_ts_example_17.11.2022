@@ -6,18 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import styles from '../../scss/AdminEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import {
-  deleteEmployesCompanyAdmin,
-  getCurrentAdmin,
-  getEmployesAdmin,
-} from '../../store/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
+import { getCurrentAdmin } from '../../store/reducers/employes/employesSlice';
+import { deleteEmployesCompanyAdmin } from '../../store/reducers/employes/ActionEmployes';
 
 export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: any) => {
   const dispatch = useAppDispatch();
@@ -105,11 +100,6 @@ export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: any) => {
                       onClick={() => {
                         setIsDeleteBtn(true);
                         dispatch(getCurrentAdmin({ admin_current: row, index: index }));
-                        //  setIsVisibleSideBar(true)
-                        // dispatch(setCurrentEmployes({
-                        //     employes_current: row,
-                        //     index: index,
-                        // }))
                       }}
                       align="center"
                     >
@@ -131,15 +121,6 @@ export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: any) => {
                 ))}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePagesAdminEmployes(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page_admin_employes}</div>
-                        <div onClick={()=> dispatch(changePagesAdminEmployes(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages_admin_employes}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

@@ -3,7 +3,7 @@ import styles from '../../scss/Controls.module.scss';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import useClickOutSide from '../../hooks/useClickOutSide';
 import { useAppDispatch } from '../../hooks/redux';
-import { getControlTaskAll, getPosition, selectCurrentPosition } from '../../store/controlSlice';
+import { getControlTaskAll, getPosition, selectCurrentPosition } from '../../store/reducers/control/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 

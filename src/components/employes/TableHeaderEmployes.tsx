@@ -7,10 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePages, getEmployesAll, setCurrentEmployes } from '../../store/employesSlice';
+import { setCurrentEmployes } from '../../store/reducers/employes/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
@@ -128,15 +126,6 @@ export const TableHeaderEmployes = ({ setIsVisibleSideBar }: any) => {
                 ))}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePages(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page}</div>
-                        <div onClick={()=> dispatch(changePages(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

@@ -12,13 +12,12 @@ import styles from '../../scss/CompanyEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
 import {
   changePagesCompanyEmployes,
-  deleteEmployesCompany,
-  getEmployesCompany,
   setCurrentEmployesCompany,
-} from '../../store/employesSlice';
+} from '../../store/reducers/employes/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
+import { deleteEmployesCompany } from '../../store/reducers/employes/ActionEmployes';
 
 function createData(number: number, employes: string, name_employ: string) {
   return { number, employes, name_employ };
@@ -124,19 +123,12 @@ export const TableHeaderComEmployes = ({ setIsVisibleSideBar }: any) => {
                       }}
                       onClick={() => {
                         setIsDeleteBtn(true);
-                        // dispatch(setCurrentEmployesCompany({company_current: row, index: index}))
                         dispatch(
                           setCurrentEmployesCompany({
                             employes_current: row,
                             index: index,
                           })
                         );
-                        // dispatch(getCurrentCompany({admin_current: row, index: index}))
-                        //  setIsVisibleSideBar(true)
-                        // dispatch(setCurrentEmployes({
-                        //     employes_current: row,
-                        //     index: index,
-                        // }))
                       }}
                       align="center"
                     >
@@ -161,15 +153,6 @@ export const TableHeaderComEmployes = ({ setIsVisibleSideBar }: any) => {
               )}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePagesCompanyEmployes(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page_company_employes}</div>
-                        <div onClick={()=> dispatch(changePagesCompanyEmployes(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages_company_employes}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

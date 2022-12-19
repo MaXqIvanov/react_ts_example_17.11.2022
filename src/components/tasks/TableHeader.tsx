@@ -7,25 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import paperclip_img from '../../assets/task/mdi_paperclip.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
-import {
-  changePagesAll,
-  changePagesDay,
-  changePagesWeek,
-  changeVisibleSideBar,
-  getCurrentTask,
-  getTaskAll,
-  getTaskDay,
-  getTaskWeek,
-} from '../../store/taskSlice';
-import { changeVisibleSideBarCreate } from '../../store/employesSlice';
+import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
+import { changeVisibleSideBarCreate } from '../../store/reducers/employes/employesSlice';
 import moment from 'moment';
 import 'moment/locale/ru';
+import { getCurrentTask } from '../../store/reducers/tasks/ActionSlice';
 
 function createData(
   number: number,
@@ -908,8 +898,6 @@ export const TableHeader = ({ visible, current_day_task }: any) => {
                           className={`${styles.table_link}`}
                           rel="noreferrer"
                         ></a>
-                        {/* {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
-                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> } */}
                         <div className={'border_dashed'}></div>
                       </TableCell>
                       {rows[0]?.days?.length > 0 ? (
@@ -963,42 +951,6 @@ export const TableHeader = ({ visible, current_day_task }: any) => {
               </TableBody>
             </Table>
           )}
-          {/* {
-                    current_variant_table === 1 &&
-                    <div className={styles.thead_footer_custom}>
-                        <div>страница</div>
-                        <div className={styles.footer_group_btn}>
-                            <div onClick={()=> dispatch(changePagesAll(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                            <div className={styles.footer_group_btn_center}>{current_page_all}</div>
-                            <div onClick={()=> dispatch(changePagesAll(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                        </div>
-                        <div>из {all_pages_day}</div>
-                    </div>
-                }
-                {
-                    current_variant_table === 2 &&
-                    <div className={styles.thead_footer_custom}>
-                        <div>страница</div>
-                        <div className={styles.footer_group_btn}>
-                            <div onClick={()=> dispatch(changePagesWeek(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                            <div className={styles.footer_group_btn_center}>{current_page_week}</div>
-                            <div onClick={()=> dispatch(changePagesWeek(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                        </div>
-                        <div>из {all_pages_week}</div>
-                    </div>
-                }
-                {
-                    current_variant_table === 3 &&
-                    <div className={styles.thead_footer_custom}>
-                        <div>страница</div>
-                        <div className={styles.footer_group_btn}>
-                            <div onClick={()=> dispatch(changePagesDay(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                            <div className={styles.footer_group_btn_center}>{current_page_day}</div>
-                            <div onClick={()=> dispatch(changePagesDay(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                        </div>
-                        <div>из {all_pages_all}</div>
-                    </div>
-                } */}
         </TableContainer>
       </div>
     </div>

@@ -1,28 +1,14 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextareaAutosize,
-  TextField,
-} from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../scss/Task.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, createTask } from '../../store/taskSlice';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MUIRichTextEditor from 'mui-text-editor';
 import { Editor } from '@tinymce/tinymce-react';
 import moment from 'moment';
+import { createTask } from '../../store/reducers/tasks/ActionSlice';
 
 const myTheme = createTheme({
-  // Set up your custom MUI theme here
 });
 Object.assign(myTheme, {
   overrides: {
@@ -52,26 +38,6 @@ export const CreateSideBar = () => {
       id: 1,
       title: 'Ежедневно',
     },
-    // {
-    //   id: 2,
-    //   title: 'Еженедельно (вторник)'
-    // },
-    // {
-    //   id: 3,
-    //   title: 'Ежемесячно (первый вторник)'
-    // },
-    // {
-    //   id: 4,
-    //   title: 'Ежемесячно (выбранная дата)'
-    // },
-    // {
-    //   id: 5,
-    //   title: `Ежегодно (${moment().date()}.${moment().month()})`
-    // },
-    // {
-    //   id: 6,
-    //   title: 'По будням (с понедельника по пятницу'
-    // },
     {
       id: 7,
       title: 'Не повторять',
@@ -148,7 +114,6 @@ export const CreateSideBar = () => {
       setFri(false);
       setSat(false);
       setSun(false);
-      // need null but...
       setDelta(1);
       setDeltaType(null);
     }
@@ -188,9 +153,7 @@ export const CreateSideBar = () => {
           <div className={styles.side_menu_title}>
             <span>Задача</span>
           </div>
-          {/* <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div> */}
           <div className={styles.text_field_block_create}>
-            {/* <TextField className={`${styles.current_task_field} current_task_field`} id="standard-basic" label="Задача" variant="standard" /> */}
             <div className={'wrapper_input_width_label'}>
               <div className={'label'}>Название</div>
               <input
@@ -306,7 +269,6 @@ export const CreateSideBar = () => {
                       delta_type: delta_type?.value,
                     })
                   );
-                  // console.log(editorRef.current.getContent())
                 }}
                 className={'btn_complete'}
               >

@@ -7,8 +7,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useAppDispatch } from '../../hooks/redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { getEmployesAll } from '../../store/employesSlice';
 import useDebounce from '../../hooks/use-debounce';
+import { getEmployesAll } from '../../store/reducers/employes/ActionEmployes';
 
 export const NavHeaderEmployes = () => {
   const [position, setPosition] = React.useState('');
@@ -29,19 +29,6 @@ export const NavHeaderEmployes = () => {
   return (
     <div className={styles.nav_header}>
       <div className={styles.nav_header_btn}>
-        {/* <Stack spacing={2} sx={{ width: 300 }}>
-            <Autocomplete
-              id="free-solo-demo"
-              freeSolo
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => <TextField {...params} label="freeSolo" />}
-            />
-            <Autocomplete
-              freeSolo
-              id="free-solo-2-demo"
-              disableClearable
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => ( */}
         <div className="custom_search_wrapper">
           <input
             onChange={(e) => setSearch(e.target.value)}
@@ -52,15 +39,7 @@ export const NavHeaderEmployes = () => {
           ></input>
           <div className="custom_search_icon"></div>
         </div>
-        {/* )}
-            />
-          </Stack> */}
       </div>
     </div>
   );
 };
-
-// const top100Films = [
-//   { title: 'The Shawshank Redemption', year: 1994 },
-//   { title: 'The Godfather', year: 1972 },
-// ];

@@ -1,16 +1,13 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/CompanyPosition.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
-import img_user from '../../assets/img_user.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
-import { getEmployesCompany } from '../../store/employesSlice';
-import { createPosition } from '../../store/positionSlice';
+import { createPosition } from '../../store/reducers/position/ActionPosition';
+import { getEmployesCompany } from '../../store/reducers/employes/ActionEmployes';
 
 export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
   const dispatch = useAppDispatch();
@@ -122,7 +119,6 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
               </div>
             )}
           </div>
-          {/* employes_company_all */}
           <div
             style={{ marginTop: '30px', width: 'calc(100% - 40px)' }}
             onClick={() => setIsVisibleSelectEmp(!isVisibleSelectEmp)}
@@ -167,7 +163,6 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
               onClick={() =>
                 dispatch(
                   createPosition({
-                    // phone: phoneHolder,
                     name: name,
                     parent_position: position.id,
                     employee: employee.id,
@@ -180,42 +175,6 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
               <span>Соханить</span>
             </div>
           </div>
-
-          {/* <div style={{backgroundImage: `url(${info_btn})`}} className={styles.info_user_side_menu_btn}></div>
-            <div className={styles.text_field_block}>
-                <TextField
-                    value={name_position}
-                    className={`${styles.text_field}`}
-                    onChange={(e:any)=> setNamePosition(e.target.value)}
-                    label="Название"
-                    InputProps={{
-                    type: 'string',
-                    }}
-                />
-                <div className={`${styles.select_position_wrapper}`}>
-                <FormControl fullWidth className={`${styles.select_position}`}>
-                    <InputLabel id="select_simple" className={`${styles.input_label}`}>Сотрудник</InputLabel>
-                    <Select
-                    className='custom_select'
-                    labelId="select_simple"
-                    id="select_simple"
-                    value={position}
-                    label="Статус"
-                    onChange={(e:any)=> setPosition(e.target.value)}
-                    >
-                   <MenuItem value={10}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович</MenuItem>
-                    <MenuItem value={20}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович2</MenuItem>
-                    <MenuItem value={30}><div style={{backgroundImage: user.profile_img ? `url(${user.profile_img})` : `url(${img_user})`}} className={styles.img_user_company_position}></div>Иванов Иван Иванович3</MenuItem>
-                    </Select>
-                </FormControl>
-                </div>
-            </div>
-            <div className={styles.group_btn_side_bar}>
-                <div className={styles.group_btn_side_bar_save_close}>
-                  <div className={styles.btn_cancel_side_bar}><span>ОТМЕНА</span></div>
-                  <div className={styles.btn_save_side_bar}><span>СОХРАНИТЬ</span></div>
-                </div>
-            </div> */}
         </div>
       </div>
       <div onClick={() => setIsAddedSideBar(false)} className={styles.user_side_menu_plug}></div>

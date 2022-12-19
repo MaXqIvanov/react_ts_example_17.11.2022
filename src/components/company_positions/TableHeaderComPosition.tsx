@@ -10,7 +10,7 @@ import footer_left_btn from '../../assets/task/footer_left_btn.svg';
 import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import styles from '../../scss/CompanyPosition.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import { changePages, getCurrentPositionCompany, getPosition } from '../../store/positionSlice';
+import { changePages, getCurrentPositionCompany } from '../../store/reducers/position/positionSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
@@ -20,7 +20,7 @@ function createData(number: number, name_position: string, employes: string) {
 }
 
 export const TableHeaderComPosition = ({ setIsVisibleSideBar }: any) => {
-  const { position_company_current, all_pages, position_company_all } = useSelector(
+  const { position_company_current, position_company_all } = useSelector(
     (state: RootState) => state.position
   );
   const dispatch = useAppDispatch();
@@ -114,12 +114,6 @@ export const TableHeaderComPosition = ({ setIsVisibleSideBar }: any) => {
                         dispatch(
                           getCurrentPositionCompany({ current_position_company: row, index: index })
                         );
-                        // dispatch(getCurrentCompany({admin_current: row, index: index}))
-                        //  setIsVisibleSideBar(true)
-                        // dispatch(setCurrentEmployes({
-                        //     employes_current: row,
-                        //     index: index,
-                        // }))
                       }}
                       align="center"
                     >
@@ -128,7 +122,6 @@ export const TableHeaderComPosition = ({ setIsVisibleSideBar }: any) => {
                         <div
                           onClick={() => {
                             window.confirm('Вы уверены что хотите удалить пользователя ?') &&
-                              // dispatch(deleteEmployesCompany(''))
                               alert('удалил');
                           }}
                           ref={delete_btn}
@@ -142,15 +135,6 @@ export const TableHeaderComPosition = ({ setIsVisibleSideBar }: any) => {
                 ))}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePages(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page}</div>
-                        <div onClick={()=> dispatch(changePages(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

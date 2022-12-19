@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import styles from '../../scss/CompanyPosition.module.scss';
 import useDebounce from '../../hooks/use-debounce';
-import { getPositionCompanyAll } from '../../store/positionSlice';
 import { useAppDispatch } from '../../hooks/redux';
+import { getPositionCompanyAll } from '../../store/reducers/position/ActionPosition';
 
 export const NavHeaderComPosition = ({ setIsAddedSideBar }: any) => {
   const dispatch = useAppDispatch();
@@ -25,19 +25,6 @@ export const NavHeaderComPosition = ({ setIsAddedSideBar }: any) => {
   return (
     <div className={styles.nav_header}>
       <div className={styles.nav_header_btn}>
-        {/* <Stack spacing={2} sx={{ width: 300 }}>
-            <Autocomplete
-              id="free-solo-demo"
-              freeSolo
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => <TextField {...params} label="freeSolo" />}
-            />
-            <Autocomplete
-              freeSolo
-              id="free-solo-2-demo"
-              disableClearable
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => ( */}
         <div className="custom_search_wrapper">
           <input
             onChange={(e) => setSearch(e.target.value)}
@@ -51,15 +38,7 @@ export const NavHeaderComPosition = ({ setIsAddedSideBar }: any) => {
         <div onClick={() => setIsAddedSideBar(true)} className={styles.com_position_btn_added}>
           <span>ДОБАВИТЬ ДОЛЖНОСТЬ</span>
         </div>
-        {/* )}
-            />
-          </Stack> */}
       </div>
     </div>
   );
 };
-
-// const top100Films = [
-//   { title: 'The Shawshank Redemption', year: 1994 },
-//   { title: 'The Godfather', year: 1972 },
-// ];

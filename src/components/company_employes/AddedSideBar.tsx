@@ -13,8 +13,8 @@ import InputMask from 'react-input-mask';
 import camera_img from '../../assets/camera_img.svg';
 import useClickOutSide from '../../hooks/useClickOutSide';
 import { useAppDispatch } from '../../hooks/redux';
-import { getPositionCompanyAll } from '../../store/positionSlice';
-import { createEmployesCompany } from '../../store/employesSlice';
+import { createEmployesCompany } from '../../store/reducers/employes/ActionEmployes';
+import { getPositionCompanyAll } from '../../store/reducers/position/ActionPosition';
 
 export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
   const dispatch = useAppDispatch();
@@ -88,8 +88,6 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
                 src={image_preview ? image_preview : ''}
                 alt={undefined}
               ></img>
-              {/* <div
-              className={styles.header_user_not_img}> */}
               {!image_preview && (
                 <span>
                   {(name?.split(' ')[0]?.split('')[0]
@@ -100,7 +98,6 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
                       : '')}
                 </span>
               )}
-              {/* </div> */}
             </Button>
             <div
               style={{ marginTop: '10px', width: 'calc(100% - 20px)' }}

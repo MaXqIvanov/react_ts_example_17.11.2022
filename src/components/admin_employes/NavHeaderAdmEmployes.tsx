@@ -10,7 +10,7 @@ import useDebounce from '../../hooks/use-debounce';
 import { useAppDispatch } from '../../hooks/redux';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { getEmployesAdmin } from '../../store/employesSlice';
+import { getEmployesAdmin } from '../../store/reducers/employes/ActionEmployes';
 
 export const NavHeaderAdmEmployes = ({ setIsAddedSideBar }: any) => {
   const [position, setPosition] = React.useState('');
@@ -29,20 +29,6 @@ export const NavHeaderAdmEmployes = ({ setIsAddedSideBar }: any) => {
   return (
     <div className={styles.nav_header}>
       <div className={styles.nav_header_btn}>
-        {/* <Stack spacing={2} sx={{ width: 300 }}>
-            <Autocomplete
-              id="free-solo-demo"
-              freeSolo
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => <TextField {...params} label="freeSolo" />}
-            />
-            <Autocomplete
-              freeSolo
-              id="free-solo-2-demo"
-              disableClearable
-              options={top100Films.map((option) => option.title)}
-              renderInput={(params) => ( */}
-        {/* <div onClick={()=> setIsAddedSideBar(true)} style={{backgroundImage: `url(${com_employes_btn_added})`}} className={styles.com_employes_btn_added}></div> */}
         <div className="custom_search_wrapper">
           <input
             onChange={(e) => setSearch(e.target.value)}
@@ -56,15 +42,7 @@ export const NavHeaderAdmEmployes = ({ setIsAddedSideBar }: any) => {
         <div onClick={() => setIsAddedSideBar(true)} className={styles.added_employes}>
           <span>Добавить администратора</span>
         </div>
-        {/* )}
-            />
-          </Stack> */}
       </div>
     </div>
   );
 };
-
-// const top100Films = [
-//   { title: 'The Shawshank Redemption', year: 1994 },
-//   { title: 'The Godfather', year: 1972 },
-// ];

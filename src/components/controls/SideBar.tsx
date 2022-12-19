@@ -4,7 +4,7 @@ import styles from '../../scss/Controls.module.scss';
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, taskApprove, taskReject } from '../../store/controlSlice';
+import { changeVisibleSideBar, taskApprove, taskReject } from '../../store/reducers/control/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import axios from 'axios';

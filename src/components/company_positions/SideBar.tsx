@@ -4,18 +4,17 @@ import styles from '../../scss/CompanyPosition.module.scss';
 import close_btn from '../../assets/close_btn.svg';
 import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/taskSlice';
+import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
 import img_user from '../../assets/img_user.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
-import { getEmployesCompany } from '../../store/employesSlice';
-import { createPosition } from '../../store/positionSlice';
+import { createPosition } from '../../store/reducers/position/ActionPosition';
+import { getEmployesCompany } from '../../store/reducers/employes/ActionEmployes';
 
 export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
   const dispatch = useAppDispatch();
   const [position, setPosition] = useState<any>({});
-  const { user } = useSelector((state: RootState) => state.auth);
   const [image, setImage] = useState<any>(null);
   const [image_preview, setImagePriview] = useState<any>(null);
   const [name, setName] = useState('');
@@ -66,15 +65,12 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
             <input
               type="file"
               hidden
-              // onChange={handleCapture}
             />
             <img
               className={`${image_preview ? 'image_logo' : 'image_not_logo'}`}
               src={image_preview ? image_preview : ''}
               alt={undefined}
             ></img>
-            {/* <div
-                className={styles.header_user_not_img}> */}
             {!image_preview && (
               <span>
                 {(nameUser?.split(' ')[0]?.split('')[0]
@@ -85,7 +81,6 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
                     : '')}
               </span>
             )}
-            {/* </div> */}
           </Button>
           <div
             style={{ marginTop: '10px', width: 'calc(100% - 40px)' }}
@@ -121,7 +116,6 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
               </div>
             )}
           </div>
-          {/* employes_company_all */}
           <div
             style={{ marginTop: '30px', width: 'calc(100% - 40px)' }}
             onClick={() => setIsVisibleSelectEmp(!isVisibleSelectEmp)}
@@ -166,7 +160,6 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
               onClick={() =>
                 dispatch(
                   createPosition({
-                    // phone: phoneHolder,
                     name: name,
                     parent_position: position.id,
                     employee: employee.id,
