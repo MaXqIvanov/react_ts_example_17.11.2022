@@ -11,6 +11,9 @@ export interface IUser {
 export interface ICompany {
   id: number;
   name: string;
+  admin: {
+    _user: IUser;
+  };
 }
 export interface TAuthState {
   user: IUser;
