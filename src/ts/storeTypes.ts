@@ -42,12 +42,12 @@ export type TaskState = {
 };
 export type TCompanyState = {
   loading: boolean;
-  company_admin_all: object[];
-  company_admin_current: object;
+  company_admin_all: ICompany[];
+  company_admin_current: ICompany;
   company_admin_index: number;
   current_page: number;
   all_pages: number;
-  company_employes: object[];
+  company_employes: ICompany[];
 };
 export type ControlState = {
   loading: boolean;

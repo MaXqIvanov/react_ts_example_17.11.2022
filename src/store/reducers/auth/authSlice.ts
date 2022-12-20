@@ -93,7 +93,7 @@ const authSlice = createSlice({
           payload,
         }: PayloadAction<{
           response: { status: number; data: { user: IUser; token: string; detail: string } };
-          params: { nav: any };
+          params: { nav: CallableFunction };
         }>
       ) => {
         console.log(payload);

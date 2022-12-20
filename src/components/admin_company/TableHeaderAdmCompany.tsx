@@ -109,7 +109,7 @@ export const TableHeaderAdmCompany = ({ setIsVisibleSideBar }: any) => {
                         <div
                           onClick={() => {
                             window.confirm('Вы уверены что хотите удалить компанию ?') &&
-                              dispatch(deleteCompanyAdmin(''));
+                              dispatch(deleteCompanyAdmin());
                           }}
                           ref={delete_btn}
                           className={'delete_btn'}

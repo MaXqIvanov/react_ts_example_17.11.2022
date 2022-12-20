@@ -8,7 +8,7 @@ import useClickOutSide from '../../hooks/useClickOutSide';
 import { createCompanyAdmin, getCompanyEmployes } from '../../store/reducers/company/ActionCompany';
 
 interface IPropsModalWindowAdded {
-  setIsModalWindowAdded: CallableFunction;
+  setIsModalWindowAdded: React.Dispatch<React.SetStateAction<boolean>>;
   is_added_modal: boolean;
 }
 export const ModalWindowAdded = ({

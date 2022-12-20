@@ -1,3 +1,4 @@
+import { ICompany } from './../../../ts/storeTypes';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
 import { TCompanyState } from '../../../ts/storeTypes';
@@ -12,23 +13,36 @@ import {
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
+interface IPayloadResponseArray {
+  response: {
+    data: {
+      results: ICompany[];
+    };
+    status: number;
+  };
+  params?: any;
+}
+interface IPayloadResponse {
+  response: {
+    data: ICompany;
+    status: number;
+  };
+  params?: any;
+}
 
 const companySlice = createSlice({
   name: 'company',
   initialState: {
     loading: false,
-    company_admin_all: [],
-    company_admin_current: {} as any,
+    company_admin_all: [] as ICompany[],
+    company_admin_current: {} as ICompany,
     company_admin_index: 1,
-    company_employes: [],
-    // one_company user
-    // for admin_company
-    // for pagination
+    company_employes: [] as ICompany[],
     current_page: 1,
     all_pages: 10,
   },
   reducers: {
-    changePagesCompany(state: TCompanyState, action: any) {
+    changePagesCompany(state: TCompanyState, action: { payload: number }) {
       const current_page = state.current_page + action.payload;
       if (current_page > 0 && current_page <= state.all_pages) {
         state.current_page = current_page;
@@ -36,7 +50,7 @@ const companySlice = createSlice({
     },
     setCurrentCompany(
       state: TCompanyState,
-      action: { payload: { company_current: Object; index: number } }
+      action: { payload: { company_current: ICompany; index: number } }
     ) {
       state.company_admin_current = action.payload.company_current;
       state.company_admin_index = action.payload.index;
@@ -48,9 +62,7 @@ const companySlice = createSlice({
     });
     builder.addCase(
       getCompanyEmployes.fulfilled,
-      (state: TCompanyState, { payload }: PayloadAction<any>) => {
-        console.log(payload);
-
+      (state: TCompanyState, { payload }: PayloadAction<IPayloadResponseArray>) => {
         state.company_employes = payload.response.data.results;
         state.loading = false;
       }
@@ -82,7 +94,7 @@ const companySlice = createSlice({
     });
     builder.addCase(
       createCompanyAdmin.fulfilled,
-      (state: TCompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<IPayloadResponse>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all = [...state.company_admin_all, payload.response.data];
@@ -106,7 +118,7 @@ const companySlice = createSlice({
     });
     builder.addCase(
       changeCompanyAdmin.fulfilled,
-      (state: TCompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<IPayloadResponse>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all[state.company_admin_index] = payload.response.data;
@@ -130,7 +142,7 @@ const companySlice = createSlice({
     });
     builder.addCase(
       deleteCompanyAdmin.fulfilled,
-      (state: TCompanyState, { payload }: PayloadAction<any>) => {
+      (state: TCompanyState, { payload }: PayloadAction<IPayloadResponse>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.company_admin_all.splice(state.company_admin_index, 1);

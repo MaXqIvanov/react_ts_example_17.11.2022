@@ -8,7 +8,7 @@ import useClickOutSide from '../../hooks/useClickOutSide';
 import { changeCompanyAdmin, getCompanyEmployes } from '../../store/reducers/company/ActionCompany';
 
 interface IPropsModalWindow {
-  setIsVisibleModalWindow: CallableFunction;
+  setIsVisibleModalWindow: React.Dispatch<React.SetStateAction<boolean>>;
   isvisible_modal: boolean;
 }
 export const ModalWindow = ({ setIsVisibleModalWindow, isvisible_modal }: IPropsModalWindow) => {
@@ -95,7 +95,7 @@ export const ModalWindow = ({ setIsVisibleModalWindow, isvisible_modal }: IProps
                   changeCompanyAdmin({
                     name: name,
                     admin: admin.id,
-                    setIsVisibleSideBar: setIsVisibleModalWindow,
+                    setIsModalWindowAdded: setIsVisibleModalWindow,
                   })
                 )
               }
