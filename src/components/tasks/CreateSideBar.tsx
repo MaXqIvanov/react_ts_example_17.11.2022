@@ -8,8 +8,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import moment from 'moment';
 import { createTask } from '../../store/reducers/tasks/ActionSlice';
 
-const myTheme = createTheme({
-});
+const myTheme = createTheme({});
 Object.assign(myTheme, {
   overrides: {
     MUIRichTextEditor: {

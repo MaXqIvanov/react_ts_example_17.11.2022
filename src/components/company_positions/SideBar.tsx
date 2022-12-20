@@ -1,11 +1,8 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/CompanyPosition.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
-import img_user from '../../assets/img_user.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';
@@ -62,10 +59,7 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
             component="label"
             className={styles.header_user_not_img}
           >
-            <input
-              type="file"
-              hidden
-            />
+            <input type="file" hidden />
             <img
               className={`${image_preview ? 'image_logo' : 'image_not_logo'}`}
               src={image_preview ? image_preview : ''}

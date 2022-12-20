@@ -50,16 +50,9 @@ function createData(
 }
 
 export const TableHeader = ({ visible, current_day_task }: any) => {
-  const {
-    current_variant_table,
-    current_page_day,
-    all_pages_day,
-    current_page_week,
-    all_pages_week,
-    current_page_all,
-    all_pages_all,
-    get_all_task_week,
-  } = useSelector((state: RootState) => state.task);
+  const { current_variant_table, get_all_task_week } = useSelector(
+    (state: RootState) => state.task
+  );
 
   const dispatch = useAppDispatch();
   const [isVisibleHref, setIsVisibleHref] = useState<any>(null);

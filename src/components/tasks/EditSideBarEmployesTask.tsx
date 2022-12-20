@@ -10,9 +10,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { changeTask } from '../../store/reducers/tasks/ActionSlice';
 
-const myTheme = createTheme({
-  // Set up your custom MUI theme here
-});
+const myTheme = createTheme({});
 Object.assign(myTheme, {
   overrides: {
     MUIRichTextEditor: {
@@ -261,11 +259,10 @@ export const EditSideBarEmployesTask = () => {
                 height: 500,
                 menubar: false,
                 plugins: ['link image', 'table paste'],
-                toolbar:
-                  `undo redo | formatselect | bold italic | \
+                toolbar: `undo redo | formatselect | bold italic | \
                       alignleft aligncenter alignright alignjustify | \
                       bullist numlist outdent indent | removeformat | help`,
-                  content_style: `body { font-family: Roboto,Arial,sans-serif; font-size:12px; color: #343A40; line-height: 14px;}
+                content_style: `body { font-family: Roboto,Arial,sans-serif; font-size:12px; color: #343A40; line-height: 14px;}
                     p { margin-block-start: 0.2em; margin-block-end: 0.2em }`,
               }}
             />

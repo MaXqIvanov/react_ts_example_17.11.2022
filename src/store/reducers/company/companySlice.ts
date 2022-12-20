@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
 import { TCompanyState } from '../../../ts/storeTypes';
-import { changeCompanyAdmin, createCompanyAdmin, deleteCompanyAdmin, getCompanyAdmin, getCompanyEmployes } from './ActionCompany';
+import {
+  changeCompanyAdmin,
+  createCompanyAdmin,
+  deleteCompanyAdmin,
+  getCompanyAdmin,
+  getCompanyEmployes,
+} from './ActionCompany';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;

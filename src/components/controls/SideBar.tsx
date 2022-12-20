@@ -1,14 +1,10 @@
-import { TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../../scss/Controls.module.scss';
-import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar, taskApprove, taskReject } from '../../store/reducers/control/controlSlice';
+import { changeVisibleSideBar } from '../../store/reducers/control/controlSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import axios from 'axios';
-import { ArrowFunction } from 'typescript';
+import { taskApprove, taskReject } from '../../store/reducers/control/ActionControl';
 
 export const SideBar = (props: any) => {
   const dispatch = useAppDispatch();

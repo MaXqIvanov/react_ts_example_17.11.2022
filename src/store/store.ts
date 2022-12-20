@@ -3,8 +3,8 @@ import authSlice from './reducers/auth/authSlice';
 import companySlice from './reducers/company/companySlice';
 import controlSlice from './reducers/control/controlSlice';
 import employesSlice from './reducers/employes/employesSlice';
-import positionSlice from './positionSlice';
-import taskSlice from './taskSlice';
+import positionSlice from './reducers/position/positionSlice';
+import taskSlice from './reducers/tasks/taskSlice';
 
 const rootReducer = combineReducers({
   auth: authSlice,

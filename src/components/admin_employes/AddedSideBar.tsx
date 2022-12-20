@@ -1,24 +1,15 @@
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextareaAutosize,
-  TextField,
-} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/AdminEmployes.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
-import camera_img from '../../assets/camera_img.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import InputMask from 'react-input-mask';
 import useClickOutSide from '../../hooks/useClickOutSide';
-import { createEmployesCompanyAdmin, getEmployesCompanyAdmin } from '../../store/reducers/employes/ActionEmployes';
+import {
+  createEmployesCompanyAdmin,
+  getEmployesCompanyAdmin,
+} from '../../store/reducers/employes/ActionEmployes';
 
 export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
   const dispatch = useAppDispatch();

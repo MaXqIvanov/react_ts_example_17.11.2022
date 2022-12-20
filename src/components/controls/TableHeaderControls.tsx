@@ -7,14 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import paperclip_img from '../../assets/task/mdi_paperclip.svg';
 import { useAppDispatch } from '../../hooks/redux';
 import {
-  changePagesControl,
   changeVisibleSideBar,
-  getControlTaskAll,
   setControlsTaskCurrent,
 } from '../../store/reducers/control/controlSlice';
 import { useSelector } from 'react-redux';
@@ -140,8 +136,6 @@ export const TableHeaderControls = ({ setIsVisibleSideBar }: any) => {
                       className={`${styles.table_link}`}
                       rel="noreferrer"
                     ></a>
-                    {/* {isVisibleHref === row.number && <div className={styles.href_link}><a href='https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0'>
-                            https://docs.google.com/spreadsheets/d/1eBRil4htjVMB4hLBvloanO9RsLUjgTb9Вp7FqjRvorw/edit#gid=0</a></div> } */}
                     <div className={'border_dashed'}></div>
                   </TableCell>
                   <TableCell
@@ -161,15 +155,6 @@ export const TableHeaderControls = ({ setIsVisibleSideBar }: any) => {
               ))}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePagesControl(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page}</div>
-                        <div onClick={()=> dispatch(changePagesControl(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

@@ -6,14 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import styles from '../../scss/CompanyEmployes.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import {
-  changePagesCompanyEmployes,
-  setCurrentEmployesCompany,
-} from '../../store/reducers/employes/employesSlice';
+import { setCurrentEmployesCompany } from '../../store/reducers/employes/employesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import useClickOutSide from '../../hooks/useClickOutSide';

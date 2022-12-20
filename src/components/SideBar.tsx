@@ -20,12 +20,10 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
 
   useEffect(() => {
     window.addEventListener('scroll', function (e) {
-      // console.log(document.getElementById('header')!.getBoundingClientRect().top);
       setTopMargin(document.getElementById('header')!.getBoundingClientRect().top);
     });
     return () => {
       window.removeEventListener('scroll', function (e) {
-        // console.log(document.getElementById('header')!.getBoundingClientRect().top);
         setTopMargin(document.getElementById('header')!.getBoundingClientRect().top);
       });
     };
@@ -46,7 +44,7 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
       image: `${img_task}`,
       links: `/`,
       access:
-        (user.is_executor === true || user.is_admin === true || user.is_staff === true) === true
+        (user?.is_executor === true || user?.is_admin === true || user?.is_staff === true) === true
           ? true
           : false,
     },
@@ -56,7 +54,8 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
       image: `${img_control}`,
       links: `/controls`,
       access:
-        (user.is_controller === true || user.is_admin === true || user.is_staff === true) === true
+        (user?.is_controller === true || user?.is_admin === true || user?.is_staff === true) ===
+        true
           ? true
           : false,
     },
@@ -66,7 +65,7 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
       image: `${img_employes}`,
       links: `/employes`,
       access:
-        (user.is_analyst === true || user.is_admin === true || user.is_staff === true) === true
+        (user?.is_analyst === true || user?.is_admin === true || user?.is_staff === true) === true
           ? true
           : false,
     },
@@ -77,14 +76,14 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
       title: 'ДОЛЖНОСТИ',
       image: `${img_positions}`,
       links: `/company_positions`,
-      access: (user.is_admin === true || user.is_staff === true) === true ? true : false,
+      access: (user?.is_admin === true || user?.is_staff === true) === true ? true : false,
     },
     {
       id: 5,
       title: 'Пользователи',
       image: `${img_company_employes}`,
       links: `/company_employes`,
-      access: (user.is_admin === true || user.is_staff === true) === true ? true : false,
+      access: (user?.is_admin === true || user?.is_staff === true) === true ? true : false,
     },
   ];
   const sidebar_navigation_admin = [
@@ -93,14 +92,14 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
       title: 'КОМПАНИИ',
       image: `${img_company}`,
       links: `/admin_companies`,
-      access: (user.is_staff === true) === true ? true : false,
+      access: (user?.is_staff === true) === true ? true : false,
     },
     {
       id: 7,
       title: 'АДМИНИСТРАТОРЫ',
       image: `${img_admin_employes}`,
       links: `/admin_employes`,
-      access: (user.is_staff === true) === true ? true : false,
+      access: (user?.is_staff === true) === true ? true : false,
     },
   ];
   useEffect(() => {
@@ -127,15 +126,15 @@ export const SideBar = ({ isCollapseSideBar }: any) => {
   }, [window.location.pathname]);
 
   useEffect(() => {
-    if (user.is_staff) {
+    if (user?.is_staff) {
       return;
-    } else if (user.is_admin) {
+    } else if (user?.is_admin) {
       return;
-    } else if (user.is_executor) {
+    } else if (user?.is_executor) {
       router('/');
-    } else if (user.is_controller) {
+    } else if (user?.is_controller) {
       router('/controls');
-    } else if (user.is_analyst) {
+    } else if (user?.is_analyst) {
       router('/employes');
     }
   }, [user]);

@@ -125,8 +125,8 @@ export const Header = ({
                 <div className={styles.group_img_user}>
                   <div
                     style={{
-                      backgroundImage: user.profile_img
-                        ? `url(${user.profile_img})`
+                      backgroundImage: user?.profile_img
+                        ? `url(${user?.profile_img})`
                         : `url(${img_user})`,
                     }}
                     className={styles.img_user}

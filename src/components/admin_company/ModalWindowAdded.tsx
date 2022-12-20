@@ -11,7 +11,10 @@ interface IPropsModalWindowAdded {
   setIsModalWindowAdded: CallableFunction;
   is_added_modal: boolean;
 }
-export const ModalWindowAdded = ({ setIsModalWindowAdded, is_added_modal }: IPropsModalWindowAdded) => {
+export const ModalWindowAdded = ({
+  setIsModalWindowAdded,
+  is_added_modal,
+}: IPropsModalWindowAdded) => {
   const dispatch = useAppDispatch();
   const [admin, setAdmin] = useState<any>({});
   const [name, setName] = useState<string>('');
@@ -98,7 +101,10 @@ export const ModalWindowAdded = ({ setIsModalWindowAdded, is_added_modal }: IPro
           </div>
         </div>
       </div>
-      <div onClick={() => setIsModalWindowAdded(false)} className={styles.user_side_menu_plug}></div>
+      <div
+        onClick={() => setIsModalWindowAdded(false)}
+        className={styles.user_side_menu_plug}
+      ></div>
     </>
   );
 };

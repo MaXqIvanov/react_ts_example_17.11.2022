@@ -1,8 +1,5 @@
-import { TextField } from '@mui/material';
 import React, { useState } from 'react';
 import styles from '../../scss/Task.module.scss';
-import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar } from '../../store/reducers/tasks/taskSlice';
 import { useSelector } from 'react-redux';

@@ -10,7 +10,7 @@ import { changeCompanyAdmin, getCompanyEmployes } from '../../store/reducers/com
 interface IPropsModalWindow {
   setIsVisibleModalWindow: CallableFunction;
   isvisible_modal: boolean;
-} 
+}
 export const ModalWindow = ({ setIsVisibleModalWindow, isvisible_modal }: IPropsModalWindow) => {
   const dispatch = useAppDispatch();
   const [admin, setAdmin] = useState<any>({});
@@ -106,7 +106,10 @@ export const ModalWindow = ({ setIsVisibleModalWindow, isvisible_modal }: IProps
           </div>
         </div>
       </div>
-      <div onClick={() => setIsVisibleModalWindow(false)} className={styles.user_side_menu_plug}></div>
+      <div
+        onClick={() => setIsVisibleModalWindow(false)}
+        className={styles.user_side_menu_plug}
+      ></div>
     </>
   );
 };

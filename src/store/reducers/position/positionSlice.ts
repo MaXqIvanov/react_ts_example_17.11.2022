@@ -3,7 +3,13 @@ import api from '../../../plugins/axios/api';
 import Cookies from 'js-cookie';
 import { HeadersDefaults } from 'axios';
 import { PositionState } from '../../../ts/storeTypes';
-import { changePosition, createPosition, deletePosition, getPosition, getPositionCompanyAll } from './ActionPosition';
+import {
+  changePosition,
+  createPosition,
+  deletePosition,
+  getPosition,
+  getPositionCompanyAll,
+} from './ActionPosition';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;

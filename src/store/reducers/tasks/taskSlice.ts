@@ -2,7 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
 import { TaskState } from '../../../ts/storeTypes';
 import moment from 'moment';
-import { changeTask, createTask, finishTask, getCurrentTask, getTaskAll, getTaskDay, getTaskWeek } from './ActionSlice';
+import {
+  changeTask,
+  createTask,
+  finishTask,
+  getCurrentTask,
+  getTaskAll,
+  getTaskDay,
+  getTaskWeek,
+} from './ActionSlice';
 
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;

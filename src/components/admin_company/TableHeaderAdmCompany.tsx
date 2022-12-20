@@ -6,18 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import footer_left_btn from '../../assets/task/footer_left_btn.svg';
-import footer_right_btn from '../../assets/task/footer_right_btn.svg';
 import styles from '../../scss/CompanyPosition.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
-import {
-  changePagesCompany,
-  deleteCompanyAdmin,
-  setCurrentCompany,
-} from '../../store/reducers/company/companySlice';
+import { setCurrentCompany } from '../../store/reducers/company/companySlice';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import useClickOutSide from '../../hooks/useClickOutSide';
+import { deleteCompanyAdmin } from '../../store/reducers/company/ActionCompany';
 
 function createData(number: number, name_company: string, employes: string) {
   return { number, name_company, employes };
@@ -106,12 +101,6 @@ export const TableHeaderAdmCompany = ({ setIsVisibleSideBar }: any) => {
                       onClick={() => {
                         setIsDeleteBtn(true);
                         dispatch(setCurrentCompany({ company_current: row, index: index }));
-                        // dispatch(getCurrentCompany({admin_current: row, index: index}))
-                        //  setIsVisibleSideBar(true)
-                        // dispatch(setCurrentEmployes({
-                        //     employes_current: row,
-                        //     index: index,
-                        // }))
                       }}
                       align="center"
                     >
@@ -136,15 +125,6 @@ export const TableHeaderAdmCompany = ({ setIsVisibleSideBar }: any) => {
               )}
             </TableBody>
           </Table>
-          {/* <div className={styles.thead_footer_custom}>
-                    <div>страница</div>
-                    <div className={styles.footer_group_btn}>
-                        <div onClick={()=> dispatch(changePagesCompany(-1))} style={{backgroundImage: `url(${footer_left_btn})`}} className={styles.footer_group_btn_left}></div>
-                        <div className={styles.footer_group_btn_center}>{current_page}</div>
-                        <div onClick={()=> dispatch(changePagesCompany(1))} style={{backgroundImage: `url(${footer_right_btn})`}} className={styles.footer_group_btn_right}></div>
-                    </div>
-                    <div>из {all_pages}</div>
-                </div> */}
         </TableContainer>
       </div>
     </div>

@@ -1,4 +1,4 @@
-export interface IUser{
+export interface IUser {
   is_staff: boolean;
   is_executor: boolean;
   is_controller: boolean;
@@ -8,18 +8,18 @@ export interface IUser{
   name: string;
   profile_img: string;
 }
-export interface ICompany{
+export interface ICompany {
   id: number;
   name: string;
 }
-export interface TAuthState{
+export interface TAuthState {
   user: IUser;
   auth: boolean;
   loading: boolean;
   user_company: ICompany[];
   current_company: ICompany;
   first_render: boolean;
-};
+}
 export type TaskState = {
   loading: boolean;
   variant_table: Array<Object>;
@@ -42,7 +42,7 @@ export type TaskState = {
 };
 export type TCompanyState = {
   loading: boolean;
-  company_admin_all:  object[];
+  company_admin_all: object[];
   company_admin_current: object;
   company_admin_index: number;
   current_page: number;

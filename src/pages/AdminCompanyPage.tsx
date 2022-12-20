@@ -30,7 +30,10 @@ export const AdminCompanyPage = ({ isCollapseSideBar }: any) => {
           />
         )}
         {is_added_modal && (
-          <ModalWindowAdded setIsModalWindowAdded={setIsModalWindowAdded} is_added_modal={is_added_modal} />
+          <ModalWindowAdded
+            setIsModalWindowAdded={setIsModalWindowAdded}
+            is_added_modal={is_added_modal}
+          />
         )}
       </div>
     </div>

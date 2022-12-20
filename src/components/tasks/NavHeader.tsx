@@ -10,9 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useAppDispatch } from '../../hooks/redux';
-import {
-  setCurrentVariantTable,
-} from '../../store/reducers/tasks/taskSlice';
+import { setCurrentVariantTable } from '../../store/reducers/tasks/taskSlice';
 import 'rc-calendar/assets/index.css';
 import styles from '../../scss/Task.module.scss';
 import useDebounce from '../../hooks/use-debounce';

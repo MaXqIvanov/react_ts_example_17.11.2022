@@ -1,16 +1,10 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from '../../scss/CompanyEmployes.module.scss';
 import close_btn from '../../assets/close_btn.svg';
-import info_btn from '../../assets/task/akar-icons_info.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import active_img from '../../assets/company/active_img.svg';
-import executor_img from '../../assets/company/executor_img.svg';
-import analitic_img from '../../assets/company/analitic_img.svg';
-import controller_img from '../../assets/company/controller_img.svg';
 import InputMask from 'react-input-mask';
-import camera_img from '../../assets/camera_img.svg';
 import useClickOutSide from '../../hooks/useClickOutSide';
 import { useAppDispatch } from '../../hooks/redux';
 import { createEmployesCompany } from '../../store/reducers/employes/ActionEmployes';
