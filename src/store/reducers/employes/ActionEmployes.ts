@@ -6,14 +6,15 @@ import { RootState } from '../../store';
 interface IParamsActionCompany {
   phone: string;
   name: string;
-  password: string;
-  position: number;
-  is_active: boolean;
-  is_executor: boolean;
-  is_controller: boolean;
-  is_analyst: boolean;
-  avatar: string | undefined;
-  setIsVisibleSideBar: CallableFunction;
+  password: string | null;
+  position?: number;
+  is_active?: boolean;
+  is_executor?: boolean;
+  is_controller?: boolean;
+  is_analyst?: boolean;
+  avatar?: string | undefined;
+  setIsVisibleSideBar?: CallableFunction;
+  setIsAddedSideBar?: CallableFunction;
   company?: ICompany;
   user?: IUser;
   current_position?: IPosition | {};
@@ -65,12 +66,12 @@ export const changeEmployesCompany = createAsyncThunk(
 );
 export const deleteEmployesCompany = createAsyncThunk(
   'employes/deleteEmployesCompany',
-  async (params: IParamsActionCompany, { getState }) => {
+  async (_, { getState }) => {
     const rootState = getState() as RootState;
     const response = await api.delete(
       `companies/employees/${rootState.employes.employes_company_current.id}/`
     );
-    return { response, params };
+    return { response };
   }
 );
 export const getEmployesAdmin = createAsyncThunk(
@@ -82,9 +83,9 @@ export const getEmployesAdmin = createAsyncThunk(
 );
 export const getEmployesCompanyAdmin = createAsyncThunk(
   'employes/getEmployesCompanyAdmin',
-  async (params: IParamsActionCompany) => {
+  async (_) => {
     const response = await api.get(`companies/companies`);
-    return { response, params };
+    return { response };
   }
 );
 // accounts/admins/
@@ -113,11 +114,11 @@ export const changeEmployesCompanyAdmin = createAsyncThunk(
 );
 export const deleteEmployesCompanyAdmin = createAsyncThunk(
   'employes/deleteEmployesCompanyAdmin',
-  async (params: IParamsActionCompany, { getState }) => {
+  async (_, { getState }) => {
     const rootState = getState() as RootState;
     const response = await api.delete(
       `accounts/admins/${rootState.employes.employes_admin_current.id}/`
     );
-    return { response, params };
+    return { response };
   }
 );

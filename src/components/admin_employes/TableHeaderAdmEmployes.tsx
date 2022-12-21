@@ -14,7 +14,11 @@ import useClickOutSide from '../../hooks/useClickOutSide';
 import { getCurrentAdmin } from '../../store/reducers/employes/employesSlice';
 import { deleteEmployesCompanyAdmin } from '../../store/reducers/employes/ActionEmployes';
 
-export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: any) => {
+interface props {
+  setIsVisibleSideBar: CallableFunction;
+}
+
+export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: props) => {
   const dispatch = useAppDispatch();
   const { employes_admin_all, employes_admin_current } = useSelector(
     (state: RootState) => state.employes
@@ -108,7 +112,7 @@ export const TableHeaderAdmEmployes = ({ setIsVisibleSideBar }: any) => {
                         <div
                           onClick={() => {
                             window.confirm('Вы уверены что хотите удалить администратора ?') &&
-                              dispatch(deleteEmployesCompanyAdmin(''));
+                              dispatch(deleteEmployesCompanyAdmin());
                           }}
                           ref={delete_btn}
                           className={'delete_btn'}

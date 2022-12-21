@@ -29,7 +29,7 @@ export const SideBar = ({ setIsVisibleSideBar, isvisible_sidebaer }: any) => {
     setIsVisibleSelect(false);
   });
   useEffect(() => {
-    dispatch(getEmployesCompanyAdmin(''));
+    dispatch(getEmployesCompanyAdmin());
   }, []);
 
   useEffect(() => {

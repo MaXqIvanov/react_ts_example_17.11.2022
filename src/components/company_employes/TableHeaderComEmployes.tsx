@@ -132,7 +132,7 @@ export const TableHeaderComEmployes = ({ setIsVisibleSideBar }: any) => {
                         <div
                           onClick={() => {
                             window.confirm('Вы уверены что хотите удалить пользователя ?') &&
-                              dispatch(deleteEmployesCompany(''));
+                              dispatch(deleteEmployesCompany());
                           }}
                           ref={delete_btn}
                           className={'delete_btn'}

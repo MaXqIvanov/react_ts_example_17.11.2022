@@ -11,7 +11,11 @@ import {
   getEmployesCompanyAdmin,
 } from '../../store/reducers/employes/ActionEmployes';
 
-export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
+interface props {
+  setIsAddedSideBar: CallableFunction;
+  isadded_sidebar: boolean;
+}
+export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: props) => {
   const dispatch = useAppDispatch();
   const [position, setPosition] = useState<any>('');
   const [name, setNamePosition] = useState<string>('');
@@ -27,7 +31,7 @@ export const AddedSideBar = ({ setIsAddedSideBar, isadded_sidebar }: any) => {
     setIsVisibleSelect(false);
   });
   useEffect(() => {
-    dispatch(getEmployesCompanyAdmin(''));
+    dispatch(getEmployesCompanyAdmin());
   }, []);
 
   return (

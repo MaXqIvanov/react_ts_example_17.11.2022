@@ -15,7 +15,7 @@ export const NavHeaderEmployes = () => {
   const { current_company } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    dispatch(getEmployesAll(''));
+    dispatch(getEmployesAll());
   }, [debouncedSearchTerm, current_company]);
 
   const handleChange = (event: any) => {
