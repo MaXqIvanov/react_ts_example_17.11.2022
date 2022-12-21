@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
-import { TaskState } from '../../../ts/storeTypes';
+import { ITaskState } from '../../../ts/storeTypes';
 import moment from 'moment';
 import {
   changeTask,
@@ -11,10 +11,6 @@ import {
   getTaskDay,
   getTaskWeek,
 } from './ActionSlice';
-
-interface CommonHeaderProperties extends HeadersDefaults {
-  Authorization: string;
-}
 
 const taskSlice = createSlice({
   name: 'task',
@@ -53,25 +49,25 @@ const taskSlice = createSlice({
     need_load_data: false,
   },
   reducers: {
-    setCurrentVariantTable(state: TaskState, action: any) {
+    setCurrentVariantTable(state: ITaskState, action: any) {
       state.current_variant_table = action.payload;
     },
-    changeVisibleSideBar(state: TaskState) {
+    changeVisibleSideBar(state: ITaskState) {
       state.isVisibleSideBar = !state.isVisibleSideBar;
     },
-    changePagesDay(state: TaskState, action: any) {
+    changePagesDay(state: ITaskState, action: any) {
       const current_page_day = state.current_page_day + action.payload;
       if (current_page_day > 0 && current_page_day <= state.all_pages_day) {
         state.current_page_day = current_page_day;
       }
     },
-    changePagesWeek(state: TaskState, action: any) {
+    changePagesWeek(state: ITaskState, action: any) {
       const current_page_week = state.current_page_week + action.payload;
       if (current_page_week > 0 && current_page_week <= state.all_pages_week) {
         state.current_page_week = current_page_week;
       }
     },
-    changePagesAll(state: TaskState, action: any) {
+    changePagesAll(state: ITaskState, action: any) {
       const current_page_all = state.current_page_all + action.payload;
       if (current_page_all > 0 && current_page_all <= state.all_pages_all) {
         state.current_page_all = current_page_all;
@@ -79,49 +75,49 @@ const taskSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getTaskDay.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(getTaskDay.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(getTaskDay.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(getTaskDay.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       console.log(payload);
       state.get_all_task_week = payload.response.data;
       state.loading = false;
     });
-    builder.addCase(getTaskDay.rejected, (state: TaskState) => {
+    builder.addCase(getTaskDay.rejected, (state: ITaskState) => {
       state.loading = false;
     });
 
-    builder.addCase(getTaskWeek.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(getTaskWeek.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(getTaskWeek.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(getTaskWeek.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       console.log(payload);
       if (payload.response.status < 300) {
         state.get_all_task_week = payload.response.data;
       }
       state.loading = false;
     });
-    builder.addCase(getTaskWeek.rejected, (state: TaskState) => {
+    builder.addCase(getTaskWeek.rejected, (state: ITaskState) => {
       state.loading = false;
     });
 
-    builder.addCase(getTaskAll.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(getTaskAll.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(getTaskAll.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(getTaskAll.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       if (payload.response.status < 300) {
         state.get_all_task_week = payload.response.data.results;
       }
       state.loading = false;
     });
-    builder.addCase(getTaskAll.rejected, (state: TaskState) => {
+    builder.addCase(getTaskAll.rejected, (state: ITaskState) => {
       state.loading = false;
     });
     // finishTask
-    builder.addCase(finishTask.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(finishTask.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(finishTask.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(finishTask.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       console.log(payload);
       if (payload.response.status < 300) {
         const current_day_week = moment().toDate().getDay() - 1;
@@ -138,14 +134,14 @@ const taskSlice = createSlice({
       state.isVisibleSideBar = false;
       state.loading = false;
     });
-    builder.addCase(finishTask.rejected, (state: TaskState) => {
+    builder.addCase(finishTask.rejected, (state: ITaskState) => {
       state.loading = false;
     });
     // createTask
-    builder.addCase(createTask.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(createTask.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(createTask.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(createTask.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       console.log(payload);
       if (payload.response.status < 300) {
         alert('Создание задачи прошло успешно');
@@ -154,34 +150,34 @@ const taskSlice = createSlice({
       }
       state.loading = false;
     });
-    builder.addCase(createTask.rejected, (state: TaskState) => {
+    builder.addCase(createTask.rejected, (state: ITaskState) => {
       state.loading = false;
     });
     // getCurrentTask
-    builder.addCase(getCurrentTask.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(getCurrentTask.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       getCurrentTask.fulfilled,
-      (state: TaskState, { payload }: PayloadAction<any>) => {
+      (state: ITaskState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         state.current_task_index = payload.params.index;
         state.current_task_week = payload.response.data;
         state.loading = false;
       }
     );
-    builder.addCase(getCurrentTask.rejected, (state: TaskState) => {
+    builder.addCase(getCurrentTask.rejected, (state: ITaskState) => {
       state.loading = false;
     });
-    builder.addCase(changeTask.pending, (state: TaskState, action: PayloadAction) => {
+    builder.addCase(changeTask.pending, (state: ITaskState, action: PayloadAction) => {
       state.loading = true;
     });
-    builder.addCase(changeTask.fulfilled, (state: TaskState, { payload }: PayloadAction<any>) => {
+    builder.addCase(changeTask.fulfilled, (state: ITaskState, { payload }: PayloadAction<any>) => {
       console.log(payload);
       state.need_load_data = !state.need_load_data;
       state.loading = false;
     });
-    builder.addCase(changeTask.rejected, (state: TaskState) => {
+    builder.addCase(changeTask.rejected, (state: ITaskState) => {
       state.loading = false;
     });
   },

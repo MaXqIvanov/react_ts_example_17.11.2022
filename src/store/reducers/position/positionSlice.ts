@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import api from '../../../plugins/axios/api';
-import Cookies from 'js-cookie';
+import { IPosition } from './../../../ts/storeTypes';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HeadersDefaults } from 'axios';
-import { PositionState } from '../../../ts/storeTypes';
+import { IPositionState } from '../../../ts/storeTypes';
 import {
   changePosition,
   createPosition,
@@ -11,17 +10,13 @@ import {
   getPositionCompanyAll,
 } from './ActionPosition';
 
-interface CommonHeaderProperties extends HeadersDefaults {
-  Authorization: string;
-}
-
 const controlSlice = createSlice({
   name: 'position',
   initialState: {
     loading: false,
 
-    position_all: [],
-    position_current: {},
+    position_all: [] as IPosition[],
+    position_current: {} as IPosition,
     // company section
     position_company_all: [],
     position_company_current: {} as any,
@@ -33,65 +28,65 @@ const controlSlice = createSlice({
     all_pages: 10,
   },
   reducers: {
-    changeVisibleSideBar(state: PositionState) {
+    changeVisibleSideBar(state: IPositionState) {
       state.isVisibleSideBar = !state.isVisibleSideBar;
     },
-    changePages(state: PositionState, action: any) {
+    changePages(state: IPositionState, action: any) {
       const current_page = state.current_page + action.payload;
       if (current_page > 0 && current_page <= state.all_pages) {
         state.current_page = current_page;
       }
     },
-    getCurrentPosition(state: PositionState, action: any) {
+    getCurrentPosition(state: IPositionState, action: any) {
       state.position_current = action.current;
     },
-    getCurrentPositionCompany(state: PositionState, action: any) {
+    getCurrentPositionCompany(state: IPositionState, action: any) {
       state.position_company_current = action.payload.current_position_company;
       state.position_company_index = action.payload.index;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getPosition.pending, (state: PositionState, action: PayloadAction) => {
+    builder.addCase(getPosition.pending, (state: IPositionState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       getPosition.fulfilled,
-      (state: PositionState, { payload }: PayloadAction<any>) => {
+      (state: IPositionState, { payload }: PayloadAction<any>) => {
         console.log(payload);
 
         state.position_all = payload.response.data;
         state.loading = false;
       }
     );
-    builder.addCase(getPosition.rejected, (state: PositionState) => {
+    builder.addCase(getPosition.rejected, (state: IPositionState) => {
       state.loading = false;
     });
     // getPositionCompanyAll
     builder.addCase(
       getPositionCompanyAll.pending,
-      (state: PositionState, action: PayloadAction) => {
+      (state: IPositionState, action: PayloadAction) => {
         state.loading = true;
       }
     );
     builder.addCase(
       getPositionCompanyAll.fulfilled,
-      (state: PositionState, { payload }: PayloadAction<any>) => {
+      (state: IPositionState, { payload }: PayloadAction<any>) => {
         console.log(payload);
 
         state.position_company_all = payload.response.data.results;
         state.loading = false;
       }
     );
-    builder.addCase(getPositionCompanyAll.rejected, (state: PositionState) => {
+    builder.addCase(getPositionCompanyAll.rejected, (state: IPositionState) => {
       state.loading = false;
     });
     // createPosition
-    builder.addCase(createPosition.pending, (state: PositionState, action: PayloadAction) => {
+    builder.addCase(createPosition.pending, (state: IPositionState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       createPosition.fulfilled,
-      (state: PositionState, { payload }: PayloadAction<any>) => {
+      (state: IPositionState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.position_company_all = [...state.position_company_all, payload.response.data];
@@ -100,16 +95,16 @@ const controlSlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(createPosition.rejected, (state: PositionState) => {
+    builder.addCase(createPosition.rejected, (state: IPositionState) => {
       state.loading = false;
     });
     // changePosition
-    builder.addCase(changePosition.pending, (state: PositionState, action: PayloadAction) => {
+    builder.addCase(changePosition.pending, (state: IPositionState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       changePosition.fulfilled,
-      (state: PositionState, { payload }: PayloadAction<any>) => {
+      (state: IPositionState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.position_company_all[state.position_company_index] = payload.response.data;
@@ -119,16 +114,16 @@ const controlSlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(changePosition.rejected, (state: PositionState) => {
+    builder.addCase(changePosition.rejected, (state: IPositionState) => {
       state.loading = false;
     });
     // deletePosition
-    builder.addCase(deletePosition.pending, (state: PositionState, action: PayloadAction) => {
+    builder.addCase(deletePosition.pending, (state: IPositionState, action: PayloadAction) => {
       state.loading = true;
     });
     builder.addCase(
       deletePosition.fulfilled,
-      (state: PositionState, { payload }: PayloadAction<any>) => {
+      (state: IPositionState, { payload }: PayloadAction<any>) => {
         console.log(payload);
         if (payload.response.status < 400) {
           state.position_company_all.splice(state.position_company_index, 1);
@@ -137,7 +132,7 @@ const controlSlice = createSlice({
         state.loading = false;
       }
     );
-    builder.addCase(deletePosition.rejected, (state: PositionState) => {
+    builder.addCase(deletePosition.rejected, (state: IPositionState) => {
       state.loading = false;
     });
   },

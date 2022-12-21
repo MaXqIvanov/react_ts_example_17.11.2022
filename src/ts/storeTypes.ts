@@ -1,3 +1,4 @@
+// auth
 export interface IUser {
   is_staff: boolean;
   is_executor: boolean;
@@ -23,7 +24,20 @@ export interface TAuthState {
   current_company: ICompany;
   first_render: boolean;
 }
-export type TaskState = {
+// task
+export interface ITask {
+  id: number;
+  name: string;
+  artefact: string;
+  norm: number;
+}
+export interface ITaskCurrent {
+  id: number;
+  time_spent: number;
+  start_before: string;
+  _task: ITask;
+}
+export interface ITaskState {
   loading: boolean;
   variant_table: Array<Object>;
   current_variant_table: number;
@@ -42,8 +56,9 @@ export type TaskState = {
   all_pages_all: number;
   current_task_index: number;
   need_load_data: boolean;
-};
-export type TCompanyState = {
+}
+// company
+export interface ICompanyState {
   loading: boolean;
   company_admin_all: ICompany[];
   company_admin_current: ICompany;
@@ -51,8 +66,9 @@ export type TCompanyState = {
   current_page: number;
   all_pages: number;
   company_employes: ICompany[];
-};
-export type ControlState = {
+}
+// control
+export interface IControlState {
   loading: boolean;
   isVisibleSideBar: boolean;
   controls_task_all: Array<any>;
@@ -62,45 +78,40 @@ export type ControlState = {
   position_current: any;
   controls_task_current: any;
   controls_task_index: number;
-};
-export type PositionState = {
+}
+// position
+export interface IPosition {
+  id: number;
+  name: string;
+}
+export interface IPositionState {
   loading: boolean;
   isVisibleSideBar: boolean;
-  position_all: Array<any>;
-  position_current: any;
-  // company section
+  position_all: IPosition[];
+  position_current: IPosition;
   position_company_all: Array<Object>;
   position_company_current: Object;
-  // pagination
   current_page: number;
   all_pages: number;
   position_company_index: number;
-};
-
-export type EmployesState = {
+}
+// employes
+export interface IEmployesState {
   loading: boolean;
-
-  // for sidebar
   isVisibleSideBar: boolean;
-  // get_employes_all
   employes_all: Array<Object>;
   employes_current: Object;
   employes_current_index: number;
-  // for pagination
   current_page: number;
   all_pages: number;
   current_page_company_employes: number;
   all_pages_company_employes: number;
-  // current_page_admin_employes: number,
-  // all_pages_admin_employes: number,
   isVisibleSideBarCreate: boolean;
-  // emp_company
   employes_company_all: Array<Object>;
   employes_company_current: Object;
   employes_company_index: number;
-  // emp_admin
   employes_admin_all: Array<Object>;
   employes_admin_current: Object;
   position_all_admin: Array<Object>;
   employes_admin_index: number;
-};
+}

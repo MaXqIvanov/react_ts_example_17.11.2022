@@ -23,7 +23,7 @@ export const SideBar = () => {
           </div>
           <div style={{ marginTop: '20px' }} className={'wrapper_input'}>
             <div className={'label'}>Начало до</div>
-            <input disabled value={controls_task_current._task.start_before} />
+            <input disabled value={controls_task_current.start_before} />
           </div>
           <div style={{ marginTop: '20px' }} className={'wrapper_input'}>
             <div className={'label'}>Переодичность</div>
