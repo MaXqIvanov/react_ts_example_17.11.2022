@@ -41,7 +41,9 @@ const controlSlice = createSlice({
     },
     selectCurrentPosition(
       state: IControlState,
-      action: { payload: { current_position: number; setIsVisibleSelect: CallableFunction } }
+      action: {
+        payload: { current_position: IPosition | {}; setIsVisibleSelect: CallableFunction };
+      }
     ) {
       state.position_current = action.payload.current_position;
       action.payload.setIsVisibleSelect(false);

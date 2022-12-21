@@ -6,6 +6,7 @@ import { selectCurrentPosition } from '../../store/reducers/control/controlSlice
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { getControlTaskAll, getPosition } from '../../store/reducers/control/ActionControl';
+import { IPosition } from '../../ts/storeTypes';
 
 export const NavHeaderControls = () => {
   const dispatch = useAppDispatch();
@@ -66,7 +67,7 @@ export const NavHeaderControls = () => {
                 Все
               </div>
               {position_all?.length > 0 &&
-                position_all.map((elem: any) => (
+                position_all.map((elem: IPosition) => (
                   <div
                     key={elem.id}
                     onClick={() =>
