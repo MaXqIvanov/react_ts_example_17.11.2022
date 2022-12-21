@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../scss/Controls.module.scss';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeVisibleSideBar } from '../../store/reducers/control/controlSlice';
@@ -6,10 +6,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { taskApprove, taskReject } from '../../store/reducers/control/ActionControl';
 
-export const SideBar = (props: any) => {
+export const SideBar = () => {
   const dispatch = useAppDispatch();
   const { controls_task_current } = useSelector((state: RootState) => state.control);
-  const [spend_time, setSpendTime] = useState<string>('');
 
   return (
     <>
@@ -54,12 +53,12 @@ export const SideBar = (props: any) => {
             </div>
             <div
               style={{ marginRight: '10px' }}
-              onClick={() => dispatch(taskReject(''))}
+              onClick={() => dispatch(taskReject())}
               className={'btn_mistake'}
             >
               <span>есть ошибки</span>
             </div>
-            <div onClick={() => dispatch(taskApprove(''))} className={'btn_good'}>
+            <div onClick={() => dispatch(taskApprove())} className={'btn_good'}>
               <span>все хорошо</span>
             </div>
           </div>

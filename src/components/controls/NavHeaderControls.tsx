@@ -13,17 +13,12 @@ export const NavHeaderControls = () => {
   const { current_company } = useSelector((state: RootState) => state.auth);
   const [isVisibleSelect, setIsVisibleSelect] = useState<boolean>(false);
   const [is_approve, setCheckedTask] = useState<boolean>(false);
-  const [position, setPosition] = useState('');
   const [search, setSearch] = useState('');
-  const [status, setStatus] = useState(false);
-  const handleChange = (event: any) => {
-    setPosition(event.target.value);
-  };
   const select = useClickOutSide(() => {
     setIsVisibleSelect(false);
   });
   useEffect(() => {
-    dispatch(getPosition(''));
+    dispatch(getPosition());
   }, []);
   useEffect(() => {
     dispatch(getControlTaskAll({ is_approve: is_approve }));

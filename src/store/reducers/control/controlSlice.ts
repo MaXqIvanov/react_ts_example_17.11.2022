@@ -81,7 +81,6 @@ const controlSlice = createSlice({
     builder.addCase(
       taskApprove.fulfilled,
       (state: ControlState, { payload }: PayloadAction<any>) => {
-        console.log(payload);
         if (payload.response.status < 300) {
           state.controls_task_all.splice(state.controls_task_index, 1);
           state.isVisibleSideBar = false;
